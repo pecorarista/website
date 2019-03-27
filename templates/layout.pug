@@ -1,0 +1,27 @@
+doctype html
+
+block variables
+  - var site = 'pecorarista.com'
+
+html.cjk
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name="twitter:card", content="summary")
+    meta(name="twitter:site", content="@pecorarista")
+    meta(name="twitter:title", content=title + ' – ' + site)
+    meta(name="twitter:description", content=description)
+    meta(name="twitter:image", content="https://pecorarista.com/static/images/avatar.png")
+    link(rel='icon', href='/favicon.ico')
+    block styles
+      include styles.pug
+  body
+    .wrapper
+      header
+        include navbar.pug
+      main
+        block content
+      footer
+        include footer.pug
+      block scripts
+        include scripts.pug

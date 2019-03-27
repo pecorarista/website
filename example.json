@@ -1,0 +1,5 @@
+{
+  "hostname": "webserver",
+  "username": "ubuntu",
+  "destination": "/var/www/"
+}

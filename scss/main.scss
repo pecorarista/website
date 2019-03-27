@@ -1,0 +1,324 @@
+$shikon: #581a56;  // 紫紺
+$denim: #1560bd;
+$blue: #0000cd;
+$black: #373a3c;
+$powder-blue: #b0e0e6;
+$white: #fff;
+$white-smoke: #f5f5f5;
+$gray: #808080;
+$lightgray: rgba(27, 31, 35, 0.05);
+$footer-height: 70px;
+$western-font: 'Roboto';
+$jp-font: 'source-han-sans-cjk-ja';
+$ipa-font: 'Judson';
+$mono-font: 'Roboto Mono';
+
+html {
+  font-size: 100%;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  background-color: $white-smoke;
+  font-family: $western-font, $jp-font, sans-serif;
+  font-feature-settings: 'palt';
+  font-size: 1.08rem;
+  font-weight: 400;
+}
+
+:lang(ar) {
+  font-family: 'Amiri', serif;
+}
+
+.wrapper {
+  box-sizing: border-box;
+  min-height: 100vh;
+  padding-bottom: $footer-height;
+  position: relative;
+}
+
+footer {
+  background-color: $gray;
+  bottom: 0;
+  color: $white;
+  height: $footer-height;
+  position: absolute;
+  width: 100%;
+}
+
+.footer {
+  font-size: 1rem;
+  font-weight: 300;
+  padding-top: 23px;
+}
+
+.bottom-element {
+  padding-bottom: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-weight: 400;
+}
+
+h3 {
+  font-size: 1.62rem;
+}
+
+.navbar-dark {
+  background-color: $shikon;
+}
+
+a {
+
+  :link,
+  :visited {
+    color: $denim;
+  }
+
+  .navbar-brand {
+    color: $white;
+    font-size: larger;
+  }
+
+}
+
+img {
+  &.avatar {
+    background-color: $powder-blue;
+    height: auto;
+    max-width: 300px;
+    width: 100%;
+  }
+}
+
+.centered-image {
+  display: block;
+  margin-bottom: 30px;
+  margin-top: 10px;
+  text-align: center;
+
+  img {
+    height: auto;
+    max-width: 100%;
+  }
+
+}
+
+figure {
+  margin-bottom: 30px;
+  margin-top: 20px;
+}
+
+.pseudocode {
+  display: block;
+  margin-bottom: 30px;
+  margin-top: 20px;
+  text-align: center;
+
+  img {
+    background-color: $white;
+    height: auto;
+    min-width: 380px;
+    padding: 20px;
+  }
+
+}
+
+main {
+  height: 100%;
+  padding-bottom: 50px;
+  padding-top: 50px;
+}
+
+
+section {
+  padding-bottom: 18px;
+}
+
+.profile {
+
+  text-align: center;
+
+  .caption {
+    margin-top: 20px;
+  }
+
+  ul {
+    padding: 0;
+
+    li {
+      display: inline-block;
+      text-align: center;
+
+      i {
+        padding: 5px;
+      }
+
+    }
+
+  }
+
+}
+
+@import '_table';
+
+.uri {
+  font-family: $mono-font, monospace;
+  word-break: break-all;
+}
+
+.monospace {
+  font-family: $mono-font, monospace;
+}
+
+code {
+  background-color: $lightgray;
+  color: $black;
+  font-family: $mono-font, $jp-font, monospace;
+  font-size: 100%;
+
+  &[class*='language-'] {
+    font-family: $mono-font, monospace;
+  }
+
+}
+
+pre {
+
+  max-height: 30em;
+  overflow: auto;
+
+  &[class*='language-'] {
+    border-radius: 0;
+    font-family: $mono-font, monospace;
+  }
+
+}
+
+kbd {
+  font-size: 100%;
+}
+
+.info {
+  padding-bottom: 6ex;
+}
+
+.cjk {
+
+  .half {
+
+    &::after {
+      content: ' ';
+      display: inline;
+      font-family: 'source-han-sans-cjk-ja';
+    }
+
+  }
+
+  .quarter {
+
+    &::after {
+      content: ' ';
+      display: inline;
+      font-family: 'source-han-sans-cjk-ja';
+      letter-spacing: -0.1rem;
+    }
+
+  }
+
+  code {
+
+    .quarter,
+    .half {
+      display: none;
+    }
+
+  }
+
+  pre {
+
+    .quarter,
+    .half {
+      display: none;
+    }
+
+  }
+
+  kbd {
+
+    .quarter,
+    .half {
+      display: none;
+    }
+
+  }
+
+  samp {
+
+    .quarter,
+    .half {
+      display: none;
+    }
+
+  }
+
+  ol > .quarter,
+  ul > .quarter,
+  ul > .half,
+  ul > .half {
+    display: none;
+  }
+
+}
+
+.russian {
+  font-family: $western-font, serif;
+}
+
+.ipa {
+  font-family: $ipa-font, serif;
+}
+
+.lig {
+  letter-spacing: -0.1em;
+  margin-right: 0.1em;
+}
+
+.grammar {
+  font-family: $western-font, serif;
+  font-variant: small-caps;
+  font-variant-caps: small-caps;
+}
+
+.widespace {
+  letter-spacing: 0.2rem;
+}
+
+.inline {
+  padding-left: 0;
+
+  li {
+    display: inline;
+    margin-right: 2rem;
+  }
+}
+
+.serif {
+  font-family: 'Times New Roman', 'Times', serif;
+}
+
+caption {
+  caption-side: top;
+  color: $black;
+  text-align: center;
+}
+
+figcaption {
+  caption-side: top;
+  color: $black;
+  text-align: center;
+}

@@ -1,0 +1,171 @@
+extends ../../templates/article
+
+block variables
+  - var lang = 'ja'
+  - var title = 'ScalaからCaboChaを使う'
+  - var posted = '2016-11-22'
+  - var modified = '2019-03-17'
+
+block body
+  section#Requirements
+    h2 事前に必要なもの
+    ol
+      li Scala (2.x)
+      li sbt (1.x)
+      li CaboChaのインストールが済んでいること。
+  section
+    h2 Javaライブラリのコンパイル
+    p
+      | CaboChaインストールのときに使ったソースコードが残っていればそれを使ってください。捨ててしまった場合は
+      a.uri(href='https://github.com/taku910/cabocha')
+        | https://github.com/taku910/cabocha
+      | からクローンしてください。
+    p
+      code cabocha/java/Makefile
+      | の
+      code INCLUDE
+      | を使っているJavaに合わせて変更します。
+      pre
+        code.language-makefile.
+          # INCLUDE=/usr/lib/jvm/default-java/include
+          INCLUDE=$(HOME)/Development/jdk-11.0.2/include
+    p
+      | どのJavaを使っているのかわからない場合は、
+      code which java
+      | や
+      code update-java-alternatives
+      | で調べてください。変更が終わったら
+      code cabocha/java
+      | ディレクトリで
+      code make
+      | と打ち込んでコンパイルします。
+  section
+    h2 Scalaからの利用例
+    p
+      | 実際にプロジェクトを作成して使ってみることにします。まず、先ほど生成された
+      code CaboCha.jar
+      | と
+      code libCaboCha.so lib
+      | をプロジェクトの
+      code lib
+      | ディレクトリにコピーします。
+      pre.command-line
+        code.language-bash.
+          sbt new sbt/scala-seed.g8
+          name [Scala Seed Project]: &lt;project_name&gt;
+          cd &lt;project_name&gt;
+          mkdir lib
+          cp path/to/cabocha/java/CaboCha.jar lib/
+          cp path/to/cabocha/java/libCaboCha.so lib/
+    p
+      code &lt;project_name&gt;/src/main/scala/example/Hello.scala
+      | を編集します。
+      pre
+        code.language-scala.
+          // Hello.scala
+          package example
+
+          object Main extends App {
+
+            val parser = new Parser()
+            val s = "太郎は二郎にこの本を渡した．"
+
+            parser.parseToChunks(s).zipWithIndex.foreach { case (c, i) =>
+              val dest = c.link
+              c.tokens.zipWithIndex.foreach { case (t, _) =>
+                println(s"${i}→${dest} ${t.normalizedSurface}")
+              }
+            }
+          }
+    p
+      code &lt;project_name&gt;/src/main/scala/example/CaboChaWrapper.scala
+      | を作成します。
+      pre
+        code.language-scala.
+          // CaboChaWrapper.scala
+          package cabochawrapper
+
+          import org.chasen.cabocha.{
+            Parser => CaboChaParser,
+            Chunk => CaboChaChunk,
+            Tree => CaboChaTree,
+            Token => CaboChaToken,
+            FormatType
+          }
+
+          case class Token(
+            surface: String,
+            normalizedSurface: String,
+            feature: String,
+            namedEntity: Option[String],
+            additionalInfo: Option[String]
+          )
+
+          case class Chunk(
+            score: Float,
+            link: Int,
+            additionalInfo: Option[String],
+            features: Seq[String],
+            tokens: Seq[Token]
+          )
+
+          class Parser {
+
+            try {
+              System.loadLibrary("CaboCha")
+            } catch {
+              case _: UnsatisfiedLinkError => {
+                println("Make sure that `CaboCha.jar` and `libCaboCha.so` are in `lib`.")
+                System.exit(1)
+              }
+            }
+
+            val parser = new CaboChaParser()
+
+            def parseToChunks(s: String): Seq[Chunk] = {
+              val tree: CaboChaTree = this.parser.parse(s)
+              (0.toLong until tree.chunk_size()).map { i =>
+                val chunk = tree.chunk(i)
+                val features = (0.toLong until chunk.getFeature_list_size()).map { i =>
+                  chunk.feature_list(i)
+                }
+                val n = chunk.getToken_pos()
+                val N = n + chunk.getToken_size()
+                val tokens = (n until N).map { i =>
+                  tree.token(i).toToken()
+                }
+                Chunk(score = chunk.getScore(),
+                      link = chunk.getLink(),
+                      tokens = tokens,
+                      additionalInfo = Option(chunk.getAdditional_info()).filter(_ != null),
+                      features = features)
+              }
+            }
+
+            implicit class ExtendedCaboChaToken(token: CaboChaToken) {
+              def toToken(): Token =
+                Token(surface = token.getSurface(),
+                      normalizedSurface = token.getNormalized_surface(),
+                      feature = token.getFeature(),
+                      namedEntity = Option(token.getNe()).filter(_ != null),
+                      additionalInfo = Option(token.getAdditional_info()).filter(_ != null)
+                )
+            }
+
+          }
+    p
+      code sbt run
+      | で実行します。
+      pre
+        code.language-none.
+          # 出力結果
+          0→4 太郎
+          0→4 は
+          1→4 二郎
+          1→4 に
+          2→3 この
+          3→4 本
+          3→4 を
+          4→-1 渡し
+          4→-1 た
+          4→-1 ．

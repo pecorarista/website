@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  article
+    .container
+      .col-12
+        h1= title
+        .info.text-muted
+          | Posted: 
+          = posted
+          if modified
+            |  (Modified: 
+            = modified
+            | )
+        block body

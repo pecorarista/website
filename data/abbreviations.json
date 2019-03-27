@@ -1,0 +1,139 @@
+{
+  "categories": [
+    {
+      "translation": "品詞",
+      "subcategories": [
+        {
+          "abbrev": "adj",
+          "term": "adjective",
+          "translation": "形容詞"
+        },
+        {
+          "abbrev": "adv",
+          "term": "adverb",
+          "translation": "副詞"
+        },
+        {
+          "abbrev": "conj",
+          "term": "conjunction",
+          "translation": "接続詞"
+        },
+        {
+          "abbrev": "prep",
+          "term": "preposition",
+          "translation": "前置詞"
+        },
+        {
+          "abbrev": "pron",
+          "term": "pronoun",
+          "translation": "代名詞"
+        },
+        {
+          "abbrev": "ptcl",
+          "term": "particle",
+          "translation": "助詞"
+        }
+      ]
+    },
+    {
+      "translation": "有生性",
+      "subcategories": [
+        {
+          "abbrev": "an",
+          "term": "animate",
+          "translation": "動物"
+        },
+        {
+          "abbrev": "inan",
+          "term": "inanimate",
+          "translation": "非動物"
+        }
+      ]
+    },
+    {
+      "translation": "性",
+      "subcategories": [
+        {
+          "abbrev": "masc",
+          "term": "masculine",
+          "translation": "男性"
+        },
+        {
+          "abbrev": "fem",
+          "term": "feminine",
+          "translation": "女性"
+        },
+        {
+          "abbrev": "neut",
+          "term": "neuter",
+          "translation": "中性"
+        }
+      ]
+    },
+    {
+      "translation": "数",
+      "subcategories": [
+        {
+          "abbrev": "sg",
+          "term": "singular",
+          "translation": "単数"
+        },
+        {
+          "abbrev": "pl",
+          "term": "plural",
+          "translation": "複数"
+        }
+      ]
+    },
+    {
+      "translation": "格",
+      "subcategories": [
+        {
+          "abbrev": "nom",
+          "term": "nominative",
+          "translation": "主格"
+        },
+        {
+          "abbrev": "acc",
+          "term": "accusative",
+          "translation": "対格"
+        },
+        {
+          "abbrev": "dat",
+          "term": "dative",
+          "translation": "与格"
+        },
+        {
+          "abbrev": "gen",
+          "term": "genetive",
+          "translation": "属格"
+        },
+        {
+          "abbrev": "instr",
+          "term": "instrumental",
+          "translation": "具格"
+        },
+        {
+          "abbrev": "loc",
+          "term": "locative",
+          "translation": "処格"
+        }
+      ]
+    },
+    {
+      "translation": "アスペクト",
+      "subcategories": [
+        {
+          "abbrev": "pf",
+          "term": "perfective",
+          "translation": "完了"
+        },
+        {
+          "abbrev": "impf",
+          "term": "imperfective",
+          "translation": "不完了"
+        }
+      ]
+    }
+  ]
+}

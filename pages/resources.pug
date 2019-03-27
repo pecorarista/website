@@ -1,0 +1,70 @@
+extends ../templates/layout
+
+append variables
+  - var title = 'resources'
+
+block content
+  article(lang='ja')
+    .container
+      .row
+        .col-12
+          h3 論文のコード
+          ul
+            li
+              a(href='https://github.com/pecorarista/metaphor-evaluation-result') 自動生成されたメタファー表現の評価結果
+              a(href='https://aclanthology.info/papers/W17-6929/w17-6929')
+                span (Miyazawa and Miyao, 2017)
+            li
+              a(href='https://github.com/aistairc/market-reporter') Market Reporter
+              |  
+              a(href='') (Murakami et al., 2017;
+              |  
+              a(href='') Aoki et al., 2018)
+          h3 雑記
+          ul
+            li
+              a(href='/posts/cabocha-scala.html') ScalaからCaboChaを使う
+            li
+              a(href='/posts/type-ipa.html') How to type phonetic symbols
+            li
+              a(href='/posts/hakyll-whitespace.html')
+                | Hakyllで日本語文中の余分な空白を削除する
+            li
+              a(href='/posts/arabluatex.html') LaTeXでRTL（右横書き）の文書をつくる
+            li
+              a(href='/posts/https.html') How to make HTTPS default on Apache HTTP Server (CentOS 7)
+            li
+              a(href='/posts/adam-lemma10.3.html')
+                | 確率的最適化手法Adamの論文のLemma 10.3
+            li
+              a(href='/posts/poster.html') LaTeX (Beamer)で学会発表用のポスターを作る
+            li
+              a(href='/posts/vocabulary.html') Markdown → LaTeXで単語帳
+            li
+              a(href='/posts/pseudocode.html') LaTeXで擬似コード
+            li
+              a(href='/posts/inner-universe.html') 攻殻機動隊S.A.C.のOPをロシア語で歌いたい
+          h3 スライド
+          section#reading
+            h5 論文紹介
+            ul
+              li
+                em
+                  a(href='https://github.com/pecorarista/documents/blob/master/SNLP/2016/metaphor-detection-with-topic-transition.pdf') Metaphor Detection with Topic Transition, Emotion and Cognition in Context
+              li
+                em
+                  a(href='https://github.com/pecorarista/documents/blob/master/Syntax/incremental-ccg.pdf') An Incremental Algorithm for Transition-based CCG Parsing
+              li
+                em
+                  a(href='https://github.com/pecorarista/documents/blob/master/SNLP/2015/semantic-vsm.pdf') Ontologically Grounded Multi-sense Representation Learning for Semantic Vector Space Models
+            h5 勉強会資料
+            ul
+              li
+                a(href='https://github.com/pecorarista/documents/blob/master/PRML/prml14.pdf')
+                  | パターン認識と機械学習(PRML) 第14章 モデルの結合
+              li
+                a(href='https://github.com/pecorarista/documents/blob/master/PRML/prml10.4-10.6.pdf')
+                  | パターン認識と機械学習(PRML) 第10章 近似推論法（10.4–10.6のみ）
+              li
+                a(href='https://github.com/pecorarista/documents/blob/master/PRML/prml04.pdf')
+                  | パターン認識と機械学習(PRML)  第4章 線形識別モデル

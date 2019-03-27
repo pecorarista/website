@@ -1,0 +1,63 @@
+extends ../../templates/article
+
+block variables
+  - var lang = 'en'
+  - var title = 'How to make HTTPS default on Apache HTTP Server (CentOS 7)'
+  - var posted = '2016-09-17'
+
+block body
+  section
+    ol
+      li
+        | Install required packages.
+        pre.command-line(data-user='root', data-host='server')
+          code.language-none.
+            yum install epel-release
+            yum install httpd mod_ssl python-certbot-apache
+      li
+        | Start and enable Apache.
+        pre.command-line(data-user='root', data-host='server')
+          code.language-none.
+            systemctl start httpd
+            systemctl enable httpd
+      li
+        |  Allow access via HTTP and HTTPS.
+        pre.command-line(data-user='root', data-host='server')
+          code.language-none.
+            firewall-cmd --zone=public --permanent --add-service=http
+            firewall-cmd --zone=public --permanent --add-service=https
+            firewall-cmd --reload
+      li
+        | Edit 
+        code /etc/httpd/conf/httpd.conf
+        | .
+        pre
+          code.language-apacheconf.
+            ServerName &lt;your-domain>
+      li
+        | Edit 
+        code /etc/httpd/conf.d/ssl.conf
+        | .
+        pre
+          code.language-apacheconf.
+            SSLCertificateFile /etc/letsencrypt/live/&lt;your-domain&gt;/cert.pem
+            SSLCertificateKeyFile /etc/letsencrypt/live/&lt;your-domain&gt;/privkey.pem
+            SSLCertificateChainFile /etc/letsencrypt/live/&lt;your-domain&gt;/chain.pem
+      li
+        | Edit 
+        code /etc/httpd/conf.d/&lt;your-domain&gt;.conf
+        pre
+          code.language-apacheconf.
+            &lt;VirtualHost *:80&gt;
+                Redirect permanent / https://&lt;your-domain&gt;/
+            &lt;/VirtualHost&gt;
+      li
+        | Restart Apache HTTP Server.
+        pre.command-line(data-user='root', data-host='server')
+          code.language-none.
+            systemctl restart httpd
+      li
+        | Install certificate. (Reference: https://certbot.eff.org/all-instructions/#centos-rhel-7-apache)
+        pre.command-line(data-user='root', data-host='server')
+          code.language-none.
+            certbot --apache -d <your-domain>
