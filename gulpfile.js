@@ -1,3 +1,4 @@
+/* eslint-env es6 */
 'use strict';
 
 const gulp = require('gulp');
@@ -14,8 +15,11 @@ const del = require('del');
 const rsync = require('gulp-rsync');
 const fs = require('fs');
 const toml = require('toml');
+const nunjucksRender = require('gulp-nunjucks-render');
+const htmlBeautify = require('gulp-html-beautify');
 
 const dirRelease = './dist/';
+const nunjucks = ['./nunjucks/**/*.html', '!./nunjucks/_layout/*.html'];
 const templates = './templates/**/*.pug';
 const pugFiles = './pages/**/*.pug';
 const sassFiles = './scss/**/*.scss';
@@ -78,6 +82,16 @@ const compilePug = () =>
     .pipe(pug())
     .pipe(gulp.dest(dirRelease));
 
+const compileNunjucks = () =>
+  gulp.src(nunjucks)
+    .pipe(nunjucksRender({
+      path: ['./nunjucks/']
+    }))
+    .pipe(htmlBeautify({
+      indent_size: 2,
+      indent_char: ' '
+    }))
+    .pipe(gulp.dest(`${dirRelease}/nunjucks/`));
 
 const compileSass = () =>
   gulp.src(sassFiles)
@@ -287,6 +301,7 @@ gulp.task('watch', (done) => {
       './pages/posts/html/**/*.html'
     ],
     gulp.series(compilePug, reload));
+  gulp.watch(nunjucks, gulp.series(compileNunjucks, reload));
   gulp.watch(sassFiles, gulp.series(compileSass, reload));
   gulp.watch(userTypeScripts, gulp.series(compileTypeScripts, reload));
   gulp.watch(vendorJavaScripts, gulp.series(copyVendorJavaScripts, reload));
@@ -301,6 +316,7 @@ gulp.task('stage',
     write,
     copyMisc,
     compilePug,
+    compileNunjucks,
     compileSass,
     copyVendorStyles,
     copyVendorJavaScripts,
