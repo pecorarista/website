@@ -17,7 +17,7 @@ class TextAutospace {
     const katakana = '\u30A0-\u30FF';
     const kanji = '\u2E80-\u2FFF\u31C0-\u31EF\u3300-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF\uFE30-\uFE4F';
 
-    const punct: string = '[@&=_\,\.\?\!\$\%\^\*\-\+\/]';
+    const punct: string = '[—@&=_\,\.\?\!\$\%\^\*\-\+\/]';
     const left: string = `[\\[({'"<«‘“]`;
     const right: string = `[\\])}'">»’”]`;
 
