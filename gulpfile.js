@@ -2,7 +2,6 @@
 'use strict';
 
 const gulp = require('gulp');
-const pug = require('gulp-pug');
 const sass = require('gulp-sass');
 const sassLint = require('gulp-sass-lint')
 const concat = require('gulp-concat');
@@ -20,8 +19,6 @@ const htmlBeautify = require('gulp-html-beautify');
 
 const dirRelease = './dist/';
 const nunjucks = ['./nunjucks/**/*.html', '!./nunjucks/_layout/*.html'];
-const templates = './templates/**/*.pug';
-const pugFiles = './pages/**/*.pug';
 const sassFiles = './scss/**/*.scss';
 const dirModules = './node_modules/'
 const images = ['./images/**/*.*', './latex/**/*.svg'];
@@ -47,17 +44,21 @@ const userTypeScripts = './typescripts/**/*.ts';
 const data = './data/**/*.json';
 const misc = ['CNAME', './favicon/favicon.ico']
 
+
 const copyMisc = () =>
   gulp.src(misc)
     .pipe(gulp.dest(`${dirRelease}`));
+
 
 const copyVendorStyles = () =>
   gulp.src(vendorStyles)
     .pipe(gulp.dest(`${dirRelease}/static/css/`));
 
+
 const copyVendorJavaScripts = () =>
   gulp.src(vendorJavaScripts)
     .pipe(gulp.dest(`${dirRelease}/static/js/`));
+
 
 const compileTypeScripts = (done) =>
   browserify()
@@ -72,15 +73,11 @@ const compileTypeScripts = (done) =>
     .pipe(uglify())
     .pipe(gulp.dest(`${dirRelease}/static/js/`));
 
+
 const copyImages = () =>
   gulp.src(images)
     .pipe(gulp.dest(`${dirRelease}/static/images/`));
 
-
-const compilePug = () =>
-  gulp.src(pugFiles)
-    .pipe(pug())
-    .pipe(gulp.dest(dirRelease));
 
 const compileNunjucks = () =>
   gulp.src(nunjucks)
@@ -91,7 +88,8 @@ const compileNunjucks = () =>
       indent_size: 2,
       indent_char: ' '
     }))
-    .pipe(gulp.dest(`${dirRelease}/nunjucks/`));
+    .pipe(gulp.dest(`${dirRelease}/`));
+
 
 const compileSass = () =>
   gulp.src(sassFiles)
@@ -113,12 +111,15 @@ const sync = (done) => {
   done();
 };
 
+
 const reload = (done) => {
   browserSync.reload();
   done();
 };
 
+
 const clean = () => del([dirRelease]);
+
 
 const transfer = () => {
   const config = JSON.parse(fs.readFileSync('config.json', 'utf-8'));
@@ -132,6 +133,7 @@ const transfer = () => {
       compress: true
     }));
 };
+
 
 const write = (done) => {
   const abbrev = JSON.parse(fs.readFileSync('./data/abbreviations.json', 'utf-8')).categories.map(category =>
@@ -283,7 +285,6 @@ const write = (done) => {
     `
     + rows.join('')
     + '</table>'
-  // const font = `<link href="https://fonts.googleapis.com/css?family=Voces&amp;subset=latin-ext&text=${encodeURIComponent('abcdefghijklmnopqrstuvwxyz' + symbols.join(''))}" rel="stylesheet">`
   const font = `<link href="https://fonts.googleapis.com/css?family=Judson&amp;subset=latin-ext,vietnamese&text=${encodeURIComponent('abcdefghijklmnopqrstuvwxyz' + symbols.join(''))}" rel="stylesheet">`
   fs.writeFileSync(`./pages/posts/html/phonetic-table.html`, table);
   fs.writeFileSync(`./templates/ipa-font.html`, font);
@@ -291,21 +292,19 @@ const write = (done) => {
   done();
 };
 
+
 gulp.task('watch', (done) => {
   gulp.watch(images, gulp.series(copyImages, reload));
   gulp.watch(
     [
-      templates,
-      pugFiles,
+      './nunjucks/**/*.html',
       './latex/**/*.svg',
       './pages/posts/html/**/*.html'
     ],
-    gulp.series(compilePug, reload));
-  gulp.watch(nunjucks, gulp.series(compileNunjucks, reload));
+    gulp.series(compileNunjucks, reload));
   gulp.watch(sassFiles, gulp.series(compileSass, reload));
   gulp.watch(userTypeScripts, gulp.series(compileTypeScripts, reload));
   gulp.watch(vendorJavaScripts, gulp.series(copyVendorJavaScripts, reload));
-  gulp.watch(data, gulp.series(write, compilePug, reload));
   done();
 });
 
@@ -315,7 +314,6 @@ gulp.task('stage',
     clean,
     write,
     copyMisc,
-    compilePug,
     compileNunjucks,
     compileSass,
     copyVendorStyles,
@@ -325,6 +323,7 @@ gulp.task('stage',
   )
 );
 
+
 gulp.task('default',
   gulp.series(
     'stage',
@@ -332,5 +331,6 @@ gulp.task('default',
     'watch'
   )
 );
+
 
 gulp.task('deploy', gulp.series('stage', transfer));

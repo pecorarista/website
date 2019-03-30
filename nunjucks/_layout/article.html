@@ -1,0 +1,19 @@
+{% extends '_layout/layout.html' %}
+
+{% block content %}
+<article>
+  <div class="container">
+    <div class="container">
+      <h1>{{ title }}</h1>
+      <div class="info text-muted">
+        Posted: {{ posted }}
+        {% if modified %}
+          (Modified: {{ modified }})
+        {% endif %}
+      </div>
+      {% block post %}
+      {% endblock %}
+    </div>
+  <div>
+</article>
+{% endblock %}
