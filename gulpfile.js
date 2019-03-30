@@ -18,7 +18,7 @@ const nunjucksRender = require('gulp-nunjucks-render');
 const htmlBeautify = require('gulp-html-beautify');
 
 const dirRelease = './dist/';
-const nunjucks = ['./nunjucks/**/*.html', '!./nunjucks/_layout/*.html'];
+const nunjucks = ['./nunjucks/**/*.html', '!./nunjucks/**/_*.html'];
 const sassFiles = './scss/**/*.scss';
 const dirModules = './node_modules/'
 const images = ['./images/**/*.*', './latex/**/*.svg'];
