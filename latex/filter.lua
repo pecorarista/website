@@ -2,10 +2,7 @@ function isrussian (s)
   i = utf8.offset(s, 1)
   j = utf8.offset(s, 2) - 1
   uchar = string.sub(s, i, j)
-  if uchar >= 'А' and uchar <= 'я' then
-    return true
-  end
-  return false
+  return uchar >= 'А' and uchar <= 'я'
 end
 
 function isphonetic (s)
