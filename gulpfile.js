@@ -309,7 +309,7 @@ const write = (done) => {
 
 
 gulp.task('gh-deploy', () =>
-  gulp.src(dirRelease).pipe(ghPages())
+  gulp.src(`${dirRelease}/**/*`).pipe(ghPages())
 );
 
 
