@@ -17,6 +17,7 @@ const toml = require('toml');
 const nunjucksRender = require('gulp-nunjucks-render');
 const data = require('gulp-data');
 const htmlBeautify = require('gulp-html-beautify');
+const ghPages = require('gulp-gh-pages');
 
 const dirRelease = './dist/';
 const nunjucks = ['./nunjucks/**/*.njk', '!./nunjucks/**/_*.njk'];
@@ -307,6 +308,11 @@ const write = (done) => {
 };
 
 
+gulp.task('gh-deploy', () =>
+  gulp.src(dirRelease).pipe(ghPages())
+);
+
+
 gulp.task('watch', (done) => {
   gulp.watch(images, gulp.series(copyImages, reload));
   gulp.watch(
@@ -347,4 +353,4 @@ gulp.task('default',
 );
 
 
-gulp.task('deploy', gulp.series('build', transfer));
+gulp.task('deploy', gulp.series('build', 'gh-deploy'));
