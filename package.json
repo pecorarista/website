@@ -11,7 +11,6 @@
     "gulp-html-beautify": "^1.0.1",
     "gulp-nunjucks": "^4.0.0",
     "gulp-nunjucks-render": "^2.2.3",
-    "gulp-pug": "^4.0.1",
     "gulp-rsync": "^0.0.8",
     "gulp-sass": "^4.0.2",
     "gulp-sass-lint": "^1.4.0",

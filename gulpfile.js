@@ -87,7 +87,13 @@ const compileNunjucks = () =>
       SimplePoster: fs.readFileSync('latex/simple-poster.tex', 'utf-8'),
       ComplexPoster: fs.readFileSync('latex/complex-poster.tex', 'utf-8'),
       beamerthemeSimplePoster: fs.readFileSync('latex/beamerthemeSimplePoster.sty', 'utf-8'),
-      latexmkrc: fs.readFileSync('latex/latexmkrc.pl', 'utf-8')
+      latexmkrc: fs.readFileSync('latex/latexmkrc.pl', 'utf-8'),
+      VocabularyTemplate: fs.readFileSync('latex/vocabulary.tex', 'utf-8'),
+      PandocLuaFilter: fs.readFileSync('latex/filter.lua', 'utf-8'),
+      VocabularyList: fs.readFileSync('latex/words.md', 'utf-8'),
+      InsertionSort: fs.readFileSync('latex/insertion-sort.tex', 'utf-8'),
+      InsertionSortForTo: fs.readFileSync('latex/insertion-sort-for-to.tex', 'utf-8'),
+      InsertionSortFinal: fs.readFileSync('latex/final.tex', 'utf-8')
     }))
     .pipe(nunjucksRender({
       path: ['./nunjucks/']
@@ -159,7 +165,7 @@ const write = (done) => {
       + `</li>`
   ).join('');
   fs.writeFileSync(
-    `./pages/posts/html/abbreviations.html`,
+    `./nunjucks/posts/_include/_abbreviations.njk`,
     `<ul style="list-style-type: none; padding-left: 1.08rem;">` + abbrev + `</ul>`
   );
 
@@ -252,7 +258,7 @@ const write = (done) => {
   });
 
   htmls.forEach((html, index) => {
-    fs.writeFileSync(`./pages/posts/html/inner-universe-vocabulary-${index + 1}.html`, html);
+    fs.writeFileSync(`./nunjucks/posts/_include/_inner-universe-vocabulary-${index + 1}.njk`, html);
   });
 
   let rows = [];
@@ -294,8 +300,8 @@ const write = (done) => {
     + rows.join('')
     + '</table>'
   const font = `<link href="https://fonts.googleapis.com/css?family=Judson&amp;subset=latin-ext,vietnamese&text=${encodeURIComponent('abcdefghijklmnopqrstuvwxyz' + symbols.join(''))}" rel="stylesheet">`
-  fs.writeFileSync(`./pages/posts/html/phonetic-table.html`, table);
-  fs.writeFileSync(`./templates/ipa-font.html`, font);
+  fs.writeFileSync(`./nunjucks/posts/_include/_ipa-table.njk`, table);
+  fs.writeFileSync(`./nunjucks/_layout/_ipa-font.njk`, font);
 
   done();
 };
@@ -307,6 +313,7 @@ gulp.task('watch', (done) => {
     [
       './nunjucks/**/*.njk',
       './latex/**/*.svg',
+      './data/**/*.json'
     ],
     gulp.series(compileNunjucks, reload));
   gulp.watch(sassFiles, gulp.series(compileSass, reload));
