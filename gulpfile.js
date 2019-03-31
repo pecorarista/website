@@ -15,10 +15,11 @@ const rsync = require('gulp-rsync');
 const fs = require('fs');
 const toml = require('toml');
 const nunjucksRender = require('gulp-nunjucks-render');
+const data = require('gulp-data');
 const htmlBeautify = require('gulp-html-beautify');
 
 const dirRelease = './dist/';
-const nunjucks = ['./nunjucks/**/*.html', '!./nunjucks/**/_*.html'];
+const nunjucks = ['./nunjucks/**/*.njk', '!./nunjucks/**/_*.njk'];
 const sassFiles = './scss/**/*.scss';
 const dirModules = './node_modules/'
 const images = ['./images/**/*.*', './latex/**/*.svg'];
@@ -41,7 +42,6 @@ const vendorJavaScripts = [
   `${dirModules}/prismjs/plugins/command-line/prism-command-line.min.js`
 ];
 const userTypeScripts = './typescripts/**/*.ts';
-const data = './data/**/*.json';
 const misc = ['CNAME', './favicon/favicon.ico']
 
 
@@ -81,6 +81,10 @@ const copyImages = () =>
 
 const compileNunjucks = () =>
   gulp.src(nunjucks)
+    .pipe(data({
+      ExampleOfArabLuaTeX: fs.readFileSync('latex/arab.tex', 'utf-8'),
+      ExampleOfRTL: fs.readFileSync('latex/rtl.tex', 'utf-8')
+    }))
     .pipe(nunjucksRender({
       path: ['./nunjucks/']
     }))
@@ -297,9 +301,8 @@ gulp.task('watch', (done) => {
   gulp.watch(images, gulp.series(copyImages, reload));
   gulp.watch(
     [
-      './nunjucks/**/*.html',
+      './nunjucks/**/*.njk',
       './latex/**/*.svg',
-      './pages/posts/html/**/*.html'
     ],
     gulp.series(compileNunjucks, reload));
   gulp.watch(sassFiles, gulp.series(compileSass, reload));

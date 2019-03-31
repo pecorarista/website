@@ -1,4 +1,4 @@
-{% extends '_layout/_article.html' %}
+{% extends '_layout/_article.njk' %}
 
 {% set lang = 'ja' %}
 {% set title = 'Hakyllで日本語文中の余分な空白を削除する' %}
@@ -22,12 +22,12 @@
 import Text.Pandoc.Options (Extension(Ext_east_asian_line_breaks), readerExtensions)
 -- omission --
 customPandocCompiler =
-let
-defaultExtensions = readerExtensions defaultHakyllReaderOptions
-newExtensions = S.insert Ext_east_asian_line_breaks defaultExtensions
-readerOptions = defaultHakyllReaderOptions { readerExtensions = newExtensions }
-in
-pandocCompilerWith readerOptions defaultHakyllWriterOptions</code></pre>
+    let
+        defaultExtensions = readerExtensions defaultHakyllReaderOptions
+        newExtensions = S.insert Ext_east_asian_line_breaks defaultExtensions
+        readerOptions = defaultHakyllReaderOptions { readerExtensions = newExtensions }
+    in
+        pandocCompilerWith readerOptions defaultHakyllWriterOptions</code></pre>
   </p>
   <p>今回追加する<code>Ext_east_asian_line_breaks</code>は<code>writerExtensions</code>ではなく<code>readerExtensions</code>に追加するようです。その後、この<code>customPandocCompiler</code>で<code>pandocCompiler</code>を置き換え、<code>stack build</code>してください。</p>
   <p>最後に<code>exec site clean</code>, <code>stack exec site watch</code>で出来上がりを確認して終わりです。</p>

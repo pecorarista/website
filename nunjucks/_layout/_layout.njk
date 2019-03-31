@@ -9,21 +9,21 @@
       <meta name="twitter:description" content="{{ description }}">
       <meta name="twitter:image" content="https://pecorarista.com/static/images/avatar.png">
       <link rel="icon" href="/favicon.ico">
-      {% include '_layout/_styles.html' %}
+      {% include '_layout/_styles.njk' %}
    </head>
    <body>
       <div class="wrapper">
          <header>
-           {% include '_layout/_navbar.html' %}
+           {% include '_layout/_navbar.njk' %}
          </header>
          <main>
            {% block content %}
            {% endblock %}
          </main>
          <footer>
-           {% include '_layout/_footer.html' %}
+           {% include '_layout/_footer.njk' %}
          </footer>
-           {% include '_layout/_scripts.html' %}
+           {% include '_layout/_scripts.njk' %}
       </div>
    </body>
 </html>
