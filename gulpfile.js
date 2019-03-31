@@ -323,7 +323,7 @@ gulp.task('watch', (done) => {
 });
 
 
-gulp.task('stage',
+gulp.task('build',
   gulp.series(
     clean,
     write,
@@ -340,11 +340,11 @@ gulp.task('stage',
 
 gulp.task('default',
   gulp.series(
-    'stage',
+    'build',
     sync,
     'watch'
   )
 );
 
 
-gulp.task('deploy', gulp.series('stage', transfer));
+gulp.task('deploy', gulp.series('build', transfer));
