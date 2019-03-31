@@ -18,7 +18,7 @@ jobs:
             - node_modules
       - run:
           name: Build
-          command: gulp build
+          command: $(yarn bin)/gulp build
   deploy:
     docker:
       - image: circleci/node:8.15
@@ -38,7 +38,7 @@ jobs:
           command: git config user.email $GITHUB_USER_EMAIL
       - run:
           name: Deploy
-          command: gulp deploy
+          command: $(yarn bin)/gulp deploy
 
 workflows:
   version: 2
