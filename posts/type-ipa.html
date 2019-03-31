@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html class="cjk">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@pecorarista">
+  <meta name="twitter:title" content="How to type phonetic symbols — pecorarista.com">
+  <meta name="twitter:description" content="">
+  <meta name="twitter:image" content="https://pecorarista.com/static/images/avatar.png">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amiri&amp;subset=arabic,latin-ext" />
+  <link href="https://fonts.googleapis.com/css?family=Judson&amp;subset=latin-ext,vietnamese&text=abcdefghijklmnopqrstuvwxyz%C9%90%C9%91%C3%A6%CA%8C%C9%93%CA%99%CE%B2%C3%A7%C9%95%C9%97%C9%96%C3%B0%C9%99%C9%9B%C9%A1%C9%A2%C9%A3%C9%A4%C9%A6%C4%A7%C9%A5%C9%A8%C5%8B%C9%B3%C9%B4%C9%AA%C9%94%C3%B8%C5%93%C9%B8%C9%B9%C9%BE%CA%80%CA%81%CE%B8%CA%83%CA%8A%CF%87%CA%92%CA%94%CA%95%CB%A0%CA%B2%E2%81%BF%CA%B7%E2%97%8B%CC%83%CB%90" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cosmo/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
+  <link rel="stylesheet" href="/static/css/dracula-prism.css" />
+  <link rel="stylesheet" href="/static/css/prism-command-line.css" />
+  <link rel="stylesheet" href="/static/css/main.css" />
+
+</head>
+
+<body>
+  <div class="wrapper">
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+          <div class="navbar-header pull-left"><a class="navbar-brand" href="/">pecorarista.com</a></div>
+          <div class="navbar-header pull-right">
+            <ul class="navbar-nav">
+              <li class="nav-item"><a class="nav-link active" href="/resources.html">Resources</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+    </header>
+    <main>
+
+      <article>
+        <div class="container">
+          <div class="container">
+            <h1>How to type phonetic symbols</h1>
+            <div class="info text-muted">
+              Posted: 2016-09-18
+
+              (Modified: 2019-03-22)
+
+            </div>
+
+            <section id="introduction">
+              <p>There are mainly five methods to type phonetic symbols. You may wonder which way is the best. It’t difficult to answer this question because each has its advantages and disadvantages. Actually, we don’t have to answer the question because you can use them in parallel. If you are interested in comparison of key sequences, see the table in <a href="#appendix">Appendix</a>.</p>
+            </section>
+
+            <section id="web-application">
+              <h2>1. Web application</h2>
+              <p>Some web sites provide interface to type IPA symbols graphically.
+                <ul>
+                  <li>
+                    <a href="http://ipa.typeit.org/full/">Type IPA phonetic symbols</a>
+                  </li>
+                  <li>
+                    <a href="https://r12a.github.io/pickers/ipa/">IPA character picker</a>
+                  </li>
+                </ul>
+                These may be the easiest way for people who do not familiar with computers.
+                One disadvantage is that you have to use a mouse or another pointing device.
+                It may decrease productivity.</p>
+              <h2>2. Compose Key</h2>
+              <p>Compose Key is a system for typing special characters. Probably it is not enabled by default.
+                Please see pages that explain how to configure (e.g., <a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/desktop_migration_and_administration_guide/enable-compose-key">ENABLING THE COMPOSE KEY</a>).
+                On Windows, its alternative <a href="https://github.com/samhocevar/wincompose">WinCompose</a> is available. You can add new key sequences by editing <code>Xcompose.txt</code>.</p>
+              <div class="centered-image">
+                <img alt="Screenshot of WinCompose" src="/static/images/WinCompose-screenshot.png">
+                </p>
+            </section>
+
+            <section id="vim">
+              <h2>3. Vim (diagraph)</h2>
+              <p>
+                Text editor Vim provides a method to type complex characters such as æ via a function called “digraph”. <code>:digraphs</code> shows the list of characters and its key sequence. You can enter the digraph mode by typing &lt;Ctrl-K&gt;. An advantage of the system is that you can keep editing text. Furthermore, it’s easy to customize the combinations. For example, to register a sequence for ɐ (decimal encoding: 592), just add one line <code>digraph a5 594</code> to <code>~/.vimrc</code>. Then,
+                <kbd>Ctrl-K</kbd>
+                <kbd>a</kbd> <kbd>5</kbd>
+                put the characters ɐ. However, since Vim is a text editor, you have to copy and paste the characters to use it on other applications.
+              </p>
+            </section>
+
+            <h2>4. LaTeX (TIPA)</h2>
+            <p><a href="https://www.ctan.org/pkg/tipa?lang=en">TIPA </a>is a package for LaTeX to print IPA characters.
+              As long as you make a vocabulary list using LaTeX, it is one of the best tool for IPA.
+              Of course, since this is a LaTeX package, you cannot use it outside LaTeX environment.
+            </p>
+            <p>These days, some LaTeX processor such as LuaTeX and XeTeX supports Unicode well.
+              This means that if you type , they print it as is in the text editor.
+              Thus it is more intuitive and reusable than TIPA.
+              However, this also means that you have to input special characters, so this does not solve our first problem.
+              With digraphs, Compose Key, or X-SAMPA, these can be a good tool for creating a vocabulary list.
+              Modern TeX environments also enable you to change fonts easily.
+            </p>
+            <h2>5. <a href="http://www.phon.ucl.ac.uk/home/sampa/x-sampa.htm">X-SAMPA</a></h2>
+            <p>X-SAMPA is a way of representing phones using only ASCII characters.
+              Each of the characters has a corresponding character in the IPA system, and therefore it can be used as an input method for IPA.
+              One of its implementations is available in <a href="//fcitx-im.org/wiki/Fcitx">Fcitx</a>, and it is provided as a binary package named “fcitx-table-ipa-x-sampa” in Ubuntu.
+              One of its shortcomings is that you have to switch input methods to type even one IPA symbol.
+              Moreover, you may possibly find it difficult to memorize key sequences because they are sometimes not intuitive.</p>
+            <section id="appendix">
+              <h2>Appendix</h2>
+              <p>The table below shows how to type each symbol (Compose is the default key sequences of Wincompose). <strong>Note that all of the input methods is customizable on your need</strong>.</p>
+
+              <table class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Symbol</th>
+                    <th>Name</th>
+                    <th>Vim</th>
+                    <th>TIPA</th>
+                    <th>Compose</th>
+                    <th>X-SAMPA</th>
+                  </tr>
+                </thead>
+                <tr>
+                  <td class="ipa">
+                    ɐ
+                  </td>
+                  <td>
+                    Turned A
+                  </td>
+                  <td>
+
+                  </td>
+                  <td class="monospace">
+                    \textturna<br />5
+                  </td>
+                  <td>
+                    <kbd>aa</kbd>
+                  </td>
+                  <td>
+                    <kbd>6</kbd>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="ipa">
+                    ɑ
+                  </td>
+                  <td>
+                    Script A
+                  </td>
+                  <td>
+
+                  </td>
+                  <td class="monospace">
+                    A
+                  </td>
+                  <td>
+
+                  </td>
+                  <td>
+                    <kbd>A</kbd>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="ipa">
+                    æ
+                  </td>
+                  <td>
+                    Ash
+                  </td>
+                  <td>
+                    <kbd>ae</kbd>
+                  </td>
+                  <td class="monospace">
+                    \ae
+                  </td>
+                  <td>
+                    <kbd>ae</kbd>
+                  </td>
+                  <td>
+                    <kbd>{</kbd>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="ipa">
+                    ʌ
+                  </td>
+                  <td>
+                    Turned V
+                  </td>
+                  <td>
+
+                  </td>
+                  <td class="monospace">
+                    \textturnv<br />2
+                  </td>
+                  <td>
+                    <kbd>vv</kbd>
+                  </td>
+                  <td>
+                    <kbd>V</kbd>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="ipa">
+                    ɓ
+                  </td>
+                  <td>
+                    Hooktop B
+                  </td>
+                  <td>
+
+                  </td>
+                  <td class="monospace">
+                    \texthtb
+                  </td>
+                  <td>
+                    <kbd>b'</kbd>
+                  </td>
+                  <td>
+                    <kbd>b_<</kbd> </td> </tr> <tr>
+                  <td class="ipa">
+                    ʙ
+                  </td>
+                  <td>
+                    Small capital B
+                  </td>
+                  <td>
+
+                  </td>
+                  <td class="monospace">
+                    \textscb
+                  </td>
+                  <td>
+                    <kbd>b`</kbd>
+                  </td>
+                  <td>
+                    <kbd>B\</kbd>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="ipa">
+                    β
+                  </td>
+                  <td>
+                    Greek beta
+                  </td>
+                  <td>
+                    <kbd>*b</kbd>
+                  </td>
+                  <td class="monospace">
+                    \textbetaB
+                  </td>
+                  <td>
+                    <kbd>*b</kbd>
+                  </td>
+                  <td>
+                    <kbd>B</kbd>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="ipa">
+                    ç
+                  </td>
+                  <td>
+                    C cedilla
+                  </td>
+                  <td>
+                    <kbd>c,</kbd>
+                  </td>
+                  <td class="monospace">
+                    \c{c}
+                  </td>
+                  <td>
+                    <kbd>c,</kbd>
+                  </td>
+                  <td>
+                    <kbd>C</kbd>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="ipa">
+                    ɕ
+                  </td>
+                  <td>
+                    Curly-tail C
+                  </td>
+                  <td>
+
+                  </td>
+                  <td class="monospace">
+                    C
+                  </td>
+                  <td>
+
+                  </td>
+                  <td>
+                    <kbd>s\</kbd>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="ipa">
+                    ɗ
+                  </td>
+                  <td>
+                    Hooktop D
+                  </td>
+                  <td>
+
+                  </td>
+                  <td class="monospace">
+                    \texthtd
+                  </td>
+                  <td>
+                    <kbd>d'</kbd>
+                  </td>
+                  <td>
+                    <kbd>d_<</kbd> </td> </tr> <tr>
+                  <td class="ipa">
+                    ɖ
+                  </td>
+                  <td>
+                    Right-tail D
+                  </td>
+                  <td>
+
+                  </td>
+                  <td class="monospace">
+                    \textrtaild
+                  </td>
+                  <td>
+                    <kbd>d,</kbd>
+                  </td>
+                  <td>
+                    <kbd>d`</kbd>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="ipa">
+                    ð
+                  </td>
+                  <td>
+                    Eth
+                  </td>
+                  <td>
+
+                  </td>
+                  <td class="monospace">
+                    \dhD
+                  </td>
+                  <td>
+                    <kbd>dh</kbd>
+                  </td>
+                  <td>
+                    <kbd>D</kbd>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="ipa">
+                    ə
+                  </td>
+                  <td>
+                    Schwa
+                  </td>
+                  <td>
+
+                  </td>
+                  <td class="monospace">
+                    @
+                  </td>
+                  <td>
+                    <kbd>ee</kbd>
+                  </td>
+                  <td>
+                    <kbd>@</kbd>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="ipa">
+                    ɛ
+                  </td>
+                  <td>
+                    Latin epsilon
+                  </td>
+                  <td>
+
+                  </td>
+                  <td class="monospace">
+                    \textepsilonE
+                  </td>
+                  <td>
+                    <kbd>eh</kbd>
+                  </td>
+                  <td>
+                    <kbd>E</kbd>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="ipa">
+                    ɡ
+                  </td>
+                  <td>
+                    Script G
+                  </td>
+                  <td>
+
+                  </td>
+                  <td class="monospace">
+                    g
+                  </td>
+                  <td>
+                    <kbd>gg</kbd>
+                  </td>
+                  <td>
+                    <kbd>g</kbd>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="ipa">
+                    ɢ
+                  </td>
+                  <td>
+                    Small capital G
+                  </td>
+                  <td>
+
+                  </td>
+                  <td class="monospace">
+                    \textscg
+                  </td>
+                  <td>
+                    <kbd>g`</kbd>
+                  </td>
+                  <td>
+                    <kbd>G\</kbd>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="ipa">
+                    ɣ
+                  </td>
+                  <td>
+                    Latin gamma
+                  </td>
+                  <td>
+
+                  </td>
+                  <td class="monospace">
+                    G
+                  </td>
+                  <td>
+                    <kbd>gh</kbd>
+                  </td>
+                  <td>
+                    <kbd>G</kbd>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="ipa">
+                    ɤ
+                  </td>
+                  <td>
+                    Ram’s horns
+                  </td>
+                  <td>
+
+                  </td>
+                  <td class="monospace">
+                    \textramshorns<br />7
+                  </td>
+                  <td>
+                    <kbd>ogh</kbd>
+                  </td>
+                  <td>
+                    <kbd>7</kbd>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="ipa">
+                    ɦ
+                  </td>
+                  <td>
+                    Hooktop H
+                  </td>
+                  <td>
+
+                  </td>
+                  <td class="monospace">
+                    \texthth
+                  </td>
+                  <td>
+                    <kbd>h'</kbd>
+                  </td>
+                  <td>
+                    <kbd>h\</kbd>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="ipa">
+                    ħ
+                  </td>
+                  <td>
+                    Crossed H
+                  </td>
+                  <td>
+                    <kbd>/h</kbd>
+                  </td>
+                  <td class="monospace">
+                    \textcrh
+                  </td>
+                  <td>
+                    <kbd>/h</kbd>
+                  </td>
+                  <td>
+                    <kbd>X\</kbd>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="ipa">
+                    ɥ
+                  </td>
+                  <td>
+                    Turned H
+                  </td>
+                  <td>
+                    <kbd>ng</kbd>
+                  </td>
+                  <td class="monospace">
+                    \textturnh
+                  </td>
+                  <td>
+                    <kbd>hh</kbd>
+                  </td>
+                  <td>
+
+                  </td>
+                </tr>
+                <tr>
+                  <td class="ipa">
+                    ɨ
+                  </td>
+                  <td>
+                    Barred I
+                  </td>
+                  <td>
+
+                  </td>
+                  <td class="monospace">
+                    \textbari
+                  </td>
+                  <td>
+                    <kbd>/i</kbd>
+                  </td>
+                  <td>
+
+                  </td>
+                </tr>
+                <tr>
+                  <td class="ipa">
+                    ŋ
+                  </td>
+                  <td>
+                    Eng
+                  </td>
+                  <td>
+
+                  </td>
+                  <td class="monospace">
+                    \ng
+                  </td>
+                  <td>
+                    <kbd>ng</kbd>
+                  </td>
+                  <td>
+                    <kbd>N</kbd>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="ipa">
+                    ɳ
+                  </td>
+                  <td>
+                    Right-tail N
+                  </td>
+                  <td>
+
+                  </td>
+                  <td class="monospace">
+                    \textrtailn
+                  </td>
+                  <td>
+                    <kbd>ɳ</kbd>
+                  </td>
+                  <td>
+                    <kbd>n`</kbd>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="ipa">
+                    ɴ
+                  </td>
+                  <td>
+                    Small capital N
+                  </td>
+                  <td>
+
+                  </td>
+                  <td class="monospace">
+                    \textscn
+                  </td>
+                  <td>
+                    <kbd>n`</kbd>
+                  </td>
+                  <td>
+                    <kbd>N\</kbd>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="ipa">
+                    ɪ
+                  </td>
+                  <td>
+                    Small capital I
+                  </td>
+                  <td>
+
+                  </td>
+                  <td class="monospace">
+                    I
+                  </td>
+                  <td>
+                    <kbd>i`</kbd>
+                  </td>
+                  <td>
+                    <kbd>I</kbd>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="ipa">
+                    ɔ
+                  </td>
+                  <td>
+                    Open O
+                  </td>
+                  <td>
+
+                  </td>
+                  <td class="monospace">
+                    O
+                  </td>
+                  <td>
+                    <kbd>o)</kbd>
+                  </td>
+                  <td>
+                    <kbd>O</kbd>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="ipa">
+                    ø
+                  </td>
+                  <td>
+                    Slashed O
+                  </td>
+                  <td>
+                    <kbd>o/</kbd>
+                  </td>
+                  <td class="monospace">
+                    \o
+                  </td>
+                  <td>
+                    <kbd>o/</kbd>
+                  </td>
+                  <td>
+                    <kbd>2</kbd>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="ipa">
+                    œ
+                  </td>
+                  <td>
+                    O-E ligature
+                  </td>
+                  <td>
+                    <kbd>oe</kbd>
+                  </td>
+                  <td class="monospace">
+                    \oe
+                  </td>
+                  <td>
+                    <kbd>oe</kbd>
+                  </td>
+                  <td>
+                    <kbd>9</kbd>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="ipa">
+                    ɸ
+                  </td>
+                  <td>
+                    Latin phi
+                  </td>
+                  <td>
+
+                  </td>
+                  <td class="monospace">
+                    \textphiF
+                  </td>
+                  <td>
+                    <kbd>*u</kbd>
+                  </td>
+                  <td>
+                    <kbd>p\</kbd>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="ipa">
+                    ɹ
+                  </td>
+                  <td>
+                    Turned R
+                  </td>
+                  <td>
+
+                  </td>
+                  <td class="monospace">
+                    \textturnr
+                  </td>
+                  <td>
+                    <kbd>rr</kbd>
+                  </td>
+                  <td>
+                    <kbd>r\</kbd>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="ipa">
+                    ɾ
+                  </td>
+                  <td>
+                    Fishhook R
+                  </td>
+                  <td>
+
+                  </td>
+                  <td class="monospace">
+                    \textfishhookr
+                  </td>
+                  <td>
+                    <kbd>uh</kbd>
+                  </td>
+                  <td>
+                    <kbd>4</kbd>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="ipa">
+                    ʀ
+                  </td>
+                  <td>
+                    Small capital R
+                  </td>
+                  <td>
+
+                  </td>
+                  <td class="monospace">
+                    \textscr
+                  </td>
+                  <td>
+                    <kbd>r`</kbd>
+                  </td>
+                  <td>
+                    <kbd>R\</kbd>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="ipa">
+                    ʁ
+                  </td>
+                  <td>
+                    Inverted small capital R
+                  </td>
+                  <td>
+
+                  </td>
+                  <td class="monospace">
+                    \textinvscr
+                  </td>
+                  <td>
+
+                  </td>
+                  <td>
+                    <kbd>R</kbd>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="ipa">
+                    θ
+                  </td>
+                  <td>
+                    Greek theta
+                  </td>
+                  <td>
+                    <kbd>*h</kbd>
+                  </td>
+                  <td class="monospace">
+                    \texttheta<br />T
+                  </td>
+                  <td>
+                    <kbd>*u</kbd>
+                  </td>
+                  <td>
+                    <kbd>T</kbd>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="ipa">
+                    ʃ
+                  </td>
+                  <td>
+                    Esh
+                  </td>
+                  <td>
+
+                  </td>
+                  <td class="monospace">
+                    \textesh<br />S
+                  </td>
+                  <td>
+                    <kbd>sh</kbd>
+                  </td>
+                  <td>
+                    <kbd>S</kbd>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="ipa">
+                    ʊ
+                  </td>
+                  <td>
+                    Latin upsilon
+                  </td>
+                  <td>
+
+                  </td>
+                  <td class="monospace">
+                    \textupsilon<br />U
+                  </td>
+                  <td>
+                    <kbd>uh</kbd>
+                  </td>
+                  <td>
+                    <kbd>U</kbd>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="ipa">
+                    χ
+                  </td>
+                  <td>
+                    Greek chi
+                  </td>
+                  <td>
+                    <kbd>*x</kbd>
+                  </td>
+                  <td class="monospace">
+                    \textchi<br />X
+                  </td>
+                  <td>
+                    <kbd>*x</kbd>
+                  </td>
+                  <td>
+                    <kbd>X</kbd>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="ipa">
+                    ʒ
+                  </td>
+                  <td>
+                    Latin ezh
+                  </td>
+                  <td>
+
+                  </td>
+                  <td class="monospace">
+                    \textyogh<br />Z
+                  </td>
+                  <td>
+                    <kbd>zh</kbd>
+                  </td>
+                  <td>
+                    <kbd>Z</kbd>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="ipa">
+                    ʔ
+                  </td>
+                  <td>
+                    Glottal stop
+                  </td>
+                  <td>
+
+                  </td>
+                  <td class="monospace">
+                    \textglotstop<br />P
+                  </td>
+                  <td>
+                    <kbd>?.</kbd>
+                  </td>
+                  <td>
+                    <kbd>?</kbd>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="ipa">
+                    ʕ
+                  </td>
+                  <td>
+                    Reversed glottal stop
+                  </td>
+                  <td>
+
+                  </td>
+                  <td class="monospace">
+                    \textrevglotstop<br />Q
+                  </td>
+                  <td>
+                    <kbd>?(</kbd>
+                  </td>
+                  <td>
+                    <kbd>?\</kbd>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="ipa">
+                    ˠ
+                  </td>
+                  <td>
+                    Superscript gamma
+                  </td>
+                  <td>
+
+                  </td>
+                  <td class="monospace">
+                    \textsuperscript{\textgamma}
+                  </td>
+                  <td>
+
+                  </td>
+                  <td>
+                    <kbd>_G</kbd>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="ipa">
+                    ʲ
+                  </td>
+                  <td>
+                    Superscript J
+                  </td>
+                  <td>
+
+                  </td>
+                  <td class="monospace">
+                    \textsuperscript{j}
+                  </td>
+                  <td>
+
+                  </td>
+                  <td>
+                    <kbd>_j</kbd>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="ipa">
+                    ⁿ
+                  </td>
+                  <td>
+                    Superscript N
+                  </td>
+                  <td>
+
+                  </td>
+                  <td class="monospace">
+                    \textsuperscript{n}
+                  </td>
+                  <td>
+                    <kbd>ⁿ</kbd>
+                  </td>
+                  <td>
+                    <kbd>_n</kbd>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="ipa">
+                    ʷ
+                  </td>
+                  <td>
+                    Superscript W
+                  </td>
+                  <td>
+
+                  </td>
+                  <td class="monospace">
+                    \textsuperscript{w}
+                  </td>
+                  <td>
+                    <kbd>^^w</kbd>
+                  </td>
+                  <td>
+                    <kbd>_w</kbd>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="ipa">
+                    ○̃
+                  </td>
+                  <td>
+                    Tilde
+                  </td>
+                  <td>
+
+                  </td>
+                  <td class="monospace">
+                    \~
+                  </td>
+                  <td>
+                    <kbd>\~</kbd>
+                  </td>
+                  <td>
+                    <kbd>~</kbd>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="ipa">
+                    ː
+                  </td>
+                  <td>
+                    Length mark
+                  </td>
+                  <td>
+
+                  </td>
+                  <td class="monospace">
+                    \textlengthmark<br />:
+                  </td>
+                  <td>
+                    <kbd>:+</kbd>
+                  </td>
+                  <td>
+                    <kbd>:</kbd>
+                  </td>
+                </tr>
+              </table>
+            </section>
+            </section>
+
+          </div>
+          <div>
+      </article>
+
+    </main>
+    <footer>
+      <div class="footer text-center">
+        <span>© 2015&ndash;2019 Akira Miyazawa</span>
+      </div>
+
+    </footer>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap.native@2.0.15/dist/bootstrap-native-v4.min.js"></script>
+    <script src="/static/js/prism.js"></script>
+    <script src="/static/js/prism-bash.min.js"></script>
+    <script src="/static/js/prism-latex.min.js"></script>
+    <script src="/static/js/prism-makefile.min.js"></script>
+    <script src="/static/js/prism-java.min.js"></script>
+    <script src="/static/js/prism-scala.min.js"></script>
+    <script src="/static/js/prism-markdown.min.js"></script>
+    <script src="/static/js/prism-apacheconf.min.js"></script>
+    <script src="/static/js/prism-perl.min.js"></script>
+    <script src="/static/js/prism-haskell.min.js"></script>
+    <script src="/static/js/prism-lua.min.js"></script>
+    <script src="/static/js/prism-command-line.min.js"></script>
+    <script>
+      (function(d) {
+        var config = {
+            kitId: 'huy3ylo',
+            scriptTimeout: 3000,
+            async: true
+          },
+          h = d.documentElement,
+          t = setTimeout(function() {
+            h.className = h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive";
+          }, config.scriptTimeout),
+          tk = d.createElement("script"),
+          f = false,
+          s = d.getElementsByTagName("script")[0],
+          a;
+        h.className += " wf-loading";
+        tk.src = 'https://use.typekit.net/' + config.kitId + '.js';
+        tk.async = true;
+        tk.onload = tk.onreadystatechange = function() {
+          a = this.readyState;
+          if (f || a && a != "complete" && a != "loaded")
+            return;
+          f = true;
+          clearTimeout(t);
+          try {
+            Typekit.load(config)
+          } catch (e) {}
+        };
+        s.parentNode.insertBefore(tk, s)
+      })(document);
+    </script>
+    <script type="text/javascript" src="/static/js/main.js"></script>
+
+
+  </div>
+</body>
+
+</html>
