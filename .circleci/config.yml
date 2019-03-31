@@ -32,10 +32,10 @@ jobs:
           command: yarn install
       - run:
           name: Configure user.name
-          command: git config user.name $GITHUB_USER_NAME
+          command: git config --global user.name $GITHUB_USER_NAME
       - run:
           name: Configure user.name
-          command: git config user.email $GITHUB_USER_EMAIL
+          command: git config --global user.email $GITHUB_USER_EMAIL
       - run:
           name: Deploy
           command: $(yarn bin)/gulp deploy
