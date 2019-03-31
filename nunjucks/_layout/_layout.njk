@@ -1,29 +1,54 @@
 <!DOCTYPE html>
 <html class="cjk">
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="twitter:card" content="summary">
-      <meta name="twitter:site" content="@pecorarista">
-      <meta name="twitter:title" content="{{ title + ' — pecorarista.com' }}">
-      <meta name="twitter:description" content="{{ description }}">
-      <meta name="twitter:image" content="https://pecorarista.com/static/images/avatar.png">
-      <link rel="icon" href="/favicon.ico">
-      {% include '_layout/_styles.njk' %}
-   </head>
-   <body>
-      <div class="wrapper">
-         <header>
-           {% include '_layout/_navbar.njk' %}
-         </header>
-         <main>
-           {% block content %}
-           {% endblock %}
-         </main>
-         <footer>
-           {% include '_layout/_footer.njk' %}
-         </footer>
-           {% include '_layout/_scripts.njk' %}
-      </div>
-   </body>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@pecorarista">
+    <meta name="twitter:title" content="{{ title + ' — pecorarista.com' }}">
+    <meta name="twitter:description" content="{{ description }}">
+    <meta name="twitter:image" content="https://pecorarista.com/static/images/avatar.png">
+    <link rel="icon" href="/favicon.ico">
+    {% include '_layout/_styles.njk' %}
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        {% include '_layout/_navbar.njk' %}
+      </header>
+      <main>
+        {% block content %}
+        {% endblock %}
+      </main>
+      <footer>
+        {% include '_layout/_footer.njk' %}
+      </footer>
+      {% include '_layout/_scripts.njk' %}
+      {% if mathematical %}
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script>
+          MathJax.Hub.Config({
+            TeX: {
+              extensions: ["AMSmath.js", "AMSsymbols.js"],
+              Macros: {
+                parentheses: ["\\left(#1\\right)", 1],
+                brackets: ["\\left[#1\\right]", 1],
+                norm: ["\\left\\|#1\\right\\|", 1],
+                abs: ["\\left|#1\\right|", 1],
+                diag: "\\mathop{\\rm diag}",
+              }
+            },
+            extensions: ["tex2jax.js"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+            showProcessingMessages: false,
+            messageStyle: "none",
+            tex2jax: {
+                inlineMath: [ ["\\(","\\)"] ],
+                processEscapes: true
+            }
+          });
+        </script>
+      {% endif %}
+    </div>
+  </body>
 </html>
