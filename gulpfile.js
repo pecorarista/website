@@ -83,7 +83,11 @@ const compileNunjucks = () =>
   gulp.src(nunjucks)
     .pipe(data({
       ExampleOfArabLuaTeX: fs.readFileSync('latex/arab.tex', 'utf-8'),
-      ExampleOfRTL: fs.readFileSync('latex/rtl.tex', 'utf-8')
+      ExampleOfRTL: fs.readFileSync('latex/rtl.tex', 'utf-8'),
+      SimplePoster: fs.readFileSync('latex/simple-poster.tex', 'utf-8'),
+      ComplexPoster: fs.readFileSync('latex/complex-poster.tex', 'utf-8'),
+      beamerthemeSimplePoster: fs.readFileSync('latex/beamerthemeSimplePoster.sty', 'utf-8'),
+      latexmkrc: fs.readFileSync('latex/latexmkrc.pl', 'utf-8')
     }))
     .pipe(nunjucksRender({
       path: ['./nunjucks/']
