@@ -10,7 +10,7 @@ body {
   font-weight: 400; }
 
 :lang(ar) {
-  font-family: 'Amiri', serif; }
+  font-family: "Amiri", "Roboto", "source-han-sans-cjk-ja", sans-serif; }
 
 .wrapper {
   box-sizing: border-box;
@@ -123,6 +123,9 @@ code {
   font-size: 100%; }
   code[class*='language-'] {
     font-family: "Roboto Mono", monospace; }
+  code .quarter,
+  code .half {
+    display: none; }
 
 pre {
   max-height: 30em;
@@ -130,44 +133,38 @@ pre {
   pre[class*='language-'] {
     border-radius: 0;
     font-family: "Roboto Mono", monospace; }
-
-kbd {
-  font-size: 100%; }
+  pre .quarter,
+  pre .half {
+    display: none; }
 
 .info {
   padding-bottom: 6ex; }
 
-.cjk .half::after {
+.half::after {
   content: ' ';
   display: inline;
   font-family: 'source-han-sans-cjk-ja'; }
 
-.cjk .quarter::after {
+.quarter::after {
   content: ' ';
   display: inline;
   font-family: 'source-han-sans-cjk-ja';
   letter-spacing: -0.1rem; }
 
-.cjk code .quarter,
-.cjk code .half {
+kbd {
+  font-size: 100%; }
+  kbd .quarter,
+  kbd .half {
+    display: none; }
+
+samp .quarter,
+samp .half {
   display: none; }
 
-.cjk pre .quarter,
-.cjk pre .half {
-  display: none; }
-
-.cjk kbd .quarter,
-.cjk kbd .half {
-  display: none; }
-
-.cjk samp .quarter,
-.cjk samp .half {
-  display: none; }
-
-.cjk ol > .quarter,
-.cjk ul > .quarter,
-.cjk ul > .half,
-.cjk ul > .half {
+ol > .quarter,
+ul > .quarter,
+ul > .half,
+ul > .half {
   display: none; }
 
 .russian {

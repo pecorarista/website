@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="cjk">
+<html lang="ja">
 
 <head>
   <meta charset="UTF-8">
@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="/static/css/prism-command-line.css" />
   <link rel="stylesheet" href="/static/css/main.css" />
 
+  <title>Hakyllで日本語文中の余分な空白を削除する</title>
 </head>
 
 <body>
@@ -41,27 +42,34 @@
 
       <article>
         <div class="container">
-          <div class="container">
-            <h1>Hakyllで日本語文中の余分な空白を削除する</h1>
-            <div class="info text-muted">
-              Posted: 2016-09-18
+          <h1>Hakyllで日本語文中の余分な空白を削除する</h1>
+          <div class="info text-muted">
+            Posted: 2016-09-18
 
-            </div>
+          </div>
 
-            <section>
-              <p>静的サイト作成ツールHakyllで日本語を含むページを作成したとき、以下の図の反転部分のように余分な空白が入ってしまうことがあります。</p>
+          <section>
+            <p>静的サイト作成ツールHakyllで日本語を含むページを作成したとき、以下の図の反転部分のように余分な空白が入ってしまうことがあります。</p>
+            <figure>
               <div class="centered-image">
-                <img src="https://qiita-image-store.s3.amazonaws.com/0/55753/0f06f4a1-4500-a22e-e445-f4df7999b511.png">
+                <img src="https://qiita-image-store.s3.amazonaws.com/0/55753/0f06f4a1-4500-a22e-e445-f4df7999b511.png" alt="Hakyllによって生成された、余分な空白を含むページ" class="img-responsive">
               </div>
-              <p>これは内部で動いている<a href="http://pandoc.org/">Pandoc</a>が、Markdownファイルに含まれている改行文字を空白文字に変換するために起こります。
-              </p>
-              <div class="centered-image">
-                <img src="https://qiita-image-store.s3.amazonaws.com/0/55753/b3c9a976-b355-40e2-020a-c58819cd26a1.png">
-              </div>
-              <p>このような挙動を望まないユーザーのために<a href="http://pandoc.org/releases.html#pandoc-1.16.0.1-10-jan-2016">1.16.0.1</a>から<code>east_asian_line_breaks</code>という拡張が加えられています。以下でその使い方を説明します。</p>
-              <p>まず上記の拡張を使うため<code>&lt;project_name&gt;.cabal</code>で使用する<code>pandoc</code>のバージョンが1.16.0.1以降になるようにしてください。また以下で示すコードにおいて集合の演算を使うため、それをそのまま使う場合は<code>&lt;project_name&gt;.cabal</code>の依存関係に<code>containers</code>も追加してください。</p>
-              <p>依存関係の設定が終わったら、以下のように<code>site.hs</code>を変更します。
-                <pre><code class="language-haskell">import qualified Data.Set as S
+            </figure>
+            <p>これは内部で動いている<a href="http://pandoc.org/">Pandoc</a>が、Markdownファイルに含まれている改行文字を空白文字に変換するために起こります。</p>
+            <!-- <pre class="line-numbers"> -->
+            <pre><code class="language-markdown">---
+title: Test
+date: 2016-02-27
+---
+Pandoc converts newline characters in a
+sentence into whitespaces.
+したがって日本語の文章の途中で
+改行すると、不自然な空白が挿入されてしまいます。
+</code></pre>
+            <p>このような挙動を望まないユーザーのために<a href="http://pandoc.org/releases.html#pandoc-1.16.0.1-10-jan-2016">1.16.0.1</a>から<code>east_asian_line_breaks</code>という拡張が加えられています。以下でその使い方を説明します。</p>
+            <p>まず上記の拡張を使うため<code>&lt;project_name&gt;.cabal</code>で使用する<code>pandoc</code>のバージョンが1.16.0.1以降になるようにしてください。また以下で示すコードにおいて集合の演算を使うため、それをそのまま使う場合は<code>&lt;project_name&gt;.cabal</code>の依存関係に<code>containers</code>も追加してください。</p>
+            <p>依存関係の設定が終わったら、以下のように<code>site.hs</code>を変更します。</p>
+            <pre><code class="language-haskell">import qualified Data.Set as S
 import Text.Pandoc.Options (Extension(Ext_east_asian_line_breaks), readerExtensions)
 -- omission --
 customPandocCompiler =
@@ -71,16 +79,14 @@ customPandocCompiler =
         readerOptions = defaultHakyllReaderOptions { readerExtensions = newExtensions }
     in
         pandocCompilerWith readerOptions defaultHakyllWriterOptions</code></pre>
-              </p>
-              <p>今回追加する<code>Ext_east_asian_line_breaks</code>は<code>writerExtensions</code>ではなく<code>readerExtensions</code>に追加するようです。その後、この<code>customPandocCompiler</code>で<code>pandocCompiler</code>を置き換え、<code>stack build</code>してください。</p>
-              <p>最後に<code>exec site clean</code>, <code>stack exec site watch</code>で出来上がりを確認して終わりです。</p>
-              <div class="centered-image">
-                <img src="http://qiita-image-store.s3.amazonaws.com/0/55753/6280be48-41fb-3b98-ea9f-47bce8de0fda.png">
-              </div>
-            </section>
+            <p>今回追加する<code>Ext_east_asian_line_breaks</code>は<code>writerExtensions</code>ではなく<code>readerExtensions</code>に追加するようです。その後、この<code>customPandocCompiler</code>で<code>pandocCompiler</code>を置き換え、<code>stack build</code>してください。</p>
+            <p>最後に<code>exec site clean</code>, <code>stack exec site watch</code>で出来上がりを確認して終わりです。</p>
+            <div class="centered-image">
+              <img src="http://qiita-image-store.s3.amazonaws.com/0/55753/6280be48-41fb-3b98-ea9f-47bce8de0fda.png" alt="Hakyllによって生成された、余分な空白を含まないページ">
+            </div>
+          </section>
 
-          </div>
-          <div>
+        </div>
       </article>
 
     </main>

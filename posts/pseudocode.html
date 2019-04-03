@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="cjk">
+<html lang="">
 
 <head>
   <meta charset="UTF-8">
@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="/static/css/prism-command-line.css" />
   <link rel="stylesheet" href="/static/css/main.css" />
 
+  <title>LaTeXで擬似コード</title>
 </head>
 
 <body>
@@ -41,22 +42,22 @@
 
       <article>
         <div class="container">
-          <div class="container">
-            <h1>LaTeXで擬似コード</h1>
-            <div class="info text-muted">
-              Posted: 2015-08-24
+          <h1>LaTeXで擬似コード</h1>
+          <div class="info text-muted">
+            Posted: 2015-08-24
 
-              (Modified: 2019-03-21)
+            (Modified: 2019-03-21)
 
-            </div>
+          </div>
 
-            <p>アルゴリズムやプログラミングに関する文書を書いているとき、擬似コードを書くことがあると思います。この記事ではLaTeXで擬似コードを書く方法と見た目を変更する方法をいくつか説明したいと思います。環境としてはLuaTeXを想定していますが、それ以外の場合でも若干の変更で動くと思います。</p>
-            <section id="usage">
-              <h2>1. 主な使い方</h2>
-              <p>まずは
-                <code>algpseudocode</code> というパッケージを読み込みます。
-                <span-punct>以下のように挿入ソートのアルゴリズムを書いてみます。</span-punct>
-                <pre><code class="language-latex">\documentclass{article}
+          <p>アルゴリズムやプログラミングに関する文書を書いているとき、擬似コードを書くことがあると思います。この記事ではLaTeXで擬似コードを書く方法と見た目を変更する方法をいくつか説明したいと思います。環境としてはLuaTeXを想定していますが、それ以外の場合でも若干の変更で動くと思います。</p>
+          <section id="usage">
+            <h2>1. 主な使い方</h2>
+            <p>まずは
+              <code>algpseudocode</code> というパッケージを読み込みます。
+              以下のように挿入ソートのアルゴリズムを書いてみます。</p>
+            <figure>
+              <pre><code class="language-latex">\documentclass{article}
 \usepackage{newtxtext,newtxmath}
 \usepackage{algpseudocode}
 \pagestyle{empty}
@@ -76,23 +77,29 @@
     \end{algorithmic}
 \end{document}
 </code></pre>
-                <span-punct>表示されるのは以下のような擬似コードになります。</span-punct>
-                <div class="pseudocode"><img class="img-responsive" src="/static/images/insertion-sort.svg" /></div>
-              </p>
-              <p>普段Pythonなど
-                <code>end</code> を明示しない言語に慣れていると少し冗長に感じるかもしれません。
-                <span-punct>そのような記号を明示したくない場合はパッケージ読込時に</span-punct>
-                <pre><code class="language-latex">\usepackage[noend]{algpseudocode}</code></pre>のように書いておくと
-                <div class="pseudocode"><img class="img-responsive" src="/static/images/insertion-sort-no-end.svg" /></div>のようなPython風の擬似コードになります。さらに
-                <code>do</code> の記述も不要ならば、
-                <code-punct>ヘッダ部分に以下のように記述します。</code-punct>
-                <pre><code class="language-latex">\algrenewcommand\algorithmicdo{}</code></pre>
-              </p>
+            </figure>
+            <p>表示されるのは以下のような擬似コードになります。</p>
+            <figure>
+              <div class="pseudocode">
+                <img class="img-responsive" src="/static/images/insertion-sort.svg" alt="疑似コードの例" />
+              </div>
+            </figure>
+            <p>普段Pythonなど
+              <code>end</code> を明示しない言語に慣れていると少し冗長に感じるかもしれません。そのような記号を明示したくない場合はパッケージ読込時に
+              <figure>
+                <pre><code class="language-latex">\usepackage[noend]{algpseudocode}</code></pre>
+              </figure>
+              <p>のように書いておくと</p>
+              <figure>
+                <div class="pseudocode">
+                  <img class="img-responsive" src="/static/images/insertion-sort-no-end.svg" alt="`End`を用いない疑似コードの例" />
+                </div>
+              </figure>
+              <p> のようなPython風の擬似コードになります。さらに<code>do</code>の記述も不要ならば、ヘッダ部分に以下のように記述します。</p>
+              <pre><code class="language-latex">\algrenewcommand\algorithmicdo{}</code></pre>
               <p>いま
-                <code>for</code> の始点と終点の間には
-                <code>…</code> を使っていますが、もし変えたければ
-                <code>algpseudocode.sty</code> にならい新しい制御構造
-                <code>\ForTo</code> をプリアンブルで定義します。
+                <code>for</code> の始点と終点の間には<code>…</code> を使っていますが、もし変えたければ<code>algpseudocode.sty</code> にならい新しい制御構造<code>\ForTo</code> をプリアンブルで定義します。</p>
+              <figure>
                 <pre><code class="language-latex">\documentclass{article}
 \usepackage{newtxtext,newtxmath}
 \usepackage[noend]{algpseudocode}
@@ -119,36 +126,38 @@
     \end{algorithmic}
 \end{document}
 </code></pre>
-              </p>
+              </figure>
               <p>アルゴリズム中
                 <code>\For</code> を新しく定義した
-                <code>\ForTo</code> に置き換えて次のような出力を得ます。
-                <div class="pseudocode"><img class="img-responsive" src="/static/images/insertion-sort-for-to.svg" /></div>
-              </p>
+                <code>\ForTo</code> に置き換えて次のような出力を得ます。</p>
+              <figure>
+                <div class="pseudocode">
+                  <img class="img-responsive" src="/static/images/insertion-sort-for-to.svg" alt="ForToの表示を変更した疑似コードの例" />
+                </div>
+              </figure>
               <p>新しく定義した制御構造については
                 <code>[noend]</code> オプションが適用されないのため、要らなければ
                 <code>algtext*{EndFor}</code> を
-                <code>\ForTo</code> の定義の次の行にでも書いておきましょう。
-              </p>
-            </section>
-            <section>
-              <h3>2. よく変更を加える項目について</h3>
-              <p>行間は
-                <code>\setlength{\baselineskip}{Npt}</code>（<code>N</code> は自然数 ）で変更できます。ここでは新たに
-                <code>broadalgo</code> という環境を定義することにします。
-                <pre><code class="language-latex">\newenvironment{broadalgo}{%
+                <code>\ForTo</code> の定義の次の行にでも書いておきましょう。</p>
+          </section>
+          <section>
+            <h3>2. よく変更を加える項目について</h3>
+            <p>行間は<code>\setlength{\baselineskip}{Npt}</code>（<code>N</code> は自然数 ）で変更できます。ここでは新たに<code>broadalgo</code> という環境を定義することにします。</p>
+            <figure>
+              <pre><code class="language-latex">\newenvironment{broadalgo}{%
   \setlength{\baselineskip}{17pt}
   \begin{algorithmic}[1]
 }{%
   \end{algorithmic}
 }</code></pre>
-              </p>
-              <p>この例では出てきませんが
-                <code>\Return</code> には行番号が振られないようになっています。あったほうがよいならば再定義する必要があります。</p>
+            </figure>
+            <p>この例では出てきませんが<code>\Return</code> には行番号が振られないようになっています。あったほうがよいならば再定義する必要があります。</p>
+            <figure>
               <pre><code class="language-latex">\let\oldReturn\Return
 \renewcommand{\Return}{\State\oldReturn}</code></pre>
-              <p>上記の設定を使った文書の例です。
-                <pre><code class="language-latex">\documentclass{article}
+            </figure>
+            <p>上記の設定を使った文書の例です。</p>
+            <pre><code class="language-latex">\documentclass{article}
 \usepackage{amsmath}
 \usepackage[noend]{algpseudocode}
 %%%%% フォント関連 %%%%%
@@ -194,16 +203,14 @@
     \end{broadalgo}
 \end{document}
 </code></pre>
-                <figure>
-                  <div class="pseudocode">
-                    <img class="img-responsive" src="/static/images/final.svg" />
-                  </div>
-                </figure>
-              </p>
-            </section>
+            <figure>
+              <div class="pseudocode">
+                <img class="img-responsive" src="/static/images/final.svg" alt="上記で説明した変更を適用した疑似コードの例" />
+              </div>
+            </figure>
+          </section>
 
-          </div>
-          <div>
+        </div>
       </article>
 
     </main>
