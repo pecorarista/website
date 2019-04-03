@@ -27,7 +27,7 @@ body {
 }
 
 :lang(ar) {
-  font-family: 'Amiri', serif;
+  font-family: 'Amiri', $western-font, $jp-font, sans-serif;
 }
 
 .wrapper {
@@ -105,7 +105,6 @@ img {
     height: auto;
     max-width: 100%;
   }
-
 }
 
 figure {
@@ -125,7 +124,6 @@ figure {
     min-width: 380px;
     padding: 20px;
   }
-
 }
 
 main {
@@ -185,6 +183,11 @@ code {
     font-family: $mono-font, monospace;
   }
 
+  .quarter,
+  .half {
+    display: none;
+  }
+
 }
 
 pre {
@@ -197,83 +200,57 @@ pre {
     font-family: $mono-font, monospace;
   }
 
-}
+  .quarter,
+  .half {
+    display: none;
+  }
 
-kbd {
-  font-size: 100%;
 }
 
 .info {
   padding-bottom: 6ex;
 }
 
-.cjk {
+.half {
+  &::after {
+    content: ' ';
+    display: inline;
+    font-family: 'source-han-sans-cjk-ja';
+  }
+}
 
+.quarter {
+  &::after {
+    content: ' ';
+    display: inline;
+    font-family: 'source-han-sans-cjk-ja';
+    letter-spacing: -0.1rem;
+  }
+}
+
+kbd {
+  font-size: 100%;
+
+  .quarter,
   .half {
-
-    &::after {
-      content: ' ';
-      display: inline;
-      font-family: 'source-han-sans-cjk-ja';
-    }
-
-  }
-
-  .quarter {
-
-    &::after {
-      content: ' ';
-      display: inline;
-      font-family: 'source-han-sans-cjk-ja';
-      letter-spacing: -0.1rem;
-    }
-
-  }
-
-  code {
-
-    .quarter,
-    .half {
-      display: none;
-    }
-
-  }
-
-  pre {
-
-    .quarter,
-    .half {
-      display: none;
-    }
-
-  }
-
-  kbd {
-
-    .quarter,
-    .half {
-      display: none;
-    }
-
-  }
-
-  samp {
-
-    .quarter,
-    .half {
-      display: none;
-    }
-
-  }
-
-  ol > .quarter,
-  ul > .quarter,
-  ul > .half,
-  ul > .half {
     display: none;
   }
-
 }
+
+samp {
+  .quarter,
+  .half {
+    display: none;
+  }
+}
+
+ol > .quarter,
+ul > .quarter,
+ul > .half,
+ul > .half {
+  display: none;
+}
+
 
 .russian {
   font-family: $western-font, serif;

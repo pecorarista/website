@@ -18,6 +18,7 @@ const nunjucksRender = require('gulp-nunjucks-render');
 const data = require('gulp-data');
 const htmlBeautify = require('gulp-html-beautify');
 const ghPages = require('gulp-gh-pages');
+const htmlValidator = require('gulp-w3c-html-validator');
 
 const dirRelease = './dist/';
 const nunjucks = ['./nunjucks/**/*.njk', '!./nunjucks/**/_*.njk'];
@@ -26,7 +27,8 @@ const dirModules = './node_modules/'
 const images = ['./images/**/*.*', './latex/**/*.svg'];
 const vendorStyles = [
   './css/**/*.css',
-  `${dirModules}/prismjs/plugins/command-line/prism-command-line.css`
+  `${dirModules}/prismjs/plugins/command-line/prism-command-line.css`,
+  `${dirModules}/prismjs/plugins/line-numbers/prism-line-numbers.css`
 ];
 const vendorJavaScripts = [
   `${dirModules}/prismjs/prism.js`,
@@ -40,7 +42,8 @@ const vendorJavaScripts = [
   `${dirModules}/prismjs/components/prism-perl.min.js`,
   `${dirModules}/prismjs/components/prism-haskell.min.js`,
   `${dirModules}/prismjs/components/prism-lua.min.js`,
-  `${dirModules}/prismjs/plugins/command-line/prism-command-line.min.js`
+  `${dirModules}/prismjs/plugins/command-line/prism-command-line.min.js`,
+  `${dirModules}/prismjs/plugins/line-numbers/prism-line-numbers.min.js`
 ];
 const userTypeScripts = './typescripts/**/*.ts';
 const misc = ['CNAME', './favicon/favicon.ico']
@@ -94,7 +97,8 @@ const compileNunjucks = () =>
       VocabularyList: fs.readFileSync('latex/words.md', 'utf-8'),
       InsertionSort: fs.readFileSync('latex/insertion-sort.tex', 'utf-8'),
       InsertionSortForTo: fs.readFileSync('latex/insertion-sort-for-to.tex', 'utf-8'),
-      InsertionSortFinal: fs.readFileSync('latex/final.tex', 'utf-8')
+      InsertionSortFinal: fs.readFileSync('latex/final.tex', 'utf-8'),
+      ExampleOfHakyll: fs.readFileSync('latex/hakyll.md', 'utf-8').replace('...', '---')
     }))
     .pipe(nunjucksRender({
       path: ['./nunjucks/']
@@ -103,6 +107,8 @@ const compileNunjucks = () =>
       indent_size: 2,
       indent_char: ' '
     }))
+    .pipe(htmlValidator())
+    .pipe(htmlValidator.reporter())
     .pipe(gulp.dest(`${dirRelease}/`));
 
 

@@ -12,38 +12,41 @@
   <li>テストエビデンスのスクショをエクセルに貼り付ける作業</li>
   <li>Office のバージョンアップによってレイアウトが崩れたファイルをいじる作業</li>
 </ul>
-<!-- TODO: Fix text-autospace -->
 <p>などを行っていたため、MS Officeを使うことに抵抗があり、LaTeX (Beamer)で作ることにしました。</p>
 </section>
 <section>
   <h2>1. どんな感じになるのか</h2>
-  <p>デザインのセンス次第でいくらでも綺麗なものは作れると思いますが以下のような感じのものが作れます。
-    <div class="centered-image"><img class="img-responsive" src="/static/images/complex-poster.svg" /></div>
-  </p>
+  <p>デザインのセンス次第でいくらでも綺麗なものは作れると思いますが以下のような感じのものが作れます。</p>
+  <figure>
+    <div class="centered-image">
+      <img class="img-responsive" src="/static/images/complex-poster.svg" alt="複雑なポスターの例" />
+    </div>
+  </figure>
   <p>印刷の向きに関しては<code>beamerposter</code>のオプションで</p>
   <ul>
-    <li>横<code>orientation=landscape</code></li>
-    <li>縦<code>orientation=portrait</code></li>
+    <li>横：<code>orientation=landscape</code></li>
+    <li>縦：<code>orientation=portrait</code></li>
   </ul>
-  <p>で指定することができます。
-    <figure>
-      <figcaption>上のポスターのコード</figcaption>
-      <pre><code class="language-latex">{{ ComplexPoster }}</code></pre>
-    </figure>
-  </p>
+  <p>のように指定することができます。</p>
+  <figure>
+    <figcaption>上のポスターのコード</figcaption>
+    <pre><code class="language-latex">{{ ComplexPoster }}</code></pre>
+  </figure>
 </section>
 <section>
   <h2>2. 単純なポスターを作ってみる</h2>
-  <p>TeX Live に収録されている<a href="https://ctan.org/pkg/beamerposter">beamerposter</a>パッケージを使います。以下のようなコードを<code>simple-poster.tex</code>のような名前で保存してください。
+  <p>TeX Live に収録されている<a href="https://ctan.org/pkg/beamerposter">beamerposter</a>パッケージを使います。以下のようなコードを<code>simple-poster.tex</code>のような名前で保存してください。</p>
     <pre><code class="language-latex">{{ SimplePoster }}</code></pre>
-  </p>
-  <p>次に<code>beamerthemeSimplePoster.sty</code>という名前で以下の内容を現在作業しているディレクトリに保存してください。
+  <p>次に<code>beamerthemeSimplePoster.sty</code>という名前で以下の内容を現在作業しているディレクトリに保存してください。</p>
     <pre><code class="language-latex">{{ beamerthemeSimplePoster }}</code></pre>
-  </p>
-  <p>LuaLaTeXでタイプセットしたいので上の2つと同じ場所に設定ファイル<code>latexmkrc</code>を置いておきます。
-    <pre><code class="language-perl">{{ latexmkrc }}</code></pre>
-  </p>
-  <p>これらのファイルがある場所で<code>latexmk poster.tex</code> コマンドを実行すると以下のような PDF ができあがります。
-    <div class="centered-image"><img class="img-responsive" src="/static/images/simple-poster.svg" /></div>あとは色を変更したり、中身を追加していくだけです。</p>
+  <p>LuaLaTeXでタイプセットしたいので上の2つと同じ場所に設定ファイル<code>latexmkrc</code>を置いておきます。</p>
+  <pre><code class="language-perl">{{ latexmkrc }}</code></pre>
+  <p>これらのファイルがある場所で<code>latexmk poster.tex</code> コマンドを実行すると以下のような PDF ができあがります。</p>
+  <figure>
+    <div class="centered-image">
+      <img class="img-responsive" src="/static/images/simple-poster.svg" alt="単純なポスターの例" />
+    </div>
+  </figure>
+  <p>あとは色を変更したり、中身を追加していくだけです。</p>
 </section>
 {% endblock %}

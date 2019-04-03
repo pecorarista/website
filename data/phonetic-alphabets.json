@@ -38,7 +38,7 @@
       "vim": "",
       "tipa": "\\texthtb",
       "compose": "b'",
-      "xsampa": "b_<"
+      "xsampa": "b_&lt;"
     },
     {
       "symbol": "ʙ",
@@ -78,7 +78,7 @@
       "vim": "",
       "tipa": "\\texthtd",
       "compose": "d'",
-      "xsampa": "d_<"
+      "xsampa": "d_&lt;"
     },
     {
       "symbol": "ɖ",

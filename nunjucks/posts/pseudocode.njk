@@ -10,61 +10,69 @@
   <h2>1. 主な使い方</h2>
   <p>まずは
     <code>algpseudocode</code> というパッケージを読み込みます。
-    <span-punct>以下のように挿入ソートのアルゴリズムを書いてみます。</span-punct>
+    以下のように挿入ソートのアルゴリズムを書いてみます。</p>
+  <figure>
     <pre><code class="language-latex">{{ InsertionSort }}</code></pre>
-    <span-punct>表示されるのは以下のような擬似コードになります。</span-punct>
-    <div class="pseudocode"><img class="img-responsive" src="/static/images/insertion-sort.svg" /></div>
-  </p>
+  </figure>
+  <p>表示されるのは以下のような擬似コードになります。</p>
+  <figure>
+    <div class="pseudocode">
+      <img class="img-responsive" src="/static/images/insertion-sort.svg" alt="疑似コードの例" />
+    </div>
+  </figure>
   <p>普段Pythonなど
-    <code>end</code> を明示しない言語に慣れていると少し冗長に感じるかもしれません。
-    <span-punct>そのような記号を明示したくない場合はパッケージ読込時に</span-punct>
-    <pre><code class="language-latex">\usepackage[noend]{algpseudocode}</code></pre>のように書いておくと
-    <div class="pseudocode"><img class="img-responsive" src="/static/images/insertion-sort-no-end.svg" /></div>のようなPython風の擬似コードになります。さらに
-    <code>do</code> の記述も不要ならば、
-    <code-punct>ヘッダ部分に以下のように記述します。</code-punct>
+    <code>end</code> を明示しない言語に慣れていると少し冗長に感じるかもしれません。そのような記号を明示したくない場合はパッケージ読込時に
+  <figure>
+    <pre><code class="language-latex">\usepackage[noend]{algpseudocode}</code></pre>
+  </figure>
+  <p>のように書いておくと</p>
+    <figure>
+      <div class="pseudocode">
+        <img class="img-responsive" src="/static/images/insertion-sort-no-end.svg" alt="`End`を用いない疑似コードの例" />
+      </div>
+    </figure>
+  <p> のようなPython風の擬似コードになります。さらに<code>do</code>の記述も不要ならば、ヘッダ部分に以下のように記述します。</p>
     <pre><code class="language-latex">\algrenewcommand\algorithmicdo{}</code></pre>
-  </p>
   <p>いま
-    <code>for</code> の始点と終点の間には
-    <code>…</code> を使っていますが、もし変えたければ
-    <code>algpseudocode.sty</code> にならい新しい制御構造
-    <code>\ForTo</code> をプリアンブルで定義します。
+    <code>for</code> の始点と終点の間には<code>…</code> を使っていますが、もし変えたければ<code>algpseudocode.sty</code> にならい新しい制御構造<code>\ForTo</code> をプリアンブルで定義します。</p>
+  <figure>
     <pre><code class="language-latex">{{ InsertionSortForTo }}</code></pre>
-  </p>
+  </figure>
   <p>アルゴリズム中
     <code>\For</code> を新しく定義した
-    <code>\ForTo</code> に置き換えて次のような出力を得ます。
-    <div class="pseudocode"><img class="img-responsive" src="/static/images/insertion-sort-for-to.svg" /></div>
-  </p>
+    <code>\ForTo</code> に置き換えて次のような出力を得ます。</p>
+  <figure>
+    <div class="pseudocode">
+      <img class="img-responsive" src="/static/images/insertion-sort-for-to.svg" alt="ForToの表示を変更した疑似コードの例" />
+    </div>
+  </figure>
   <p>新しく定義した制御構造については
     <code>[noend]</code> オプションが適用されないのため、要らなければ
     <code>algtext*{EndFor}</code> を
-    <code>\ForTo</code> の定義の次の行にでも書いておきましょう。
-  </p>
+    <code>\ForTo</code> の定義の次の行にでも書いておきましょう。</p>
 </section>
 <section>
   <h3>2. よく変更を加える項目について</h3>
-  <p>行間は
-    <code>\setlength{\baselineskip}{Npt}</code>（<code>N</code> は自然数 ）で変更できます。ここでは新たに
-    <code>broadalgo</code> という環境を定義することにします。
+  <p>行間は<code>\setlength{\baselineskip}{Npt}</code>（<code>N</code> は自然数 ）で変更できます。ここでは新たに<code>broadalgo</code> という環境を定義することにします。</p>
+  <figure>
     <pre><code class="language-latex">{% raw %}\newenvironment{broadalgo}{%
   \setlength{\baselineskip}{17pt}
   \begin{algorithmic}[1]
 }{%
   \end{algorithmic}
 }{% endraw %}</code></pre>
-  </p>
-  <p>この例では出てきませんが
-    <code>\Return</code> には行番号が振られないようになっています。あったほうがよいならば再定義する必要があります。</p>
+  </figure>
+  <p>この例では出てきませんが<code>\Return</code> には行番号が振られないようになっています。あったほうがよいならば再定義する必要があります。</p>
+  <figure>
     <pre><code class="language-latex">\let\oldReturn\Return
 \renewcommand{\Return}{\State\oldReturn}</code></pre>
-  <p>上記の設定を使った文書の例です。
+  </figure>
+  <p>上記の設定を使った文書の例です。</p>
     <pre><code class="language-latex">{{ InsertionSortFinal }}</code></pre>
     <figure>
       <div class="pseudocode">
-        <img class="img-responsive" src="/static/images/final.svg" />
+        <img class="img-responsive" src="/static/images/final.svg" alt="上記で説明した変更を適用した疑似コードの例" />
       </div>
     </figure>
-  </p>
 </section>
 {% endblock %}
