@@ -281,16 +281,16 @@ const write = (done) => {
           ${alphabet.name}
         </td>
         <td>
-          ${alphabet.vim ? '<kbd>' + alphabet.vim + '</kbd>' : ''}
+          ${alphabet.vim.length > 0 ? '<kbd>' + alphabet.vim.join("</kbd> <kbd>") + '</kbd>' : ''}
         </td>
         <td class="monospace">
           ${alphabet.tipa}
         </td>
         <td>
-            ${alphabet.compose ? '<kbd>' + alphabet.compose + '</kbd>' : ''}
+            ${alphabet.compose.length > 0 ? '<kbd>' + alphabet.compose.join("</kbd> <kbd>") + '</kbd>' : ''}
         </td>
         <td>
-          ${alphabet.xsampa ? '<kbd>' + alphabet.xsampa + '</kbd>' : ''}
+          ${alphabet.xsampa.length > 0 ? '<kbd>' + alphabet.xsampa.join("</kbd> <kbd>") + '</kbd>' : ''}
         </td>
       </tr>`
     );
@@ -315,7 +315,10 @@ const write = (done) => {
 
 
 gulp.task('gh-deploy', () =>
-  gulp.src(`${dirRelease}/**/*`).pipe(ghPages())
+  gulp.src(`${dirRelease}/**/*`)
+    .pipe(ghPages({
+      message: '[ci skip] Automatic Commit by Gulp'
+    }))
 );
 
 
@@ -324,10 +327,11 @@ gulp.task('watch', (done) => {
   gulp.watch(
     [
       './nunjucks/**/*.njk',
+      '!./nunjucks/posts/_include/*.njk',
       './latex/**/*.svg',
       './data/**/*.json'
     ],
-    gulp.series(compileNunjucks, reload));
+    gulp.series(write, compileNunjucks, reload));
   gulp.watch(sassFiles, gulp.series(compileSass, reload));
   gulp.watch(userTypeScripts, gulp.series(compileTypeScripts, reload));
   gulp.watch(vendorJavaScripts, gulp.series(copyVendorJavaScripts, reload));
