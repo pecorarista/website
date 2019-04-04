@@ -238,7 +238,7 @@
       "vim": [],
       "tipa": "\\textphiF",
       "compose": ["*", "u"],
-      "xsampa": ["p\\"]
+      "xsampa": ["p", "\\"]
     },
     {
       "symbol": "ɹ",
@@ -262,7 +262,7 @@
       "vim": [],
       "tipa": "\\textscr",
       "compose": ["r", "`"],
-      "xsampa": ["R\\"]
+      "xsampa": ["R", "\\"]
     },
     {
       "symbol": "ʁ",
