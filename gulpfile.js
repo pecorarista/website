@@ -327,7 +327,7 @@ gulp.task('watch', (done) => {
   gulp.watch(
     [
       './nunjucks/**/*.njk',
-      '!./nunjucks/posts/_include/*.njk',
+      '!./nunjucks/**/_*.njk',
       './latex/**/*.svg',
       './data/**/*.json'
     ],
