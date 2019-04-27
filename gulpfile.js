@@ -317,7 +317,7 @@ const write = (done) => {
 gulp.task('gh-deploy', () =>
   gulp.src(`${dirRelease}/**/*`)
     .pipe(ghPages({
-      message: `[ci skip] Automatic Commit ${new Date().toISOString()}`
+      message: `[skip ci] Automatic Commit ${new Date().toISOString()}`
     }))
 );
 
