@@ -203,3 +203,6 @@ figcaption {
   caption-side: top;
   color: #373a3c;
   text-align: center; }
+
+.me {
+  text-decoration: underline; }
