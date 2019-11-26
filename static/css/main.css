@@ -47,6 +47,10 @@ h3 {
 .navbar-dark {
   background-color: #581a56; }
 
+.navbar-brand {
+  font-size: 1.43rem;
+  font-weight: bold; }
+
 a :link,
 a :visited {
   color: #1560bd; }
