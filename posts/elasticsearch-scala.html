@@ -57,7 +57,7 @@
           <section>
             <h2>Elasticsearchの準備</h2>
             <p><strong>elastic4sのバージョンと整合性をとる必要がある</strong>ため、今回は7.3.2をインストールします。インストール方法についてはよい解説がたくさんあるため、ここでは特に説明しません。</p>
-            <p>今回使うデータの仕様を定義した<code>index.json</code>を準備します。</p>
+            <p>今回使うデータの仕様を定義した<code>index.json</code>を準備します。<code>retrieved</code>（取得日時）はUNIX Timeを表す整数です。</p>
             <figure>
               <figcaption class="monospace">index.json</figcaption>
               <pre><code class="language-javascript">{
@@ -85,13 +85,14 @@
     "http://localhost:9200/documents" \
     --data-binary @index.json</code></pre>
             </figure>
-            <p>データを作成します。</p>
+            <p>次に登録するデータを準備します。ここでは<a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.3/docs-bulk.html">bulk API</a>を使うので、以下のような形式のファイルを作成します。</p>
             <figure>
               <figcaption class="monospace">data.jsonl</figcaption>
               <pre><code class="language-javascript">{"index": {"_index": "documents", "_id": "http://example.com/article/123"}}
-{"uri": "http://example.com/article/123", "title": "テスト", "retrieved": 1319937300, "content": "本文"}</code></pre>
+{"uri": "http://example.com/article/123", "title": "テスト", "retrieved": 1319937300, "content": "本文"}
+...</code></pre>
             </figure>
-            <p>これをElasticsearchに送ります。</p>
+            <p>これを以下のコマンドでElasticsearchに送ります。</p>
             <figure>
               <pre class="command-line"><code class="language-bash">curl -X POST \
     --header "Content-Type: application/json"
@@ -101,8 +102,7 @@
           </section>
           <section>
             <h2>依存関係の定義</h2>
-            <p><a href="https://github.com/sksamuel/elastic4s">elastic4sのREADME</a>を参考にbuild.sbtを編集します。今回はHTTPサーバーの機能を使うのでAkka HTTPの関連するライブラリも依存関係に含めます。このとき
-              <strong>elastic4sのメジャーバージョン・マイナーバージョンがElasticsearchのそれと一致するように気をつけてください。</strong>
+            <p><a href="https://github.com/sksamuel/elastic4s">elastic4sのREADME</a>を参考にbuild.sbtを編集します。今回はHTTPサーバーの機能を使うので<a href="https://doc.akka.io/docs/akka-http/current/introduction.html">Akka HTTP</a>の関連するライブラリも依存関係に含めます。このとき<strong>elastic4sのメジャーバージョン・マイナーバージョンがElasticsearchのそれと一致するように気をつけてください。</strong>
             </p>
             <figure>
               <figcaption class="monospace">${project_root}/build.sbt</figcaption>
@@ -127,7 +127,7 @@ libraryDependencies += "ch.megard" %% "akka-http-cors" % "0.4.1"</code></pre>
           </section>
           <section>
             <h2>Scalaでのデータ型の定義</h2>
-            <p>まずは型クラス(case class)を定義します。</p>
+            <p>まずは型クラス(case class)を定義します。今回はGETリクエストによる検索と、POSTリクエストによる更新のみの単純なAPIを作るので、以下の2つの型クラスを定義すれば十分です。</p>
             <figure>
               <figcaption class="monospace">${project_root}/src/main/scala/${organization}/${app}/ApplicationTypes.scala</figcaption>
               <pre><code class="language-scala">object ApplicationTypes {
@@ -145,7 +145,7 @@ libraryDependencies += "ch.megard" %% "akka-http-cors" % "0.4.1"</code></pre>
   )
 }</code></pre>
             </figure>
-            <p>次にJSONをScalaの型クラスに変換する方法を定義します。elastic4sは以下のライブラリをサポートしているので好きなものを使ってください。今回はSpray Jsonを使います。これは<a href="https://doc.akka.io/docs/akka-http/current/introduction.html">Akka HTTP</a>と併用しやすいと考えたからです。</p>
+            <p>次にJSONをScalaの型クラスに変換する方法を定義します。elastic4sは以下のライブラリをサポートしているので好きなものを使ってください。今回はSpray Jsonを使います。これはAkka HTTPがSpray Jsonをサポートしているため、自分でコードを書く量が減らせるからです。</p>
             <ul>
               <li>Jackson</li>
               <li>Circe</li>
@@ -207,7 +207,7 @@ private def updateDocument(request: UpdateDocumentRequest): Future[Option[String
           </section>
           <section>
             <h2>ルーティング規則の定義</h2>
-            <p><a href="https://doc.akka.io/docs/akka-http/current/index.html">Akka HTTP</a>のドキュメントを参考に、ルーティング規則を書いていきます。またAPIを提供するとき<a href="https://developer.mozilla.org/ja/docs/Web/HTTP/CORS">オリジン間リソース共有 (CORS)</a>について制御する必要が生じる場合が多いと思うので、<code>cors()</code>を呼んでいます。今回の範囲では特に必要ではないので省いても大丈夫です。</p>
+            <p><a href="https://doc.akka.io/docs/akka-http/current/index.html">Akka HTTP</a>のドキュメントを参考に、ルーティング規則を書いていきます。またAPIを提供するとき<a href="https://developer.mozilla.org/ja/docs/Web/HTTP/CORS">オリジン間リソース共有 (CORS)</a>について制御する必要が生じると思うので、<code>cors()</code>を呼んでいます。今回の範囲では特に必要ではないので省いても大丈夫です。</p>
             <figure>
               <figcaption class="monospace">${project_root}/src/main/scala/${organization}/${app}/Route.scala</figcaption>
               <pre><code class="language-scala">trait Route {
@@ -269,7 +269,13 @@ private def updateDocument(request: UpdateDocumentRequest): Future[Option[String
 
 }</code></pre>
             </figure>
-            <p>Scala側でサーバーを起動する前に、Elasticsearchが9200番のポートでアクセス可能なことを確認します。それができたら<code>sbt</code>コマンドで対話環境に入り、<code>run</code>でサーバーを起動します。<code>curl</code>コマンドやブラウザを使って実際に動かしてみましょう。</p>
+            <p>Scala側でサーバーを起動する前に、Elasticsearchが9200番のポートでアクセス可能なことを確認します。それができたら<code>sbt</code>コマンドで対話環境に入り、<code>run</code>と打ってHTTPサーバーを起動します。ここまでできたら、ブラウザのアドレスバーに<code>http://localhost:8080/documents?term=...</code>（<code>...</code>の部分は好きな文字列）と入力すると、検索結果が返ってくるはずです（termクエリなので単語の分かち書きを考慮した検索になっていることに注意してください。）。また更新については以下のようなPOSTリクエストを投げると“Success!”と帰ってくるはずです。もう一度検索し、タイトルが更新されていることを確認してみてください。</p>
+            <figure>
+              <pre class="command-line"><code class="language-bash">curl -X POST \
+    --header "Content-Type: application/json"  \
+    "http://localhost:8080/documents" \
+    --data '{"uri": "http://example.com/article/123", "title": "更新"}'</code></pre>
+            </figure>
           </section>
 
         </div>
