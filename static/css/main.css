@@ -132,7 +132,7 @@ code {
     display: none; }
 
 pre {
-  max-height: 30em;
+  max-height: 50em;
   overflow: auto; }
   pre[class*='language-'] {
     border-radius: 0;
