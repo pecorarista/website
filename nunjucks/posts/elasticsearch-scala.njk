@@ -1,0 +1,219 @@
+{% extends '_layout/_article.njk' %}
+
+{% set lang = 'ja' %}
+{% set title = 'ScalaでElasticsearchを使う(elastic4s)' %}
+{% set posted = '2019-11-27' %}
+
+{% block post %}
+<section>
+  <p>ScalaでElasticsearchを扱うライブラリ<a href="https://github.com/sksamuel/elastic4s">elastic4s</a>について、比較的古めの情報しか見つからなかったので、使い方をまとめておきます。HTTPのAPIを提供するサーバーを作るコードを使って解説していきます。完全なコードは<a href="https://github.com/pecorarista/elastic4s-example">pecorarista/elastic4s-example</a>を参照してください。</p>
+  <p>elastic4sを使う理由ですが<a href="https://doc.akka.io/docs/alpakka/current/elasticsearch.html">Alpakka
+    Elasticsearch</a>と違い、日本語の文字を使ったクエリに対応できていたからです。ただAlpakka Elasticsearchに<a href="https://github.com/akka/alpakka/pull/2008">PRを出したところマージされた</a>ので、今後のリリースでは解消されると思います。<strong>elastic4sとAlpakka
+    Elasticsearchの違いとしては前者がDSLを使ってクエリを作る</strong>ことが挙げられます。ここらへんは好みが分かれるところだと思いますが、個人的にはDSLを使う方が好きなのでelastic4sを使うことにしてよかったです。
+</section>
+<section>
+  <h2>Elasticsearchの準備</h2>
+  <p><strong>elastic4sのバージョンと整合性をとる必要がある</strong>ため、今回は7.3.2をインストールします。インストール方法についてはよい解説がたくさんあるため、ここでは特に説明しません。</p>
+  <p>今回使うデータの仕様を定義した<code>index.json</code>を準備します。</p>
+  <figure>
+    <figcaption><pre>index.json</pre></figcaption>
+    <pre><code class="language-javascript">{
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "document_analyzer": { "type": "custom", "tokenizer": "kuromoji_tokenizer" }
+      }
+    }
+  },
+  "mappings":{
+    "properties": {
+      "uri": { "type": "keyword" },
+      "title": { "type": "keyword" },
+      "retrieved": { "type": "date", "format": "epoch_second" },
+      "content": { "type": "text", "analyzer": "document_analyzer" }
+    }
+  }
+}</code></pre>
+  </figure>
+  <p>これを使用してインデックスを作成します。</p>
+  <figure>
+    <pre class="command-line"><code class="language-bash">curl -X PUT \
+    --header "Content-Type: application/json"  \
+    "http://localhost:9200/documents" \
+    --data-binary @index.json</code></pre>
+  </figure>
+  <p>データを作成します。</p>
+  <figure>
+    <figcaption><pre>data.jsonl</pre></figcaption>
+    <pre><code class="language-javascript">{"index": {"_index": "documents", "_id": "http://example.com/article/123"}}
+{"uri": "http://example.com/article/123", "title": "テスト", "retrieved": 1319937300, "content": "本文"}</code></pre>
+  </figure>
+  <p>これをElasticsearchに送ります。</p>
+  <figure>
+    <pre class="command-line"><code class="language-bash">curl -X POST \
+    --header "Content-Type: application/json"
+    "http://localhost:9200/_bulk" \
+    --data-binary @data.jsonl</code></pre>
+  </figure>
+</section>
+<section>
+<h2>依存関係の定義</h2>
+  <p><a href="https://github.com/sksamuel/elastic4s">elastic4sのREADME</a>を参考にbuild.sbtを編集します。今回はHTTPサーバーの機能を使うのでAkka HTTPの関連するライブラリも依存関係に含めます。このとき
+<strong>elastic4sのメジャーバージョン・マイナーバージョンがElasticsearchのそれと一致するように気をつけてください。</strong>
+  </p>
+  <figure>
+    <figcaption>${project_root}/build.sbt</figcaption>
+    <pre><code class="language-scala">name := "example"
+version := "0.1.0"
+lazy val root = (project in file("."))
+scalaVersion := "2.12.10"
+
+val elastic4sVersion = "7.3.1"
+libraryDependencies += "com.typesafe.akka" %% "akka-stream" % "2.5.26"
+libraryDependencies += "com.typesafe.akka" %% "akka-http" % "10.1.10"
+libraryDependencies += "com.typesafe.akka" %% "akka-http-spray-json" % "10.1.10"
+libraryDependencies += "com.typesafe.akka" %% "akka-slf4j" % "2.5.26"
+libraryDependencies += "com.sksamuel.elastic4s" %% "elastic4s-core" % elastic4sVersion
+libraryDependencies += "com.sksamuel.elastic4s" %% "elastic4s-client-akka" % elastic4sVersion
+libraryDependencies += "com.sksamuel.elastic4s" %% "elastic4s-http-streams" % elastic4sVersion
+libraryDependencies += "com.sksamuel.elastic4s" %% "elastic4s-json-spray" % elastic4sVersion
+libraryDependencies += "com.sksamuel.elastic4s" %% "elastic4s-testkit" % elastic4sVersion % "test"
+libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.1.3" % Runtime
+libraryDependencies += "ch.megard" %% "akka-http-cors" % "0.4.1"</code></pre>
+  </figure>
+</section>
+<section>
+  <h2>Scalaでのデータ型の定義</h2>
+  <p>まずは型クラス(case class)を定義します。</p>
+  <figure>
+    <figcaption>${project_root}/src/main/scala/${organization}/${app}/ApplicationTypes.scala</figcaption>
+    <pre><code class="language-scala">object ApplicationTypes {
+  case class Document(
+      uri: String,
+      title: String,
+      retrieved: Long,
+      content: String
+  )
+  case class UpdateDocumentRequest(
+      uri: String,
+      title: Option[String],
+      retrieved: Option[Long],
+      content: Option[String]
+  )
+}</code></pre>
+  </figure>
+  <p>次にJSONをScalaの型クラスに変換する方法を定義します。elastic4sは以下のライブラリをサポートしているので好きなものを使ってください。今回はSpray Jsonを使います。これは<a href="https://doc.akka.io/docs/akka-http/current/introduction.html">Akka HTTP</a>と併用しやすいと考えたからです。</p>
+  <ul>
+    <li>Jackson</li>
+    <li>Circe</li>
+    <li>Json4s</li>
+    <li>PlayJson</li>
+    <li>Spray Json</li>
+  </ul>
+  <p>今回はJSONとScalaにおける型が1対1で対応するため、<code>jsonFormatN</code>を指定するだけで自動的に変換規則が生成されます。<code>jsonFormatN</code>の<code>N</code>は型クラスのフィールド数に合わせる必要があります。</p>
+  <figure>
+    <figcaption>${project_root}/src/main/scala/${organization}/${app}/JsonProtocol.scala</figcaption>
+    <pre><code class="language-scala">import ApplicationTypes._
+import spray.json.DefaultJsonProtocol
+import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
+
+trait JsonProtocol extends SprayJsonSupport with DefaultJsonProtocol {
+  implicit val documentFormat = jsonFormat4(Document)
+  implicit val documentUpdateRequestFormat = jsonFormat4(UpdateDocumentRequest)
+}
+object JsonProtocol extends JsonProtocol</code></pre>
+  </figure>
+</section>
+<section>
+  <h2>ルーティング規則の定義</h2>
+  <figure>
+    <pre><code class="language-scala">trait Route {
+
+  import ApplicationTypes._
+  import JsonProtocol._
+  import com.sksamuel.elastic4s.sprayjson._
+
+  implicit val elasticClient: ElasticClient
+  implicit val executionContext: ExecutionContext
+
+  val documentsIndexName = "documents"
+
+  val routes = cors() {
+    path(documentsIndexName) {
+      get {
+        parameter('term.?) { term =>
+          complete(findDocuments(term))
+        }
+      } ~
+        post {
+          entity(as[UpdateDocumentRequest]) { request =>
+            val message: Future[String] = updateDocument(request).map(_.getOrElse("Success!"))
+            complete(message)
+          }
+        }
+    }
+  }
+
+  private def findDocuments(term: Option[String]): Future[Seq[Document]] = {
+    val queryBody = term match {
+      case Some(s) => matchQuery("content", s)
+      case None => matchAllQuery()
+    }
+    elasticClient
+      .execute(
+        search(documentsIndexName).limit(20).query(queryBody)
+      )
+      .map { response =>
+        response match {
+          case RequestSuccess(status @ _, body @ _, headers @ _, result) =>
+            result.hits.hits.to[Seq].map(_.to[Document])
+          case _ => Seq.empty[Document]
+        }
+      }
+  }
+
+  private def updateDocument(request: UpdateDocumentRequest): Future[Option[String]] =
+    elasticClient
+      .execute {
+        update(request.uri)
+          .in(documentsIndexName)
+          .doc(UpdateDocumentRequest(request.uri, request.title, request.retrieved, request.content))
+      }
+      .map { response =>
+        response match {
+          case RequestFailure(status @ _, body @ _, headers @ _, error) => Some(error.reason)
+          case _ => None
+        }
+      }
+
+}</code></pre>
+  </figure>
+</section>
+<section>
+  <h2>実行</h2>
+  <figure>
+    <pre><code class="language-scala">object Main extends App with Route {
+
+  implicit val system = ActorSystem()
+  implicit val executionContext = system.dispatcher
+  implicit val materializer = ActorMaterializer()
+
+  val akkaClient = AkkaHttpClient(AkkaHttpClientSettings(Seq("localhost:9200")))
+  val elasticClient = ElasticClient(akkaClient)
+  val bindingFuture = Http().bindAndHandle(routes, "localhost", 8080)
+
+  println(s"Server online at http://localhost:8080/.\nPress Return to exit.")
+
+  StdIn.readLine()
+  elasticClient.close()
+  bindingFuture
+    .flatMap(_.unbind())
+    .onComplete { _ => system.terminate() }
+
+}</code></pre>
+  </figure>
+  <figure>
+    <pre class="command-line"><code class="language-bash">sbt run</code></pre>
+  </figure>
+</section>
+{% endblock %}
