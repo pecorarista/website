@@ -169,10 +169,6 @@ private def updateDocument(request: UpdateDocumentRequest): Future[Option[String
     <figcaption class="monospace">${project_root}/src/main/scala/${organization}/${app}/Route.scala</figcaption>
     <pre><code class="language-scala">trait Route {
 
-  import ApplicationTypes._
-  import JsonProtocol._
-  import com.sksamuel.elastic4s.sprayjson._
-
   implicit val elasticClient: ElasticClient
   implicit val executionContext: ExecutionContext
 
