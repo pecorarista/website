@@ -89,16 +89,16 @@ libraryDependencies += "ch.megard" %% "akka-http-cors" % "0.4.1"</code></pre>
     <figcaption class="monospace">${project_root}/src/main/scala/${organization}/${app}/ApplicationTypes.scala</figcaption>
     <pre><code class="language-scala">object ApplicationTypes {
   case class Document(
-      uri: String,
-      title: String,
-      retrieved: Long,
-      content: String
+    uri: String,
+    title: String,
+    retrieved: Long,
+    content: String
   )
   case class UpdateDocumentRequest(
-      uri: String,
-      title: Option[String],
-      retrieved: Option[Long],
-      content: Option[String]
+    uri: String,
+    title: Option[String],
+    retrieved: Option[Long],
+    content: Option[String]
   )
 }</code></pre>
   </figure>
