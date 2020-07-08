@@ -8,7 +8,7 @@
 <section>
 <h2>背景にある発想</h2>
 <p>\(K\)-面サイコロについて、出目が\(k\)となる確率を\(q_k\)とする。このとき各\(q_k\)について\(0 \leq p \leq 1\)かつ\(\sum_{k = 1}^K q_k =1\)である。したがって\(\boldsymbol{q} = (q_1,\,\ldots,\,q_K)^\top\)は\((K-1)\)-標準単体(standard simplex) \(\varDelta^{K -1} = \{ \boldsymbol{x} \in \mathbb{R}^K \mid \sum_{i = 1}^K x_i = 1,\, x_1 \geq 0,\, \ldots,\, x_K \geq 0 \}\)に含まれる。この\(\boldsymbol{q}\)がサイコロのモデルになる。</p>
-<p>全部で\(N\)回このサイコロを振る。出目が\(k\)となった回数を\(n_k\)とし、\(p_k := n_k / N\)とする。このとき\(\boldsymbol{p} = (q_1,\,\ldots,\,q_K)^\top\)は観測によって得られた確率である。最尤推定により\(\boldsymbol{q}\)を求めるには以下を求める。
+<p>全部で\(N\)回このサイコロを振る。出目が\(k\)となった回数を\(n_k\)とし、\(p_k := n_k / N\)とする。このとき\(\boldsymbol{p} = (p_1,\,\ldots,\,p_K)^\top\)は観測によって得られた確率である。最尤推定により\(\boldsymbol{q}\)を求めるには以下を求める。
 \begin{align}
   \operatorname*{arg\,max}_{\boldsymbol{q} \in \varDelta^{K - 1}} \prod_{k = 1}^K q_k^{Np_k}
 \end{align}
