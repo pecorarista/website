@@ -1,6 +1,6 @@
 # pecorarista.com
 
-[![CircleCI](https://circleci.com/gh/pecorarista/website.svg?style=svg)](https://circleci.com/gh/pecorarista/website)
+[![Deploy](https://github.com/pecorarista/website/actions/workflows/gh-pages.yml/badge.svg)](https://github.com/pecorarista/website/actions/workflows/gh-pages.yml)
 
 ```bash
 nvm install lts/fermium
