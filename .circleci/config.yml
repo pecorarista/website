@@ -3,7 +3,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:11.14
+      - image: cimg/node:14.17.5
     steps:
       - checkout
       - restore_cache:
@@ -17,20 +17,6 @@ jobs:
           paths:
             - node_modules
       - run:
-          name: Build
-          command: $(yarn bin)/gulp build
-  deploy:
-    docker:
-      - image: circleci/node:8.15
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name: Install dependencies
-          command: yarn install
-      - run:
           name: Configure user.name
           command: git config --global user.name $GITHUB_USER_NAME
       - run:
@@ -39,18 +25,15 @@ jobs:
       - run:
           name: Deploy
           command: $(yarn bin)/gulp deploy
+      - run:
+          name: Build
+          command: $(yarn bin)/gulp build
 
 workflows:
   version: 2
   build-deploy:
     jobs:
       - build:
-          filters:
-            branches:
-              only: master
-      - deploy:
-          requires:
-            - build
           filters:
             branches:
               only: master
