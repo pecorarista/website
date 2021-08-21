@@ -2,7 +2,7 @@
 'use strict';
 
 const gulp = require('gulp');
-const sass = require('gulp-sass');
+const sass = require('gulp-sass')(require('sass'));
 const sassLint = require('gulp-sass-lint')
 const concat = require('gulp-concat');
 const uglify = require('gulp-uglify');
@@ -18,7 +18,6 @@ const nunjucksRender = require('gulp-nunjucks-render');
 const data = require('gulp-data');
 const htmlBeautify = require('gulp-html-beautify');
 const ghPages = require('gulp-gh-pages');
-const htmlValidator = require('gulp-w3c-html-validator');
 
 const dirRelease = './dist/';
 const nunjucks = ['./nunjucks/**/*.njk', '!./nunjucks/**/_*.njk'];
@@ -107,8 +106,6 @@ const compileNunjucks = () =>
       indent_size: 2,
       indent_char: ' '
     }))
-    .pipe(htmlValidator())
-    .pipe(htmlValidator.reporter())
     .pipe(gulp.dest(`${dirRelease}/`));
 
 
