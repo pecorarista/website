@@ -314,14 +314,6 @@ const write = (done) => {
 };
 
 
-gulp.task('gh-deploy', () =>
-  gulp.src(`${dirRelease}/**/*`)
-    .pipe(ghPages({
-      message: `[skip ci] Automatic Commit ${new Date().toISOString()}`
-    }))
-);
-
-
 gulp.task('watch', (done) => {
   gulp.watch(images, gulp.series(copyImages, reload));
   gulp.watch(
@@ -361,6 +353,3 @@ gulp.task('default',
     'watch'
   )
 );
-
-
-gulp.task('deploy', gulp.series('build', 'gh-deploy'));
