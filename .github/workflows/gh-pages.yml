@@ -12,6 +12,6 @@ jobs:
     concurrency: ci-${{ github.ref }}
     steps:
       - uses: actions/checkout@v2
-			- uses: actions/setup-node@v2
-		    with:
-				  node-version: 'lts/fermium'
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 'lts/fermium'
