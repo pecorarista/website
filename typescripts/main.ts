@@ -46,8 +46,7 @@ class TextAutospace {
           find: new RegExp(pattern, 'ig'),
           replace: '$1<' + `${space}` + '>$2'
         })
-      },
-      el);
+      });
 
       findAndReplaceDOMText(el, {
         find: `<${space}>`,
