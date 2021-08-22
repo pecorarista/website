@@ -35,6 +35,7 @@ const vendorJavaScripts = [
   `${dirModules}/prismjs/components/prism-latex.min.js`,
   `${dirModules}/prismjs/components/prism-makefile.min.js`,
   `${dirModules}/prismjs/components/prism-java.min.js`,
+  `${dirModules}/prismjs/components/prism-javascript.min.js`,
   `${dirModules}/prismjs/components/prism-scala.min.js`,
   `${dirModules}/prismjs/components/prism-markdown.min.js`,
   `${dirModules}/prismjs/components/prism-apacheconf.min.js`,
