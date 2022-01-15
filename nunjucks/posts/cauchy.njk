@@ -1,0 +1,69 @@
+{% extends '_layout/_article.njk' %}
+{% set lang = 'ja' %}
+{% set mathematical = 'true' %}
+{% set title = '留数定理の利用例' %}
+{% set posted = '2022-01-05' %}
+
+
+{% block post %}
+<section>
+<p>MathJaxのアップデートにともない動作を確認したかったため，典型的な複素積分の問題とその解答を載せる．</p>
+<p><strong>問</strong> 次の積分の値を求めよ．
+\begin{align*}
+    \int_{-\infty}^\infty \frac{1}{1 + x^2} dx
+\end{align*}
+</p>
+<p><strong>解答</strong> \(\displaystyle f(z) = \frac{1}{z^2 + 1}\) \((z \in \mathbb{C})\) とおく．
+この関数は \(z = \pm i\) を孤立特異点にもつ．
+また曲線 \(C\) を \(C\colon z = Re^{i\theta}\) \((R \gt 1,\ 0 \leq \theta \leq \pi)\) で定義する．
+このとき，留数定理により
+\begin{align}
+    \int_{-R}^R f(z) dz + \int_C f(z) dz = 2 \pi i \res(f, i) \label{a}
+\end{align}
+が成り立つ．</p>
+<p>\(f\) について
+\begin{align*}
+    f(z) &amp;= \frac{1}{(z + i)(z - i)} \\
+         &amp;= \frac{1}{z - i} \cdot \frac{1}{z - i + 2i} \\
+         &amp;= \frac{1}{2i} \frac{1}{z - i} \frac{1}{1 + \frac{z - i}{2i}}
+\end{align*}
+であるから， \(0 \lt \abs{z - i} \lt 1\) の範囲で
+\(\displaystyle \abs{\frac{z - i}{2i}} \leq \frac{\abs{z - i}}{\abs{2i}} \leq \frac{1}{2} \) となり，
+級数展開できて
+\begin{align*}
+  f(z)
+      &amp;= \frac{1}{2i} \frac{1}{z - i}
+          \parentheses{
+              1
+              - \frac{z - i}{2i}
+              + \parentheses{\frac{z - i}{2i}}^2
+              - \parentheses{\frac{z - i}{2i}}^3 + \cdots
+          } \\
+      &amp;= - \frac{i}{2} \frac{1}{z - i} + \frac{1}{4} + \cdots
+\end{align*}
+となる．したがって \(\displaystyle \res(f, i) = - \frac{i}{2}\) である．</p>
+<p>したがって\eqref{a}は
+\begin{align*}
+    \int_{-R}^R f(z) dz + \int_C f(z) dz = \pi
+\end{align*}
+となる．</p>
+<p>ここで
+\begin{align*}
+    \abs{\int_C f(z) dz}
+    &amp;= \abs{\int_0^{\pi} \frac{2i R e^{i \theta}}{R^2 e^{2i\theta} + 1} d\theta} \\
+    &amp;= \abs{\int_0^{\pi} \frac{2i e^{-i\theta}}{R + R^{-1} e^{-2i\theta}} d\theta} \\
+    &amp;\leq \int_0^{\pi} \frac{\abs{2i}\abs{e^{-i\theta}}}{\abs{R + R^{-1} e^{-2i\theta}}} d\theta \\
+    &amp;\leq \int_0^{\pi} \frac{2}{R} d\theta \\
+    &amp;= \frac{2 \pi}{R}
+\end{align*}
+</p>
+<p>最終的に
+\begin{align*}
+    \int_{-\infty}^\infty f(x) dx
+    &amp;= \lim_{R \to \infty} \int_{-R}^R f(z) dz \\
+    &amp;= \lim_{R \to \infty} \parentheses{\pi - \int_C f(z) dz} \\
+    &amp;= \pi
+\end{align*}
+を得る．</p>
+</section>
+{% endblock %}

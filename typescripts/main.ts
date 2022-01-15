@@ -38,17 +38,17 @@ class TextAutospace {
     ];
 
   }
-  transform(el: Node): void {
+  transform(element: Node): void {
     [Space.Quarter, Space.Half].forEach(space => {
       let patterns = (space == Space.Quarter) ?  this.quarterPatterns : this.halfPatterns;
       patterns.forEach(pattern=> {
-        findAndReplaceDOMText(el, {
+        findAndReplaceDOMText(element, {
           find: new RegExp(pattern, 'ig'),
           replace: '$1<' + `${space}` + '>$2'
         })
       });
 
-      findAndReplaceDOMText(el, {
+      findAndReplaceDOMText(element, {
         find: `<${space}>`,
         replace: () => {
           let newElement = document.createElement('span');
@@ -68,23 +68,23 @@ class TextAutospace {
         }
       });
 
-      el.normalize();
+      element.normalize();
 
     });
   }
 }
 
 document.addEventListener('DOMContentLoaded', event => {
-  document.querySelectorAll('a[href^="http"]').forEach(elem => {
-    elem.setAttribute('target', '_blank');
+  document.querySelectorAll('a[href^="http"]').forEach(element => {
+    element.setAttribute('target', '_blank');
   });
   let lastSection: HTMLElement = document.querySelector('section:last-child');
   if (lastSection) {
     lastSection.style.paddingBottom = '20px';
   }
-  document.body.querySelectorAll('p, li, h1, h2, h3, h4, h5').forEach(el => {
+  document.body.querySelectorAll('p, li, h1, h2, h3, h4, h5').forEach(element => {
     let t = new TextAutospace();
-    t.transform(el);
+    t.transform(element);
   });
 
 });

@@ -26,28 +26,23 @@
       </footer>
       {% include '_layout/_scripts.njk' %}
       {% if mathematical %}
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
         <script>
-          MathJax.Hub.Config({
-            TeX: {
-              extensions: ["AMSmath.js", "AMSsymbols.js"],
-              Macros: {
+          MathJax = {
+            tex: {
+              macros: {
                 parentheses: ["\\left(#1\\right)", 1],
                 brackets: ["\\left[#1\\right]", 1],
                 norm: ["\\left\\|#1\\right\\|", 1],
                 abs: ["\\left|#1\\right|", 1],
                 diag: "\\mathop{\\rm diag}",
-              }
-            },
-            extensions: ["tex2jax.js"],
-            jax: ["input/TeX", "output/HTML-CSS"],
-            showProcessingMessages: false,
-            messageStyle: "none",
-            tex2jax: {
-                inlineMath: [ ["\\(","\\)"] ],
-                processEscapes: true
+                res: "\\mathop{\\rm Res}"
+              },
+              tags: 'ams'
             }
-          });
+          };
         </script>
       {% endif %}
     </div>
