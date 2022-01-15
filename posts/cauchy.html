@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:site" content="@pecorarista">
-  <meta name="twitter:title" content="確率的最適化手法Adamの論文のLemma 10.3 — pecorarista.com">
+  <meta name="twitter:title" content="留数定理の利用例 — pecorarista.com">
   <meta name="twitter:description" content="">
   <meta name="twitter:image" content="https://pecorarista.com/static/images/avatar.png">
   <link rel="icon" href="/favicon.ico">
@@ -20,7 +20,7 @@
   <link rel="stylesheet" href="/static/css/prism-command-line.css" />
   <link rel="stylesheet" href="/static/css/main.css" />
 
-  <title>確率的最適化手法Adamの論文のLemma 10.3</title>
+  <title>留数定理の利用例</title>
 </head>
 
 <body>
@@ -42,91 +42,71 @@
 
       <article>
         <div class="container">
-          <h1>確率的最適化手法Adamの論文のLemma 10.3</h1>
+          <h1>留数定理の利用例</h1>
           <div class="info text-muted">
-            Posted: 2016-03-30
+            Posted: 2022-01-05
 
           </div>
 
           <section>
-            <p><a href="http://arxiv.org/pdf/1412.6980v8">Adam: A Method for Stochastic Optimization</a>のLemma 10.3が、少し腑に落ちなかったので自分用に書いたメモです。</p>
-            <p>論文中の証明では、帰納法の仮定から導かれる式
+            <p>MathJaxのアップデートにともない動作を確認したかったため，典型的な複素積分の問題とその解答を載せる．</p>
+            <p><strong>問</strong> 次の積分の値を求めよ．
               \begin{align*}
-              \sum_{t = 1}^T \sqrt{\frac{g_{t,i}^2}{t}}
-              \leq 2
-              G_\infty\sqrt{\norm{g_{1:T,i}}_2^2 - g_{T,i}^2} + \sqrt{\frac{g_{T,i}^2}{T}}
+              \int_{-\infty}^\infty \frac{1}{1 + x^2} dx
               \end{align*}
-              に、以下の不等式
+            </p>
+            <p><strong>解答</strong> \(\displaystyle f(z) = \frac{1}{z^2 + 1}\) \((z \in \mathbb{C})\) とおく．
+              この関数は \(z = \pm i\) を孤立特異点にもつ．
+              また曲線 \(C\) を \(C\colon z = Re^{i\theta}\) \((R \gt 1,\ 0 \leq \theta \leq \pi)\) で定義する．
+              このとき，留数定理により
+              \begin{align}
+              \int_{-R}^R f(z) dz + \int_C f(z) dz = 2 \pi i \res(f, i) \label{a}
+              \end{align}
+              が成り立つ．</p>
+            <p>\(f\) について
               \begin{align*}
-              \sqrt{\norm{g_{1:T,i}}_2^2 - g_{T,i}^2} \leq \norm{g_{1:T,i}}_2 - \frac{g_{T,i}^2}{2\sqrt{TG_\infty^2}}
+              f(z) &amp;= \frac{1}{(z + i)(z - i)} \\
+              &amp;= \frac{1}{z - i} \cdot \frac{1}{z - i + 2i} \\
+              &amp;= \frac{1}{2i} \frac{1}{z - i} \frac{1}{1 + \frac{z - i}{2i}}
               \end{align*}
-              を代入して
+              であるから， \(0 \lt \abs{z - i} \lt 1\) の範囲で
+              \(\displaystyle \abs{\frac{z - i}{2i}} \leq \frac{\abs{z - i}}{\abs{2i}} \leq \frac{1}{2} \) となり，
+              級数展開できて
               \begin{align*}
-              \sum_{t = 1}^T \sqrt{\frac{g_{t,i}^2}{t}} \leq 2 G_\infty\norm{g_{1:T,i}}_2
+              f(z)
+              &amp;= \frac{1}{2i} \frac{1}{z - i}
+              \parentheses{
+              1
+              - \frac{z - i}{2i}
+              + \parentheses{\frac{z - i}{2i}}^2
+              - \parentheses{\frac{z - i}{2i}}^3 + \cdots
+              } \\
+              &amp;= - \frac{i}{2} \frac{1}{z - i} + \frac{1}{4} + \cdots
               \end{align*}
-              を示す、と書いてあります。</p>
-            <p>しかし実際に代入してみると
+              となる．したがって \(\displaystyle \res(f, i) = - \frac{i}{2}\) である．</p>
+            <p>したがって\eqref{a}は
               \begin{align*}
-              \sum_{t = 1}^T \sqrt{\frac{g_{t,i}^2}{t}}
-              &amp; \leq 2 G_\infty\sqrt{\norm{g_{1:T,i}}_2^2 - g_{T,i}^2} + \sqrt{\frac{g_{T,i}^2}{T}} \\
-              &amp; \leq 2G_\infty \parentheses{ \norm{g_{1:T,i}}_2 - \frac{g_{T,i}^2}{2\sqrt{TG_\infty^2}} } + \sqrt{\frac{g_{T,i}^2}{T}} \\
-              &amp;= 2G_\infty \norm{g_{1:T,i}}_2 - \frac{g_{T,i}^2}{\sqrt{T}} + \sqrt{\frac{g_{T,i}^2}{T}} \\
-              &amp;= 2G_\infty \norm{g_{1:T,i}}_2 + \frac{\sqrt{g_{T,i}^2} - g_{T,i}^2}{\sqrt{T}}
+              \int_{-R}^R f(z) dz + \int_C f(z) dz = \pi
               \end{align*}
-              となるので、
-              \(0 \lt \abs{g_{T,i}} \lt 1\)
-              のとき成り立たないような気がします。大きな誤差にはならないのでこれでもいいのかもしれませんが、せっかくなので別な方法を考えてみたいと思います。</p>
-            <p>上から抑える方法として以下のCauchy&ndash;Schwarzの不等式を使う方法が考えられます。</p>
-            \begin{align*}
-            \sum_{t = 1}^T \sqrt{\frac{g_{t,i}^2}{t}}
-            &amp;=
-            \parentheses{
-            \begin{array}{c}
-            \sqrt{g_{1,i}^2} \\
-            \vdots \\
-            \sqrt{g_{T,i}^2}
-            \end{array}
-            }
-            \cdot
-            \parentheses{
-            \begin{array}{c}
-            1/\sqrt{1} \\
-            \vdots \\
-            1/\sqrt{T} \\
-            \end{array}
-            } \\
-            &amp; \leq
-            \norm{
-            \parentheses{
-            \begin{array}{c}
-            \sqrt{g_{1,i}^2} \\
-            \vdots \\
-            \sqrt{g_{T,i}^2}
-            \end{array}
-            }}_2
-            \norm{
-            \parentheses{
-            \begin{array}{c}
-            1/\sqrt{1} \\
-            \vdots \\
-            1/\sqrt{T} \\
-            \end{array}}
-            }_2 \\
-            &amp;=
-            \norm{g_{1:T,i}}_2
-            \sqrt{
-            \sum_{t = 1}^T \frac{1}{t}
-            } \\
-            &amp; \leq
-            \norm{g_{1:T,i}}_2
-            \sqrt{\int_1^T
-            \parentheses{1 + \frac{1}{t}} dt
-            } \\
-            &amp;= \norm{g_{1:T,i}}_2 \sqrt{T - 1 + \log T}
-            \end{align*}
-            <p>この変更を行っても
-              \(\sqrt{T - 1 + \log T}\) が \(O(\sqrt{T})\)
-              なので以降の議論に大きな影響はないはずです（あとできちんと確認します）。とりあえず自分の中ではこれで納得したいと思います。</p>
+              となる．</p>
+            <p>ここで
+              \begin{align*}
+              \abs{\int_C f(z) dz}
+              &amp;= \abs{\int_0^{\pi} \frac{2i R e^{i \theta}}{R^2 e^{2i\theta} + 1} d\theta} \\
+              &amp;= \abs{\int_0^{\pi} \frac{2i e^{-i\theta}}{R + R^{-1} e^{-2i\theta}} d\theta} \\
+              &amp;\leq \int_0^{\pi} \frac{\abs{2i}\abs{e^{-i\theta}}}{\abs{R + R^{-1} e^{-2i\theta}}} d\theta \\
+              &amp;\leq \int_0^{\pi} \frac{2}{R} d\theta \\
+              &amp;= \frac{2 \pi}{R}
+              \end{align*}
+            </p>
+            <p>最終的に
+              \begin{align*}
+              \int_{-\infty}^\infty f(x) dx
+              &amp;= \lim_{R \to \infty} \int_{-R}^R f(z) dz \\
+              &amp;= \lim_{R \to \infty} \parentheses{\pi - \int_C f(z) dz} \\
+              &amp;= \pi
+              \end{align*}
+              を得る．</p>
           </section>
 
         </div>
