@@ -95,8 +95,9 @@
               \abs{\int_C f(z) dz}
               &amp;= \abs{\int_0^{\pi} \frac{i R e^{i \theta}}{R^2 e^{2i\theta} + 1} d\theta} \\
               &amp;= \int_0^{\pi} \frac{\abs{i R e^{i \theta}}}{\abs{R^2 e^{2i\theta} + 1}} d\theta \\
-              &amp;\leq \int_0^{\pi} \frac{d\theta}{R} \\
-              &amp;= \frac{\pi}{R}.
+              &amp;\leq \int_0^{\pi} \frac{R}{\abs{R^2 e^{2i\theta}} - 1} d\theta \\
+              &amp;= \frac{R}{R^2 - 1} \int_0^{\pi} d\theta \\
+              &amp;= \frac{1}{\displaystyle R - \frac{1}{R}} \pi.
               \end{align*}
             </p>
             <p>最終的に
@@ -189,8 +190,9 @@
               \abs{\int_C f(z) dz}
               &amp;= \abs{\int_0^{\pi} \frac{i R e^{i \theta}}{R^4 e^{4i\theta} + 1} d\theta} \\
               &amp;= \int_0^{\pi} \frac{\abs{i R e^{i \theta}}}{\abs{R^4 e^{4i\theta} + 1}} d\theta \\
-              &amp;\leq \int_0^{\pi} \frac{d\theta}{R} \\
-              &amp;= \frac{\pi}{R}
+              &amp;\leq \int_0^{\pi} \frac{R}{\abs{R^4 e^{4i\theta}} - 1}d\theta \\
+              &amp;= \frac{R}{R^4 - 1} \pi \\
+              &amp;= \frac{1}{\displaystyle R^3 - \frac{1}{R}} \pi
               \end{align*}
               である．よって\eqref{b}より
               \begin{align*}
