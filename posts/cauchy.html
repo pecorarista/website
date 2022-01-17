@@ -68,7 +68,7 @@
               \begin{align*}
               f(z) &amp;= \frac{1}{(z + i)(z - i)} \\
               &amp;= \frac{1}{z - i} \cdot \frac{1}{z - i + 2i} \\
-              &amp;= \frac{1}{2i} \cdot \frac{1}{z - i} \cdot \frac{1}{1 + \frac{z - i}{2i}}
+              &amp;= \frac{1}{2i} \cdot \frac{1}{z - i} \cdot \frac{1}{\displaystyle 1 + \frac{z - i}{2i}}
               \end{align*}
               であるから， \(0 \lt \abs{z - i} \lt 1\) の範囲で
               \(\displaystyle \abs{\frac{z - i}{2i}} \leq \frac{\abs{z - i}}{\abs{2i}} \leq \frac{1}{2} \) となり，
@@ -94,8 +94,7 @@
               \begin{align*}
               \abs{\int_C f(z) dz}
               &amp;= \abs{\int_0^{\pi} \frac{i R e^{i \theta}}{R^2 e^{2i\theta} + 1} d\theta} \\
-              &amp;= \abs{\int_0^{\pi} \frac{i e^{-i\theta}}{R + R^{-1} e^{-2i\theta}} d\theta} \\
-              &amp;\leq \int_0^{\pi} \frac{\abs{i}\abs{e^{-i\theta}}}{\abs{R + R^{-1} e^{-2i\theta}}} d\theta \\
+              &amp;= \int_0^{\pi} \frac{\abs{i R e^{i \theta}}}{\abs{R^2 e^{2i\theta} + 1}} d\theta \\
               &amp;\leq \int_0^{\pi} \frac{d\theta}{R} \\
               &amp;= \frac{\pi}{R}.
               \end{align*}
@@ -148,15 +147,10 @@
               \cdot \parentheses{1 - \frac{z - \alpha}{\alpha + \bar{\alpha}} + \parentheses{\frac{z - \alpha}{\alpha + \bar{\alpha}}}^2 - \cdots} \\
               &amp;\quad\,\,
               \parentheses{1 - \frac{z - \alpha}{2\alpha} + \parentheses{\frac{z - \alpha}{2\alpha}}^2 - \cdots}
-              \parentheses{1 - \frac{z - \alpha}{\alpha - \bar{\alpha}} + \parentheses{\frac{z - \alpha}{\alpha - \bar{\alpha}}}^2 - \cdots} \\
-              &amp;= \frac{1}{\sqrt{2}}\cdot\frac{1}{\sqrt{2} + \sqrt{2}i} \cdot\frac{1}{\sqrt{2}i} \cdot \frac{1}{z - \alpha} + \sum_{n = 0}^\infty c_n (z - \alpha)^n \\
-              &amp;= \frac{1}{2\sqrt{2}}\cdot\frac{1}{i - 1} \cdot \frac{1}{z - \alpha} + \sum_{n = 0}^\infty c_n (z - \alpha)^n.
+              \parentheses{1 - \frac{z - \alpha}{\alpha - \bar{\alpha}} + \parentheses{\frac{z - \alpha}{\alpha - \bar{\alpha}}}^2 - \cdots}.
               \end{align*}
-              ただし各
-              \(c_n\) \((n \in \mathbb{Z}_+)\)
-              は定数である．
               また
-              \(0 \lt \abs{z + \abs{z}} \lt \frac{\sqrt{2}}{2}\)
+              \(\displaystyle 0 \lt \abs{z + \bar{\alpha}} \lt \frac{\sqrt{2}}{2}\)
               の範囲で
               \begin{align*}
               f(z) &amp;= \frac{1}{(z + \bar{\alpha} - \bar{\alpha} - \alpha)(z + \bar{\alpha})(z + \bar{\alpha} - \bar{\alpha} + \alpha)(z + \bar{\alpha} - 2\bar{\alpha})} \\
@@ -179,26 +173,22 @@
               \cdot \parentheses{1 + \frac{z + \alpha}{\alpha + \bar{\alpha}} + \parentheses{\frac{z + \bar{\alpha}}{\alpha + \bar{\alpha}}}^2 + \cdots} \\
               &amp;\quad\,\,
               \parentheses{1 - \frac{z + \bar{\alpha}}{\alpha - \bar{\alpha}} + \parentheses{\frac{z + \bar{\alpha}}{\alpha - \bar{\alpha}}}^2 - \cdots}
-              \parentheses{1 + \frac{z + \bar{\alpha}}{2\bar{\alpha}} + \parentheses{\frac{z + \bar{\alpha}}{2\bar{\alpha}}}^2 + \cdots} \\
-              &amp;= \frac{1}{\sqrt{2}}\cdot\frac{1}{\sqrt{2} - \sqrt{2}i} \cdot\frac{1}{\sqrt{2}i} \cdot \frac{1}{z - \alpha} + \sum_{n = 0}^\infty c_n' (z - \alpha)^n \\
-              &amp;= \frac{1}{2\sqrt{2}}\cdot\frac{1}{i + 1} \cdot \frac{1}{z + \bar{\alpha}} + \sum_{n = 0}^\infty c_n' (z - \alpha)^n.
+              \parentheses{1 + \frac{z + \bar{\alpha}}{2\bar{\alpha}} + \parentheses{\frac{z + \bar{\alpha}}{2\bar{\alpha}}}^2 + \cdots}.
               \end{align*}
-              ただし各
-              \(c_n'\) \((n \in \mathbb{Z}_+)\)
-              は定数である．
               以上より
               \begin{align*}
               2 \pi i \sum_{z \in \{\alpha, -\bar{\alpha}\}} \res(f, z)
-              = \frac{\pi i}{\sqrt{2}}\parentheses{\frac{1}{i - 1} + \frac{1}{i + 1}}
-              = \frac{\sqrt{2}}{2}\pi.
+              &amp;= 2\pi i \parentheses{\frac{1}{2\alpha(\alpha + \bar{\alpha})(\alpha - \bar{\alpha})} + \frac{1}{2\bar{\alpha}(\alpha + \bar{\alpha})(\alpha - \bar{\alpha})}} \\
+              &amp;= 2 \pi i \cdot \frac{2 \real \alpha}{2 \abs{\alpha}^2 \cdot 2 \real \alpha \cdot 2 \imaginary \alpha} \\
+              &amp;= \frac{\pi i}{2 \imaginary \alpha} \\
+              &amp;= \frac{\sqrt{2}}{2}\pi.
               \end{align*}
             </p>
             <p>一方
               \begin{align*}
               \abs{\int_C f(z) dz}
               &amp;= \abs{\int_0^{\pi} \frac{i R e^{i \theta}}{R^4 e^{4i\theta} + 1} d\theta} \\
-              &amp;= \abs{\int_0^{\pi} \frac{i e^{-3i\theta}}{R + R^{-3} e^{-4i\theta}} d\theta} \\
-              &amp;\leq \int_0^{\pi} \frac{\abs{i}\abs{e^{-3i\theta}}}{\abs{R + R^{-1} e^{-2i\theta}}} d\theta \\
+              &amp;= \int_0^{\pi} \frac{\abs{i R e^{i \theta}}}{\abs{R^4 e^{4i\theta} + 1}} d\theta \\
               &amp;\leq \int_0^{\pi} \frac{d\theta}{R} \\
               &amp;= \frac{\pi}{R}
               \end{align*}
