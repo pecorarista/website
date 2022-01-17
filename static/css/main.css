@@ -262,3 +262,16 @@ figcaption {
 .me {
   text-decoration: underline;
 }
+
+ol.parens {
+  counter-reset: list;
+}
+
+ol.parens > li {
+  list-style: none;
+}
+
+ol.parens > li:before {
+  counter-increment: list;
+  content: "(" counter(list, lower-alpha) ") ";
+}
