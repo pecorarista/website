@@ -111,9 +111,9 @@
               を得る．</p>
             <p>(b) \(\displaystyle f(z) = \frac{1}{z^3 + 1} = \frac{1}{(z + 1)(z^2 - z + 1)}\) \((z \in \mathbb{C})\) とおく．
               この関数は
-              \(\displaystyle \omega = e^{\pi i / 3}\)
+              \(\displaystyle \alpha = \frac{1}{2} + \frac{\sqrt{3}}{2}i\)
               とすると
-              \(\displaystyle z = - 1, \omega, \bar{\omega}\)
+              \(\displaystyle z = - 1, \alpha, \bar{\alpha}\)
               を孤立特異点としてもつ．
               曲線
               \(C_1, C_2\)
@@ -121,22 +121,22 @@
               \(C_1\colon z = Re^{i\theta}\) \(\displaystyle \parentheses{R \gt 0, 0 \leq \theta \leq \frac{2 \pi}{3}}, C_2\colon z = r e^{2\pi i /3} \) \((0 \leq r \leq R)\)
               で定める．留数定理より
               \begin{align}
-              \int_{0}^R f(x) dx + \int_{C_1} f(z) dz + \int_{-C_2} f(z) dz = 2 \pi i \res(f, \omega) \label{b}
+              \int_{0}^R f(x) dx + \int_{C_1} f(z) dz + \int_{-C_2} f(z) dz = 2 \pi i \res(f, \alpha) \label{b}
               \end{align}
               が成り立つ．</p>
             <p>\(f\)
               について
               \begin{align*}
-              f(z) &amp;= \frac{1}{(z + 1)(z - \omega)(z - \bar{\omega})} \\
-              &amp;= \frac{1}{(z - \omega + \omega + 1)(z - \omega)(z - \omega + \omega - \bar{\omega})} \\
-              &amp;= \frac{1}{\displaystyle \parentheses{1 + \frac{z - \omega}{\omega + 1}}
-              (z - \omega)\parentheses{1 + \frac{z - \omega}{\omega - \bar{\omega}}}} \\
-              &amp;= \frac{1}{\omega + 1}\cdot \frac{1}{\omega - \bar{\omega}} \cdot \frac{1}{z - \omega}
-              \parentheses{1 - \frac{z - \omega}{\omega - 1} + \parentheses{\frac{z - \omega}{\omega - 1}}^2 - \cdots} \\
-              &amp;\quad\,\,\parentheses{1 - \frac{z - \omega}{\omega - \bar{\omega}} + \parentheses{\frac{z - \omega}{\omega - \bar{\omega}}}^2 - \cdots}.
+              f(z) &amp;= \frac{1}{(z + 1)(z - \alpha)(z - \bar{\alpha})} \\
+              &amp;= \frac{1}{(z - \alpha + \alpha + 1)(z - \alpha)(z - \alpha + \alpha - \bar{\alpha})} \\
+              &amp;= \frac{1}{\displaystyle \parentheses{1 + \frac{z - \alpha}{\alpha + 1}}
+              (z - \alpha)\parentheses{1 + \frac{z - \alpha}{\alpha - \bar{\alpha}}}} \\
+              &amp;= \frac{1}{\alpha + 1}\cdot \frac{1}{\alpha - \bar{\alpha}} \cdot \frac{1}{z - \alpha}
+              \parentheses{1 - \frac{z - \alpha}{\alpha - 1} + \parentheses{\frac{z - \alpha}{\alpha - 1}}^2 - \cdots} \\
+              &amp;\quad\,\,\parentheses{1 - \frac{z - \alpha}{\alpha - \bar{\alpha}} + \parentheses{\frac{z - \alpha}{\alpha - \bar{\alpha}}}^2 - \cdots}.
               \end{align*}
               であるから
-              \(\displaystyle \res (f, \omega) = \frac{1}{(\omega + 1)(\omega - \bar{\omega})} = \frac{1}{(\omega + 1)\sqrt{3}i}\)
+              \(\displaystyle \res (f, \alpha) = \frac{1}{(\alpha + 1)(\alpha - \bar{\alpha})} = \frac{1}{(\alpha + 1)\sqrt{3}i}\)
               を得る．
             </p>
             <p>一方，
@@ -152,19 +152,19 @@
               \begin{align*}
               \int_{-C_2} f(z) dz &amp;= - \int_0^R f(z) \frac{dz}{dr} dr \\
               &amp;= - \int_0^R \frac{e^{2\pi i /3}}{r^3 e^{2\pi i} + 1} dr \\
-              &amp;= \bar{\omega} \int_0^R \frac{1}{r^3 + 1} dr
+              &amp;= \bar{\alpha} \int_0^R \frac{1}{r^3 + 1} dr
               \end{align*}
               であるから，\eqref{b}は
               \begin{gather*}
-              \int_{0}^R f(z) dz + \int_{C_1} f(z) dz + \int_{-C_2} f(z) dz = \frac{2 \pi i}{(\omega + 1)\sqrt{3}i} \\
-              (1 + \bar{\omega}) \int_{0}^R \frac{dx}{x^3 + 1} + \int_{C_1} f(z) dz = \frac{2 \pi}{(\omega + 1)\sqrt{3}}
+              \int_{0}^R f(z) dz + \int_{C_1} f(z) dz + \int_{-C_2} f(z) dz = \frac{2 \pi i}{(\alpha + 1)\sqrt{3}i} \\
+              (1 + \bar{\alpha}) \int_{0}^R \frac{dx}{x^3 + 1} + \int_{C_1} f(z) dz = \frac{2 \pi}{(\alpha + 1)\sqrt{3}}
               \end{gather*}
               となり，
               \(R \to \infty\)
               として
               \begin{align*}
               \int_{0}^\infty \frac{dx}{x^3 + 1}
-              &amp; = \frac{2 \pi}{\sqrt{3}}\cdot\frac{1}{(\omega + 1)(\bar{\omega} + 1)} \\
+              &amp; = \frac{2 \pi}{\sqrt{3}}\cdot\frac{1}{(\alpha + 1)(\bar{\alpha} + 1)} \\
               &amp; = \frac{2 \pi}{3 \sqrt{3}} \\
               \end{align*}
               を得る．
