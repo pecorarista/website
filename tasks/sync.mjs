@@ -4,7 +4,10 @@ export const sync = (done) => {
   browserSync.init({
     server: {
       baseDir: 'dist/',
-      index: 'index.html'
+      index: 'index.html',
+      serveStaticOptions: {
+        extensions: ['html']
+      }
     },
     open: false
   });
