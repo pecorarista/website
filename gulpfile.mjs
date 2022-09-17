@@ -3,12 +3,11 @@ import gulp from 'gulp';
 import { deleteSync } from 'del';
 
 import { source, dest } from './tasks/config.mjs';
-import { compileSass } from './tasks/sass.mjs';
-import { compileTypeScript } from './tasks/typescript.mjs';
+import { compileSass, copyVendorStyle } from './tasks/style.mjs';
+import { compileTypeScript, copyVendorJavaScript  } from './tasks/script.mjs';
 import { compileNunjucks } from './tasks/nunjucks.mjs';
-import { copyVendorJavaScript } from './tasks/javascript.mjs';
 import { writeContents } from './tasks/content.mjs';
-import { copyMisc } from './tasks/misc.mjs';
+import { copyMisc, copyImage } from './tasks/resource.mjs';
 
 export const clean = (done) => {
   deleteSync([ dest.root ]);
@@ -21,6 +20,7 @@ export default
     writeContents,
     gulp.parallel(
       copyMisc,
+      copyVendorStyle,
       compileSass,
       compileTypeScript,
       compileNunjucks,

@@ -1,6 +1,18 @@
 export const source = {
-  misc: ['CNAME', 'favicon/favicon.ico'],
+  misc: [
+    'CNAME',
+    'favicon/favicon.ico'
+  ],
+  imageFiles: [
+    'images/**/*.*',
+    'latex/**/*.svg'
+  ],
   sassFiles: 'scss/**/*.scss',
+  vendorStyleFiles: [
+    'css/**/*.css',
+    'node_modules/prismjs/plugins/command-line/prism-command-line.css',
+    'node_modules/prismjs/plugins/line-numbers/prism-line-numbers.css'
+  ],
   typeScriptFile: 'typescripts/main.ts',
   nunjucks: [
     'nunjucks/**/*.njk',
@@ -26,8 +38,9 @@ export const source = {
 
 export const dest = {
   root: 'dist',
-  sassFiles: 'dist/static/css',
+  styleFiles: 'dist/static/css',
   typeScriptFile: 'dist/static/js/main.js',
   nunjucks: 'dist/',
-  vendorJavaScriptFiles: 'dist/static/js/'
+  vendorJavaScriptFiles: 'dist/static/js/',
+  imageFiles: 'dist/static/images/'
 };

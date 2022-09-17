@@ -19,3 +19,7 @@ export const compileTypeScript = () =>
     .pipe(buffer())
     .pipe(uglify())
     .pipe(gulp.dest(dest.typeScriptFile));
+
+export const copyVendorJavaScript = () =>
+  gulp.src(source.vendorJavaScriptFiles)
+    .pipe(gulp.dest(dest.vendorJavaScriptFiles));

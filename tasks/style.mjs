@@ -13,4 +13,8 @@ export const compileSass = () =>
     .pipe(sassLint.format())
     .pipe(sassLint.failOnError())
     .pipe(sass())
-    .pipe(gulp.dest(dest.sassFiles));
+    .pipe(gulp.dest(dest.styleFiles));
+
+export const copyVendorStyle = () =>
+  gulp.src(source.vendorStyleFiles)
+    .pipe(gulp.dest(dest.styleFiles));
