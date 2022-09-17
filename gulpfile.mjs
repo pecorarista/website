@@ -1,27 +1,23 @@
-/* eslint-env es6 */
-'use strict';
+import gulp from 'gulp';
 
-const gulp = require('gulp');
-const sass = require('gulp-sass')(require('sass'));
-const sassLint = require('gulp-sass-lint')
-const concat = require('gulp-concat');
-const uglify = require('gulp-uglify');
-const browserSync = require('browser-sync').create();
-const browserify = require('browserify');
-const source = require('vinyl-source-stream');
-const buffer = require('vinyl-buffer');
-const del = require('del');
-const rsync = require('gulp-rsync');
-const fs = require('fs');
-const toml = require('toml');
-const nunjucksRender = require('gulp-nunjucks-render');
-const data = require('gulp-data');
-const htmlBeautify = require('gulp-html-beautify');
-const ghPages = require('gulp-gh-pages');
+import concat from 'gulp-concat';
+import browserSync from 'browser-sync';
+import browserify from 'browserify';
+import source from 'vinyl-source-stream';
+import { deleteSync } from 'del';
+import rsync from 'gulp-rsync';
+import fs from 'fs';
+import toml from 'toml';
+import nunjucksRender from 'gulp-nunjucks-render';
+import data from 'gulp-data';
+import htmlBeautify from 'gulp-html-beautify';
+import ghPages from 'gulp-gh-pages';
+
+import { compileSass } from './tasks/sass.mjs'
+import { compileTypeScripts } from './tasks/typescript.mjs'
 
 const dirRelease = './dist/';
 const nunjucks = ['./nunjucks/**/*.njk', '!./nunjucks/**/_*.njk'];
-const sassFiles = './scss/**/*.scss';
 const dirModules = './node_modules/'
 const images = ['./images/**/*.*', './latex/**/*.svg'];
 const vendorStyles = [
@@ -64,20 +60,6 @@ const copyVendorJavaScripts = () =>
     .pipe(gulp.dest(`${dirRelease}/static/js/`));
 
 
-const compileTypeScripts = (done) =>
-  browserify()
-    .add('./typescripts/main.ts')
-    .plugin('tsify', {
-      target: 'ES5',
-      removeComments: false
-    })
-    .bundle()
-    .pipe(source('main.js'))
-    .pipe(buffer())
-    .pipe(uglify())
-    .pipe(gulp.dest(`${dirRelease}/static/js/`));
-
-
 const copyImages = () =>
   gulp.src(images)
     .pipe(gulp.dest(`${dirRelease}/static/images/`));
@@ -110,15 +92,6 @@ const compileNunjucks = () =>
     .pipe(gulp.dest(`${dirRelease}/`));
 
 
-const compileSass = () =>
-  gulp.src(sassFiles)
-    .pipe(sassLint())
-    .pipe(sassLint.format())
-    .pipe(sassLint.failOnError())
-    .pipe(sass())
-    .pipe(gulp.dest(`${dirRelease}/static/css/`));
-
-
 const sync = (done) => {
   browserSync.init({
     server: {
@@ -137,7 +110,7 @@ const reload = (done) => {
 };
 
 
-const clean = () => del([dirRelease]);
+const clean = () => deleteSync([dirRelease]);
 
 
 const transfer = () => {
@@ -312,7 +285,7 @@ const write = (done) => {
 };
 
 
-gulp.task('watch', (done) => {
+const watch = (done) => {
   gulp.watch(images, gulp.series(copyImages, reload));
   gulp.watch(
     [
@@ -322,14 +295,14 @@ gulp.task('watch', (done) => {
       './data/**/*.json'
     ],
     gulp.series(write, compileNunjucks, reload));
-  gulp.watch(sassFiles, gulp.series(compileSass, reload));
+  gulp.watch(sassFiles, gulp.series(compileSassTask, reload));
   gulp.watch(userTypeScripts, gulp.series(compileTypeScripts, reload));
   gulp.watch(vendorJavaScripts, gulp.series(copyVendorJavaScripts, reload));
   done();
-});
+};
 
 
-gulp.task('build',
+const build = (done) => {
   gulp.series(
     clean,
     write,
@@ -340,14 +313,10 @@ gulp.task('build',
     copyVendorJavaScripts,
     compileTypeScripts,
     copyImages
-  )
-);
+  );
+  done();
+};
 
+export { build as build };
 
-gulp.task('default',
-  gulp.series(
-    'build',
-    sync,
-    'watch'
-  )
-);
+export default gulp.series(build, sync, watch);

@@ -1,12 +1,13 @@
 {
   "license": "BSD-3-Clause",
+  "type": "module",
   "dependencies": {
-    "browser-sync": "^2.27.7",
+    "browser-sync": "^2.27.10",
     "browserify": "^17.0.0",
-    "del": "^6.0.0",
+    "del": "^7.0.0",
     "findandreplacedomtext": "^0.4.6",
     "fs": "^0.0.1-security",
-    "gulp": "^4.0.0",
+    "gulp": "^4.0.2",
     "gulp-concat": "^2.6.1",
     "gulp-data": "^1.3.1",
     "gulp-gh-pages": "^0.5.4",
@@ -17,11 +18,11 @@
     "gulp-sass": "^5.1.0",
     "gulp-sass-lint": "^1.4.0",
     "gulp-uglify": "^3.0.2",
-    "prismjs": "^1.26.0",
-    "sass": "^1.48.0",
+    "prismjs": "^1.29.0",
+    "sass": "^1.54.9",
     "toml": "^3.0.0",
     "tsify": "^5.0.4",
-    "typescript": "^4.5.4",
+    "typescript": "^4.8.3",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0"
   }

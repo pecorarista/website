@@ -8,16 +8,16 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     concurrency: ci-${{ github.ref }}
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: 'lts/fermium'
-          cache: 'yarn'
-      - run: yarn install
-      - run: $(yarn bin)/gulp build
+          node-version: 'lts/gallium'
+          cache: 'npm'
+      - run: npm install
+      - run: $(npm bin)/gulp build
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
