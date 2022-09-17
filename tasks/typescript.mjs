@@ -1,19 +1,21 @@
 import gulp from 'gulp';
 
+import browserify from 'browserify';
 import buffer from 'vinyl-buffer';
 import uglify from 'gulp-uglify';
+import vinyl from 'vinyl-source-stream';
 
-const userTypeScripts = './typescripts/**/*.ts';
+import { source, dest } from './config.mjs';
 
-export const compileTypeScripts = () =>
+export const compileTypeScript = () =>
   browserify()
-    .add('./typescripts/main.ts')
+    .add(source.typeScriptFile)
     .plugin('tsify', {
       target: 'ES5',
       removeComments: false
     })
     .bundle()
-    .pipe(source('main.js'))
+    .pipe(vinyl('main.js'))
     .pipe(buffer())
     .pipe(uglify())
-    .pipe(gulp.dest(`${dirRelease}/static/js/`));
+    .pipe(gulp.dest(dest.typeScriptFile));

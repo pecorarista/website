@@ -1,5 +1,6 @@
 module.exports = {
-   parserOptions: {
-     sourceType: 'module'
-   }
+  parserOptions: {
+    sourceType: 'module',
+    ecmaVersion: 2015
+  }
 };

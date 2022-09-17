@@ -6,5 +6,5 @@
 nvm install lts/gallium
 nvm use lts/gallium
 npm install
-$(npm bin)/gulp
+npx gulp
 ```

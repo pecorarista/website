@@ -5,12 +5,12 @@ import gulpSass from 'gulp-sass';
 const sass = gulpSass(dartSass);
 import sassLint from 'gulp-sass-lint';
 
-const sassFiles = './scss/**/*.scss';
+import { source, dest } from './config.mjs';
 
 export const compileSass = () =>
-  gulp.src(sassFiles)
+  gulp.src(source.sassFiles)
     .pipe(sassLint())
     .pipe(sassLint.format())
     .pipe(sassLint.failOnError())
     .pipe(sass())
-    .pipe(gulp.dest(`${dirRelease}/static/css/`));
+    .pipe(gulp.dest(dest.sassFiles));
