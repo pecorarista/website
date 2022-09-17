@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@pecorarista">
+  <meta name="twitter:title" content="留数定理の利用例 — pecorarista.com">
+  <meta name="twitter:description" content="">
+  <meta name="twitter:image" content="https://pecorarista.com/static/images/avatar.png">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amiri&amp;subset=arabic,latin-ext" />
+  <link href="https://fonts.googleapis.com/css?family=Judson&amp;subset=latin-ext,vietnamese&text=abcdefghijklmnopqrstuvwxyz%C9%90%C9%91%C3%A6%CA%8C%C9%93%CA%99%CE%B2%C3%A7%C9%95%C9%97%C9%96%C3%B0%C9%99%C9%9B%C9%A1%C9%A2%C9%A3%C9%A4%C9%A6%C4%A7%C9%A5%C9%A8%C5%8B%C9%B3%C9%B4%C9%AA%C9%94%C3%B8%C5%93%C9%B8%C9%B9%C9%BE%CA%80%CA%81%CE%B8%CA%83%CA%8A%CF%87%CA%92%CA%94%CA%95%CB%A0%CA%B2%E2%81%BF%CA%B7%E2%97%8B%CC%83%CB%90" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cosmo/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
+  <link rel="stylesheet" href="/static/css/dracula-prism.css" />
+  <link rel="stylesheet" href="/static/css/prism-command-line.css" />
+  <link rel="stylesheet" href="/static/css/main.css" />
+
+  <title>留数定理の利用例</title>
+</head>
+
+<body>
+  <div class="wrapper">
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+          <div class="navbar-header pull-left"><a class="navbar-brand" href="/">pecorarista.com</a></div>
+          <div class="navbar-header pull-right">
+            <ul class="navbar-nav">
+              <li class="nav-item"><a class="nav-link active" href="/resources">Resources</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+    </header>
+    <main>
+
+      <article>
+        <div class="container">
+          <h1>留数定理の利用例</h1>
+          <div class="info text-muted">
+            Posted: 2022-01-05
+
+          </div>
+
+          <section>
+            <p>MathJaxのアップデートにともない動作を確認したかったため，典型的な複素積分の問題とその解答を載せる．</p>
+            <p><strong>問</strong> 次の積分の値を求めよ．
+            <ol class="parens">
+              <li>\(\displaystyle \int_{-\infty}^\infty \frac{1}{1 + x^2} dx\)</li>
+              <li>\(\displaystyle \int_{0}^\infty \frac{1}{1 + x^3} dx\)</li>
+              <li>\(\displaystyle \int_{-\infty}^\infty \frac{1}{1 + x^4} dx\)</li>
+            </ol>
+            </p>
+            <p><strong>解答</strong> (a) \(\displaystyle f(z) = \frac{1}{z^2 + 1}\) \((z \in \mathbb{C})\) とおく．
+              この関数は \(z = \pm i\) を孤立特異点にもつ．
+              また曲線 \(C\) を \(C\colon z = Re^{i\theta}\) \((R \gt 1,\ 0 \leq \theta \leq \pi)\) で定義する．
+              このとき，留数定理により
+              \begin{align}
+              \int_{-R}^R f(x) dx + \int_C f(z) dz = 2 \pi i \res(f, i) \label{a}
+              \end{align}
+              が成り立つ．</p>
+            <p>\(f\) について
+              \begin{align*}
+              f(z) &amp;= \frac{1}{(z + i)(z - i)} \\
+              &amp;= \frac{1}{z - i} \cdot \frac{1}{z - i + 2i} \\
+              &amp;= \frac{1}{2i} \cdot \frac{1}{z - i} \cdot \frac{1}{\displaystyle 1 + \frac{z - i}{2i}}
+              \end{align*}
+              であるから， \(0 \lt \abs{z - i} \lt 1\) の範囲で
+              \(\displaystyle \abs{\frac{z - i}{2i}} \leq \frac{\abs{z - i}}{\abs{2i}} \leq \frac{1}{2} \) となり，
+              級数展開できて
+              \begin{align*}
+              f(z)
+              &amp;= \frac{1}{2i} \frac{1}{z - i}
+              \parentheses{
+              1
+              - \frac{z - i}{2i}
+              + \parentheses{\frac{z - i}{2i}}^2
+              - \parentheses{\frac{z - i}{2i}}^3 + \cdots
+              } \\
+              &amp;= - \frac{i}{2} \frac{1}{z - i} + \frac{1}{4} + \cdots
+              \end{align*}
+              となる．したがって \(\displaystyle \res(f, i) = - \frac{i}{2}\) である．</p>
+            <p>したがって\eqref{a}は
+              \begin{align*}
+              \int_{-R}^R f(x) dx + \int_C f(z) dz = \pi
+              \end{align*}
+              となる．</p>
+            <p>ここで
+              \begin{align*}
+              \abs{\int_C f(z) dz}
+              &amp;= \abs{\int_0^{\pi} \frac{i R e^{i \theta}}{R^2 e^{2i\theta} + 1} d\theta} \\
+              &amp;= \int_0^{\pi} \frac{\abs{i R e^{i \theta}}}{\abs{R^2 e^{2i\theta} + 1}} d\theta \\
+              &amp;\leq \int_0^{\pi} \frac{R}{\abs{R^2 e^{2i\theta}} - 1} d\theta \\
+              &amp;= \frac{R}{R^2 - 1} \int_0^{\pi} d\theta \\
+              &amp;= \frac{1}{\displaystyle R - \frac{1}{R}} \pi.
+              \end{align*}
+            </p>
+            <p>最終的に
+              \begin{align*}
+              \int_{-\infty}^\infty f(x) dx
+              &amp;= \lim_{R \to \infty} \int_{-R}^R f(z) dz \\
+              &amp;= \lim_{R \to \infty} \parentheses{\pi - \int_C f(z) dz} \\
+              &amp;= \pi
+              \end{align*}
+              を得る．</p>
+            <p>(b) \(\displaystyle f(z) = \frac{1}{z^3 + 1} = \frac{1}{(z + 1)(z^2 - z + 1)}\) \((z \in \mathbb{C})\) とおく．
+              この関数は
+              \(\displaystyle \alpha = \frac{1}{2} + \frac{\sqrt{3}}{2}i\)
+              とすると
+              \(\displaystyle z = - 1, \alpha, \bar{\alpha}\)
+              を孤立特異点としてもつ．
+              曲線
+              \(C_1, C_2\)
+              を
+              \(C_1\colon z = Re^{i\theta}\) \(\displaystyle \parentheses{R \gt 0, 0 \leq \theta \leq \frac{2 \pi}{3}}, C_2\colon z = r e^{2\pi i /3} \) \((0 \leq r \leq R)\)
+              で定める．留数定理より
+              \begin{align}
+              \int_{0}^R f(x) dx + \int_{C_1} f(z) dz + \int_{-C_2} f(z) dz = 2 \pi i \res(f, \alpha) \label{b}
+              \end{align}
+              が成り立つ．</p>
+            <p>\(f\)
+              について
+              \begin{align*}
+              f(z) &amp;= \frac{1}{(z + 1)(z - \alpha)(z - \bar{\alpha})} \\
+              &amp;= \frac{1}{(z - \alpha + \alpha + 1)(z - \alpha)(z - \alpha + \alpha - \bar{\alpha})} \\
+              &amp;= \frac{1}{\displaystyle \parentheses{1 + \frac{z - \alpha}{\alpha + 1}}
+              (z - \alpha)\parentheses{1 + \frac{z - \alpha}{\alpha - \bar{\alpha}}}} \\
+              &amp;= \frac{1}{\alpha + 1}\cdot \frac{1}{\alpha - \bar{\alpha}} \cdot \frac{1}{z - \alpha}
+              \parentheses{1 - \frac{z - \alpha}{\alpha - 1} + \parentheses{\frac{z - \alpha}{\alpha - 1}}^2 - \cdots} \\
+              &amp;\quad\,\,\parentheses{1 - \frac{z - \alpha}{\alpha - \bar{\alpha}} + \parentheses{\frac{z - \alpha}{\alpha - \bar{\alpha}}}^2 - \cdots}.
+              \end{align*}
+              であるから
+              \(\displaystyle \res (f, \alpha) = \frac{1}{(\alpha + 1)(\alpha - \bar{\alpha})} = \frac{1}{(\alpha + 1)\sqrt{3}i}\)
+              を得る．
+            </p>
+            <p>一方，
+              \begin{align*}
+              \abs{\int_{C_1} f(z) dz}
+              &amp;= \abs{\int_0^{\pi/2} \frac{i R e^{i \theta}}{R^3 e^{3i\theta} + 1} d\theta} \\
+              &amp;= \int_0^{2 \pi/3} \frac{\abs{i R e^{i \theta}}}{\abs{R^3 e^{3i\theta} + 1}} d\theta \\
+              &amp;\leq \int_0^{2 \pi/3} \frac{dr}{\abs{r^3 e^{3i\theta}} - 1}d\theta \\
+              &amp;\leq \int_0^{2 \pi/3} \frac{dr}{\abs{r^3 e^{3i\theta}} - 1}d\theta \\
+              &amp;= \frac{2\pi}{3} \frac{1}{\displaystyle R^2 - \frac{1}{R}}.
+              \end{align*}
+              また
+              \begin{align*}
+              \int_{-C_2} f(z) dz &amp;= - \int_0^R f(z) \frac{dz}{dr} dr \\
+              &amp;= - \int_0^R \frac{e^{2\pi i /3}}{r^3 e^{2\pi i} + 1} dr \\
+              &amp;= \bar{\alpha} \int_0^R \frac{1}{r^3 + 1} dr
+              \end{align*}
+              であるから，\eqref{b}は
+              \begin{gather*}
+              \int_{0}^R f(z) dz + \int_{C_1} f(z) dz + \int_{-C_2} f(z) dz = \frac{2 \pi i}{(\alpha + 1)\sqrt{3}i} \\
+              (1 + \bar{\alpha}) \int_{0}^R \frac{dx}{x^3 + 1} + \int_{C_1} f(z) dz = \frac{2 \pi}{(\alpha + 1)\sqrt{3}}
+              \end{gather*}
+              となり，
+              \(R \to \infty\)
+              として
+              \begin{align*}
+              \int_{0}^\infty \frac{dx}{x^3 + 1}
+              &amp; = \frac{2 \pi}{\sqrt{3}}\cdot\frac{1}{(\alpha + 1)(\bar{\alpha} + 1)} \\
+              &amp; = \frac{2 \pi}{3 \sqrt{3}} \\
+              \end{align*}
+              を得る．
+            </p>
+            <p>(c) \(\displaystyle f(z) = \frac{1}{z^4 + 1}\) \((z \in \mathbb{C})\) とおく．
+              この関数は
+              \(\displaystyle \alpha = \frac{\sqrt{2}}{2} + \frac{\sqrt{2}}{2}i\)
+              とすると
+              \(z = \alpha, \bar{\alpha}, -\alpha, -\bar{\alpha}\)
+              を孤立特異点としてもつ．
+              曲線
+              \(C\)
+              を
+              \(C\colon z = Re^{i\theta}\)
+              \((R \gt 0, 0 \leq \theta \leq \pi)\)
+              で定める．留数定理より
+              \begin{align}
+              \int_{-R}^R f(x) dx + \int_C f(z) dz = 2 \pi i \sum_{z \in \{\alpha, -\bar{\alpha}\}} \res(f, z) \label{c}
+              \end{align}
+              が成り立つ．</p>
+            <p>\(f\)
+              について
+              \(\displaystyle 0 \lt \abs{z - \alpha} \lt \frac{\sqrt{2}}{2}\)
+              の範囲で
+              \begin{align*}
+              f(z) &amp;= \frac{1}{(z - \alpha)(z + \bar{\alpha})(z + \alpha)(z - \bar{\alpha})} \\
+              &amp;= \frac{1}{(z - \alpha)(z - \alpha + \alpha + \bar{\alpha})(z - \alpha + 2 \alpha)(z - \alpha + \alpha - \bar{\alpha})} \\
+              &amp;= \frac{\displaystyle
+              \frac{1}{\alpha + \bar{\alpha}}
+              \cdot
+              \frac{1}{2\alpha}
+              \cdot
+              \frac{1}{\alpha - \bar{\alpha}}}{\displaystyle
+              (z - \alpha)\parentheses{1 + \frac{z - \alpha}{\alpha + \bar{\alpha}}}
+              \parentheses{1 + \frac{z - \alpha}{2\alpha}}
+              \parentheses{1 + \frac{z - \alpha}{\alpha - \bar{\alpha}}}
+              } \\
+              &amp;= \frac{1}{\alpha + \bar{\alpha}}
+              \cdot \frac{1}{2\alpha}
+              \cdot \frac{1}{\alpha - \bar{\alpha}}
+              \cdot \frac{1}{z - \alpha}
+              \cdot \parentheses{1 - \frac{z - \alpha}{\alpha + \bar{\alpha}} + \parentheses{\frac{z - \alpha}{\alpha + \bar{\alpha}}}^2 - \cdots} \\
+              &amp;\quad\,\,
+              \parentheses{1 - \frac{z - \alpha}{2\alpha} + \parentheses{\frac{z - \alpha}{2\alpha}}^2 - \cdots}
+              \parentheses{1 - \frac{z - \alpha}{\alpha - \bar{\alpha}} + \parentheses{\frac{z - \alpha}{\alpha - \bar{\alpha}}}^2 - \cdots}.
+              \end{align*}
+              また
+              \(\displaystyle 0 \lt \abs{z + \bar{\alpha}} \lt \frac{\sqrt{2}}{2}\)
+              の範囲で
+              \begin{align*}
+              f(z) &amp;= \frac{1}{(z + \bar{\alpha} - \bar{\alpha} - \alpha)(z + \bar{\alpha})(z + \bar{\alpha} - \bar{\alpha} + \alpha)(z + \bar{\alpha} - 2\bar{\alpha})} \\
+              &amp;= \frac{\displaystyle
+              \frac{-1}{\alpha + \bar{\alpha}}
+              \cdot
+              \frac{1}{\alpha - \bar{\alpha}}
+              \cdot
+              \frac{-1}{2\bar{\alpha}}
+              }{\displaystyle
+              \parentheses{1 - \frac{z + \bar{\alpha}}{\alpha + \bar{\alpha}}}
+              (z + \bar{\alpha})
+              \parentheses{1 + \frac{z + \bar{\alpha}}{\alpha - \bar{\alpha}}}
+              \parentheses{1 - \frac{z + \bar{\alpha}}{2\bar{\alpha}}}
+              } \\
+              &amp;= \frac{1}{\alpha + \bar{\alpha}}
+              \cdot \frac{1}{2\bar{\alpha}}
+              \cdot \frac{1}{\alpha - \bar{\alpha}}
+              \cdot \frac{1}{z + \bar{\alpha}}
+              \cdot \parentheses{1 + \frac{z + \alpha}{\alpha + \bar{\alpha}} + \parentheses{\frac{z + \bar{\alpha}}{\alpha + \bar{\alpha}}}^2 + \cdots} \\
+              &amp;\quad\,\,
+              \parentheses{1 - \frac{z + \bar{\alpha}}{\alpha - \bar{\alpha}} + \parentheses{\frac{z + \bar{\alpha}}{\alpha - \bar{\alpha}}}^2 - \cdots}
+              \parentheses{1 + \frac{z + \bar{\alpha}}{2\bar{\alpha}} + \parentheses{\frac{z + \bar{\alpha}}{2\bar{\alpha}}}^2 + \cdots}.
+              \end{align*}
+              以上より
+              \begin{align*}
+              2 \pi i \sum_{z \in \{\alpha, -\bar{\alpha}\}} \res(f, z)
+              &amp;= 2\pi i \parentheses{\frac{1}{2\alpha(\alpha + \bar{\alpha})(\alpha - \bar{\alpha})} + \frac{1}{2\bar{\alpha}(\alpha + \bar{\alpha})(\alpha - \bar{\alpha})}} \\
+              &amp;= 2 \pi i \cdot \frac{2 \real \alpha}{2 \abs{\alpha}^2 \cdot 2 \real \alpha \cdot 2 \imaginary \alpha} \\
+              &amp;= \frac{\pi i}{2 \imaginary \alpha} \\
+              &amp;= \frac{\sqrt{2}}{2}\pi.
+              \end{align*}
+            </p>
+            <p>一方
+              \begin{align*}
+              \abs{\int_C f(z) dz}
+              &amp;= \abs{\int_0^{\pi} \frac{i R e^{i \theta}}{R^4 e^{4i\theta} + 1} d\theta} \\
+              &amp;= \int_0^{\pi} \frac{\abs{i R e^{i \theta}}}{\abs{R^4 e^{4i\theta} + 1}} d\theta \\
+              &amp;\leq \int_0^{\pi} \frac{R}{\abs{R^4 e^{4i\theta}} - 1}d\theta \\
+              &amp;= \frac{R}{R^4 - 1} \pi \\
+              &amp;= \frac{1}{\displaystyle R^3 - \frac{1}{R}} \pi
+              \end{align*}
+              である．よって\eqref{c}より
+              \begin{align*}
+              \int_{-\infty}^\infty f(x) dx
+              &amp;= \lim_{R \to \infty} \int_{-R}^R f(z) dz \\
+              &amp;= \lim_{R \to \infty} \parentheses{\frac{\sqrt{2}}{2}\pi - \int_C f(z) dz} \\
+              &amp;= \frac{\sqrt{2}}{2}\pi
+              \end{align*}
+              を得る．</p>
+          </section>
+
+        </div>
+      </article>
+
+    </main>
+    <footer>
+      <div class="footer text-center">
+        <span>© 2015&ndash;2022 Akira Miyazawa</span>
+      </div>
+
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap.native@2.0.15/dist/bootstrap-native-v4.min.js"></script>
+    <script src="/static/js/prism.js"></script>
+    <script src="/static/js/prism-bash.min.js"></script>
+    <script src="/static/js/prism-latex.min.js"></script>
+    <script src="/static/js/prism-makefile.min.js"></script>
+    <script src="/static/js/prism-java.min.js"></script>
+    <script src="/static/js/prism-javascript.min.js"></script>
+    <script src="/static/js/prism-scala.min.js"></script>
+    <script src="/static/js/prism-markdown.min.js"></script>
+    <script src="/static/js/prism-apacheconf.min.js"></script>
+    <script src="/static/js/prism-perl.min.js"></script>
+    <script src="/static/js/prism-haskell.min.js"></script>
+    <script src="/static/js/prism-lua.min.js"></script>
+    <script src="/static/js/prism-command-line.min.js"></script>
+    <script>
+      (function(d) {
+        var config = {
+            kitId: 'huy3ylo',
+            scriptTimeout: 3000,
+            async: true
+          },
+          h = d.documentElement,
+          t = setTimeout(function() {
+            h.className = h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive";
+          }, config.scriptTimeout),
+          tk = d.createElement("script"),
+          f = false,
+          s = d.getElementsByTagName("script")[0],
+          a;
+        h.className += " wf-loading";
+        tk.src = 'https://use.typekit.net/' + config.kitId + '.js';
+        tk.async = true;
+        tk.onload = tk.onreadystatechange = function() {
+          a = this.readyState;
+          if (f || a && a != "complete" && a != "loaded")
+            return;
+          f = true;
+          clearTimeout(t);
+          try {
+            Typekit.load(config)
+          } catch (e) {}
+        };
+        s.parentNode.insertBefore(tk, s)
+      })(document);
+    </script>
+    <script src="/static/js/main.js"></script>
+
+
+    <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <script>
+      MathJax = {
+        tex: {
+          macros: {
+            parentheses: ["\\left(#1\\right)", 1],
+            brackets: ["\\left[#1\\right]", 1],
+            norm: ["\\left\\|#1\\right\\|", 1],
+            abs: ["\\left|#1\\right|", 1],
+            diag: "\\mathop{\\rm diag}",
+            res: "\\mathop{\\rm Res}",
+            real: "\\mathop{\\rm Re}",
+            imaginary: "\\mathop{\\rm Im}"
+          },
+          tags: 'ams'
+        }
+      };
+    </script>
+
+  </div>
+</body>
+
+</html>

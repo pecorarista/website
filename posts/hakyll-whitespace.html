@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@pecorarista">
+  <meta name="twitter:title" content="Hakyllで日本語文中の余分な空白を削除する — pecorarista.com">
+  <meta name="twitter:description" content="">
+  <meta name="twitter:image" content="https://pecorarista.com/static/images/avatar.png">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amiri&amp;subset=arabic,latin-ext" />
+  <link href="https://fonts.googleapis.com/css?family=Judson&amp;subset=latin-ext,vietnamese&text=abcdefghijklmnopqrstuvwxyz%C9%90%C9%91%C3%A6%CA%8C%C9%93%CA%99%CE%B2%C3%A7%C9%95%C9%97%C9%96%C3%B0%C9%99%C9%9B%C9%A1%C9%A2%C9%A3%C9%A4%C9%A6%C4%A7%C9%A5%C9%A8%C5%8B%C9%B3%C9%B4%C9%AA%C9%94%C3%B8%C5%93%C9%B8%C9%B9%C9%BE%CA%80%CA%81%CE%B8%CA%83%CA%8A%CF%87%CA%92%CA%94%CA%95%CB%A0%CA%B2%E2%81%BF%CA%B7%E2%97%8B%CC%83%CB%90" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cosmo/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
+  <link rel="stylesheet" href="/static/css/dracula-prism.css" />
+  <link rel="stylesheet" href="/static/css/prism-command-line.css" />
+  <link rel="stylesheet" href="/static/css/main.css" />
+
+  <title>Hakyllで日本語文中の余分な空白を削除する</title>
+</head>
+
+<body>
+  <div class="wrapper">
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+          <div class="navbar-header pull-left"><a class="navbar-brand" href="/">pecorarista.com</a></div>
+          <div class="navbar-header pull-right">
+            <ul class="navbar-nav">
+              <li class="nav-item"><a class="nav-link active" href="/resources">Resources</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+    </header>
+    <main>
+
+      <article>
+        <div class="container">
+          <h1>Hakyllで日本語文中の余分な空白を削除する</h1>
+          <div class="info text-muted">
+            Posted: 2016-09-18
+
+          </div>
+
+          <section>
+            <p>静的サイト作成ツールHakyllで日本語を含むページを作成したとき、以下の図の反転部分のように余分な空白が入ってしまうことがあります。</p>
+            <figure>
+              <div class="centered-image">
+                <img src="https://qiita-image-store.s3.amazonaws.com/0/55753/0f06f4a1-4500-a22e-e445-f4df7999b511.png" alt="Hakyllによって生成された、余分な空白を含むページ" class="img-responsive">
+              </div>
+            </figure>
+            <p>これは内部で動いている<a href="http://pandoc.org/">Pandoc</a>が、Markdownファイルに含まれている改行文字を空白文字に変換するために起こります。</p>
+            <!-- <pre class="line-numbers"> -->
+            <pre><code class="language-markdown"></code></pre>
+            <p>このような挙動を望まないユーザーのために<a href="http://pandoc.org/releases.html#pandoc-1.16.0.1-10-jan-2016">1.16.0.1</a>から<code>east_asian_line_breaks</code>という拡張が加えられています。以下でその使い方を説明します。</p>
+            <p>まず上記の拡張を使うため<code>&lt;project_name&gt;.cabal</code>で使用する<code>pandoc</code>のバージョンが1.16.0.1以降になるようにしてください。また以下で示すコードにおいて集合の演算を使うため、それをそのまま使う場合は<code>&lt;project_name&gt;.cabal</code>の依存関係に<code>containers</code>も追加してください。</p>
+            <p>依存関係の設定が終わったら、以下のように<code>site.hs</code>を変更します。</p>
+            <pre><code class="language-haskell">import qualified Data.Set as S
+import Text.Pandoc.Options (Extension(Ext_east_asian_line_breaks), readerExtensions)
+-- omission --
+customPandocCompiler =
+    let
+        defaultExtensions = readerExtensions defaultHakyllReaderOptions
+        newExtensions = S.insert Ext_east_asian_line_breaks defaultExtensions
+        readerOptions = defaultHakyllReaderOptions { readerExtensions = newExtensions }
+    in
+        pandocCompilerWith readerOptions defaultHakyllWriterOptions</code></pre>
+            <p>今回追加する<code>Ext_east_asian_line_breaks</code>は<code>writerExtensions</code>ではなく<code>readerExtensions</code>に追加するようです。その後、この<code>customPandocCompiler</code>で<code>pandocCompiler</code>を置き換え、<code>stack build</code>してください。</p>
+            <p>最後に<code>exec site clean</code>, <code>stack exec site watch</code>で出来上がりを確認して終わりです。</p>
+            <div class="centered-image">
+              <img src="http://qiita-image-store.s3.amazonaws.com/0/55753/6280be48-41fb-3b98-ea9f-47bce8de0fda.png" alt="Hakyllによって生成された、余分な空白を含まないページ">
+            </div>
+          </section>
+
+        </div>
+      </article>
+
+    </main>
+    <footer>
+      <div class="footer text-center">
+        <span>© 2015&ndash;2022 Akira Miyazawa</span>
+      </div>
+
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap.native@2.0.15/dist/bootstrap-native-v4.min.js"></script>
+    <script src="/static/js/prism.js"></script>
+    <script src="/static/js/prism-bash.min.js"></script>
+    <script src="/static/js/prism-latex.min.js"></script>
+    <script src="/static/js/prism-makefile.min.js"></script>
+    <script src="/static/js/prism-java.min.js"></script>
+    <script src="/static/js/prism-javascript.min.js"></script>
+    <script src="/static/js/prism-scala.min.js"></script>
+    <script src="/static/js/prism-markdown.min.js"></script>
+    <script src="/static/js/prism-apacheconf.min.js"></script>
+    <script src="/static/js/prism-perl.min.js"></script>
+    <script src="/static/js/prism-haskell.min.js"></script>
+    <script src="/static/js/prism-lua.min.js"></script>
+    <script src="/static/js/prism-command-line.min.js"></script>
+    <script>
+      (function(d) {
+        var config = {
+            kitId: 'huy3ylo',
+            scriptTimeout: 3000,
+            async: true
+          },
+          h = d.documentElement,
+          t = setTimeout(function() {
+            h.className = h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive";
+          }, config.scriptTimeout),
+          tk = d.createElement("script"),
+          f = false,
+          s = d.getElementsByTagName("script")[0],
+          a;
+        h.className += " wf-loading";
+        tk.src = 'https://use.typekit.net/' + config.kitId + '.js';
+        tk.async = true;
+        tk.onload = tk.onreadystatechange = function() {
+          a = this.readyState;
+          if (f || a && a != "complete" && a != "loaded")
+            return;
+          f = true;
+          clearTimeout(t);
+          try {
+            Typekit.load(config)
+          } catch (e) {}
+        };
+        s.parentNode.insertBefore(tk, s)
+      })(document);
+    </script>
+    <script src="/static/js/main.js"></script>
+
+
+  </div>
+</body>
+
+</html>
