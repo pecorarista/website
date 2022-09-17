@@ -11,18 +11,19 @@ import { writeContents } from './tasks/content.mjs';
 import { copyMisc } from './tasks/misc.mjs';
 
 export const clean = (done) => {
-  deleteSync([ dest.root ])
+  deleteSync([ dest.root ]);
   done();
 };
 
-export default gulp.series(
-  clean,
-  writeContents,
-  gulp.parallel(
-    copyMisc,
-    compileSass,
-    compileTypeScript,
-    compileNunjucks,
-    copyVendorJavaScript
-  )
-);
+export default
+  gulp.series(
+    clean,
+    writeContents,
+    gulp.parallel(
+      copyMisc,
+      compileSass,
+      compileTypeScript,
+      compileNunjucks,
+      copyVendorJavaScript
+    )
+  );
