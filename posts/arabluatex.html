@@ -107,7 +107,50 @@
             </figure>
             <figure>
               <figcaption>上の文書のコード</figcaption>
-              <pre><code class="language-latex"></code></pre>
+              <pre><code class="language-latex">\documentclass{beamer}
+\usetheme{default}
+\usepackage{fontspec}
+\setsansfont{OpenSans}
+\setmonofont{Source Code Pro}
+\usepackage{arabluatex}
+\setmainfont[Ligatures=TeX]{Free Serif}
+\newfontfamily\arabicfont[%
+    Script=Arabic,     % enable ligatures
+    RawFeature={%
+        +anum,         % use eastern arabic numerals
+        +ss05}         % put kasrah below shadda
+]{Amiri}
+\newfontfamily\translitfont[Ligatures=TeX]{Free Serif}
+\SetTranslitFont{\translitfont}
+\SetTranslitStyle{\itshape}  % \upshape, \itshape
+\SetTranslitConvention{arabica}  % dmg, loc, arabica
+\setbeamertemplate{navigation symbols}{}
+\begin{document}
+\begin{frame}[fragile]
+    Input:
+    \vspace{-1ex}
+    \begin{verbatim}kAnat rI.hu &#39;l-^samAli tatajAdalu
+wa &#39;l-^samsa fI &#39;ayyiN minhumA kAnat
+&#39;aqw_A mina &#39;l-&#39;uxr_A.\end{verbatim}
+
+    Output (Arabic):
+    \smallskip
+    \begin{arab}[fullvoc]
+        kAnat rI.hu &#39;l-^samAli tatajAdalu
+        wa &#39;l-^samsa fI &#39;ayyiN minhumA kAnat &#39;aqw_A mina &#39;l-&#39;uxr_A.
+    \end{arab}
+
+    \bigskip
+
+    Output (Transcription):
+    \smallskip
+    \begin{arab}[trans]
+        kAnat rI.hu &#39;l-^samAli tatajAdalu
+        wa &#39;l-^samsa fI &#39;ayyiN minhumA kAnat &#39;aqw_A mina &#39;l-&#39;uxr_A.
+    \end{arab}
+\end{frame}
+\end{document}
+</code></pre>
             </figure>
             <p>ラテン文字との対応規則は<a href="https://archive.org/details/Dict_Wehr.pdf">Hans Wehr</a>などの辞書で使われる転記法と似ているため、慣れている人はすぐに覚えられるでしょう。一方で、上記の例を見ればわかるように、ラテン文字を入力する際には<strong>母音を補って入力しなければならず、初心者にはやや厳しいです</strong>。</p>
             <h3>日本語でもRTLをやってみる</h3>
@@ -120,7 +163,34 @@
             </figure>
             <figure>
               <figcaption>上の文書のコード</figcaption>
-              <pre><code class="language-latex"></code></pre>
+              <pre><code class="language-latex">\documentclass{beamer}
+\usetheme{default}
+\usepackage[no-math]{luatexja-fontspec}
+\usefonttheme{serif}
+\setmainjfont{RyuminPro-Regular}
+\newjfontfamily\mulberry{MotoyaMaruStd-W5}
+\newjfontfamily\hakusyu{HakusyuKaisyoExtraBold_kk}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{frametitle}[default][center]
+\setbeamercolor{frametitle}{fg=black}
+\begin{document}
+\begin{frame}
+    \frametitle{%
+        {\textdir TLT
+        第$6$章単　因子および{\textdir TRT ジョルダン}の{\textdir TRT 標準形}
+        }
+    }
+    \begin{center}
+    \Huge\bfseries\textdir TRT\pardir TRT
+        {\hakusyu 武道館 }
+
+        \bigskip
+
+        {\color{red}\mulberry スジャータ }
+    \end{center}
+\end{frame}
+\end{document}
+</code></pre>
             </figure>
             <p>タイトルの元ネタは齋藤正彦「線型代数入門」にある有名な誤植です。最近の版では直っているようです。また「ターャジス」の元ネタは「スジャータ」のトラックに書かれている文字です（参照：<a href="https://nlab.itmedia.co.jp/nl/articles/1809/11/news113.html">『スジャータのトラックから「ターャジス」が廃止とのウワサ → 2018年1月の新型車両から順次「スジャータ」に』</a>）。</p>
             <figure>

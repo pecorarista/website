@@ -57,7 +57,15 @@
             </figure>
             <p>これは内部で動いている<a href="http://pandoc.org/">Pandoc</a>が、Markdownファイルに含まれている改行文字を空白文字に変換するために起こります。</p>
             <!-- <pre class="line-numbers"> -->
-            <pre><code class="language-markdown"></code></pre>
+            <pre><code class="language-markdown">---
+title: Test
+date: 2016-02-27
+---
+Pandoc converts newline characters in a
+sentence into whitespaces.
+したがって日本語の文章の途中で
+改行すると、不自然な空白が挿入されてしまいます。
+</code></pre>
             <p>このような挙動を望まないユーザーのために<a href="http://pandoc.org/releases.html#pandoc-1.16.0.1-10-jan-2016">1.16.0.1</a>から<code>east_asian_line_breaks</code>という拡張が加えられています。以下でその使い方を説明します。</p>
             <p>まず上記の拡張を使うため<code>&lt;project_name&gt;.cabal</code>で使用する<code>pandoc</code>のバージョンが1.16.0.1以降になるようにしてください。また以下で示すコードにおいて集合の演算を使うため、それをそのまま使う場合は<code>&lt;project_name&gt;.cabal</code>の依存関係に<code>containers</code>も追加してください。</p>
             <p>依存関係の設定が終わったら、以下のように<code>site.hs</code>を変更します。</p>
