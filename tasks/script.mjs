@@ -7,7 +7,7 @@ import vinyl from 'vinyl-source-stream';
 
 import { source, dest } from './config.mjs';
 
-export const compileTypeScript = () =>
+export const compileTypeScript = (done) => {
   browserify()
     .add(source.typeScriptFile)
     .plugin('tsify', {
@@ -19,7 +19,11 @@ export const compileTypeScript = () =>
     .pipe(buffer())
     .pipe(uglify())
     .pipe(gulp.dest(dest.typeScriptFile));
+  done();
+};
 
-export const copyVendorJavaScript = () =>
+export const copyVendorJavaScript = (done) => {
   gulp.src(source.vendorJavaScriptFiles)
     .pipe(gulp.dest(dest.vendorJavaScriptFiles));
+  done();
+};

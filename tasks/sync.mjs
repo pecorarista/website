@@ -13,3 +13,8 @@ export const sync = (done) => {
   });
   done();
 };
+
+export const reload = (done) => {
+  browserSync.reload();
+  done();
+};

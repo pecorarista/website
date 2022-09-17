@@ -7,14 +7,18 @@ import sassLint from 'gulp-sass-lint';
 
 import { source, dest } from './config.mjs';
 
-export const compileSass = () =>
+export const compileSass = (done) => {
   gulp.src(source.sassFiles)
     .pipe(sassLint())
     .pipe(sassLint.format())
     .pipe(sassLint.failOnError())
     .pipe(sass())
     .pipe(gulp.dest(dest.styleFiles));
+  done();
+};
 
-export const copyVendorStyle = () =>
+export const copyVendorStyle = (done) => {
   gulp.src(source.vendorStyleFiles)
     .pipe(gulp.dest(dest.styleFiles));
+  done();
+};

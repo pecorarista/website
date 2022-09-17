@@ -6,7 +6,7 @@ import fs from 'fs';
 
 import { source, dest } from './config.mjs';
 
-export const compileNunjucks = () =>
+export const compileNunjucks = (done) => {
   gulp.src(source.nunjucks)
     .pipe(data({
       ExampleOfArabLuaTeX: fs.readFileSync('latex/arab.tex'),
@@ -31,3 +31,5 @@ export const compileNunjucks = () =>
       indent_char: ' '
     }))
     .pipe(gulp.dest(dest.nunjucks));
+  done();
+};
