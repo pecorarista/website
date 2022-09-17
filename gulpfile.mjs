@@ -8,6 +8,7 @@ import { compileTypeScript, copyVendorJavaScript  } from './tasks/script.mjs';
 import { compileNunjucks } from './tasks/nunjucks.mjs';
 import { writeContents } from './tasks/content.mjs';
 import { copyMisc, copyImage } from './tasks/resource.mjs';
+import { sync } from './tasks/sync.mjs';
 
 export const clean = (done) => {
   deleteSync([ dest.root ]);
@@ -20,6 +21,7 @@ export default
     writeContents,
     gulp.parallel(
       copyMisc,
+      copyImage,
       copyVendorStyle,
       compileSass,
       compileTypeScript,
@@ -27,3 +29,5 @@ export default
       copyVendorJavaScript
     )
   );
+
+export { sync };
