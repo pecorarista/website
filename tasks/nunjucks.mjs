@@ -1,7 +1,7 @@
 import gulp from 'gulp';
 import nunjucksRender from 'gulp-nunjucks-render';
 import data from 'gulp-data';
-import htmlBeautify from 'gulp-html-beautify';
+import prettyHtml from 'gulp-pretty-html';
 import fs from 'fs';
 
 import { source, dest } from './config.mjs';
@@ -26,7 +26,7 @@ export const compileNunjucks = (done) => {
     .pipe(nunjucksRender({
       'path': 'nunjucks/'
     }))
-    .pipe(htmlBeautify({
+    .pipe(prettyHtml({
       indent_size: 2,
       indent_char: ' '
     }))
