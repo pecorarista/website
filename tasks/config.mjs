@@ -10,8 +10,7 @@ export const source = {
   sassFiles: 'scss/**/*.scss',
   vendorStyleFiles: [
     'css/**/*.css',
-    'node_modules/prismjs/plugins/command-line/prism-command-line.css',
-    'node_modules/prismjs/plugins/line-numbers/prism-line-numbers.css'
+    'node_modules/prism-themes/themes/prism-lucario.css'
   ],
   typeScriptFile: 'typescripts/main.ts',
   nunjucks: [
@@ -31,7 +30,6 @@ export const source = {
     'node_modules/prismjs/components/prism-perl.min.js',
     'node_modules/prismjs/components/prism-haskell.min.js',
     'node_modules/prismjs/components/prism-lua.min.js',
-    'node_modules/prismjs/plugins/command-line/prism-command-line.min.js',
     'node_modules/prismjs/plugins/line-numbers/prism-line-numbers.min.js'
   ]
 };
@@ -39,7 +37,7 @@ export const source = {
 export const dest = {
   root: 'dist',
   styleFiles: 'dist/static/css',
-  typeScriptFile: 'dist/static/js/main.js',
+  typeScriptFile: 'dist/static/js/',
   nunjucks: 'dist/',
   vendorJavaScriptFiles: 'dist/static/js/',
   imageFiles: 'dist/static/images/'
