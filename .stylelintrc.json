@@ -1,0 +1,13 @@
+{
+  "plugins": [
+    "stylelint-order"
+  ],
+  "extends": [
+    "stylelint-config-standard-scss"
+  ],
+  "rules": {
+    "font-family-name-quotes": "always-unless-keyword",
+    "string-quotes": "single",
+    "order/properties-alphabetical-order": true
+  }
+}

@@ -17,6 +17,7 @@ jobs:
           node-version: 'lts/gallium'
           cache: 'npm'
       - run: npm install
+      - run: npx stylelint scss/main.scss
       - run: npx gulp build
       - uses: peaceiris/actions-gh-pages@v3
         with:
