@@ -3,7 +3,6 @@ html {
 }
 
 body {
-  -webkit-font-smoothing: antialiased;
   background-color: #f5f5f5;
   counter-reset: list;
   font-family: "Roboto", "source-han-sans-cjk-ja", sans-serif;
@@ -118,6 +117,25 @@ section {
   padding-bottom: 18px;
 }
 
+ol .parens {
+  counter-reset: list;
+}
+ol li {
+  list-style: none;
+}
+ol li::before {
+  content: "(" counter(list, lower-alpha) ") ";
+  counter-increment: list;
+}
+
+.inline {
+  padding-left: 0;
+}
+.inline li {
+  display: inline;
+  margin-right: 2rem;
+}
+
 .profile {
   text-align: center;
 }
@@ -149,11 +167,28 @@ th {
   font-family: "Roboto Mono", monospace;
 }
 
+.quarter::after {
+  content: " ";
+  display: inline;
+  font-family: "source-han-sans-cjk-ja", monospace;
+  letter-spacing: -0.1rem;
+}
+
+.half::after {
+  content: " ";
+  display: inline;
+  font-family: "source-han-sans-cjk-ja", monospace;
+}
+
 code {
-  background-color: rgba(27, 31, 35, 0.05);
-  color: #373a3c;
+  background-color: #282936;
+  border-radius: 3px;
+  color: #fff;
   font-family: "Roboto Mono", "source-han-sans-cjk-ja", monospace;
   font-size: 100%;
+  margin-left: 3px;
+  margin-right: 3px;
+  padding: 1px 3px;
 }
 code[class*=language-] {
   font-family: "Roboto Mono", monospace;
@@ -180,19 +215,6 @@ pre .half {
   padding-bottom: 6ex;
 }
 
-.half::after {
-  content: " ";
-  display: inline;
-  font-family: "source-han-sans-cjk-ja";
-}
-
-.quarter::after {
-  content: " ";
-  display: inline;
-  font-family: "source-han-sans-cjk-ja";
-  letter-spacing: -0.1rem;
-}
-
 kbd {
   font-size: 100%;
 }
@@ -208,7 +230,7 @@ samp .half {
 
 ol > .quarter,
 ul > .quarter,
-ul > .half,
+ol > .half,
 ul > .half {
   display: none;
 }
@@ -236,14 +258,6 @@ ul > .half {
   letter-spacing: 0.2rem;
 }
 
-.inline {
-  padding-left: 0;
-}
-.inline li {
-  display: inline;
-  margin-right: 2rem;
-}
-
 .serif {
   font-family: "Times New Roman", "Times", serif;
 }
@@ -262,15 +276,4 @@ figcaption {
 
 .me {
   text-decoration: underline;
-}
-
-ol .parens {
-  counter-reset: list;
-}
-ol li {
-  list-style: none;
-}
-ol li::before {
-  content: "(" counter(list, lower-alpha) ") ";
-  counter-increment: list;
 }
