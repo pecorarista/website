@@ -128,14 +128,6 @@ ol li::before {
   counter-increment: list;
 }
 
-.inline {
-  padding-left: 0;
-}
-.inline li {
-  display: inline;
-  margin-right: 2rem;
-}
-
 .profile {
   text-align: center;
 }
@@ -181,14 +173,13 @@ th {
 }
 
 code {
-  background-color: #282936;
+  background-color: #263e52;
   border-radius: 3px;
-  color: #fff;
+  color: #f8f8f2;
   font-family: "Roboto Mono", "source-han-sans-cjk-ja", monospace;
-  font-size: 100%;
-  margin-left: 3px;
-  margin-right: 3px;
-  padding: 1px 3px;
+  font-size: 85%;
+  margin: 0;
+  padding: 2px 5px;
 }
 code[class*=language-] {
   font-family: "Roboto Mono", monospace;
@@ -203,12 +194,15 @@ pre {
   overflow: auto;
 }
 pre[class*=language-] {
-  border-radius: 0;
+  border-radius: 3px;
   font-family: "Roboto Mono", monospace;
 }
 pre .quarter,
 pre .half {
   display: none;
+}
+pre code {
+  padding: 0;
 }
 
 .info {
@@ -216,7 +210,10 @@ pre .half {
 }
 
 kbd {
-  font-size: 100%;
+  background-color: #263e52;
+  border-radius: 3px;
+  color: #f8f8f2;
+  font-size: 85%;
 }
 kbd .quarter,
 kbd .half {
