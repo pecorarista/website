@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:site" content="@pecorarista">
-  <meta name="twitter:title" content="一様分布の期待値と分散 — pecorarista.com">
+  <meta name="twitter:title" content="ニューラルネットのレイヤーの初期化 — pecorarista.com">
   <meta name="twitter:description" content="">
   <meta name="twitter:image" content="https://pecorarista.com/static/images/avatar.png">
   <link rel="icon" href="/favicon.ico">
@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="/static/css/prism-lucario.css" />
   <link rel="stylesheet" href="/static/css/main.css" />
 
-  <title>一様分布の期待値と分散</title>
+  <title>ニューラルネットのレイヤーの初期化</title>
 </head>
 
 <body>
@@ -41,111 +41,55 @@
 
       <article>
         <div class="container">
-          <h1>一様分布の期待値と分散</h1>
+          <h1>ニューラルネットのレイヤーの初期化</h1>
           <div class="info text-muted">
-            Posted: 2022-09-22
+            Posted: 2022-09-21
 
           </div>
 
           <section>
+            <p>a</p>
+            各\(w_{ji} x_i\)が独立であるから
+            \begin{align}
+            V\parentheses{u^{(\ell + 1)}}
+            &amp;= V \parentheses{
+            \sum_{i = 1}^{n(\ell)} w_{ji} x_i
+            } \\
+            &amp;= \sum_{i = 1}^{n(\ell)} V \parentheses{
+            w_{ji} x_i
+            } \\
+            \end{align}
+            一般に\(V(XY) = V(X)E(Y) + E(X)V(Y) + V(X)V(Y)\)が成り立つことと、
+            各\(i, j\)について\(E(w_{ji}) = 0,\ E(x_i) = 0\)が成り立つことから
+            \begin{align}
+            V\parentheses{u^{(\ell + 1)}}
+            &amp;= \sum_{i = 1}^{n(\ell)} V(w_{ji}) V(x_i)
+            \end{align}
+            各
+            \(w_{j1},\,\ldots,\,w_{jn(\ell)}\)
+            が同じ分布に従うので
+            \(w := V(w_{j1}) = \cdots = V(w_{jn(\ell)}),\ x = V(x_1) = \cdots = V(x_n)\)
+            として
+            \begin{align}
+            V\parentheses{u^{(\ell + 1)}}
+            &amp;= n(\ell) wx
+            \end{align}
+            \(V(u^{\ell + 1}) \approx V(x^{i})\)
+
             <p>
-              Lebesgue積分を定義通りに計算することがなかったので（する必要はないが）、
-              一様分布の期待値と分散を題材に計算してみる。
-            </p>
-            <p>
-              確率空間
-              \(
-              (\varOmega,\, \mathcal{F},\, P)
-              \)
-              で考える。
-              確率変数
-              \(X\colon \varOmega \to \mathbb{R}\)
-              が一様分布
-              \(\mathcal{U}(0,\,1)\)
-              に従うとは、
-              \(X\)
-              の分布関数
-              \(F \colon \mathbb{R} \to [0,\,1]\)
-              が以下で与えられることである：
-              \begin{align*}
-              F(x) :=
+              一様分布
+              \(X \sim \mathcal{U}(-a,\, a)\)
+              \begin{align}
               P(\{\omega \in \varOmega \mid X(\omega) \leq x\}) =
               \begin{cases}
-              0 &amp; \text{if \(x \in (-\infty,\, 0),\)} \\[3pt]
-              x &amp; \text{if \(x \in [0,\, 1),\)} \\[3pt]
-              1 &amp; \text{if \(x \in [1,\, \infty).\)} \\
+              0 &amp; \text{if \(x \in [-\infty, a),\)} \\[3pt]
+              {\displaystyle \frac{x - a}{b - a}} &amp; \text{if \(x \in [a, b),\)} \\[3pt]
+              1 &amp; \text{if \(x \in [b, \infty].\)} \\
               \end{cases}
-              \end{align*}
-              \(F\)
-              の密度関数
-              \(f\)
-              は
-              \begin{align*}
-              f(x) =
-              \begin{cases}
-              1 &amp; \text{if \(x \in [0,\, 1),\)} \\[3pt]
-              0 &amp; \text{otherwise.} \\
-              \end{cases}
-              \end{align*}
-              \(X\)
-              の期待値は
-              \begin{align*}
-              E[X]
-              &amp;= \int_{\varOmega} X(\omega) P(d\omega) \\
-              &amp;= \int_{0}^{1} x f(x) dx \\
-              &amp;= \lim_{n \to \infty} \sum_{k = 1}^{2^n}
-              \frac{k - 1}{2^n} P
-              \left(
-              \left\{
-              \omega \in \varOmega \;\middle|\;
-              X(\omega) \in
-              \left[
-              \frac{k - 1}{2^n},\,\frac{k}{2^n}
-              \right)
-              \right\}
-              \right) \\
-              &amp;= \lim_{n \to \infty} \frac{1}{2^n} \cdot \frac{2^n}{2} \cdot ({0 + 2^n - 1}) \cdot \frac{1}{2^n} \\
-              &amp;= \lim_{n \to \infty} \frac{1}{2} \cdot \parentheses{1 - \frac{1}{2^n}} \\
-              &amp;= \frac{1}{2}.
-              \end{align*}
-              \(X\)
-              の分散は
-              \begin{align*}
-              V[X]
-              &amp;= E[X^2] - (E[X])^2 \\
-              &amp;= \int_{0}^1 x^2 f(x) dx - \frac{1}{4} \\
-              &amp;= \lim_{n \to \infty} \sum_{k = 1}^{2^n}
-              \parentheses{\frac{k - 1}{2^{n}}}^2 P
-              \left(
-              \left\{
-              \omega \in \varOmega \;\middle|\;
-              X(\omega) \in
-              \left[
-              \parentheses{\frac{k - 1}{2^n}}^2,\,\parentheses{\frac{k}{2^n}}^2
-              \right)
-              \right\}
-              \right)
-              - \frac{1}{4}
-              \\
-              &amp;= \lim_{n \to \infty} \sum_{k = 1}^{2^n}
-              \frac{(k - 1)^2}{2^{2n}} \cdot \frac{1}{2^n} - \frac{1}{4} \\
-              &amp;= \lim_{n \to \infty} \frac{1}{2^{3n}} \cdot \frac{1}{6} \cdot (2^n - 1) \cdot 2^n \cdot (2 \cdot 2^n - 1) - \frac{1}{4} \\
-              &amp;= \lim_{n \to \infty} \frac{1}{6\cdot 2^{3n}} \cdot \parentheses{2 \cdot 2^{3n} - 3 \cdot 2^{2n} + 2^n } - \frac{1}{4} \\
-              &amp;= \frac{1}{12}.
-              \end{align*}
-            </p>
-            <p>一般に確率変数
-              \(X'\)
-              が一様分布
-              \(\mathcal{U}(a,\,b)\)
-              にしたがうとき、
-              \(X' = (b - a) X + a\)
-              と表すことができるから、期待値と分散はそれぞれ
-              \begin{gather*}
-              E[(b - a)X + a] = \frac{b - a}{2}\cdot E[X] + a = \frac{a + b}{2}, \\
-              V[(b - a)X + a] = (b - a)^2 \cdot V[X] =\frac{(b - a)^2}{12}
-              \end{gather*}
-              と計算できる。
+              \end{align}
+              \begin{align}
+              V(X) = \int_{-\infty} \parentheses{x - \frac{a + b}{2}}^2 dP
+              \end{align}
             </p>
           </section>
 
