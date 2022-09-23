@@ -64,8 +64,17 @@ h5 {
   font-weight: 400;
 }
 
+h2.section-title,
+h3.section-title {
+  margin-top: 50px;
+}
+
+h2 {
+  font-size: 1.8rem;
+}
+
 h3 {
-  font-size: 1.62rem;
+  font-size: 1.4rem;
 }
 
 .navbar-dark {
@@ -295,6 +304,27 @@ caption {
 figcaption {
   caption-side: top;
   color: $black;
+  text-align: center;
+}
+
+.toc-container {
+  background: #f9f9f9 none repeat scroll 0 0;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  display: table;
+  margin-bottom: 50px;
+  margin-top: 50px;
+  padding-top: 20px;
+  width: auto;
+
+  ol {
+    padding-left: 3em;
+    padding-right: 1em;
+  }
+}
+
+.toc-title {
+  font-weight: bold;
   text-align: center;
 }
 

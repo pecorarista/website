@@ -13,3 +13,9 @@ export const copyImage = (done) => {
     .pipe(gulp.dest(dest.imageFiles));
   done();
 };
+
+export const copyVideos = (done) => {
+  gulp.src(source.videoFiles)
+    .pipe(gulp.dest(dest.videoFiles));
+  done();
+};

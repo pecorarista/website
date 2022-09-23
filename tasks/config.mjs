@@ -7,6 +7,7 @@ export const source = {
     'images/**/*.*',
     'latex/**/*.svg'
   ],
+  videoFiles: 'videos/**/*.*',
   sassFiles: 'scss/**/*.scss',
   vendorStyleFiles: [
     'css/**/*.css',
@@ -40,5 +41,6 @@ export const dest = {
   typeScriptFile: 'dist/static/js/',
   nunjucks: 'dist/',
   vendorJavaScriptFiles: 'dist/static/js/',
-  imageFiles: 'dist/static/images/'
+  imageFiles: 'dist/static/images/',
+  videoFiles: 'dist/static/videos/'
 };

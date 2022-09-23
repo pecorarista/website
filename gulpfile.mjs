@@ -5,7 +5,7 @@ import { compileSass, copyVendorStyle } from './tasks/style.mjs';
 import { compileTypeScript, copyVendorJavaScript  } from './tasks/script.mjs';
 import { compileNunjucks } from './tasks/nunjucks.mjs';
 import { writeContents } from './tasks/content.mjs';
-import { copyMisc, copyImage } from './tasks/resource.mjs';
+import { copyMisc, copyImage, copyVideos } from './tasks/resource.mjs';
 import { clean } from './tasks/util.mjs';
 import { sync, reload } from './tasks/sync.mjs';
 
@@ -28,6 +28,7 @@ export const build =
     gulp.parallel(
       copyMisc,
       copyImage,
+      copyVideos,
       copyVendorStyle,
       compileSass,
       compileTypeScript,

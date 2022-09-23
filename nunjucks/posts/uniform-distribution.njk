@@ -3,6 +3,7 @@
 {% set mathematical = 'true' %}
 {% set title = '一様分布の期待値と分散' %}
 {% set posted = '2022-09-22' %}
+{% set modified = '2022-09-23' %}
 
 {% block post %}
 <section>
@@ -97,12 +98,20 @@ Lebesgue積分を定義通りに計算することがなかったので（する
 が一様分布
 \(\mathcal{U}(a,\,b)\)
 にしたがうとき、
+\(X \sim \mathcal{U}(0,\, 1)\)
+を用いて
 \(X' = (b - a) X + a\)
 と表すことができるから、期待値と分散はそれぞれ
-\begin{gather*}
-  E[(b - a)X + a] = \frac{b - a}{2}\cdot E[X] + a = \frac{a + b}{2}, \\
-  V[(b - a)X + a] = (b - a)^2 \cdot V[X] =\frac{(b - a)^2}{12}
-\end{gather*}
+\begin{align*}
+  E[X'] &amp;= E[(b - a)X + a] \\
+        &amp;= \frac{b - a}{2}\cdot E[X] + a \\
+        &amp;= \frac{a + b}{2},
+\end{align*}
+\begin{align*}
+  V[X'] &amp;= V[(b - a)X + a] \\
+        &amp;= (b - a)^2 \cdot V[X] \\
+        &amp;=\frac{(b - a)^2}{12}
+\end{align*}
 と計算できる。
 </p>
 </section>
