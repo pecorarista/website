@@ -275,13 +275,13 @@ figcaption {
   display: table;
   margin-bottom: 50px;
   margin-top: 50px;
-  padding-bottom: 10px;
+  padding-bottom: 15px;
   padding-top: 20px;
   width: auto;
 }
 .toc-container ol {
   padding-left: 3em;
-  padding-right: 1em;
+  padding-right: 2em;
 }
 .toc-container li ol {
   padding-left: 2em;
