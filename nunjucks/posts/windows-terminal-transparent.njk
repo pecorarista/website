@@ -31,7 +31,7 @@
   <li><a href="#browser">ブラウザ側の設定</a>
   <ol>
     <li><a href="#chrome">Google Chromeの場合</a></li>
-    <li><a href="#firefox">FireFoxの場合</a></li>
+    <li><a href="#firefox">Firefoxの場合</a></li>
   </ol>
 </li>
 </ol>
@@ -44,12 +44,12 @@
 <strong>Profiles</strong>
 の一覧の中から、変更したい項目、
 例えば
-<strong><i class="fa fa-linux" aria-hidden="true"></i>Ubuntu 20.04</strong>
+<strong><i class="fa fa-linux" aria-hidden="true"></i> Ubuntu-20.04</strong>
 を選択します。
 <figure>
   <img src="/static/images/profiles.png" alt="Windows Terminal; Profiles">
 </figure>
-すると画面右側に設定項目の一覧が出るので、そこで
+画面右側に設定項目の一覧が表示されるので、その中の
 <strong>Additional settings &gt; Appearance</strong>
 を選択します。
 </p>
@@ -58,14 +58,18 @@
 </figure>
 <strong>Transparency</strong>
 の
-<strong>Background opacity</strong>
+<strong>Background opacity</strong>（不透明度）
 を80%程度に設定します。
 <figure>
   <img src="/static/images/transparency.png" alt="Windows Terminal; Transparency">
 </figure>
+右下の
+<strong>Save</strong>
+を押して変更を確定します。
 <h2 id="browser" class="section-title">ブラウザ側の設定</h2>
-<p>上記の設定でターミナルの背景は透明になりますが、ある問題が生じます。それはブラウザのCPUやメモリを節約しようとする仕組みによって、ブラウザの画面の描画が停止するのです。例えば、背景で動画を再生するときや、Webアプリケーションのコードを変更した結果をプレビューするときなどに、その問題が起きますが、それらはターミナルを透明にする主たる理由に他なりません。この問題の解決方法を以下で説明します。</p>
-<h3 id="chrome" class="section-title">Google Chromeの場合</h3>
+<p>上記の設定でターミナルの背景は透明になりますが、ある問題が生じます。それはブラウザのCPUやメモリを節約しようとする仕組みによって、<span style="text-decoration: underline;">Windows Terminalを全画面にしたときにブラウザの画面の描画が停止する</span>のです。例えば、背景で動画を再生するときや、Webアプリケーションのコードを変更した結果をプレビューするときなどに、その問題が起きます。しかしこれらはターミナルを透明にする主たる理由のはずです。これでは透明にする意義がほとんど失われてしまいます。またブラウザのこの挙動はごく一部の人以外には望ましい挙動です。そのため今後修正されるとは考えにくく、自分で対応する必要があります。</p>
+<p>以下、解決方法を説明します。</p>
+<h3 id="chrome" class="section-title"><i class="fa-brands fa-chrome"></i> Google Chromeの場合</h3>
 <p>アドレスバーに
 <code>chrome://flags/#calculate-native-win-occlusion</code>
 と入力して、設定画面の
@@ -76,28 +80,30 @@
   <figure>
     <img src="/static/images/chrome.png" alt="Google Chrome; Calculate window occlusion on Windows">
   </figure>
+Reference: <a href="https://support.google.com/chrome/thread/77201393/videos-turn-black-when-a-full-screen-window-is-on-top-of-the-window-playing-the-video">Videos turn black when a full screen window is "on top" of the window playing the video.</a>
 </p>
 
-<h3 id="firefox" class="section-title">FireFoxの場合</h3>
+<h3 id="firefox" class="section-title"><i class="fa-brands fa-firefox-browser"></i> Firefoxの場合</h3>
 <p>アドレスバーに
 <code>about:config</code>
-と入力します。すると警告画面が出ますが
-<strong>Accept the Risk and Continue</strong>を選択し、次の画面に進みます。
+と入力します。警告が出る場合がありますが、設定を変更したいので
+<strong>Accept the Risk and Continue</strong>
+を選択します。
   <figure>
-    <img src="/static/images/caution.png" alt="FireFox; Proceed with Caution">
+    <img src="/static/images/caution.png" alt="Firefox; Proceed with Caution">
   </figure>
-設定を変更したい項目の名前を検索する欄が出るので、そこに
+次の画面では設定を変更したい項目の名前を検索する欄が表示されるので、そこに
 <code>widget.windows.window_occlusion_tracking.enabled</code>
 と打ち込みます。
   <figure>
-    <img src="/static/images/preference.png" alt="FireFox; Search preference name">
+    <img src="/static/images/preference.png" alt="Firefox; Search preference name">
   </figure>
 双方向の矢印のアイコンをクリックして値を
 <code>false</code>
 に変更します。
   <figure>
-    <img src="/static/images/toggle.png" alt="FireFox; Toggle the parameter">
+    <img src="/static/images/toggle.png" alt="Firefox; Toggle the parameter">
   </figure>
+  Reference: <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1759393">Firefox stops rendering videos (the whole web-page) after 10 seconds when in background</a>
 </p>
-
 {% endblock %}

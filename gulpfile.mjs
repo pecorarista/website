@@ -12,6 +12,7 @@ import { sync, reload } from './tasks/sync.mjs';
 
 export const watch = (done) => {
   gulp.watch(source.imageFiles, gulp.series(copyImage, reload));
+  gulp.watch(source.videoFiles, gulp.series(copyVideos, reload));
   gulp.watch(
     ['nunjucks/**/*.njk', '!nunjucks/**/_*.njk', 'latex/**/*.svg', 'data/**/*.json'],
     gulp.series(writeContents, compileNunjucks, reload)
