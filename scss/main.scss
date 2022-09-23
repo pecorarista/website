@@ -20,7 +20,6 @@ html {
 
 body {
   background-color: $white-smoke;
-  counter-reset: list;
   font-family: $western-font, $jp-font, sans-serif;
   font-feature-settings: 'palt';
   font-size: 1.08rem;
@@ -138,21 +137,6 @@ main {
 
 section {
   padding-bottom: 18px;
-}
-
-ol {
-  .parens {
-    counter-reset: list;
-  }
-
-  li {
-    list-style: none;
-
-    &::before {
-      content: '(' counter(list, lower-alpha) ') ';
-      counter-increment: list;
-    }
-  }
 }
 
 .profile {
