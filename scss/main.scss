@@ -314,12 +314,17 @@ figcaption {
   display: table;
   margin-bottom: 50px;
   margin-top: 50px;
+  padding-bottom: 10px;
   padding-top: 20px;
   width: auto;
 
   ol {
     padding-left: 3em;
     padding-right: 1em;
+  }
+
+  li ol {
+    padding-left: 2em;
   }
 }
 

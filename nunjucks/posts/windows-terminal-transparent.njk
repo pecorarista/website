@@ -37,24 +37,45 @@
 </ol>
 </div>
 <h2 id="terminal" class="section-title">Windows Terminal側の設定</h2>
-<p>Windows Terminal画面のタイトルバーを右クリックし<strong>Settings</strong>からを選択します。
-画面左側のProfilesの一覧の中から、変更したい
-例えば<strong><i class="fa fa-linux" aria-hidden="true"></i>Ubuntu 20.04</strong>
-</p>
+<p>Windows Terminal画面のタイトルバーを右クリックし
+<strong>Settings</strong>
+を選択します。
+画面左側の
+<strong>Profiles</strong>
+の一覧の中から、変更したい項目、
+例えば
+<strong><i class="fa fa-linux" aria-hidden="true"></i>Ubuntu 20.04</strong>
+を選択します。
 <figure>
-  <img src="/static/images/profiles.png">
+  <img src="/static/images/profiles.png" alt="Windows Terminal; Profiles">
 </figure>
+すると画面右側に設定項目の一覧が出るので、そこで
+<strong>Additional settings &gt; Appearance</strong>
+を選択します。
+</p>
 <figure>
   <img src="/static/images/additional-settings.png" alt="Windows Terminal; Additional settings">
 </figure>
+<strong>Transparency</strong>
+の
+<strong>Background opacity</strong>
+を80%程度に設定します。
 <figure>
   <img src="/static/images/transparency.png" alt="Windows Terminal; Transparency">
 </figure>
 <h2 id="browser" class="section-title">ブラウザ側の設定</h2>
 <p>上記の設定でターミナルの背景は透明になりますが、ある問題が生じます。それはブラウザのCPUやメモリを節約しようとする仕組みによって、ブラウザの画面の描画が停止するのです。例えば、背景で動画を再生するときや、Webアプリケーションのコードを変更した結果をプレビューするときなどに、その問題が起きますが、それらはターミナルを透明にする主たる理由に他なりません。この問題の解決方法を以下で説明します。</p>
 <h3 id="chrome" class="section-title">Google Chromeの場合</h3>
-<p>
+<p>アドレスバーに
 <code>chrome://flags/#calculate-native-win-occlusion</code>
+と入力して、設定画面の
+<strong>Calculate window occlusion on Windows</strong>
+の項目を
+<code>Disabled</code>
+に設定します。
+  <figure>
+    <img src="/static/images/chrome.png" alt="Google Chrome; Calculate window occlusion on Windows">
+  </figure>
 </p>
 
 <h3 id="firefox" class="section-title">FireFoxの場合</h3>
