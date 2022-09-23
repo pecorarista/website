@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:site" content="@pecorarista">
-  <meta name="twitter:title" content="ニューラルネットのレイヤーの初期化 — pecorarista.com">
+  <meta name="twitter:title" content="Windows Terminalの背景を透明にして動画を流す方法 — pecorarista.com">
   <meta name="twitter:description" content="">
   <meta name="twitter:image" content="https://pecorarista.com/static/images/avatar.png">
   <link rel="icon" href="/favicon.ico">
@@ -15,11 +15,10 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amiri&amp;subset=arabic,latin-ext" />
   <link href="https://fonts.googleapis.com/css?family=Judson&amp;subset=latin-ext,vietnamese&text=abcdefghijklmnopqrstuvwxyz%C9%90%C9%91%C3%A6%CA%8C%C9%93%CA%99%CE%B2%C3%A7%C9%95%C9%97%C9%96%C3%B0%C9%99%C9%9B%C9%A1%C9%A2%C9%A3%C9%A4%C9%A6%C4%A7%C9%A5%C9%A8%C5%8B%C9%B3%C9%B4%C9%AA%C9%94%C3%B8%C5%93%C9%B8%C9%B9%C9%BE%CA%80%CA%81%CE%B8%CA%83%CA%8A%CF%87%CA%92%CA%94%CA%95%CB%A0%CA%B2%E2%81%BF%CA%B7%E2%97%8B%CC%83%CB%90" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cosmo/bootstrap.min.css" />
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
   <link rel="stylesheet" href="/static/css/prism-lucario.css" />
   <link rel="stylesheet" href="/static/css/main.css" />
 
-  <title>ニューラルネットのレイヤーの初期化</title>
+  <title>Windows Terminalの背景を透明にして動画を流す方法</title>
 </head>
 
 <body>
@@ -41,57 +40,81 @@
 
       <article>
         <div class="container">
-          <h1>ニューラルネットのレイヤーの初期化</h1>
+          <h1>Windows Terminalの背景を透明にして動画を流す方法</h1>
           <div class="info text-muted">
-            Posted: 2022-09-21
+            Posted: 2022-09-23
 
           </div>
 
-          <section>
-            <p>a</p>
-            各\(w_{ji} x_i\)が独立であるから
-            \begin{align}
-            V\parentheses{u^{(\ell + 1)}}
-            &amp;= V \parentheses{
-            \sum_{i = 1}^{n(\ell)} w_{ji} x_i
-            } \\
-            &amp;= \sum_{i = 1}^{n(\ell)} V \parentheses{
-            w_{ji} x_i
-            } \\
-            \end{align}
-            一般に\(V(XY) = V(X)E(Y) + E(X)V(Y) + V(X)V(Y)\)が成り立つことと、
-            各\(i, j\)について\(E(w_{ji}) = 0,\ E(x_i) = 0\)が成り立つことから
-            \begin{align}
-            V\parentheses{u^{(\ell + 1)}}
-            &amp;= \sum_{i = 1}^{n(\ell)} V(w_{ji}) V(x_i)
-            \end{align}
-            各
-            \(w_{j1},\,\ldots,\,w_{jn(\ell)}\)
-            が同じ分布に従うので
-            \(w := V(w_{j1}) = \cdots = V(w_{jn(\ell)}),\ x = V(x_1) = \cdots = V(x_n)\)
-            として
-            \begin{align}
-            V\parentheses{u^{(\ell + 1)}}
-            &amp;= n(\ell) wx
-            \end{align}
-            \(V(u^{\ell + 1}) \approx V(x^{i})\)
+          <p>基本的には
+            <a href="https://github.com/microsoft/terminal/issues/14059">microsoft/terminal/issues/14059</a>
+            に書いたことと同じなのですが、日本語で情報が見つからなかったので、日本語でも書いておきたいと思います。
+          </p>
+          <figure style="text-align: center;">
+            <figcaption>
+              ターミナルの背後で動画
+              <a href="https://www.youtube.com/watch?v=qZP0l-mZvqY&t=357s">
+                <i class="fa-brands fa-youtube"></i>
+              </a>
+              を再生している様子。
+            </figcaption>
+            <video src="/static/videos/windows-terminal-transparent-video.mp4" loop autoplay muted style="width: 70%;">
+          </figure>
+          <div class="toc-container">
+            <p class="toc-title">目次</p>
+            <ol>
+              <li><a href="#terminal">Windows Terminal側の設定</a>
+              <li><a href="#browser">ブラウザ側の設定</a>
+                <ol>
+                  <li><a href="#chrome">Google Chromeの場合</a></li>
+                  <li><a href="#firefox">FireFoxの場合</a></li>
+                </ol>
+              </li>
+            </ol>
+          </div>
+          <h2 id="terminal" class="section-title">Windows Terminal側の設定</h2>
+          <p>Windows Terminal画面のタイトルバーを右クリックし<strong>Settings</strong>からを選択します。
+            画面左側のProfilesの一覧の中から、変更したい
+            例えば<strong><i class="fa fa-linux" aria-hidden="true"></i>Ubuntu 20.04</strong>
+          </p>
+          <figure>
+            <img src="/static/images/profiles.png">
+          </figure>
+          <figure>
+            <img src="/static/images/additional-settings.png" alt="Windows Terminal; Additional settings">
+          </figure>
+          <figure>
+            <img src="/static/images/transparency.png" alt="Windows Terminal; Transparency">
+          </figure>
+          <h2 id="browser" class="section-title">ブラウザ側の設定</h2>
+          <p>上記の設定でターミナルの背景は透明になりますが、ある問題が生じます。それはブラウザのCPUやメモリを節約しようとする仕組みによって、ブラウザの画面の描画が停止するのです。例えば、背景で動画を再生するときや、Webアプリケーションのコードを変更した結果をプレビューするときなどに、その問題が起きますが、それらはターミナルを透明にする主たる理由に他なりません。この問題の解決方法を以下で説明します。</p>
+          <h3 id="chrome" class="section-title">Google Chromeの場合</h3>
+          <p>
+            <code>chrome://flags/#calculate-native-win-occlusion</code>
+          </p>
 
-            <p>
-              一様分布
-              \(X \sim \mathcal{U}(-a,\, a)\)
-              \begin{align}
-              P(\{\omega \in \varOmega \mid X(\omega) \leq x\}) =
-              \begin{cases}
-              0 &amp; \text{if \(x \in [-\infty, a),\)} \\[3pt]
-              {\displaystyle \frac{x - a}{b - a}} &amp; \text{if \(x \in [a, b),\)} \\[3pt]
-              1 &amp; \text{if \(x \in [b, \infty].\)} \\
-              \end{cases}
-              \end{align}
-              \begin{align}
-              V(X) = \int_{-\infty} \parentheses{x - \frac{a + b}{2}}^2 dP
-              \end{align}
-            </p>
-          </section>
+          <h3 id="firefox" class="section-title">FireFoxの場合</h3>
+          <p>アドレスバーに
+            <code>about:config</code>
+            と入力します。すると警告画面が出ますが
+            <strong>Accept the Risk and Continue</strong>を選択し、次の画面に進みます。
+          <figure>
+            <img src="/static/images/caution.png" alt="FireFox; Proceed with Caution">
+          </figure>
+          設定を変更したい項目の名前を検索する欄が出るので、そこに
+          <code>widget.windows.window_occlusion_tracking.enabled</code>
+          と打ち込みます。
+          <figure>
+            <img src="/static/images/preference.png" alt="FireFox; Search preference name">
+          </figure>
+          双方向の矢印のアイコンをクリックして値を
+          <code>false</code>
+          に変更します。
+          <figure>
+            <img src="/static/images/toggle.png" alt="FireFox; Toggle the parameter">
+          </figure>
+          </p>
+
 
         </div>
       </article>
@@ -116,6 +139,7 @@
     <script src="/static/js/prism-perl.min.js"></script>
     <script src="/static/js/prism-haskell.min.js"></script>
     <script src="/static/js/prism-lua.min.js"></script>
+    <script src="https://kit.fontawesome.com/30a99ec99f.js" crossorigin="anonymous"></script>
     <script>
       (function(d) {
         var config = {
