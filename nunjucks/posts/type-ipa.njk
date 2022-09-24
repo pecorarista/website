@@ -28,17 +28,15 @@
   <p>Compose Key is a system for typing special characters. Probably it is not enabled by default.
     Please see pages that explain how to configure (e.g., <a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/desktop_migration_and_administration_guide/enable-compose-key">ENABLING THE COMPOSE KEY</a>).
     On Windows, its alternative <a href="https://github.com/samhocevar/wincompose">WinCompose</a> is available. You can add new key sequences by editing <code>Xcompose.txt</code>.</p>
-  <figure>
-    <div class="centered-image">
-      <img alt="Screenshot of WinCompose" src="/static/images/WinCompose-screenshot.png" />
-    </div>
+  <figure class="centered">
+    <img alt="Screenshot of WinCompose" src="/static/images/WinCompose-screenshot.png" />
   </figure>
 </section>
 
 <section id="vim">
   <h2>3. Vim (diagraph)</h2>
   <p>
-     Text editor Vim provides a method to type complex characters such as æ via a function called “digraph”. <code>:digraphs</code> shows the list of characters and its key sequence. You can enter the digraph mode by typing &lt;Ctrl-K&gt;. An advantage of the system is that you can keep editing text. Furthermore, it’s easy to customize the combinations. For example, to register a sequence for ɐ (decimal encoding: 592), just add one line <code>digraph a5 594</code> to <code>~/.vimrc</code>. Then, 
+     Text editor Vim provides a method to type complex characters such as æ via a function called “digraph”. <code>:digraphs</code> shows the list of characters and its key sequence. You can enter the digraph mode by typing &lt;Ctrl-K&gt;. An advantage of the system is that you can keep editing text. Furthermore, it’s easy to customize the combinations. For example, to register a sequence for ɐ (decimal encoding: 592), just add one line <code>digraph a5 594</code> to <code>~/.vimrc</code>. Then,
      <kbd>Ctrl-K</kbd>
      <kbd>a</kbd> <kbd>5</kbd>
      put the characters ɐ. However, since Vim is a text editor, you have to copy and paste the characters to use it on other applications.</p>

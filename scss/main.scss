@@ -68,6 +68,14 @@ h2 {
   font-size: 1.9rem;
 }
 
+h3 {
+  font-size: 1.6rem;
+}
+
+h4 {
+  font-size: 1.3rem;
+}
+
 section {
   padding-bottom: 18px;
 
@@ -79,14 +87,6 @@ section {
     padding-bottom: 5px;
     padding-top: 10px;
   }
-}
-
-h3 {
-  font-size: 1.6rem;
-}
-
-h4 {
-  font-size: 1.3rem;
 }
 
 .navbar-dark {
@@ -102,62 +102,48 @@ h4 {
   font-size: 1.2rem;
 }
 
-img.avatar {
-  background-color: $powder-blue;
-  height: auto;
-  max-width: 300px;
-  width: 100%;
-}
+figure {
+  margin-bottom: 40px;
+  margin-top: 40px;
 
-.centered-image {
-  display: block;
-  margin-bottom: 30px;
-  margin-top: 10px;
-  text-align: center;
+  &.centered {
+    margin-bottom: 50px;
+    text-align: center;
+  }
+
+  figcaption {
+    caption-side: top;
+    color: $black;
+    text-align: center;
+    padding-bottom: 10px;
+  }
 
   img {
+    background-color: $powder-blue;
     height: auto;
     max-width: 100%;
+
+    &.pseudocode  {
+      background-color: $white;
+      min-width: 380px;
+    }
   }
-}
-
-figure {
-  margin-bottom: 30px;
-  margin-top: 20px;
-}
-
-.pseudocode {
-  display: block;
-  margin-bottom: 30px;
-  margin-top: 20px;
-  text-align: center;
-
-  img {
-    background-color: $white;
-    height: auto;
-    min-width: 380px;
-    padding: 20px;
-  }
-}
-
-main {
-  height: 100%;
-  padding-bottom: 50px;
-  padding-top: 50px;
-}
-
-caption,
-figcaption {
-  caption-side: top;
-  color: $black;
-  text-align: center;
 }
 
 .profile {
   text-align: center;
 
-  figcaption {
-    margin-top: 20px;
+  figure {
+    margin-bottom: 0;
+    margin-top: 0;
+
+    img {
+      max-width: 250px;
+    }
+
+    figcaption {
+      margin-top: 20px;
+    }
   }
 
   ul {
@@ -172,6 +158,12 @@ figcaption {
       }
     }
   }
+}
+
+main {
+  height: 100%;
+  padding-bottom: 50px;
+  padding-top: 50px;
 }
 
 th {
