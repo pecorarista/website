@@ -5,6 +5,7 @@
 {% set posted = '2022-09-23' %}
 
 {% block post %}
+<section>
 <p>基本的には
 <a href="https://github.com/microsoft/terminal/issues/14059">microsoft/terminal/issues/14059</a>
 に書いたことと同じなのですが、日本語で情報が見つからなかったので、日本語でも書いておきたいと思います。</p>
@@ -37,7 +38,9 @@
 </li>
 </ol>
 </div>
-<h2 id="terminal" class="section-title">Windows Terminal側の設定</h2>
+</section>
+<section>
+<h2 id="terminal">Windows Terminal側の設定</h2>
 <p>Windows Terminal画面のタイトルバーを右クリックし
 <strong>Settings</strong>
 を選択します。
@@ -79,10 +82,15 @@
 右下の
 <strong>Save</strong>
 を押して変更を確定します。
-<h2 id="browser" class="section-title">ブラウザ側の設定</h2>
+</section>
+
+<section>
+<h2 id="browser">ブラウザ側の設定</h2>
 <p>上記の設定でターミナルの背景は透明になりますが、ある問題が生じます。それはブラウザのCPUやメモリを節約しようとする仕組みによって、<span style="text-decoration: underline;">Windows Terminalを全画面にしたときにブラウザの画面の描画が停止する</span>という問題です。例えば、背景で動画を再生するときや、Webアプリケーションのコードを変更した結果をプレビューするときなどに、その問題が生じます。これらはターミナルを透明にする主たる理由ですから、これでは透明にする意義がほとんど失われてしまいます。</p>
 <p>上記のブラウザの挙動はごく一部の人以外には望ましい挙動であり、今後修正されることはおそらくないでしょう。したがってこの問題は自分でWebブラウザの設定を変更して解決する必要があります。</p>
-<h3 id="chrome" class="section-title"><i class="fa-brands fa-chrome"></i> Google Chromeの場合</h3>
+
+<section>
+<h3 id="chrome"><i class="fa-brands fa-chrome"></i> Google Chromeの場合</h3>
 <p>アドレスバーに
 <code>chrome://flags/#calculate-native-win-occlusion</code>
 と入力して、設定画面の
@@ -99,8 +107,10 @@
   </figure>
 Reference: <a href="https://support.google.com/chrome/thread/77201393/videos-turn-black-when-a-full-screen-window-is-on-top-of-the-window-playing-the-video">Videos turn black when a full screen window is "on top" of the window playing the video.</a>
 </p>
+</section>
 
-<h3 id="firefox" class="section-title"><i class="fa-brands fa-firefox-browser"></i> Firefoxの場合</h3>
+<section>
+<h3 id="firefox"><i class="fa-brands fa-firefox-browser"></i> Firefoxの場合</h3>
 <p>アドレスバーに
 <code>about:config</code>
 と入力します。警告が出る場合がありますが、設定を変更したいので
@@ -135,4 +145,6 @@ Reference: <a href="https://support.google.com/chrome/thread/77201393/videos-tur
   </figure>
   Reference: <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1759393">Firefox stops rendering videos (the whole web-page) after 10 seconds when in background</a>
 </p>
+</section>
+</section>
 {% endblock %}
