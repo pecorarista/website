@@ -48,10 +48,8 @@
 
           <section>
             <p>静的サイト作成ツールHakyllで日本語を含むページを作成したとき、以下の図の反転部分のように余分な空白が入ってしまうことがあります。</p>
-            <figure>
-              <div class="centered-image">
-                <img src="https://qiita-image-store.s3.amazonaws.com/0/55753/0f06f4a1-4500-a22e-e445-f4df7999b511.png" alt="Hakyllによって生成された、余分な空白を含むページ" class="img-responsive">
-              </div>
+            <figure class="centered">
+              <img src="https://qiita-image-store.s3.amazonaws.com/0/55753/0f06f4a1-4500-a22e-e445-f4df7999b511.png" alt="Hakyllによって生成された、余分な空白を含むページ" class="img-responsive">
             </figure>
             <p>これは内部で動いている<a href="http://pandoc.org/">Pandoc</a>が、Markdownファイルに含まれている改行文字を空白文字に変換するために起こります。</p>
             <!-- <pre class="line-numbers"> --><pre><code class="language-markdown">---
@@ -78,9 +76,9 @@ customPandocCompiler =
         pandocCompilerWith readerOptions defaultHakyllWriterOptions</code></pre>
             <p>今回追加する<code>Ext_east_asian_line_breaks</code>は<code>writerExtensions</code>ではなく<code>readerExtensions</code>に追加するようです。その後、この<code>customPandocCompiler</code>で<code>pandocCompiler</code>を置き換え、<code>stack build</code>してください。</p>
             <p>最後に<code>exec site clean</code>, <code>stack exec site watch</code>で出来上がりを確認して終わりです。</p>
-            <div class="centered-image">
+            <figure class="centered">
               <img src="http://qiita-image-store.s3.amazonaws.com/0/55753/6280be48-41fb-3b98-ea9f-47bce8de0fda.png" alt="Hakyllによって生成された、余分な空白を含まないページ">
-            </div>
+            </figure>
           </section>
 
         </div>

@@ -52,6 +52,14 @@ h2 {
   font-size: 1.9rem;
 }
 
+h3 {
+  font-size: 1.6rem;
+}
+
+h4 {
+  font-size: 1.3rem;
+}
+
 section {
   padding-bottom: 18px;
 }
@@ -61,14 +69,6 @@ section h2 {
 section section {
   padding-bottom: 5px;
   padding-top: 10px;
-}
-
-h3 {
-  font-size: 1.6rem;
-}
-
-h4 {
-  font-size: 1.3rem;
 }
 
 .navbar-dark {
@@ -84,59 +84,41 @@ h4 {
   font-size: 1.2rem;
 }
 
-img.avatar {
-  background-color: #b0e0e6;
-  height: auto;
-  max-width: 300px;
-  width: 100%;
+figure {
+  margin-bottom: 40px;
+  margin-top: 40px;
 }
-
-.centered-image {
-  display: block;
-  margin-bottom: 30px;
-  margin-top: 10px;
+figure.centered {
+  margin-bottom: 50px;
   text-align: center;
 }
-.centered-image img {
+figure figcaption {
+  caption-side: top;
+  color: #373a3c;
+  padding-bottom: 10px;
+  text-align: center;
+}
+figure img {
+  background-color: #b0e0e6;
   height: auto;
   max-width: 100%;
 }
-
-figure {
-  margin-bottom: 30px;
-  margin-top: 20px;
-}
-
-.pseudocode {
-  display: block;
-  margin-bottom: 30px;
-  margin-top: 20px;
-  text-align: center;
-}
-.pseudocode img {
+figure img.pseudocode {
   background-color: #fff;
-  height: auto;
   min-width: 380px;
-  padding: 20px;
-}
-
-main {
-  height: 100%;
-  padding-bottom: 50px;
-  padding-top: 50px;
-}
-
-caption,
-figcaption {
-  caption-side: top;
-  color: #373a3c;
-  text-align: center;
 }
 
 .profile {
   text-align: center;
 }
-.profile figcaption {
+.profile figure {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+.profile figure img {
+  max-width: 250px;
+}
+.profile figure figcaption {
   margin-top: 20px;
 }
 .profile ul {
@@ -148,6 +130,12 @@ figcaption {
 }
 .profile ul li i {
   padding: 5px;
+}
+
+main {
+  height: 100%;
+  padding-bottom: 50px;
+  padding-top: 50px;
 }
 
 th {
