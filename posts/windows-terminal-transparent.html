@@ -111,7 +111,6 @@
             <h2 id="browser">ブラウザ側の設定</h2>
             <p>上記の設定でターミナルの背景は透明になりますが、ある問題が生じます。それはブラウザのCPUやメモリを節約しようとする仕組みによって、<span style="text-decoration: underline;">Windows Terminalを全画面にしたときにブラウザの画面の描画が停止する</span>という問題です。例えば、背景で動画を再生するときや、Webアプリケーションのコードを変更した結果をプレビューするときなどに、その問題が生じます。これらはターミナルを透明にする主たる理由ですから、これでは透明にする意義がほとんど失われてしまいます。</p>
             <p>上記のブラウザの挙動はごく一部の人以外には望ましい挙動であり、今後修正されることはおそらくないでしょう。したがってこの問題は自分でWebブラウザの設定を変更して解決する必要があります。</p>
-
             <section>
               <h3 id="chrome"><i class="fa-brands fa-chrome"></i> Google Chromeの場合</h3>
               <p>アドレスバーに
@@ -121,13 +120,12 @@
                 の項目を
                 <code>Disabled</code>
                 に設定します。
+              </p>
               <figure>
                 <img src="/static/images/chrome.png" style="max-width: 100%;" alt="Google Chrome; Calculate window occlusion on Windows">
               </figure>
-              Reference: <a href="https://support.google.com/chrome/thread/77201393/videos-turn-black-when-a-full-screen-window-is-on-top-of-the-window-playing-the-video">Videos turn black when a full screen window is "on top" of the window playing the video.</a>
-              </p>
+              <p>Reference: <a href="https://support.google.com/chrome/thread/77201393/videos-turn-black-when-a-full-screen-window-is-on-top-of-the-window-playing-the-video">Videos turn black when a full screen window is "on top" of the window playing the video.</a></p>
             </section>
-
             <section>
               <h3 id="firefox"><i class="fa-brands fa-firefox-browser"></i> Firefoxの場合</h3>
               <p>アドレスバーに
@@ -147,10 +145,11 @@
               双方向の矢印のアイコンをクリックして値を
               <code>false</code>
               に変更します。
+              </p>
               <figure>
                 <img src="/static/images/toggle.png" style="max-width: 100%;" alt="Firefox; Toggle the parameter">
               </figure>
-              Reference: <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1759393">Firefox stops rendering videos (the whole web-page) after 10 seconds when in background</a>
+              </p>Reference: <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1759393">Firefox stops rendering videos (the whole web-page) after 10 seconds when in background</a>
               </p>
             </section>
           </section>

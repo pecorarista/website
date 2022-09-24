@@ -52,8 +52,15 @@ h2 {
   font-size: 1.9rem;
 }
 
+section {
+  padding-bottom: 18px;
+}
 section h2 {
-  margin-top: 50px;
+  margin-top: 30px;
+}
+section section {
+  padding-bottom: 5px;
+  padding-top: 10px;
 }
 
 h3 {
@@ -69,17 +76,12 @@ h4 {
 }
 
 .navbar-brand {
-  font-size: 1.43rem;
+  font-size: 1.4rem;
   font-weight: bold;
 }
 
-a :link,
-a :visited {
-  color: #1560bd;
-}
-a .navbar-brand {
-  color: #fff;
-  font-size: larger;
+.nav-link {
+  font-size: 1.2rem;
 }
 
 img.avatar {
@@ -122,10 +124,6 @@ main {
   height: 100%;
   padding-bottom: 50px;
   padding-top: 50px;
-}
-
-section {
-  padding-bottom: 18px;
 }
 
 caption,
@@ -271,8 +269,9 @@ ul > .half {
   border: 1px solid #aaa;
   border-radius: 5px;
   display: table;
+  margin-bottom: 9px;
   margin-top: 60px;
-  padding-bottom: 15px;
+  padding-bottom: 5px;
   padding-top: 20px;
   width: auto;
 }
