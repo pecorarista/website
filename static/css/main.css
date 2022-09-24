@@ -48,17 +48,20 @@ h5 {
   font-weight: 400;
 }
 
-h2.section-title,
-h3.section-title {
+h2 {
+  font-size: 1.9rem;
+}
+
+section h2 {
   margin-top: 50px;
 }
 
-h2 {
-  font-size: 1.8rem;
+h3 {
+  font-size: 1.6rem;
 }
 
-h3 {
-  font-size: 1.4rem;
+h4 {
+  font-size: 1.3rem;
 }
 
 .navbar-dark {
@@ -125,10 +128,17 @@ section {
   padding-bottom: 18px;
 }
 
+caption,
+figcaption {
+  caption-side: top;
+  color: #373a3c;
+  text-align: center;
+}
+
 .profile {
   text-align: center;
 }
-.profile .caption {
+.profile figcaption {
   margin-top: 20px;
 }
 .profile ul {
@@ -256,24 +266,11 @@ ul > .half {
   font-family: "Times New Roman", "Times", serif;
 }
 
-caption {
-  caption-side: top;
-  color: #373a3c;
-  text-align: center;
-}
-
-figcaption {
-  caption-side: top;
-  color: #373a3c;
-  text-align: center;
-}
-
 .toc-container {
   background: #f9f9f9 none repeat scroll 0 0;
   border: 1px solid #aaa;
   border-radius: 5px;
   display: table;
-  margin-bottom: 50px;
   margin-top: 60px;
   padding-bottom: 15px;
   padding-top: 20px;
