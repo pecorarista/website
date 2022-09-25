@@ -16,16 +16,16 @@ $mono-font: 'Roboto Mono';
 
 html {
   font-size: 100%;
-  font-variant-ligatures: none;
-  font-feature-settings: 'liga' 0;
 }
 
 body {
-  background-color: $white-smoke;
   font-family: $western-font, $jp-font, sans-serif;
-  font-feature-settings: 'palt';
   font-size: 1.08rem;
   font-weight: 400;
+  font-feature-settings: 'palt';
+  font-feature-settings: 'liga' 0;
+  font-variant-ligatures: none;
+  background-color: $white-smoke;
 }
 
 :lang(ar) {
@@ -33,25 +33,25 @@ body {
 }
 
 .wrapper {
+  position: relative;
   box-sizing: border-box;
   min-height: 100vh;
   padding-bottom: $footer-height;
-  position: relative;
 }
 
 footer {
-  background-color: $gray;
-  bottom: 0;
-  color: $white;
-  height: $footer-height;
   position: absolute;
+  bottom: 0;
   width: 100%;
+  height: $footer-height;
+  color: $white;
+  background-color: $gray;
 }
 
 .footer {
+  padding-top: 23px;
   font-size: 1rem;
   font-weight: 300;
-  padding-top: 23px;
 }
 
 .bottom-element {
@@ -86,8 +86,8 @@ section {
   }
 
   section {
-    padding-bottom: 5px;
     padding-top: 10px;
+    padding-bottom: 5px;
   }
 }
 
@@ -105,8 +105,8 @@ section {
 }
 
 figure {
-  margin-bottom: 40px;
   margin-top: 40px;
+  margin-bottom: 40px;
 
   &.centered {
     margin-bottom: 50px;
@@ -114,20 +114,20 @@ figure {
   }
 
   figcaption {
-    caption-side: top;
-    color: $black;
     padding-bottom: 10px;
+    color: $black;
     text-align: center;
+    caption-side: top;
   }
 
   img {
-    background-color: $powder-blue;
-    height: auto;
     max-width: 100%;
+    height: auto;
+    background-color: $powder-blue;
 
     &.pseudocode {
-      background-color: $white;
       min-width: 380px;
+      background-color: $white;
     }
   }
 }
@@ -136,8 +136,8 @@ figure {
   text-align: center;
 
   figure {
-    margin-bottom: 0;
     margin-top: 0;
+    margin-bottom: 0;
 
     img {
       max-width: 250px;
@@ -164,8 +164,8 @@ figure {
 
 main {
   height: 100%;
-  padding-bottom: 50px;
   padding-top: 50px;
+  padding-bottom: 50px;
 }
 
 th {
@@ -184,29 +184,29 @@ th {
 
 .quarter {
   &::after {
-    content: ' ';
     display: inline;
     font-family: 'source-han-sans-cjk-ja', monospace;
     letter-spacing: -0.1rem;
+    content: ' ';
   }
 }
 
 .half {
   &::after {
-    content: ' ';
     display: inline;
     font-family: 'source-han-sans-cjk-ja', monospace;
+    content: ' ';
   }
 }
 
 code {
-  background-color: $code-background;
-  border-radius: 3px;
-  color: $code-body;
+  padding: 2px 5px;
+  margin: 0;
   font-family: $mono-font, $jp-font, monospace;
   font-size: 85%;
-  margin: 0;
-  padding: 2px 5px;
+  color: $code-body;
+  background-color: $code-background;
+  border-radius: 3px;
 
   &[class*='language-'] {
     font-family: $mono-font, monospace;
@@ -223,8 +223,8 @@ pre {
   overflow: auto;
 
   &[class*='language-'] {
-    border-radius: 3px;
     font-family: $mono-font, monospace;
+    border-radius: 3px;
   }
 
   .quarter,
@@ -242,10 +242,10 @@ pre {
 }
 
 kbd {
+  font-size: 85%;
+  color: $code-body;
   background-color: $code-background;
   border-radius: 3px;
-  color: $code-body;
-  font-size: 85%;
 
   .quarter,
   .half {
@@ -276,8 +276,8 @@ ul > .half {
 }
 
 .lig {
-  letter-spacing: -0.1em;
   margin-right: 0.1em;
+  letter-spacing: -0.1em;
 }
 
 .grammar {
@@ -295,19 +295,19 @@ ul > .half {
 }
 
 .toc-container {
+  display: table;
+  width: auto;
+  padding-top: 20px;
+  padding-bottom: 5px;
+  margin-top: 60px;
+  margin-bottom: 9px;
   background: #f9f9f9 none repeat scroll 0 0;
   border: 1px solid #aaa;
   border-radius: 5px;
-  display: table;
-  margin-bottom: 9px;
-  margin-top: 60px;
-  padding-bottom: 5px;
-  padding-top: 20px;
-  width: auto;
 
   ol {
-    padding-left: 3em;
     padding-right: 2em;
+    padding-left: 3em;
   }
 
   li ol {
