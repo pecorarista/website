@@ -16,6 +16,8 @@ $mono-font: 'Roboto Mono';
 
 html {
   font-size: 100%;
+  font-variant-ligatures: none;
+  font-feature-settings: 'liga' 0;
 }
 
 body {
