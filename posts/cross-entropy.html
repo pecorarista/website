@@ -231,7 +231,25 @@
     </script>
     <script>
       MathJax = {
+        loader: {
+          load: [
+            '[tex]/cases',
+            '[tex]/empheq'
+          ]
+        },
         tex: {
+          packages: {
+            '[+]': [
+              'empheq',
+              'cases'
+            ]
+          },
+          autoload: {
+            cases: [
+              [],
+              ['numcases', 'subnumcases']
+            ]
+          },
           macros: {
             parentheses: ["\\left(#1\\right)", 1],
             brackets: ["\\left[#1\\right]", 1],
@@ -242,7 +260,7 @@
             real: "\\mathop{\\rm Re}",
             imaginary: "\\mathop{\\rm Im}"
           },
-          tags: 'ams'
+          tags: 'ams',
         }
       };
     </script>

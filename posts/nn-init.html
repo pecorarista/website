@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@pecorarista">
+  <meta name="twitter:title" content="ニューラルネットの線型層の初期化 — pecorarista.com">
+  <meta name="twitter:description" content="">
+  <meta name="twitter:image" content="https://pecorarista.com/static/images/avatar.png">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amiri&amp;subset=arabic,latin-ext" />
+  <link href="https://fonts.googleapis.com/css?family=Judson&amp;subset=latin-ext,vietnamese&text=abcdefghijklmnopqrstuvwxyz%C9%90%C9%91%C3%A6%CA%8C%C9%93%CA%99%CE%B2%C3%A7%C9%95%C9%97%C9%96%C3%B0%C9%99%C9%9B%C9%A1%C9%A2%C9%A3%C9%A4%C9%A6%C4%A7%C9%A5%C9%A8%C5%8B%C9%B3%C9%B4%C9%AA%C9%94%C3%B8%C5%93%C9%B8%C9%B9%C9%BE%CA%80%CA%81%CE%B8%CA%83%CA%8A%CF%87%CA%92%CA%94%CA%95%CB%A0%CA%B2%E2%81%BF%CA%B7%E2%97%8B%CC%83%CB%90" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cosmo/bootstrap.min.css" />
+  <link rel="stylesheet" href="/static/css/prism-lucario.css" />
+  <link rel="stylesheet" href="/static/css/main.css" />
+
+  <title>ニューラルネットの線型層の初期化</title>
+</head>
+
+<body>
+  <div class="wrapper">
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+          <div class="navbar-header pull-left"><a class="navbar-brand" href="/">pecorarista.com</a></div>
+          <div class="navbar-header pull-right">
+            <ul class="navbar-nav">
+              <li class="nav-item"><a class="nav-link active" href="/resources">Resources</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+    </header>
+    <main>
+
+      <article>
+        <div class="container">
+          <h1>ニューラルネットの線型層の初期化</h1>
+          <div class="info text-muted">
+            Posted: 2022-09-25
+
+          </div>
+
+          <section>
+            <p><strong>【前提】</strong>
+              各層の入出力の分散が一定であることが望ましい．</p>
+            <p>ニューラルネットの第
+              \(\ell\)
+              番目の線型層について，
+              入力の次元を
+              \(n_\ell\)，
+              出力の次元を
+              \(n_{\ell + 1}\)，
+              入力と重みをそれぞれ
+              \begin{align*}
+              x^{(\ell)} =
+              \begin{pmatrix}
+              x^{(\ell)}_1 \\
+              \vdots \\
+              x^{(\ell)}_{n_\ell}
+              \end{pmatrix},\quad
+              W^{(\ell)} =
+              \begin{pmatrix}
+              w_{11}^{(\ell)} &amp; \cdots &amp; w_{1 n_\ell}^{(\ell)} \\
+              \vdots &amp; \ddots &amp; \vdots \\
+              w_{n_{\ell + 1} 1}^{(\ell)} &amp; \cdots &amp; w_{n_{\ell + 1} n_\ell}^{(\ell)}
+              \end{pmatrix}
+              \end{align*}
+              とする．
+              各
+              \(w_{ij}^{(\ell)}\)
+              の各成分は
+              期待値
+              \(0
+              \)
+              の同一の分布から独立に選ぶ．
+              このとき任意の
+              \(i,\,j,\,k\)
+              について
+              \(x_k\)
+              と
+              \(w_{ij}\)
+              は独立になる．
+              線型層の出力
+              \(z^{(\ell)} := W^{(\ell)}x^{(\ell)}\)
+              の第
+              \(i\)
+              成分の分散は，
+              \(\mathcal{J}_{n_\ell} := \{1,\,\ldots,\,n_{\ell}\}\)
+              と表すことにすると
+              \begin{align}
+              V\left[z^{(\ell)}_i\right]
+              &amp;= V \left[
+              \sum_{j \in \mathcal{J}_{n_\ell}} w_{ij}^{(\ell)} x_j^{(\ell)}
+              \right] \notag \\
+              &amp;=
+              E\left[
+              {
+              \left(
+              \sum_{j \in \mathcal{J}_{n_\ell}}
+              w_{ij}^{(\ell)} x_i^{(\ell)}
+              \right)
+              }^2
+              \right]
+              -
+              {
+              \left(
+              E\left[
+              \sum_{j \in \mathcal{J}_{n_\ell}}
+              w_{ij}^{(\ell)} x_i^{(\ell)}
+              \right]
+              \right)
+              }^2 \label{a}
+              \end{align}
+              となる．</p>
+            <p>(\ref{a})の右辺第1項について
+              \begin{align}
+              E\left[
+              {
+              \left(
+              \sum_{j \in \mathcal{J}_{n_\ell}}
+              w_{ij}^{(\ell)} x_i^{(\ell)}
+              \right)
+              }^2
+              \right]
+              &amp;=
+              \sum_{(j,\, j') \in \mathcal{J}_{n_\ell} \times \mathcal{J}_{n_\ell}}
+              E\left[w_{ij}^{(\ell)} x_{j}^{(\ell)} w_{ij'}^{(\ell)} x_{j'}^{(\ell)}\right] \notag \\
+              &amp;=
+              \sum_{j \in \mathcal{J}_{n_\ell}}
+              E\left[
+              {
+              \left(
+              w_{ij}^{(\ell)}
+              \right)
+              }^2
+              \right]
+              E\left[{\left(x_j^{(\ell)}\right)}^2 \right]
+              +
+              \sum_{
+              \substack{
+              (j,\, j') \in \mathcal{J}_{n_\ell} \times \mathcal{J}_{n_\ell} \\
+              j \neq j'
+              }
+              }
+              E\left[w_{ij}^{(\ell)}\right]
+              E \left[w_{ij'}^{(\ell)} \right]
+              E\left[x_j^{(\ell)} x_{j'}^{(\ell)} \right] \notag \\
+              &amp;=
+              \sum_{j \in \mathcal{J}_{n_\ell}}
+              \left(V\left[w_{ij}\right] - \left(E[w_{ij}]\right)^2\right)
+              E \left[{\left(x_j^{(\ell)}\right)}^2\right]
+              +
+              \sum_{
+              \substack{
+              (j,\, j') \in \mathcal{J}_{n_\ell} \times \mathcal{J}_{n_\ell} \\
+              j \neq j'
+              }
+              } 0 \cdot 0 \cdot E\left[x_j^{(\ell)} x_{j'}^{(\ell)} \right]
+              \notag \\
+              &amp;=
+              V_{W}^{(\ell)}
+              \sum_{j \in \mathcal{J}_{n_\ell}}
+              E \left[{\left(x_j^{(\ell)}\right)}^2\right]. \label{w1}
+              \end{align}
+              ただし
+              \(V_{W}^{(\ell)} = V\left[w_{i1}^{(\ell)}\right] = \cdots V\left[w_{n_\ell}^{(\ell)}\right]\)
+              と置いた．</p>
+            <p>(\ref{a})の右辺第2項について
+              \begin{align}
+              {\left(\sum_{j \in \mathcal{J}_{n_\ell}} E\left[w_{ij}^{(\ell)}\right]E\left[x_j^{(\ell)}\right]\right)}^2
+              =
+              {\left(\sum_{j \in \mathcal{J}_{n_\ell}} 0 \cdot E\left[x_j^{(\ell)}\right]\right)}^2 = 0 \label{w2}
+              \end{align}
+              が成り立つ．(\ref{w1})と(\ref{w2})を合わせて
+              \begin{align}
+              V\left[z_i^{(\ell)}\right]
+              =
+              V_{W}^{(\ell)}
+              \sum_{j \in \mathcal{J}_{n_\ell}}
+              E \left[{\left(x_j^{(\ell)}\right)}^2\right].
+              \label{v}
+              \end{align}
+              という式を得る．</p>
+            <p>
+              活性化関数を
+              \(f\)
+              として
+              \(u_i^{(\ell)} := f(z_i^{(\ell)})\)
+              と定める．
+              以下の仮定をおく．
+              \begin{gather*}
+              V\left[u_i^{(\ell)}\right]
+              = V\left[z_i^{(\ell)}\right]
+              \text{ for all \(i \in \mathcal{J}_{n_{\ell + 1}}\)}, \\
+              E\left[x_j^{(\ell)}\right]
+              = 0
+              \text{ for all \(j \in \mathcal{J}_{n_\ell}\)}, \\
+              V\left[u_i^{(\ell)}\right]
+              = V\left[x_j^{(\ell)}\right]
+              \text{ for all \((i,\, j) \in \mathcal{J}_{n_{\ell + 1}} \times \mathcal{J}_{n_\ell}\).}
+              \end{gather*}
+              これら仮定の下で(\ref{v})より
+              \begin{gather}
+              V\left[u_i^{(\ell)}\right]
+              =
+              V_{W}^{(\ell)}
+              \sum_{j \in \mathcal{J}_{n_\ell}} V\left[x_j^{(\ell)}\right]
+              \notag \\
+              V\left[u_i^{(\ell)}\right]
+              =
+              n_{\ell}
+              V_{W}^{(\ell)}
+              V\left[x_{1}^{(\ell)}\right] \notag \\
+              n_{\ell} V_{W}^{(\ell)} = 1. \label{n}
+              \end{gather}
+              同様にして，逆伝播のときは
+              \begin{align}
+              n_{\ell + 1} V_{W}^{(\ell)} = 1. \label{n1}
+              \end{align}
+              (\ref{n})と(\ref{n1})を同時に満たすような
+              \(V_{W}^{(\ell)}\)
+              をとりたいが，そのような
+              \(V_{W}^{(\ell)}\)
+              は一般には存在しないため，妥協案として
+              \begin{align}
+              V_W^{(\ell)} = \frac{2}{n_{\ell} + n_{\ell + 1}} \label{result}
+              \end{align}
+              と定める．これは
+              \(n_{\ell} = n_{\ell + 1}\)
+              が成り立つとき，(\ref{n})と(\ref{n1})を満たす．</p>
+            <p><strong>【例】</strong>
+              \(W^{\ell}\)の各要素が
+              \(\mathcal{U}(-a,\,a)\)
+              （
+              \(a\)
+              は正の定数）から選ばれる場合を考える．このとき各要素の分散
+              \(V^{(\ell)}_W\)
+              は
+              \begin{align*}
+              V^{(\ell)}_W = \frac{(a - (- a))^2}{12} = \frac{a^2}{3}.
+              \end{align*}
+              で与えられる．(\ref{result})を利用すると
+              \begin{align*}
+              \frac{a^2}{3} = \frac{2}{n_\ell + n_{\ell + 1}}.
+              \end{align*}
+              \(a\)
+              は正だったことから
+              \begin{align*}
+              a = \sqrt{\frac{6}{n_\ell + n_{\ell + 1}}}.
+              \end{align*}
+              したがって
+              \(W^{(\ell)}\)
+              の各要素は
+              \begin{gather*}
+              \mathcal{U}\left(
+              - \sqrt{\frac{6}{n_{\ell} + n_{\ell + 1}}},\,
+              \sqrt{\frac{6}{n_{\ell} + n_{\ell + 1}}}
+              \right)
+              \end{gather*}
+              からサンプリングすればよい．</p>
+          </section>
+          <section>
+            <h2>参考文献</h2>
+            <ul>
+              <li>Glorot, X., &amp; Bengio, Y. (2010). Understanding the difficulty of training deep feedforward neural networks. In <i>Proceedings of the thirteenth international conference on artificial intelligence and statistics</i> (pp. 249–256). JMLR Workshop and Conference Proceedings.</li>
+              <li>岡谷貴之(2022)．『深層学習 改訂第2版（機械学習プロフェッショナルシリーズ）』．講談社．</li>
+            </ul>
+          </section>
+
+        </div>
+      </article>
+
+    </main>
+    <footer>
+      <div class="footer text-center">
+        <span>© 2015&ndash;2022 Akira Miyazawa</span>
+      </div>
+
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap.native@2.0.15/dist/bootstrap-native-v4.min.js"></script>
+    <script src="/static/js/prism.js"></script>
+    <script src="/static/js/prism-bash.min.js"></script>
+    <script src="/static/js/prism-latex.min.js"></script>
+    <script src="/static/js/prism-makefile.min.js"></script>
+    <script src="/static/js/prism-java.min.js"></script>
+    <script src="/static/js/prism-javascript.min.js"></script>
+    <script src="/static/js/prism-scala.min.js"></script>
+    <script src="/static/js/prism-markdown.min.js"></script>
+    <script src="/static/js/prism-apacheconf.min.js"></script>
+    <script src="/static/js/prism-perl.min.js"></script>
+    <script src="/static/js/prism-haskell.min.js"></script>
+    <script src="/static/js/prism-lua.min.js"></script>
+    <script src="https://kit.fontawesome.com/30a99ec99f.js" crossorigin="anonymous"></script>
+    <script>
+      (function(d) {
+        var config = {
+            kitId: 'huy3ylo',
+            scriptTimeout: 3000,
+            async: true
+          },
+          h = d.documentElement,
+          t = setTimeout(function() {
+            h.className = h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive";
+          }, config.scriptTimeout),
+          tk = d.createElement("script"),
+          f = false,
+          s = d.getElementsByTagName("script")[0],
+          a;
+        h.className += " wf-loading";
+        tk.src = 'https://use.typekit.net/' + config.kitId + '.js';
+        tk.async = true;
+        tk.onload = tk.onreadystatechange = function() {
+          a = this.readyState;
+          if (f || a && a != "complete" && a != "loaded")
+            return;
+          f = true;
+          clearTimeout(t);
+          try {
+            Typekit.load(config)
+          } catch (e) {}
+        };
+        s.parentNode.insertBefore(tk, s)
+      })(document);
+    </script>
+    <script src="/static/js/main.js"></script>
+
+
+    <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <script>
+      MathJax = {
+        loader: {
+          load: [
+            '[tex]/cases',
+            '[tex]/empheq'
+          ]
+        },
+        tex: {
+          packages: {
+            '[+]': [
+              'empheq',
+              'cases'
+            ]
+          },
+          autoload: {
+            cases: [
+              [],
+              ['numcases', 'subnumcases']
+            ]
+          },
+          macros: {
+            parentheses: ["\\left(#1\\right)", 1],
+            brackets: ["\\left[#1\\right]", 1],
+            norm: ["\\left\\|#1\\right\\|", 1],
+            abs: ["\\left|#1\\right|", 1],
+            diag: "\\mathop{\\rm diag}",
+            res: "\\mathop{\\rm Res}",
+            real: "\\mathop{\\rm Re}",
+            imaginary: "\\mathop{\\rm Im}"
+          },
+          tags: 'ams',
+        }
+      };
+    </script>
+
+  </div>
+</body>
+
+</html>

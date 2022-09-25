@@ -109,8 +109,8 @@
 
           <section>
             <h2 id="browser">ブラウザ側の設定</h2>
-            <p>上記の設定でターミナルの背景は透明になりますが、ある問題が生じます。それはブラウザのCPUやメモリを節約しようとする仕組みによって、<span style="text-decoration: underline;">Windows Terminalを全画面にしたときにブラウザの画面の描画が停止する</span>という問題です。例えば、背景で動画を再生するときや、Webアプリケーションのコードを変更した結果をプレビューするときなどに、その問題が生じます。これらはターミナルを透明にする主たる理由ですから、これでは透明にする意義がほとんど失われてしまいます。</p>
-            <p>上記のブラウザの挙動はごく一部の人以外には望ましい挙動であり、今後修正されることはおそらくないでしょう。したがってこの問題は自分でWebブラウザの設定を変更して解決する必要があります。</p>
+            <p>上記の設定でターミナルの背景は透明になりますが、ある問題が生じます。それはブラウザのCPUやメモリを節約しようとする仕組みによって、<span style="text-decoration: underline;">Windows Terminalを全画面にしたときにブラウザの画面が描画されない</span>という問題です。例えば、背景で動画を再生しようすると動画が真っ黒になってしまったり、Webアプリケーションのコードを変更した結果をプレビューしようとすると文字が消えてしまったりします。</p>
+            <p>上記のブラウザの挙動はごく一部の人以外には望ましい挙動であり、今後修正されることはおそらくないでしょう。したがってこの問題は自分でWebブラウザの設定を変更して解決する必要があります。以下にその手順を示します。</p>
             <section>
               <h3 id="chrome"><i class="fa-brands fa-chrome"></i> Google Chromeの場合</h3>
               <p>アドレスバーに
@@ -216,7 +216,25 @@
     </script>
     <script>
       MathJax = {
+        loader: {
+          load: [
+            '[tex]/cases',
+            '[tex]/empheq'
+          ]
+        },
         tex: {
+          packages: {
+            '[+]': [
+              'empheq',
+              'cases'
+            ]
+          },
+          autoload: {
+            cases: [
+              [],
+              ['numcases', 'subnumcases']
+            ]
+          },
           macros: {
             parentheses: ["\\left(#1\\right)", 1],
             brackets: ["\\left[#1\\right]", 1],
@@ -227,7 +245,7 @@
             real: "\\mathop{\\rm Re}",
             imaginary: "\\mathop{\\rm Im}"
           },
-          tags: 'ams'
+          tags: 'ams',
         }
       };
     </script>
