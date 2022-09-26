@@ -116,6 +116,21 @@ figure img.pseudocode {
   background-color: #fff;
 }
 
+ol.bracket {
+  margin: 0;
+  counter-reset: oln;
+}
+ol.bracket li {
+  position: relative;
+  list-style: none;
+}
+ol.bracket li::before {
+  position: absolute;
+  left: -1.4em;
+  content: "[" counter(oln) "] ";
+  counter-increment: oln;
+}
+
 .profile {
   text-align: center;
 }
