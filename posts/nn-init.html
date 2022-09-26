@@ -10,11 +10,14 @@
   <meta name="twitter:description" content="">
   <meta name="twitter:image" content="https://pecorarista.com/static/images/avatar.png">
   <link rel="icon" href="/favicon.ico">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amiri&amp;subset=arabic,latin-ext" />
-  <link href="https://fonts.googleapis.com/css?family=Judson&amp;subset=latin-ext,vietnamese&text=abcdefghijklmnopqrstuvwxyz%C9%90%C9%91%C3%A6%CA%8C%C9%93%CA%99%CE%B2%C3%A7%C9%95%C9%97%C9%96%C3%B0%C9%99%C9%9B%C9%A1%C9%A2%C9%A3%C9%A4%C9%A6%C4%A7%C9%A5%C9%A8%C5%8B%C9%B3%C9%B4%C9%AA%C9%94%C3%B8%C5%93%C9%B8%C9%B9%C9%BE%CA%80%CA%81%CE%B8%CA%83%CA%8A%CF%87%CA%92%CA%94%CA%95%CB%A0%CA%B2%E2%81%BF%CA%B7%E2%97%8B%CC%83%CB%90" rel="stylesheet">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cosmo/bootstrap.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Noto+Serif+JP&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Judson&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cosmo/bootstrap.min.css" integrity="sha384-5QFXyVb+lrCzdN228VS3HmzpiE7ZVwLQtkt+0d9W43LQMzz4HBnnqvVxKg6O+04d" crossorigin="anonymous">
   <link rel="stylesheet" href="/static/css/prism-lucario.css" />
   <link rel="stylesheet" href="/static/css/main.css" />
 
@@ -234,7 +237,7 @@
               と定める．これは
               \(n_{\ell} = n_{\ell + 1}\)
               が成り立つとき，(\ref{n})と(\ref{n1})を満たす．
-              この初期化手法はGlorot et al. (2010)で提案されたため<i>Glorot initialization</i>と呼ばれる．</p>
+              この初期化手法はGlorot et al. (2010)で提案されたため<em>Glorot initialization</em>と呼ばれる．</p>
             <p><strong>【例】</strong>
               \(W^{\ell}\)の各要素が
               \(\mathcal{U}(-a,\,a)\)
@@ -313,7 +316,7 @@
               =
               \frac{2}{n^{\ell}}.
               \end{align}
-              この初期化手法はHe et al. (2015)で提案されたため<i>He initialization</i>と呼ばれる．</p>
+              この初期化手法はHe et al. (2015)で提案されたため<em>He initialization</em>と呼ばれる．</p>
             <p><strong>【例】</strong>
               \(W^{\ell}\)の各要素が
               \(\mathcal{U}(-a,\,a)\)
@@ -328,8 +331,8 @@
           <section>
             <h2>参考文献</h2>
             <ul>
-              <li>Glorot, X., &amp; Bengio, Y. (2010). Understanding the difficulty of training deep feedforward neural networks. In <i>Proceedings of the thirteenth international conference on artificial intelligence and statistics</i> (pp. 249–256). JMLR Workshop and Conference Proceedings.</li>
-              <li>He, K., Zhang, X., Ren, S., &amp; Sun, J. (2015). Delving deep into rectifiers: Surpassing human-level performance on imagenet classification. In <i>Proceedings of the IEEE international conference on computer vision</i> (pp. 1026–1034).</li>
+              <li>Glorot, X., &amp; Bengio, Y. (2010). Understanding the difficulty of training deep feedforward neural networks. In <em>Proceedings of the thirteenth international conference on artificial intelligence and statistics</em> (pp. 249–256). JMLR Workshop and Conference Proceedings.</li>
+              <li>He, K., Zhang, X., Ren, S., &amp; Sun, J. (2015). Delving deep into rectifiers: Surpassing human-level performance on imagenet classification. In <em>Proceedings of the IEEE international conference on computer vision</em> (pp. 1026–1034).</li>
               <li>岡谷貴之(2022)．『深層学習 改訂第2版（機械学習プロフェッショナルシリーズ）』．講談社．</li>
             </ul>
           </section>
@@ -358,37 +361,6 @@
     <script src="/static/js/prism-haskell.min.js"></script>
     <script src="/static/js/prism-lua.min.js"></script>
     <script src="https://kit.fontawesome.com/30a99ec99f.js" crossorigin="anonymous"></script>
-    <script>
-      (function(d) {
-        var config = {
-            kitId: 'huy3ylo',
-            scriptTimeout: 3000,
-            async: true
-          },
-          h = d.documentElement,
-          t = setTimeout(function() {
-            h.className = h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive";
-          }, config.scriptTimeout),
-          tk = d.createElement("script"),
-          f = false,
-          s = d.getElementsByTagName("script")[0],
-          a;
-        h.className += " wf-loading";
-        tk.src = 'https://use.typekit.net/' + config.kitId + '.js';
-        tk.async = true;
-        tk.onload = tk.onreadystatechange = function() {
-          a = this.readyState;
-          if (f || a && a != "complete" && a != "loaded")
-            return;
-          f = true;
-          clearTimeout(t);
-          try {
-            Typekit.load(config)
-          } catch (e) {}
-        };
-        s.parentNode.insertBefore(tk, s)
-      })(document);
-    </script>
     <script src="/static/js/main.js"></script>
 
 
