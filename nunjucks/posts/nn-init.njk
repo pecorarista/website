@@ -177,18 +177,18 @@
 \end{align*}
 となり，妥当な仮定である．
 これら仮定の下で(\ref{v})より
-\begin{gather*}
+\begin{gather}
   V\left[x_i^{(\ell + 1)}\right]
   =
   V_{W}^{(\ell)}
   \sum_{j \in \mathcal{J}_{n_\ell}} V\left[x_j^{(\ell)}\right]
-  \\
+  \notag \\
   V\left[x_i^{(\ell + 1)}\right]
   =
   n_{\ell}
   V_{W}^{(\ell)}
-  V\left[x_{1}^{(\ell)}\right] \\
-\end{gather*}
+  V\left[x_{1}^{(\ell)}\right] \label{vw1}
+\end{gather}
 したがって
 \(
   V\left[x_i^{(\ell + 1)}\right]
@@ -199,24 +199,11 @@
 \begin{gather}
   V_{W}^{(\ell)} = \frac{1}{n_{\ell}}. \label{n}
 \end{gather}
-とすればよい．
-</p>
-<p>同様にして，逆伝播のときは
-\begin{align}
-  V_{W}^{(\ell)} = \frac{1}{n_{\ell + 1}}. \label{n1}
-\end{align}
-(\ref{n})と(\ref{n1})を同時に満たすような
-\(V_{W}^{(\ell)}\)
-をとりたいが，そのような
-\(V_{W}^{(\ell)}\)
-は一般には存在しないため，妥協案として
+とすればよい．逆伝播も考慮して
 \begin{align}
   V_W^{(\ell)} = \frac{2}{n_{\ell} + n_{\ell + 1}} \label{result}
 \end{align}
-と定める．これは
-\(n_{\ell} = n_{\ell + 1}\)
-が成り立つとき，(\ref{n})と(\ref{n1})を満たす．
-この初期化手法は<a href="#glorot">Glorot et al. (2010)</a>で提案されたため<em>Glorot initialization</em>と呼ばれる．</p>
+と定める．この初期化手法は<a href="#glorot">Glorot et al. (2010)</a>で提案されたため<em>Glorot initialization</em>と呼ばれる．</p>
 <p><strong>例</strong>
 \(W^{\ell}\)の各要素が
 \(\mathcal{U}(-a,\,a)\)
