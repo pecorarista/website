@@ -10,7 +10,7 @@ $code-body: #f8f8f2;
 $code-background: #263e52;
 $footer-height: 70px;
 $western-font: 'Roboto';
-$jp-font: 'source-han-sans-cjk-ja';
+$jp-font: 'Noto Sans JP';
 $ipa-font: 'Judson';
 $mono-font: 'Roboto Mono';
 
@@ -20,12 +20,18 @@ html {
 
 body {
   font-family: $western-font, $jp-font, sans-serif;
-  font-size: 1.08rem;
+  font-size: 1.1rem;
   font-weight: 400;
   font-feature-settings: 'palt';
   font-feature-settings: 'liga' 0;
   font-variant-ligatures: none;
   background-color: $white-smoke;
+}
+
+cite,
+em {
+  font-family: $western-font, sans-serif;
+  font-style: oblique;
 }
 
 :lang(ar) {
@@ -185,7 +191,7 @@ th {
 .quarter {
   &::after {
     display: inline;
-    font-family: 'source-han-sans-cjk-ja', monospace;
+    font-family: $jp-font, monospace;
     letter-spacing: -0.1rem;
     content: ' ';
   }
@@ -194,7 +200,7 @@ th {
 .half {
   &::after {
     display: inline;
-    font-family: 'source-han-sans-cjk-ja', monospace;
+    font-family: $jp-font, monospace;
     content: ' ';
   }
 }
