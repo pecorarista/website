@@ -152,19 +152,32 @@
 として
 \(u_i^{(\ell)} := g(y_i^{(\ell)})\)
 と定める．
-\(u\)
-が
-\(0\)
-に近い範囲で以下が成り立つと仮定する：
+以下が成り立つと仮定する：
 \begin{gather}
   V\left[u_i^{(\ell)}\right]
     \approx V\left[y_i^{(\ell)}\right]
     \text{ for all \(i \in \mathcal{J}_{n_{\ell + 1}}\)}, \tag{H1} \label{H1} \\
   V\left[u_i^{(\ell)}\right]
     \approx V\left[x_j^{(\ell)}\right]
-    \text{ for all \((i,\, j) \in \mathcal{J}_{n_{\ell + 1}} \times \mathcal{J}_{n_\ell}\).} \tag{H2}
+    \text{ for all \((i,\, j) \in \mathcal{J}_{n_{\ell + 1}} \times \mathcal{J}_{n_\ell}\).} \tag{H2} \label{H2}
 \end{gather}
-また以下を仮定する：
+(\ref{H1})について，例えば活性化関数として代表的な
+\(g = \tanh\)
+などをとれば
+\(\abs{y_i} \leq 1/2\)
+の辺りで
+\begin{align*}
+  V\left[u_i^{(\ell)}\right]
+  =
+  V\left[\tanh\left(y_i^{(\ell)}\right)\right]
+  \approx
+  V\left[\id\left(y_i^{(\ell)}\right)\right]
+  =
+  V\left[y_i^{(\ell)}\right] \\
+\end{align*}
+となり，妥当な仮定である．
+</p>
+<p>(\ref{H1}), (\ref{H2})に加え，さらに以下を仮定する：
 \begin{gather}
   E\left[x_j^{(\ell)}\right]
     = 0
