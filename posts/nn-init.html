@@ -193,17 +193,17 @@
             <p>
               活性化関数を
               \(g\)
-              として
-              \(u_i^{(\ell)} := g(y_i^{(\ell)})\)
-              と定める．
+              とする．このとき
+              \(x_i^{(\ell + 1)} := g(y_i^{(\ell)})\)
+              である．
               以下が成り立つと仮定する：
               \begin{gather}
-              V\left[u_i^{(\ell)}\right]
+              V\left[x_i^{(\ell + 1)}\right]
               \approx V\left[y_i^{(\ell)}\right]
               \text{ for all \(i \in \mathcal{J}_{n_{\ell + 1}}\)}, \tag{H1} \label{H1} \\
-              V\left[u_i^{(\ell)}\right]
-              \approx V\left[x_j^{(\ell)}\right]
-              \text{ for all \((i,\, j) \in \mathcal{J}_{n_{\ell + 1}} \times \mathcal{J}_{n_\ell}\).} \tag{H2} \label{H2}
+              E\left[x_j^{(\ell)}\right]
+              = 0
+              \text{ for all \(j \in \mathcal{J}_{n_\ell}\)}. \tag{H2} \label{H2}
               \end{gather}
               (\ref{H1})について，例えば活性化関数として代表的な
               \(g = \tanh\)
@@ -211,39 +211,43 @@
               \(\abs{y_i} \leq 1/2\)
               の辺りで
               \begin{align*}
-              V\left[u_i^{(\ell)}\right]
+              V\left[x_i^{(\ell + 1)}\right]
               =
               V\left[\tanh\left(y_i^{(\ell)}\right)\right]
               \approx
               V\left[\id\left(y_i^{(\ell)}\right)\right]
               =
-              V\left[y_i^{(\ell)}\right] \\
+              V\left[y_i^{(\ell)}\right]
               \end{align*}
               となり，妥当な仮定である．
-            </p>
-            <p>(\ref{H1}), (\ref{H2})に加え，さらに以下を仮定する：
-              \begin{gather}
-              E\left[x_j^{(\ell)}\right]
-              = 0
-              \text{ for all \(j \in \mathcal{J}_{n_\ell}\)}. \tag{H3} \label{H3}
-              \end{gather}
               これら仮定の下で(\ref{v})より
-              \begin{gather}
-              V\left[u_i^{(\ell)}\right]
+              \begin{gather*}
+              V\left[x_i^{(\ell + 1)}\right]
               =
               V_{W}^{(\ell)}
               \sum_{j \in \mathcal{J}_{n_\ell}} V\left[x_j^{(\ell)}\right]
-              \notag \\
-              V\left[u_i^{(\ell)}\right]
+              \\
+              V\left[x_i^{(\ell + 1)}\right]
               =
               n_{\ell}
               V_{W}^{(\ell)}
-              V\left[x_{1}^{(\ell)}\right] \notag \\
-              n_{\ell} V_{W}^{(\ell)} = 1. \label{n}
+              V\left[x_{1}^{(\ell)}\right] \\
+              \end{gather*}
+              したがって
+              \(
+              V\left[x_i^{(\ell + 1)}\right]
+              =
+              V\left[x_{1}^{(\ell)}\right] \\
+              \)
+              とするためには
+              \begin{gather}
+              V_{W}^{(\ell)} = \frac{1}{n_{\ell}}. \label{n}
               \end{gather}
-              同様にして，逆伝播のときは
+              とすればよい．
+            </p>
+            <p>同様にして，逆伝播のときは
               \begin{align}
-              n_{\ell + 1} V_{W}^{(\ell)} = 1. \label{n1}
+              V_{W}^{(\ell)} = \frac{1}{n_{\ell + 1}}. \label{n1}
               \end{align}
               (\ref{n})と(\ref{n1})を同時に満たすような
               \(V_{W}^{(\ell)}\)
