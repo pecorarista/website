@@ -12,6 +12,7 @@ $footer-height: 70px;
 $western-font: 'Roboto';
 $jp-font: 'Noto Sans JP';
 $ipa-font: 'Judson';
+$arabic-font: 'Amiri';
 $mono-font: 'Roboto Mono';
 
 html {
@@ -35,7 +36,7 @@ em {
 }
 
 :lang(ar) {
-  font-family: 'Amiri', $western-font, $jp-font, sans-serif;
+  font-family: $arabic-font, $western-font, $jp-font, sans-serif;
 }
 
 .wrapper {
@@ -134,6 +135,23 @@ figure {
     &.pseudocode {
       min-width: 380px;
       background-color: $white;
+    }
+  }
+}
+
+ol.bracket {
+  margin: 0;
+  counter-reset: oln;
+
+  li {
+    position: relative;
+    list-style: none;
+
+    &::before {
+      position: absolute;
+      left: -1.4em;
+      content: '[' counter(oln) '] ';
+      counter-increment: oln;
     }
   }
 }
