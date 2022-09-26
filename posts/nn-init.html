@@ -87,14 +87,14 @@
               \(w_{ij}\)
               は独立になる．
               線型層の出力
-              \(z^{(\ell)} := W^{(\ell)}x^{(\ell)}\)
+              \(y^{(\ell)} := W^{(\ell)}x^{(\ell)}\)
               の第
               \(i\)
               成分の分散は，
               \(\mathcal{J}_{n_\ell} := \{1,\,\ldots,\,n_{\ell}\}\)
               と表すことにすると
               \begin{align}
-              V\left[z^{(\ell)}_i\right]
+              V\left[y^{(\ell)}_i\right]
               &amp;= V \left[
               \sum_{j \in \mathcal{J}_{n_\ell}} w_{ij}^{(\ell)} x_j^{(\ell)}
               \right] \notag \\
@@ -179,7 +179,7 @@
               \end{align}
               が成り立つ．(\ref{w1})と(\ref{w2})を合わせて
               \begin{align}
-              V\left[z_i^{(\ell)}\right]
+              V\left[y_i^{(\ell)}\right]
               =
               V_{W}^{(\ell)}
               \sum_{j \in \mathcal{J}_{n_\ell}}
@@ -189,22 +189,22 @@
               という式を得る．</p>
             <p>
               活性化関数を
-              \(f\)
+              \(g\)
               として
-              \(u_i^{(\ell)} := f(z_i^{(\ell)})\)
+              \(u_i^{(\ell)} := g(y_i^{(\ell)})\)
               と定める．
               以下の仮定をおく．
-              \begin{gather*}
+              \begin{gather}
               V\left[u_i^{(\ell)}\right]
-              = V\left[z_i^{(\ell)}\right]
-              \text{ for all \(i \in \mathcal{J}_{n_{\ell + 1}}\)}, \\
+              = V\left[y_i^{(\ell)}\right]
+              \text{ for all \(i \in \mathcal{J}_{n_{\ell + 1}}\)}, \tag{H1} \label{H1} \\
               E\left[x_j^{(\ell)}\right]
               = 0
-              \text{ for all \(j \in \mathcal{J}_{n_\ell}\)}, \\
+              \text{ for all \(j \in \mathcal{J}_{n_\ell}\)}, \tag{H2} \label{H2} \\
               V\left[u_i^{(\ell)}\right]
               = V\left[x_j^{(\ell)}\right]
-              \text{ for all \((i,\, j) \in \mathcal{J}_{n_{\ell + 1}} \times \mathcal{J}_{n_\ell}\).}
-              \end{gather*}
+              \text{ for all \((i,\, j) \in \mathcal{J}_{n_{\ell + 1}} \times \mathcal{J}_{n_\ell}\).} \tag{H3}
+              \end{gather}
               これら仮定の下で(\ref{v})より
               \begin{gather}
               V\left[u_i^{(\ell)}\right]
@@ -233,7 +233,8 @@
               \end{align}
               と定める．これは
               \(n_{\ell} = n_{\ell + 1}\)
-              が成り立つとき，(\ref{n})と(\ref{n1})を満たす．</p>
+              が成り立つとき，(\ref{n})と(\ref{n1})を満たす．
+              この初期化手法はGlorot et al. (2010)で提案されたため<i>Glorot initialization</i>と呼ばれる．</p>
             <p><strong>【例】</strong>
               \(W^{\ell}\)の各要素が
               \(\mathcal{U}(-a,\,a)\)
@@ -242,9 +243,9 @@
               は正の定数）から選ばれる場合を考える．このとき各要素の分散
               \(V^{(\ell)}_W\)
               は
-              \begin{align*}
-              V^{(\ell)}_W = \frac{(a - (- a))^2}{12} = \frac{a^2}{3}.
-              \end{align*}
+              \begin{align}
+              V^{(\ell)}_W = \frac{(a - (- a))^2}{12} = \frac{a^2}{3}. \label{uniform}
+              \end{align}
               で与えられる．(\ref{result})を利用すると
               \begin{align*}
               \frac{a^2}{3} = \frac{2}{n_\ell + n_{\ell + 1}}.
@@ -264,11 +265,71 @@
               \right)
               \end{gather*}
               からサンプリングすればよい．</p>
+            <p><strong>【(\ref{H2})が成り立たない場合】</strong>
+              例えば活性化関数が
+              \(g(x) := \mathrm{ReLU}(x) = \max\{0,\,x\}\)
+              のとき
+              \(E\left[x_i^{(\ell)}\right] &gt; 0\)
+              となる．
+              適当な仮定をおいて，そのような場合にも(\ref{v})から
+              \(V_{W}^{(\ell)}\)
+              を求めたい．
+              各
+              \(x_i\)
+              の確率密度関数
+              \(f\)
+              とし，
+              \(f\)
+              は
+              \(y\)
+              軸について対称であるとする．このとき
+              \begin{align*}
+              E\left[{\left(x_j^{(\ell)}\right)}^2\right]
+              &amp;= \int_{-\infty}^{\infty}
+              {\left(\max\left\{0,\,y_j^{(\ell - 1)}\right\}\right)}^2
+              f\left(y_j^{(\ell - 1)}\right)dy_j^{(\ell - 1)} \\
+              &amp;= \int_{0}^{\infty} {\left( y_j^{(\ell - 1)} \right)}^2
+              f\left(y_j^{(\ell - 1)}\right) dy_j^{(\ell - 1)} \\
+              &amp;= \frac{1}{2} \int_{-\infty}^{\infty} {\left( y_j^{(\ell - 1)} \right)}^2
+              f\left(y_j^{(\ell - 1)}\right) dy_j^{(\ell - 1)} \\
+              &amp;= \int_{-\infty}^{\infty}
+              \frac{1}{2}
+              {\left(y_j^{(\ell - 1)} - E\left[y_j^{(\ell - 1)}\right]\right)}^2
+              f\left(y_j^{(\ell - 1)}\right) dy_j^{(\ell - 1)} \\
+              &amp;= \frac{1}{2} V\left[y_j^{(\ell - 1)}\right].
+              \end{align*}
+              したがって(\ref{v})に代入して
+              \begin{align*}
+              V\left[y_i^{(\ell)}\right]
+              =
+              V_{W}^{(\ell)}
+              \sum_{j \in \mathcal{J}_{n_\ell}}
+              \frac{1}{2}
+              V\left[y_j^{(\ell - 1)}\right]
+              \end{align*}
+              \(y_i^{(\ell)} = y_j^{(\ell - 1)}\)を仮定すると
+              \begin{align}
+              V_{W}^{(\ell)}
+              =
+              \frac{2}{n^{\ell}}.
+              \end{align}
+              この初期化手法はHe et al. (2015)で提案されたため<i>He initialization</i>と呼ばれる．</p>
+            <p><strong>【例】</strong>
+              \(W^{\ell}\)の各要素が
+              \(\mathcal{U}(-a,\,a)\)
+              （
+              \(a\)
+              は正の定数）から選ばれる場合，(\ref{uniform})を使って
+              \begin{gather*}
+              \frac{a^2}{3} = \frac{2}{n^{\ell}} \\
+              a = \sqrt{\frac{6}{n_\ell}}
+              \end{gather*}
           </section>
           <section>
             <h2>参考文献</h2>
             <ul>
               <li>Glorot, X., &amp; Bengio, Y. (2010). Understanding the difficulty of training deep feedforward neural networks. In <i>Proceedings of the thirteenth international conference on artificial intelligence and statistics</i> (pp. 249–256). JMLR Workshop and Conference Proceedings.</li>
+              <li>He, K., Zhang, X., Ren, S., &amp; Sun, J. (2015). Delving deep into rectifiers: Surpassing human-level performance on imagenet classification. In <i>Proceedings of the IEEE international conference on computer vision</i> (pp. 1026–1034).</li>
               <li>岡谷貴之(2022)．『深層学習 改訂第2版（機械学習プロフェッショナルシリーズ）』．講談社．</li>
             </ul>
           </section>
@@ -362,6 +423,7 @@
             diag: "\\mathop{\\rm diag}",
             res: "\\mathop{\\rm Res}",
             real: "\\mathop{\\rm Re}",
+            relu: "\\mathop{\\rm ReLU}",
             imaginary: "\\mathop{\\rm Im}"
           },
           tags: 'ams',
