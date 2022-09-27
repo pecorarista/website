@@ -159,7 +159,7 @@
     \text{ for all \(i \in \mathcal{J}_{n_{\ell + 1}}\)}, \tag{H1} \label{H1} \\
   E\left[x_j^{(\ell)}\right]
     = 0
-    \text{ for all \(j \in \mathcal{J}_{n_\ell}\)}. \tag{H2} \label{H2}
+    \text{ for all \(j \in \mathcal{J}_{n_\ell}\)}. \tag{H2} \label{ex0}
 \end{gather}
 </p>
 <p>(\ref{H1})について，活性化関数として用いられるものは，通常
@@ -180,7 +180,7 @@
   V\left[y_i^{(\ell)}\right]
 \end{align*}
 が成り立つため，妥当な仮定である．
-(\ref{H2})については
+(\ref{ex0})については
 \begin{align*}
   E\left[x_i^{(\ell)}\right]
   &amp;= E\left[g\left( y_i^{(\ell - 1)} \right)\right] \\
@@ -199,18 +199,18 @@
 など）
 を使う限り，妥当な仮定である．</p>
 <p>これら仮定の下で(\ref{v})より
-\begin{gather}
+\begin{gather*}
   V\left[x_i^{(\ell + 1)}\right]
   =
   V_{W}^{(\ell)}
   \sum_{j \in \mathcal{J}_{n_\ell}} V\left[x_j^{(\ell)}\right]
-  \notag \\
+  \\
   V\left[x_i^{(\ell + 1)}\right]
   =
   n_{\ell}
   V_{W}^{(\ell)}
-  V\left[x_{1}^{(\ell)}\right] \label{vw1}
-\end{gather}
+  V\left[x_{1}^{(\ell)}\right]
+\end{gather*}
 したがって
 \(
   V\left[x_i^{(\ell + 1)}\right]
@@ -218,9 +218,9 @@
   V\left[x_{1}^{(\ell)}\right] \\
 \)
 とするためには
-\begin{gather}
+\begin{gather*}
   V_{W}^{(\ell)} = \frac{1}{n_{\ell}}. \label{n}
-\end{gather}
+\end{gather*}
 とすればよい．逆伝播も考慮して
 \begin{align}
   V_W^{(\ell)} = \frac{2}{n_{\ell} + n_{\ell + 1}} \label{result}
@@ -256,7 +256,7 @@
   \right)
 \end{gather*}
 からサンプリングすればよい．</p>
-<p><strong>(\ref{H3})が成り立たない場合</strong>
+<p><strong>(\ref{ex0})が成り立たない場合</strong>
 例えば活性化関数が
 \(g(x) := \mathrm{ReLU}(x) = \max\{0,\,x\}\)
 のとき
@@ -299,11 +299,11 @@
       V\left[y_j^{(\ell - 1)}\right]
 \end{align*}
 \(y_i^{(\ell)} = y_j^{(\ell - 1)}\)を仮定すると
-\begin{align}
+\begin{align*}
     V_{W}^{(\ell)}
     =
     \frac{2}{n^{\ell}}.
-\end{align}
+\end{align*}
 この初期化手法は<a href="#he">He et al. (2015)</a>で提案されたため<em>He initialization</em>と呼ばれる．</p>
 <p><strong>【例】</strong>
 \(W^{\ell}\)の各要素が
