@@ -161,21 +161,33 @@
     = 0
     \text{ for all \(j \in \mathcal{J}_{n_\ell}\)}. \tag{H2} \label{H2}
 \end{gather}
-(\ref{H1})について，例えば活性化関数として代表的な
-\(g = \tanh\)
-などをとれば
-\(\abs{y_i} \leq 1/2\)
+</p>
+<p>(\ref{H1})について，例えば活性化関数として
+\({x} = 0\)
 の辺りで
+\(g' \approx 1\)
+となるようなものをとれば，
+\(\id\)
+を恒等関数，
+\(b\)
+を適当な定数として
 \begin{align*}
   V\left[x_i^{(\ell + 1)}\right]
-  =
-  V\left[\tanh\left(y_i^{(\ell)}\right)\right]
   \approx
-  V\left[\id\left(y_i^{(\ell)}\right)\right]
+  V\left[\id\left(y_i^{(\ell)}\right) + b\right]
   =
   V\left[y_i^{(\ell)}\right]
 \end{align*}
-となり，妥当な仮定である．
+が成り立つため，妥当な仮定である．
+</p>
+<p>(\ref{H2})について
+\begin{align*}
+  \abs{E\left[x_i^{(\ell)}\right]}
+  &amp;= \abs{E\left[g\left( y_i^{(\ell - 1)} \right)\right]} \\
+  &amp;\approx \abs{E\left[ y_i^{(\ell - 1)}\right]} \\
+  &amp;= E\left[\abs{\sum_{j \in \mathcal{J}_{n_\ell}} w_{ij}^{(\ell - 1)} x_j^{(\ell - 1)}}\right] \\
+  &amp;\leq E\left[\sum_{j = 1} w_{ij}^{} x_j \right]
+\end{align*}
 これら仮定の下で(\ref{v})より
 \begin{gather}
   V\left[x_i^{(\ell + 1)}\right]
