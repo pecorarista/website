@@ -12,22 +12,22 @@
 \(\ell\)
 番目の線型層について，
 入力の次元を
-\(n_\ell\)，
+\(n^{(\ell)}\)，
 出力の次元を
-\(n_{\ell + 1}\)，
+\(n^{(\ell + 1)}\)，
 入力と重みをそれぞれ
 \begin{align*}
   x^{(\ell)} =
     \begin{pmatrix}
       x^{(\ell)}_1 \\
       \vdots \\
-      x^{(\ell)}_{n_\ell}
+      x^{(\ell)}_{n^{(\ell)}}
     \end{pmatrix},\quad
   W^{(\ell)} =
     \begin{pmatrix}
-      w_{11}^{(\ell)}       &amp; \cdots &amp; w_{1 n_\ell}^{(\ell)} \\
+      w_{11}^{(\ell)}       &amp; \cdots &amp; w_{1 n^{(\ell)}}^{(\ell)} \\
       \vdots                &amp; \ddots &amp; \vdots \\
-      w_{n_{\ell + 1} 1}^{(\ell)} &amp; \cdots &amp; w_{n_{\ell + 1} n_\ell}^{(\ell)}
+      w_{n^{(\ell + 1)} 1}^{(\ell)} &amp; \cdots &amp; w_{n^{(\ell + 1)} n^{(\ell)}}^{(\ell)}
     \end{pmatrix}
 \end{align*}
 とする．
@@ -50,18 +50,18 @@
 の第
 \(i\)
 成分の分散は，
-\(\mathcal{J}_{n_\ell} := \{1,\,\ldots,\,n_{\ell}\}\)
+\(\mathcal{J}_{n^{(\ell)}} := \{1,\,\ldots,\,n^{(\ell)}\}\)
 と表すことにすると
 \begin{align}
   V\left[y^{(\ell)}_i\right]
     &amp;= V \left[
-      \sum_{j \in \mathcal{J}_{n_\ell}} w_{ij}^{(\ell)} x_j^{(\ell)}
+      \sum_{j \in \mathcal{J}_{n^{(\ell)}}} w_{ij}^{(\ell)} x_j^{(\ell)}
     \right] \notag \\
     &amp;=
       E\left[
         {
         \left(
-          \sum_{j \in \mathcal{J}_{n_\ell}}
+          \sum_{j \in \mathcal{J}_{n^{(\ell)}}}
           w_{ij}^{(\ell)} x_i^{(\ell)}
         \right)
         }^2
@@ -70,7 +70,7 @@
       {
         \left(
           E\left[
-            \sum_{j \in \mathcal{J}_{n_\ell}}
+            \sum_{j \in \mathcal{J}_{n^{(\ell)}}}
               w_{ij}^{(\ell)} x_i^{(\ell)}
           \right]
         \right)
@@ -82,16 +82,16 @@
       E\left[
         {
         \left(
-          \sum_{j \in \mathcal{J}_{n_\ell}}
+          \sum_{j \in \mathcal{J}_{n^{(\ell)}}}
           w_{ij}^{(\ell)} x_i^{(\ell)}
         \right)
         }^2
       \right]
     &amp;=
-    \sum_{(j,\, j') \in \mathcal{J}_{n_\ell} \times \mathcal{J}_{n_\ell}}
+    \sum_{(j,\, j') \in \mathcal{J}_{n^{(\ell)}} \times \mathcal{J}_{n^{(\ell)}}}
       E\left[w_{ij}^{(\ell)} x_{j}^{(\ell)} w_{ij'}^{(\ell)} x_{j'}^{(\ell)}\right] \notag \\
     &amp;=
-      \sum_{j \in \mathcal{J}_{n_\ell}}
+      \sum_{j \in \mathcal{J}_{n^{(\ell)}}}
       E\left[
         {
           \left(
@@ -103,7 +103,7 @@
       +
       \sum_{
         \substack{
-          (j,\, j') \in \mathcal{J}_{n_\ell} \times \mathcal{J}_{n_\ell} \\
+          (j,\, j') \in \mathcal{J}_{n^{(\ell)}} \times \mathcal{J}_{n^{(\ell)}} \\
           j \neq j'
         }
       }
@@ -111,37 +111,37 @@
       E \left[w_{ij'}^{(\ell)} \right]
       E\left[x_j^{(\ell)} x_{j'}^{(\ell)} \right] \notag \\
     &amp;=
-      \sum_{j \in \mathcal{J}_{n_\ell}}
+      \sum_{j \in \mathcal{J}_{n^{(\ell)}}}
       \left(V\left[w_{ij}\right] - \left(E[w_{ij}]\right)^2\right)
       E \left[{\left(x_j^{(\ell)}\right)}^2\right]
       +
       \sum_{
         \substack{
-          (j,\, j') \in \mathcal{J}_{n_\ell} \times \mathcal{J}_{n_\ell} \\
+          (j,\, j') \in \mathcal{J}_{n^{(\ell)}} \times \mathcal{J}_{n^{(\ell)}} \\
           j \neq j'
         }
       } 0 \cdot 0 \cdot E\left[x_j^{(\ell)} x_{j'}^{(\ell)} \right]
       \notag \\
     &amp;=
       V_{W}^{(\ell)}
-      \sum_{j \in \mathcal{J}_{n_\ell}}
+      \sum_{j \in \mathcal{J}_{n^{(\ell)}}}
       E \left[{\left(x_j^{(\ell)}\right)}^2\right]. \label{w1}
 \end{align}
 ただし
-\(V_{W}^{(\ell)} = V\left[w_{i1}^{(\ell)}\right] = \cdots V\left[w_{n_\ell}^{(\ell)}\right]\)
+\(V_{W}^{(\ell)} = V\left[w_{i1}^{(\ell)}\right] = \cdots V\left[w_{n^{(\ell)}}^{(\ell)}\right]\)
 と置いた．</p>
 <p>(\ref{a})の右辺第2項について
 \begin{align}
-    {\left(\sum_{j \in \mathcal{J}_{n_\ell}} E\left[w_{ij}^{(\ell)}\right]E\left[x_j^{(\ell)}\right]\right)}^2
+    {\left(\sum_{j \in \mathcal{J}_{n^{(\ell)}}} E\left[w_{ij}^{(\ell)}\right]E\left[x_j^{(\ell)}\right]\right)}^2
     =
-    {\left(\sum_{j \in \mathcal{J}_{n_\ell}} 0 \cdot E\left[x_j^{(\ell)}\right]\right)}^2 = 0 \label{w2}
+    {\left(\sum_{j \in \mathcal{J}_{n^{(\ell)}}} 0 \cdot E\left[x_j^{(\ell)}\right]\right)}^2 = 0 \label{w2}
 \end{align}
 が成り立つ．(\ref{w1})と(\ref{w2})を合わせて
 \begin{align}
   V\left[y_i^{(\ell)}\right]
   =
     V_{W}^{(\ell)}
-      \sum_{j \in \mathcal{J}_{n_\ell}}
+      \sum_{j \in \mathcal{J}_{n^{(\ell)}}}
       E \left[{\left(x_j^{(\ell)}\right)}^2\right].
       \label{v}
 \end{align}
@@ -156,10 +156,10 @@
 \begin{gather}
   V\left[x_i^{(\ell + 1)}\right]
     \approx V\left[y_i^{(\ell)}\right]
-    \text{ for all \(i \in \mathcal{J}_{n_{\ell + 1}}\)}, \tag{H1} \label{H1} \\
+    \text{ for all \(i \in \mathcal{J}_{n^{(\ell + 1)}}\)}, \tag{H1} \label{H1} \\
   E\left[x_j^{(\ell)}\right]
     = 0
-    \text{ for all \(j \in \mathcal{J}_{n_\ell}\)}. \tag{H2} \label{ex0}
+    \text{ for all \(j \in \mathcal{J}_{n^{(\ell)}}\)}. \tag{H2} \label{ex0}
 \end{gather}
 </p>
 <p>(\ref{H1})について，活性化関数として用いられるものは，通常
@@ -185,9 +185,9 @@
   E\left[x_i^{(\ell)}\right]
   &amp;= E\left[g\left( y_i^{(\ell - 1)} \right)\right] \\
   &amp;\approx E\left[ y_i^{(\ell - 1)} + g(0)\right] \\
-  &amp;= E\left[\sum_{j \in \mathcal{J}_{n_\ell}} w_{ij}^{(\ell - 1)} x_j^{(\ell - 1)} + g(0)\right] \\
-  &amp;= \sum_{j \in \mathcal{J}_{n_\ell}} E\left[w_{ij}^{(\ell - 1)}\right] E \left[ x_j^{(\ell - 1)} \right]  + g(0) \\
-  &amp;= \sum_{j \in \mathcal{J}_{n_\ell}} 0 \cdot E \left[ x_j^{(\ell - 1)} \right]  + g(0)\\
+  &amp;= E\left[\sum_{j \in \mathcal{J}_{n^{(\ell)}}} w_{ij}^{(\ell - 1)} x_j^{(\ell - 1)} + g(0)\right] \\
+  &amp;= \sum_{j \in \mathcal{J}_{n^{(\ell)}}} E\left[w_{ij}^{(\ell - 1)}\right] E \left[ x_j^{(\ell - 1)} \right]  + g(0) \\
+  &amp;= \sum_{j \in \mathcal{J}_{n^{(\ell)}}} 0 \cdot E \left[ x_j^{(\ell - 1)} \right]  + g(0)\\
   &amp;= g(0)
 \end{align*}
 となるので，
@@ -205,11 +205,11 @@
   V\left[x_i^{(\ell + 1)}\right]
   =
   V_{W}^{(\ell)}
-  \sum_{j \in \mathcal{J}_{n_\ell}} V\left[x_j^{(\ell)}\right]
+  \sum_{j \in \mathcal{J}_{n^{(\ell)}}} V\left[x_j^{(\ell)}\right]
   \\
   V\left[x_i^{(\ell + 1)}\right]
   =
-  n_{\ell}
+  n^{(\ell)}
   V_{W}^{(\ell)}
   V\left[x_{1}^{(\ell)}\right]
 \end{gather*}
@@ -221,11 +221,11 @@
 \)
 とするためには
 \begin{gather*}
-  V_{W}^{(\ell)} = \frac{1}{n_{\ell}}. \label{n}
+  V_{W}^{(\ell)} = \frac{1}{n^{(\ell)}}. \label{n}
 \end{gather*}
 とすればよい．逆伝播も考慮して
 \begin{align}
-  V_W^{(\ell)} = \frac{2}{n_{\ell} + n_{\ell + 1}} \label{result}
+  V_W^{(\ell)} = \frac{2}{n^{(\ell)} + n^{(\ell + 1)}} \label{result}
 \end{align}
 と定める．この初期化手法は<a href="#glorot">Glorot et al. (2010)</a>で提案されたため<em>Glorot initialization</em>と呼ばれる．</p>
 <p><strong>例</strong>
@@ -241,20 +241,20 @@
 \end{align}
 で与えられる．(\ref{result})を利用すると
 \begin{align*}
-  \frac{a^2}{3} = \frac{2}{n_\ell + n_{\ell + 1}}.
+  \frac{a^2}{3} = \frac{2}{n^{(\ell)} + n^{(\ell + 1)}}.
 \end{align*}
 \(a\)
 は正だったことから
 \begin{align*}
-  a = \sqrt{\frac{6}{n_\ell + n_{\ell + 1}}}.
+  a = \sqrt{\frac{6}{n^{(\ell)} + n^{(\ell + 1)}}}.
 \end{align*}
 したがって
 \(W^{(\ell)}\)
 の各要素は
 \begin{gather*}
   \mathcal{U}\left(
-    - \sqrt{\frac{6}{n_{\ell} + n_{\ell + 1}}},\,
-   \sqrt{\frac{6}{n_{\ell} + n_{\ell + 1}}}
+    - \sqrt{\frac{6}{n^{(\ell)} + n^{(\ell + 1)}}},\,
+   \sqrt{\frac{6}{n^{(\ell)} + n^{(\ell + 1)}}}
   \right)
 \end{gather*}
 からサンプリングすればよい．</p>
@@ -296,7 +296,7 @@
   V\left[y_i^{(\ell)}\right]
   =
     V_{W}^{(\ell)}
-      \sum_{j \in \mathcal{J}_{n_\ell}}
+      \sum_{j \in \mathcal{J}_{n^{(\ell)}}}
       \frac{1}{2}
       V\left[y_j^{(\ell - 1)}\right]
 \end{align*}
@@ -304,7 +304,7 @@
 \begin{align*}
     V_{W}^{(\ell)}
     =
-    \frac{2}{n^{\ell}}.
+    \frac{2}{n^{(\ell)}}.
 \end{align*}
 この初期化手法は<a href="#he">He et al. (2015)</a>で提案されたため<em>He initialization</em>と呼ばれる．</p>
 <p><strong>【例】</strong>
@@ -314,8 +314,8 @@
 \(a\)
 は正の定数）から選ばれる場合，(\ref{uniform})を使って
 \begin{gather*}
-  \frac{a^2}{3} = \frac{2}{n^{\ell}} \\
-  a = \sqrt{\frac{6}{n_\ell}}
+  \frac{a^2}{3} = \frac{2}{n^{(\ell)}} \\
+  a = \sqrt{\frac{6}{n^{(\ell)}}}
 \end{gather*}
 </section>
 <section>
