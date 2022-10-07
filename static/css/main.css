@@ -6,7 +6,7 @@ body {
   font-family: "Roboto", "Noto Sans JP", sans-serif;
   font-size: 1.1rem;
   font-weight: 400;
-  font-feature-settings: "palt";
+  font-feature-settings: "kern" 1, "palt";
   font-feature-settings: "liga" 0;
   font-variant-ligatures: none;
   background-color: #f5f5f5;

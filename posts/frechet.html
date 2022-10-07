@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@pecorarista">
+  <meta name="twitter:title" content="線型回帰における最小二乗法の解のFréchet導関数を用いた導出 — pecorarista.com">
+  <meta name="twitter:description" content="">
+  <meta name="twitter:image" content="https://pecorarista.com/static/images/avatar.png">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Noto+Serif+JP&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Judson&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cosmo/bootstrap.min.css" integrity="sha384-5QFXyVb+lrCzdN228VS3HmzpiE7ZVwLQtkt+0d9W43LQMzz4HBnnqvVxKg6O+04d" crossorigin="anonymous">
+  <link rel="stylesheet" href="/static/css/prism-lucario.css" />
+  <link rel="stylesheet" href="/static/css/main.css" />
+
+  <title>線型回帰における最小二乗法の解のFréchet導関数を用いた導出</title>
+</head>
+
+<body>
+  <div class="wrapper">
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+          <div class="navbar-header pull-left"><a class="navbar-brand" href="/">pecorarista.com</a></div>
+          <div class="navbar-header pull-right">
+            <ul class="navbar-nav">
+              <li class="nav-item"><a class="nav-link active" href="/resources">Resources</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+    </header>
+    <main>
+
+      <article>
+        <div class="container">
+          <h1>線型回帰における最小二乗法の解のFréchet導関数を用いた導出</h1>
+          <div class="info text-muted">
+            Posted: 2022-10-07
+
+          </div>
+
+          <section>
+            入力が
+            \(n\)
+            次元，出力が
+            \(m\)
+            次元である多次元の回帰問題を考える．教師データのサイズを
+            \(N\)
+            とする．各入出力の組
+            \((x^i,\,y^i)\)
+            について
+            \begin{gather*}
+            x^i =
+            \begin{pmatrix}
+            x_1 \\
+            \vdots \\
+            x_n \\
+            \end{pmatrix},
+            \quad
+            y^i =
+            \begin{pmatrix}
+            y^1_1 \\
+            \vdots \\
+            y^1_m
+            \end{pmatrix}
+            \end{gather*}
+            とし，これらをまとめたものを
+            \begin{gather*}
+            X =
+            \begin{pmatrix}
+            x^1 &amp; \cdots &amp; x^N
+            \end{pmatrix}
+            =
+            \begin{pmatrix}
+            x^1_1 &amp; \cdots &amp; x^N_1 \\
+            \vdots &amp; \ddots &amp; \vdots\\
+            x^1_n &amp; \cdots &amp; x^N_n \\
+            \end{pmatrix}, \\
+            Y =
+            \begin{pmatrix}
+            y^1 &amp; \cdots &amp; y^N
+            \end{pmatrix}
+            =
+            \begin{pmatrix}
+            y^1_1 &amp; \cdots &amp; y^N_1 \\
+            \vdots &amp; \ddots &amp; \vdots \\
+            y^1_m &amp; \cdots &amp; y^N_m
+            \end{pmatrix}
+            \end{gather*}
+            と定義する．
+            回帰係数
+            \(W \in \mathbb{R}^{m \times n}\)
+            を
+            \begin{gather*}
+            W =
+            \begin{pmatrix}
+            w_{11} &amp; \cdots &amp; w_{1n} \\
+            \vdots &amp; \ddots &amp; \vdots \\
+            w_{m1} &amp; \cdots &amp; w_{mn}
+            \end{pmatrix} \\
+            \end{gather*}
+            とすると，予測誤差は
+            \begin{align*}
+            f(W) = \| WX - Y \|^2
+            \end{align*}
+            と表すことができる．ここで
+            \(\|\cdot\|\)
+            はFrobeniusノルムである．</p>
+            <p>回帰係数を
+              \(H\)だけ変化させたとき，
+              \(f\)
+              の変位は
+              \begin{align}
+              f(W + H) - f(H)
+              &amp;= {
+              \left\|
+              (W + H)X - Y
+              \right\|
+              }^2
+              -
+              {
+              \left\|
+              WX - Y
+              \right\|
+              }^2 \notag \\
+              &amp;=
+              \langle
+              XW - Y + XH,\,
+              XW - Y + XH
+              \rangle
+              -
+              {
+              \left\|
+              WX - Y
+              \right\|
+              }^2 \notag \\
+              &amp;=
+              {\| XW - Y \|}^2
+              + 2
+              \langle
+              XW - Y,\,
+              XH
+              \rangle
+              +
+              {\|
+              XH
+              \|}^2
+              -
+              {\|
+              XW - Y
+              \|}^2 \notag \\
+              &amp;=
+              2
+              \langle
+              XW - Y,\,
+              XH
+              \rangle
+              + {\|XH\|}^2 \notag \\
+              &amp;=
+              2
+              \langle
+              X^\top(XW - Y),\,
+              H
+              \rangle
+              + {\|XH\|}^2 \label{result}
+              \end{align}
+              である．Cauchy&ndash;でSchwarzの不等式より\(\|XH\|^2 \leq {\|X\|}^2 {\|H\|}^2 \)
+              であるから，
+              任意の正数
+              \(
+              \varepsilon
+              \)
+              に対して，
+              \(H\)
+              を
+              \(
+              \|H\| \leq \displaystyle \frac{\varepsilon}{\|X\|^2 + 1}
+              \)
+              を満たすように小さくとれば，
+              \begin{align*}
+              \|f(W + H) - f(W) - 2\langle X^\top (XW - Y),\, H \rangle\| \leq \varepsilon \|H\|
+              \end{align*}
+              が成り立ち，
+              \(f\)
+              の
+              \(W\)
+              における任意の微小変化
+              \(H\)
+              に対するFréchet導関数が
+              (\ref{result})
+              の右辺第1項であることがわかる：
+              \begin{align*}
+              Df(W)(H) = 2 \langle X^\top(XW - Y),\, H \rangle.
+              \end{align*}
+              また
+              \(f\)
+              が凸関数であるから，最小化するためには
+              \begin{gather*}
+              X^\top (XW - Y) = 0 \\
+              X^\top XW = X^\top Y
+              \end{gather*}
+              となることが必要十分である．
+              \(X^\top X\)
+              が正則ならば，解
+              \(W^*\)
+              は
+              \begin{gather*}
+              W^* = (X^\top X)^{-1}X^\top Y.
+              \end{gather*}
+              となる．
+            </p>
+          </section>
+
+        </div>
+      </article>
+
+    </main>
+    <footer>
+      <div class="footer text-center">
+        <span>© 2015&ndash;2022 Akira Miyazawa</span>
+      </div>
+
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap.native@2.0.15/dist/bootstrap-native-v4.min.js"></script>
+    <script src="/static/js/prism.js"></script>
+    <script src="/static/js/prism-bash.min.js"></script>
+    <script src="/static/js/prism-latex.min.js"></script>
+    <script src="/static/js/prism-makefile.min.js"></script>
+    <script src="/static/js/prism-java.min.js"></script>
+    <script src="/static/js/prism-javascript.min.js"></script>
+    <script src="/static/js/prism-scala.min.js"></script>
+    <script src="/static/js/prism-markdown.min.js"></script>
+    <script src="/static/js/prism-apacheconf.min.js"></script>
+    <script src="/static/js/prism-perl.min.js"></script>
+    <script src="/static/js/prism-haskell.min.js"></script>
+    <script src="/static/js/prism-lua.min.js"></script>
+    <script src="https://kit.fontawesome.com/30a99ec99f.js" crossorigin="anonymous"></script>
+    <script src="/static/js/main.js"></script>
+
+
+    <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <script>
+      MathJax = {
+        loader: {
+          load: [
+            '[tex]/cases',
+            '[tex]/empheq'
+          ]
+        },
+        tex: {
+          packages: {
+            '[+]': [
+              'empheq',
+              'cases'
+            ]
+          },
+          autoload: {
+            cases: [
+              [],
+              ['numcases', 'subnumcases']
+            ]
+          },
+          macros: {
+            parentheses: ["\\left(#1\\right)", 1],
+            brackets: ["\\left[#1\\right]", 1],
+            norm: ["\\left\\|#1\\right\\|", 1],
+            abs: ["\\left|#1\\right|", 1],
+            diag: "\\mathop{\\rm diag}",
+            nn: "\\mathop{\\rm NN}",
+            ff: "\\mathop{\\rm FF}",
+            minimize: "\\mathop{\\rm minimize}",
+            res: "\\mathop{\\rm Res}",
+            real: "\\mathop{\\rm Re}",
+            trace: "\\mathop{\\rm tr}",
+            relu: "\\mathop{\\rm ReLU}",
+            id: "\\mathop{\\rm id}",
+            imaginary: "\\mathop{\\rm Im}"
+          },
+          tags: 'ams',
+        }
+      };
+    </script>
+
+  </div>
+</body>
+
+</html>
