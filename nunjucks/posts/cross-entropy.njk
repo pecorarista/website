@@ -3,6 +3,7 @@
 {% set mathematical = 'true' %}
 {% set title = 'Cross entropyやsoftmaxに関するメモ' %}
 {% set posted = '2020-03-05' %}
+{% set modified = '2022-10-07' %}
 
 {% block post %}
 <section>
@@ -18,7 +19,7 @@
 かつ
 \(\sum_{k = 1}^K q_k =1\)
 である。したがって
-\(\boldsymbol{q} = (q_1,\,\ldots,\,q_K)^\top\)
+\(\boldsymbol{q} = {\begin{pmatrix} q_1 &amp; \cdots &amp; q_K\end{pmatrix}}^\top\)
 は
 \((K-1)\)-標準単体(standard simplex)
 \(\varDelta^{K -1} = \{ \boldsymbol{x} \in \mathbb{R}^K \mid \sum_{i = 1}^K x_i = 1,\, x_1 \geq 0,\, \ldots,\, x_K \geq 0 \}\)
@@ -34,7 +35,7 @@
 とし、
 \(p_k := n_k / N\)
 とする。このとき
-\(\boldsymbol{p} = (p_1,\,\ldots,\,p_K)^\top\)
+\(\boldsymbol{p} = {\begin{pmatrix}p_1 &amp; \cdots &amp; p_K\end{pmatrix}}^\top\)
 は観測によって得られた確率である。最尤推定により
 \(\boldsymbol{q}\)
 を求めるには以下を求める。
@@ -56,11 +57,12 @@
 が与えられた場合、<strong>ソフトマックス</strong>(softmax)を用いて正規化するのが一般的である。
 \begin{align*}
   \operatorname{softmax}(\boldsymbol{a}) =
-  \left(
-    \frac{\exp(a_1)}{\sum_{k = 1}^K \exp(u_k)},
-    \ldots,\,
-    \frac{\exp(a_K)}{\sum_{k = 1}^K \exp(a_k)}
-  \right)^\top
+    \frac{\exp(a_1)}{\sum_{k = 1}^K \exp(a_k)}
+    \begin{pmatrix}
+      \exp(a_1) \\
+      \vdots \\
+      \exp(a_K)
+    \end{pmatrix}
 \end{align*}
 ソフトマックスの値域は\(\operatorname{relint} \varDelta^{K - 1} = \{ \boldsymbol{x} \in \mathbb{R}^K \mid \sum_{i = 1}^K x_i = 1,\, x_1 \gt 0,\, \ldots,\, x_K \gt 0 \} \subset \varDelta^{K - 1}\)であるので、その出力を確率と見なすことができるのである。
 </p>
