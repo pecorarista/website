@@ -1,0 +1,180 @@
+{% extends '_layout/_article.njk' %}
+{% set lang = 'ja' %}
+{% set mathematical = 'true' %}
+{% set title = '線型回帰における最小二乗法の解のFréchet導関数を用いた導出' %}
+{% set posted = '2022-10-07' %}
+
+
+{% block post %}
+<section>
+入力が
+\(n\)
+次元，出力が
+\(m\)
+次元である多次元の回帰問題を考える．教師データのサイズを
+\(N\)
+とする．各入出力の組
+\((x^i,\,y^i)\)
+について
+\begin{gather*}
+  x^i =
+  \begin{pmatrix}
+    x_1 \\
+    \vdots \\
+    x_n \\
+  \end{pmatrix},
+  \quad
+  y^i =
+  \begin{pmatrix}
+    y^1_1 \\
+    \vdots \\
+    y^1_m
+  \end{pmatrix}
+\end{gather*}
+とし，これらをまとめたものを
+\begin{gather*}
+  X =
+  \begin{pmatrix}
+    x^1 &amp; \cdots &amp; x^N
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    x^1_1    &amp; \cdots &amp; x^N_1 \\
+    \vdots &amp; \ddots &amp; \vdots\\
+    x^1_n    &amp; \cdots &amp; x^N_n \\
+  \end{pmatrix}, \\
+  Y =
+  \begin{pmatrix}
+    y^1 &amp; \cdots &amp; y^N
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    y^1_1  &amp; \cdots &amp; y^N_1 \\
+    \vdots &amp; \ddots &amp; \vdots \\
+    y^1_m  &amp; \cdots &amp; y^N_m
+  \end{pmatrix}
+\end{gather*}
+と定義する．
+回帰係数
+\(W \in \mathbb{R}^{m \times n}\)
+を
+\begin{gather*}
+  W =
+  \begin{pmatrix}
+    w_{11}  &amp; \cdots &amp; w_{1n} \\
+    \vdots &amp; \ddots &amp; \vdots \\
+    w_{m1}    &amp; \cdots &amp; w_{mn}
+  \end{pmatrix} \\
+\end{gather*}
+とすると，予測誤差は
+\begin{align*}
+  f(W) = \| WX - Y \|^2
+\end{align*}
+と表すことができる．ここで
+\(\|\cdot\|\)
+はFrobeniusノルムである．</p>
+<p>回帰係数を
+\(H\)だけ変化させたとき，
+\(f\)
+の変位は
+\begin{align}
+  f(W + H) - f(H)
+  &amp;= {
+    \left\|
+      (W + H)X - Y
+    \right\|
+  }^2
+  -
+  {
+    \left\|
+      WX - Y
+    \right\|
+  }^2 \notag \\
+  &amp;=
+  \langle
+    XW - Y + XH,\,
+    XW - Y + XH
+  \rangle
+  -
+  {
+    \left\|
+      WX - Y
+    \right\|
+  }^2 \notag \\
+  &amp;=
+  {\| XW - Y \|}^2
+  + 2
+  \langle
+    XW - Y,\,
+    XH
+  \rangle
+  +
+  {\|
+    XH
+  \|}^2
+  -
+  {\|
+    XW - Y
+  \|}^2 \notag \\
+  &amp;=
+  2
+  \langle
+    XW - Y,\,
+    XH
+  \rangle
+  + {\|XH\|}^2 \notag \\
+  &amp;=
+  2
+  \langle
+    X^\top(XW - Y),\,
+    H
+  \rangle
+  + {\|XH\|}^2 \label{result}
+\end{align}
+である．Cauchy&ndash;でSchwarzの不等式より\(\|XH\|^2 \leq {\|X\|}^2 {\|H\|}^2 \)
+であるから，
+任意の正数
+\(
+\varepsilon
+\)
+に対して，
+\(H\)
+を
+\(
+  \|H\| \leq \displaystyle \frac{\varepsilon}{\|X\|^2 + 1}
+\)
+を満たすように小さくとれば，
+\begin{align*}
+  \|f(W + H) - f(W) - 2\langle X^\top (XW - Y),\, H \rangle\| \leq \varepsilon \|H\|
+\end{align*}
+が成り立ち，
+\(f\)
+の
+\(W\)
+における任意の微小変化
+\(H\)
+に対するFréchet導関数が
+(\ref{result})
+の右辺第1項であることがわかる：
+\begin{align*}
+  Df(W)(H) = 2 \langle X^\top(XW - Y),\, H \rangle.
+\end{align*}
+また
+\(f\)
+が凸関数であるから，最小化するためには
+\begin{gather*}
+  X^\top (XW - Y) = 0 \\
+  X^\top XW = X^\top Y
+\end{gather*}
+となることが必要十分である．
+\(X^\top X\)
+が正則ならば，解
+\(W^*\)
+は
+\begin{gather*}
+  W^* = (X^\top X)^{-1}X^\top Y.
+\end{gather*}
+となる．
+</p>
+</section>
+{% endblock %}

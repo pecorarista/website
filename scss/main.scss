@@ -23,7 +23,7 @@ body {
   font-family: $western-font, $jp-font, sans-serif;
   font-size: 1.1rem;
   font-weight: 400;
-  font-feature-settings: 'palt';
+  font-feature-settings: 'kern' 1, 'palt';  // 'palt' is not valid for Not Sans JP
   font-feature-settings: 'liga' 0;
   font-variant-ligatures: none;
   background-color: $white-smoke;
