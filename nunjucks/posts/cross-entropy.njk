@@ -56,8 +56,8 @@
 \(\boldsymbol{a} \in \mathbb{R}^K\)
 が与えられた場合、<strong>ソフトマックス</strong>(softmax)を用いて正規化するのが一般的である。
 \begin{align*}
-  \operatorname{softmax}(\boldsymbol{a}) =
-    \frac{\exp(a_1)}{\sum_{k = 1}^K \exp(a_k)}
+  \softmax(\boldsymbol{a}) =
+    \frac{1}{\sum_{k = 1}^K \exp(a_k)}
     \begin{pmatrix}
       \exp(a_1) \\
       \vdots \\
