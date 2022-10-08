@@ -64,7 +64,7 @@
             \begin{pmatrix}
             x_1 \\
             \vdots \\
-            x_n \\
+            x_n
             \end{pmatrix},
             \quad
             y^i =
@@ -78,9 +78,9 @@
             \begin{gather*}
             X =
             \begin{pmatrix}
-            x^1{}^\top \\
-            \vdots \\
-            x^N{}^\top
+            x^1 &amp;
+            \cdots &amp;
+            x^N
             \end{pmatrix}
             =
             \begin{pmatrix}
@@ -90,9 +90,9 @@
             \end{pmatrix}, \\
             Y =
             \begin{pmatrix}
-            y^1{}^\top \\
-            \vdots \\
-            y^N{}^\top
+            y^1 &amp;
+            \cdots &amp;
+            y^N
             \end{pmatrix}
             =
             \begin{pmatrix}
@@ -103,19 +103,19 @@
             \end{gather*}
             と定義する．
             回帰係数
-            \(W \in \mathbb{R}^{n \times m}\)
+            \(W \in \mathbb{R}^{m \times n}\)
             を
             \begin{gather*}
             W =
             \begin{pmatrix}
-            w_{11} &amp; \cdots &amp; w_{1m} \\
+            w_{11} &amp; \cdots &amp; w_{1n} \\
             \vdots &amp; \ddots &amp; \vdots \\
-            w_{n1} &amp; \cdots &amp; w_{nm}
+            w_{m1} &amp; \cdots &amp; w_{mn}
             \end{pmatrix} \\
             \end{gather*}
             とすると，予測誤差は
             \begin{align*}
-            f(W) = \| XW - Y \|^2
+            f(W) = \frac{1}{2} \| WX - Y \|^2
             \end{align*}
             と表すことができる．ここで
             \(\|\cdot\|\)
@@ -126,59 +126,69 @@
               の変位は
               \begin{align}
               f(W + H) - f(H)
-              &amp;= {
+              &amp;= \frac{1}{2}{
               \left\|
-              X(W + H) - Y
+              (W + H)X - Y
               \right\|
               }^2
               -
+              \frac{1}{2}
               {
               \left\|
-              XW - Y
+              WX - Y
               \right\|
               }^2 \notag \\
               &amp;=
+              \frac{1}{2}
               \langle
-              XW - Y + XH,\,
-              XW - Y + XH
+              WX - Y + HX,\,
+              WX - Y + HX
               \rangle
               -
+              \frac{1}{2}
               {
               \left\|
-              XW - Y
+              WX - Y
               \right\|
               }^2 \notag \\
               &amp;=
-              {\| XW - Y \|}^2
-              + 2
+              \frac{1}{2}
+              {\| WX - Y \|}^2
+              +
               \langle
-              XW - Y,\,
-              XH
+              WX - Y,\,
+              HX
               \rangle
               +
+              \frac{1}{2}
               {\|
-              XH
+              HX
               \|}^2
               -
+              \frac{1}{2}
               {\|
-              XW - Y
+              WX - Y
               \|}^2 \notag \\
               &amp;=
-              2
-              \langle
-              XW - Y,\,
-              XH
-              \rangle
-              + {\|XH\|}^2 \notag \\
+              \trace (
+              (WX - Y) (HX)^\top
+              )
+              +\frac{1}{2}
+              {\|HX\|}^2 \notag \\
               &amp;=
-              2
+              \trace(
+              (WX - Y)X^\top H^\top
+              )
+              +\frac{1}{2}
+              {\|HX\|}^2 \notag \\
+              &amp;=
               \langle
-              X^\top(XW - Y),\,
+              (WX - Y)X^\top,\,
               H
               \rangle
-              + {\|XH\|}^2 \label{result}
+              + \frac{1}{2}{\|HX\|}^2 \label{result}
               \end{align}
-              である．Cauchy&ndash;でSchwarzの不等式より\(\|XH\|^2 \leq {\|H\|}^2 {\|X\|}^2 \)
+              である．Cauchy&ndash;Schwarzの不等式より\(\|HX\|^2 \leq {\|H\|}^2 {\|X\|}^2 \)
               であるから，
               任意の正数
               \(
@@ -188,11 +198,11 @@
               \(H\)
               を
               \(
-              \|H\| \leq \displaystyle \frac{\varepsilon}{\|X\|^2 + 1}
+              \|H\| \leq \displaystyle \frac{\varepsilon}{2 \|X\|^2 + 1}
               \)
               を満たすように小さくとれば，
               \begin{align*}
-              \|f(W + H) - f(W) - 2\langle X^\top (XW - Y),\, H \rangle\| \leq \varepsilon \|H\|
+              \|f(W + H) - f(W) - \langle ( WX - Y)X^\top,\, H \rangle\| \leq \varepsilon \|H\|
               \end{align*}
               が成り立ち，
               \(f\)
@@ -204,24 +214,18 @@
               (\ref{result})
               の右辺第1項であることがわかる：
               \begin{align*}
-              Df(W)(H) = 2 \langle X^\top(XW - Y),\, H \rangle.
+              Df(W)(H) = \langle ( WX - Y )X^\top,\, H \rangle.
               \end{align*}
-              また
-              \(f\)
-              が凸関数であるから，最小化するためには
+              したがって最小化するためには
               \begin{gather*}
-              X^\top (XW - Y) = 0 \\
-              X^\top XW = X^\top Y
+              ( WX - Y )X^\top = 0 \\
+              W XX^\top = YX^\top
               \end{gather*}
-              となることが必要十分である．
-              \(X^\top X\)
-              が正則ならば，解
-              \(W^*\)
-              は
+              \(XX^\top\)
+              が正則ならば
               \begin{gather*}
-              W^* = (X^\top X)^{-1}X^\top Y.
+              W = Y X^\top (XX^\top)^{-1}.
               \end{gather*}
-              となる．
             </p>
           </section>
 
@@ -276,21 +280,21 @@
             ]
           },
           macros: {
-            parentheses: ["\\left(#1\\right)", 1],
-            brackets: ["\\left[#1\\right]", 1],
-            norm: ["\\left\\|#1\\right\\|", 1],
             abs: ["\\left|#1\\right|", 1],
+            brackets: ["\\left[#1\\right]", 1],
             diag: "\\mathop{\\rm diag}",
-            nn: "\\mathop{\\rm NN}",
             ff: "\\mathop{\\rm FF}",
-            softmax: "\\mathop{\\rm softmax}",
-            minimize: "\\mathop{\\rm minimize}",
-            res: "\\mathop{\\rm Res}",
-            real: "\\mathop{\\rm Re}",
-            trace: "\\mathop{\\rm tr}",
-            relu: "\\mathop{\\rm ReLU}",
             id: "\\mathop{\\rm id}",
-            imaginary: "\\mathop{\\rm Im}"
+            imaginary: "\\mathop{\\rm Im}",
+            minimize: "\\mathop{\\rm minimize}",
+            nn: "\\mathop{\\rm NN}",
+            norm: ["\\left\\|#1\\right\\|", 1],
+            parentheses: ["\\left(#1\\right)", 1],
+            real: "\\mathop{\\rm Re}",
+            res: "\\mathop{\\rm Res}",
+            relu: "\\mathop{\\rm ReLU}",
+            trace: "\\mathop{\\rm tr}",
+            softmax: "\\mathop{\\rm softmax}"
           },
           tags: 'ams',
         }
