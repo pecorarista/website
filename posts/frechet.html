@@ -78,17 +78,21 @@
             \begin{gather*}
             X =
             \begin{pmatrix}
-            x^1 &amp; \cdots &amp; x^N
+            x^1{}^\top \\
+            \vdots \\
+            x^N{}^\top
             \end{pmatrix}
             =
             \begin{pmatrix}
             x^1_1 &amp; \cdots &amp; x^N_1 \\
             \vdots &amp; \ddots &amp; \vdots\\
-            x^1_n &amp; \cdots &amp; x^N_n \\
+            x^N_1 &amp; \cdots &amp; x^N_n \\
             \end{pmatrix}, \\
             Y =
             \begin{pmatrix}
-            y^1 &amp; \cdots &amp; y^N
+            y^1{}^\top \\
+            \vdots \\
+            y^N{}^\top
             \end{pmatrix}
             =
             \begin{pmatrix}
@@ -99,19 +103,19 @@
             \end{gather*}
             と定義する．
             回帰係数
-            \(W \in \mathbb{R}^{m \times n}\)
+            \(W \in \mathbb{R}^{n \times m}\)
             を
             \begin{gather*}
             W =
             \begin{pmatrix}
-            w_{11} &amp; \cdots &amp; w_{1n} \\
+            w_{11} &amp; \cdots &amp; w_{1m} \\
             \vdots &amp; \ddots &amp; \vdots \\
-            w_{m1} &amp; \cdots &amp; w_{mn}
+            w_{n1} &amp; \cdots &amp; w_{nm}
             \end{pmatrix} \\
             \end{gather*}
             とすると，予測誤差は
             \begin{align*}
-            f(W) = \| WX - Y \|^2
+            f(W) = \| XW - Y \|^2
             \end{align*}
             と表すことができる．ここで
             \(\|\cdot\|\)
@@ -124,13 +128,13 @@
               f(W + H) - f(H)
               &amp;= {
               \left\|
-              (W + H)X - Y
+              X(W + H) - Y
               \right\|
               }^2
               -
               {
               \left\|
-              WX - Y
+              XW - Y
               \right\|
               }^2 \notag \\
               &amp;=
@@ -141,7 +145,7 @@
               -
               {
               \left\|
-              WX - Y
+              XW - Y
               \right\|
               }^2 \notag \\
               &amp;=
@@ -174,7 +178,7 @@
               \rangle
               + {\|XH\|}^2 \label{result}
               \end{align}
-              である．Cauchy&ndash;でSchwarzの不等式より\(\|XH\|^2 \leq {\|X\|}^2 {\|H\|}^2 \)
+              である．Cauchy&ndash;でSchwarzの不等式より\(\|XH\|^2 \leq {\|H\|}^2 {\|X\|}^2 \)
               であるから，
               任意の正数
               \(
