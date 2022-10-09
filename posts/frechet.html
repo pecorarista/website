@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:site" content="@pecorarista">
-  <meta name="twitter:title" content="線型回帰における最小二乗法の解のFréchet導関数を用いた導出 — pecorarista.com">
+  <meta name="twitter:title" content="Solving Linear Regression Problems Using Fréchet Derivatives — pecorarista.com">
   <meta name="twitter:description" content="">
   <meta name="twitter:image" content="https://pecorarista.com/static/images/avatar.png">
   <link rel="icon" href="/favicon.ico">
@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="/static/css/prism-lucario.css" />
   <link rel="stylesheet" href="/static/css/main.css" />
 
-  <title>線型回帰における最小二乗法の解のFréchet導関数を用いた導出</title>
+  <title>Solving Linear Regression Problems Using Fréchet Derivatives</title>
 </head>
 
 <body>
@@ -43,22 +43,18 @@
 
       <article>
         <div class="container">
-          <h1>線型回帰における最小二乗法の解のFréchet導関数を用いた導出</h1>
+          <h1>Solving Linear Regression Problems Using Fréchet Derivatives</h1>
           <div class="info text-muted">
             Posted: 2022-10-07
 
           </div>
 
           <section>
-            入力が
-            \(n\)
-            次元，出力が
-            \(m\)
-            次元である多次元の回帰問題を考える．教師データのサイズを
-            \(N\)
-            とする．各入出力の組
-            \((x^i,\,y^i)\)
-            について
+            Suppose we have a linear regression problem,
+            where input vectors are in \(\mathbb{R}^n\)
+            and output vectors are in \(\mathbb{R}^m\).
+            Let \(N\) be the size of dataset.
+            For each sample \((x^i,\,y^i)\), we write
             \begin{gather*}
             x^i =
             \begin{pmatrix}
@@ -72,9 +68,9 @@
             y^i_1 \\
             \vdots \\
             y^i_m
-            \end{pmatrix}
+            \end{pmatrix},
             \end{gather*}
-            とし，これらをまとめたものを
+            and define \(X\) and \(Y\) as
             \begin{gather*}
             X =
             \begin{pmatrix}
@@ -99,33 +95,27 @@
             y^1_1 &amp; \cdots &amp; y^N_1 \\
             \vdots &amp; \ddots &amp; \vdots \\
             y^1_m &amp; \cdots &amp; y^N_m
-            \end{pmatrix}
+            \end{pmatrix}.
             \end{gather*}
-            と定義する．
-            回帰係数
-            \(W \in \mathbb{R}^{m \times n}\)
-            を
+            Let \(W \in \mathbb{R}^{m \times n}\)
+            be the matrix of coefficients as follows:
             \begin{gather*}
             W =
             \begin{pmatrix}
             w_{11} &amp; \cdots &amp; w_{1n} \\
             \vdots &amp; \ddots &amp; \vdots \\
             w_{m1} &amp; \cdots &amp; w_{mn}
-            \end{pmatrix} \\
+            \end{pmatrix}. \\
             \end{gather*}
-            とすると，予測誤差は
+            The squared error \(E\) is
             \begin{align*}
-            f(W) = \frac{1}{2} \| WX - Y \|^2
+            E(W) = \frac{1}{2} \| WX - Y \|^2,
             \end{align*}
-            と表すことができる．ここで
-            \(\|\cdot\|\)
-            はFrobeniusノルムである．</p>
-            <p>回帰係数を
-              \(H\)だけ変化させたとき，
-              \(f\)
-              の変位は
+            where \(\|\cdot\|\) is the Frobenius norm.</p>
+            <p>If we change \(W\) along \(H\),
+              \(E\) changes as below:
               \begin{align}
-              f(W + H) - f(H)
+              E(W + H) - E(H)
               &amp;= \frac{1}{2}{
               \left\|
               (W + H)X - Y
@@ -188,41 +178,26 @@
               \rangle
               + \frac{1}{2}{\|HX\|}^2 \label{result}
               \end{align}
-              である．Cauchy&ndash;Schwarzの不等式より\(\|HX\|^2 \leq {\|H\|}^2 {\|X\|}^2 \)
-              であるから，
-              任意の正数
-              \(
-              \varepsilon
-              \)
-              に対して，
-              \(H\)
-              を
-              \(
-              \|H\| \leq \displaystyle \frac{\varepsilon}{2 \|X\|^2 + 1}
-              \)
-              を満たすように小さくとれば，
+              According to Cauchy&ndash;Schwarz inequality, \(\|HX\|^2 \leq {\|H\|}^2 {\|X\|}^2 \).
+              Therefore,
+              for any \(\varepsilon &gt; 0\),
+              if we take \(H\) so small that
+              \(\|H\| \leq \displaystyle \frac{\varepsilon}{2 \|X\|^2 + 1},\)
               \begin{align*}
               \|f(W + H) - f(W) - \langle ( WX - Y)X^\top,\, H \rangle\| \leq \varepsilon \|H\|
               \end{align*}
-              が成り立ち，
-              \(f\)
-              の
-              \(W\)
-              における任意の微小変化
-              \(H\)
-              に対するFréchet導関数が
-              (\ref{result})
-              の右辺第1項であることがわかる：
+              The derivative of \(f\) with respect to \(W\) at an arbitrary point \(W\) along \(H\)
+              is the first term of the right-hand side of (\ref{result}):
               \begin{align*}
-              Df(W)(H) = \langle ( WX - Y )X^\top,\, H \rangle.
+              D_W f(W)(H) = \langle ( WX - Y )X^\top,\, H \rangle.
               \end{align*}
-              したがって最小化するためには
+              Since \(f\) is convex,
+              \(f\) has the global minimum if and only if
               \begin{gather*}
               ( WX - Y )X^\top = 0 \\
               W XX^\top = YX^\top
               \end{gather*}
-              \(XX^\top\)
-              が正則ならば
+              If \(XX^\top\) is regular,
               \begin{gather*}
               W = Y X^\top (XX^\top)^{-1}.
               \end{gather*}
