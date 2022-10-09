@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@pecorarista">
+  <meta name="twitter:title" content="Compute backpropagation using Fréchet derivative — pecorarista.com">
+  <meta name="twitter:description" content="">
+  <meta name="twitter:image" content="https://pecorarista.com/static/images/avatar.png">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Noto+Serif+JP&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Judson&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cosmo/bootstrap.min.css" integrity="sha384-5QFXyVb+lrCzdN228VS3HmzpiE7ZVwLQtkt+0d9W43LQMzz4HBnnqvVxKg6O+04d" crossorigin="anonymous">
+  <link rel="stylesheet" href="/static/css/prism-lucario.css" />
+  <link rel="stylesheet" href="/static/css/main.css" />
+
+  <title>Compute backpropagation using Fréchet derivative</title>
+</head>
+
+<body>
+  <div class="wrapper">
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+          <div class="navbar-header pull-left"><a class="navbar-brand" href="/">pecorarista.com</a></div>
+          <div class="navbar-header pull-right">
+            <ul class="navbar-nav">
+              <li class="nav-item"><a class="nav-link active" href="/resources">Resources</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+    </header>
+    <main>
+
+      <article>
+        <div class="container">
+          <h1>Compute backpropagation using Fréchet derivative</h1>
+          <div class="info text-muted">
+            Posted: 2022-10-09
+
+          </div>
+
+          <section>
+            <h2>Simple Example</h2>
+            <p>
+              Let \(W \in \mathbb{R}^{m \times n}\) be the final linear layer of a multi-layer neural network,
+              \(z \in \mathbb{R}^n\) be the output of the previous layer
+              computed from an arbitrary input vector \(x_i \in \mathbb{R}^n\),
+              and \(y = y_i \in \mathbb{R}^m\) be the target vector corresponding to \(x_i \in \mathbb{R}^n\).
+              The activation function of the last layer is the identity function for simplicity.
+            </p>
+            <p>The loss function \(E\) is defined as
+              \begin{align}
+              E(W) = \frac{1}{2}\|Wz - y\|^2.
+              \end{align}
+              To derive Fréchet deriative of \(E\),
+              we first compute \(E(W + H) - E(W)\).
+              \begin{align*}
+              &amp; E(W + H) - E(W) \\
+              &amp;= \frac{1}{2}\|(W + H)z - y\|^2 - \frac{1}{2}\|Wz - y\|^2 \\
+              &amp;= \frac{1}{2} \langle Wz + Hz - y,\, Wz + Hz - y \rangle
+              -\frac{1}{2}{\| Wz - y \|}^2 \\
+              &amp;= \frac{1}{2}{\| Wz - y \|}^2
+              + \langle Wz - y,\, Hz \rangle
+              + \frac{1}{2}{\|Hz\|}^2
+              -\frac{1}{2}{\| Wz - y \|}^2 \\
+              &amp;= \trace ((Wz - y)z^\top H^\top )+ \frac{1}{2} {\|Hz\|}^2 \\
+              &amp;= \langle (Wz - y)z^\top,\, H \rangle + \frac{1}{2} {\|Hz\|}^2.
+              \end{align*}
+              By using Cauchy&ndash;Schwarz inequality,
+              \begin{align*}
+              \frac{1}{2} {\|Hz\|}^2 \leq \frac{1}{2} \|H\|^2 \|z\|^2.
+              \end{align*}
+              Therefore, for any \(\varepsilon &gt; 0\),
+              if we take \(H\) satisfying \(\displaystyle \|H\| \leq \frac{\varepsilon}{2 \|z\|^2 + 1}\),
+              \begin{align*}
+              | E(W + H) - E(W) - \langle (Wz - y)z^\top,\, H \rangle | \leq \varepsilon \| H \|.
+              \end{align*}
+              Thus we have
+              \begin{align}
+              DE(W)(H) = \langle (Wz - y)z^\top,\, H \rangle. \label{dewzy}
+              \end{align}
+            </p>
+            <p>We can have (\ref{dewzy}) in another way using the chain rule:
+              \begin{align*}
+              D(g \circ f) = Dg(f(x)) \circ Df(x).
+              \end{align*}
+              Define \(g\colon \mathbb{R}^{m} \to \mathbb{R}\)
+              and \(f\colon \mathbb{R}^{m \times n} \to \mathbb{R}^m\) as follows:
+              \begin{align*}
+              g(u) = \frac{1}{2}\|u - y\|^2,\quad f(W) = Wz.
+              \end{align*}
+              Then
+              \begin{align*}
+              g(z + h) - g(z)
+              &amp;= \frac{1}{2}\|u + h - y\|^2 - \frac{1}{2}\|z - y\|^2 \\
+              &amp;= \frac{1}{2}\langle u + h - y,\, u + h - y\rangle - \frac{2}{2}\| u - y \|^2 \\
+              &amp;= \frac{1}{2} \| u - y \|^2 + \langle u - y,\, h\rangle - \frac{1}{2}\| u - y \|^2 \\
+              &amp;= \langle u - y,\, h\rangle,
+              \end{align*}
+              and
+              \begin{align*}
+              f(W + H) - f(W)
+              &amp;= (W + H)z - Wz \\
+              &amp;= Hz.
+              \end{align*}
+              Therefore
+              \begin{align*}
+              D(g \circ f)(Wz)(H) = \langle Wz - y,\, Hz \rangle = \langle (Wz - y)z^\top,\, z \rangle.
+              \end{align*}
+            </p>
+          </section>
+          <section>
+            <h2>Elements of the Derivative</h2>
+            <p>
+              To compute
+              \(\partial E / \partial w_{ij}\),
+              define
+              \(H_{ij} \in \mathbb{R}^{m \times n}\)
+              as follows:
+              \begin{gather*}
+              \begin{array}{c}
+              \begin{array}{ccccccc}
+              &amp; &amp; &amp; \text{\(j\)-th} &amp; &amp; &amp; \\
+              H_{ij} = hE_{ij},\quad
+              E_{ij} = (0 &amp; \cdots &amp; 0 &amp; he_i &amp; 0 &amp; \cdots &amp; 0),\quad
+              \end{array}
+              \end{array}
+              \begin{array}{c}
+              \begin{array}{ccccccc}
+              &amp; &amp; &amp; \text{\(i\)-th} &amp; &amp; &amp; \\
+              e_i = (0 &amp; \cdots &amp; 0 &amp; 1 &amp; 0 &amp; \cdots &amp; 0)^\top.
+              \end{array}
+              \end{array}
+              \end{gather*}
+              Let \(A = (Wz - y)z^\top\). Then,
+              \begin{align*}
+              h \frac{\partial E}{\partial w_{ij}}
+              &amp;= \langle A,\, H_{ij} \rangle \\
+              &amp;= h \trace ( A^\top E_{ij} ) \\
+              &amp;\;
+              \begin{array}{c}
+              \begin{array}{ccccccc}
+              &amp; &amp; &amp; \text{\(j\)-th} &amp; &amp; &amp; \\
+              = h\trace (0 &amp; \cdots &amp; 0 &amp; (\text{\(A\)'s \(i\)-th row})^\top &amp; 0 &amp; \cdots &amp; 0),
+              \end{array}
+              \end{array} \\
+              &amp;= h a_{ij}
+              \end{align*}
+              Thus we have
+              \begin{align*}
+              \frac{\partial E}{\partial w_{ij}} &amp;= a_{ij},
+              \end{align*}
+              and the partial derivative of \(E\) with respect to \(w_{ij}\) is
+              \begin{align*}
+              \frac{\partial E}{\partial w_{ij}} = [(Wz - y)x^\top]_{ij},
+              \end{align*}
+              where \([A]_{ij}\) is the \((i,\,j)\)-the element of a matrix \(A\).
+            </p>
+          </section>
+
+        </div>
+      </article>
+
+    </main>
+    <footer>
+      <div class="footer text-center">
+        <span>© 2015&ndash;2022 Akira Miyazawa</span>
+      </div>
+
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap.native@2.0.15/dist/bootstrap-native-v4.min.js"></script>
+    <script src="/static/js/prism.js"></script>
+    <script src="/static/js/prism-bash.min.js"></script>
+    <script src="/static/js/prism-latex.min.js"></script>
+    <script src="/static/js/prism-makefile.min.js"></script>
+    <script src="/static/js/prism-java.min.js"></script>
+    <script src="/static/js/prism-javascript.min.js"></script>
+    <script src="/static/js/prism-scala.min.js"></script>
+    <script src="/static/js/prism-markdown.min.js"></script>
+    <script src="/static/js/prism-apacheconf.min.js"></script>
+    <script src="/static/js/prism-perl.min.js"></script>
+    <script src="/static/js/prism-haskell.min.js"></script>
+    <script src="/static/js/prism-lua.min.js"></script>
+    <script src="https://kit.fontawesome.com/30a99ec99f.js" crossorigin="anonymous"></script>
+    <script src="/static/js/main.js"></script>
+
+
+    <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <script>
+      MathJax = {
+        loader: {
+          load: [
+            '[tex]/cases',
+            '[tex]/empheq'
+          ]
+        },
+        tex: {
+          packages: {
+            '[+]': [
+              'empheq',
+              'cases'
+            ]
+          },
+          autoload: {
+            cases: [
+              [],
+              ['numcases', 'subnumcases']
+            ]
+          },
+          macros: {
+            abs: ["\\left|#1\\right|", 1],
+            brackets: ["\\left[#1\\right]", 1],
+            diag: "\\mathop{\\rm diag}",
+            ff: "\\mathop{\\rm FF}",
+            id: "\\mathop{\\rm id}",
+            imaginary: "\\mathop{\\rm Im}",
+            minimize: "\\mathop{\\rm minimize}",
+            nn: "\\mathop{\\rm NN}",
+            norm: ["\\left\\|#1\\right\\|", 1],
+            parentheses: ["\\left(#1\\right)", 1],
+            real: "\\mathop{\\rm Re}",
+            res: "\\mathop{\\rm Res}",
+            relu: "\\mathop{\\rm ReLU}",
+            trace: "\\mathop{\\rm tr}",
+            softmax: "\\mathop{\\rm softmax}"
+          },
+          tags: 'ams',
+        }
+      };
+    </script>
+
+  </div>
+</body>
+
+</html>
