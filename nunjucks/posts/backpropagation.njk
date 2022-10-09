@@ -1,0 +1,126 @@
+{% extends '_layout/_article.njk' %}
+{% set lang = 'en' %}
+{% set mathematical = 'true' %}
+{% set title = 'Compute backpropagation using Fréchet derivative' %}
+{% set posted = '2022-10-09' %}
+
+{% block post %}
+<section>
+<h2>Simple Example</h2>
+<p>
+Let \(W \in \mathbb{R}^{m \times n}\) be the final linear layer of a multi-layer neural network,
+\(z \in \mathbb{R}^n\) be the output of the previous layer
+computed from an arbitrary input vector \(x_i \in \mathbb{R}^n\),
+and \(y = y_i \in \mathbb{R}^m\) be the target vector corresponding to \(x_i \in \mathbb{R}^n\).
+The activation function of the last layer is the identity function for simplicity.
+</p>
+<p>The loss function \(E\) is defined as
+\begin{align}
+  E(W) = \frac{1}{2}\|Wz - y\|^2.
+\end{align}
+To derive Fréchet deriative of \(E\),
+we first compute \(E(W + H) - E(W)\).
+\begin{align*}
+  &amp; E(W + H) - E(W) \\
+  &amp;= \frac{1}{2}\|(W + H)z - y\|^2 - \frac{1}{2}\|Wz - y\|^2 \\
+  &amp;= \frac{1}{2} \langle Wz + Hz - y,\, Wz + Hz - y \rangle
+  -\frac{1}{2}{\| Wz - y \|}^2 \\
+  &amp;= \frac{1}{2}{\| Wz - y \|}^2
+  + \langle Wz - y,\, Hz \rangle
+  + \frac{1}{2}{\|Hz\|}^2
+  -\frac{1}{2}{\| Wz - y \|}^2 \\
+  &amp;= \trace ((Wz - y)z^\top H^\top )+ \frac{1}{2} {\|Hz\|}^2 \\
+  &amp;= \langle (Wz - y)z^\top,\, H \rangle + \frac{1}{2} {\|Hz\|}^2.
+\end{align*}
+By using Cauchy&ndash;Schwarz inequality,
+\begin{align*}
+  \frac{1}{2} {\|Hz\|}^2 \leq \frac{1}{2} \|H\|^2 \|z\|^2.
+\end{align*}
+Therefore, for any \(\varepsilon &gt; 0\),
+if we take \(H\) satisfying \(\displaystyle \|H\| \leq \frac{\varepsilon}{2 \|z\|^2 + 1}\),
+\begin{align*}
+  | E(W + H) - E(W) - \langle (Wz - y)z^\top,\, H \rangle | \leq \varepsilon \| H \|.
+\end{align*}
+Thus we have
+\begin{align}
+  DE(W)(H) = \langle (Wz - y)z^\top,\, H \rangle. \label{dewzy}
+\end{align}
+</p>
+<p>We can have (\ref{dewzy}) in another way using the chain rule:
+\begin{align*}
+  D(g \circ f) = Dg(f(x)) \circ Df(x).
+\end{align*}
+Define \(g\colon \mathbb{R}^{m} \to \mathbb{R}\)
+and \(f\colon \mathbb{R}^{m \times n} \to \mathbb{R}^m\) as follows:
+\begin{align*}
+  g(u) = \frac{1}{2}\|u - y\|^2,\quad f(W) = Wz.
+\end{align*}
+Then
+\begin{align*}
+  g(z + h) - g(z)
+  &amp;= \frac{1}{2}\|u + h - y\|^2 - \frac{1}{2}\|z - y\|^2 \\
+  &amp;= \frac{1}{2}\langle u + h - y,\, u + h - y\rangle - \frac{2}{2}\| u - y \|^2 \\
+  &amp;= \frac{1}{2} \| u - y \|^2 + \langle u - y,\, h\rangle - \frac{1}{2}\| u - y \|^2 \\
+  &amp;= \langle u - y,\, h\rangle,
+\end{align*}
+and
+\begin{align*}
+  f(W + H) - f(W)
+  &amp;= (W + H)z - Wz \\
+  &amp;= Hz.
+\end{align*}
+Therefore
+\begin{align*}
+  D(g \circ f)(Wz)(H) = \langle Wz - y,\, Hz \rangle = \langle (Wz - y)z^\top,\, z \rangle.
+\end{align*}
+</p>
+</section>
+<section>
+<h2>Elements of the Derivative</h2>
+<p>
+To compute
+\(\partial E / \partial w_{ij}\),
+define
+\(H_{ij} \in \mathbb{R}^{m \times n}\)
+as follows:
+\begin{gather*}
+  \begin{array}{c}
+      \begin{array}{ccccccc}
+                  &amp;        &amp;   &amp; \text{\(j\)-th} &amp;   &amp;        &amp; \\
+                  H_{ij} = hE_{ij},\quad
+      E_{ij} = (0 &amp; \cdots &amp; 0 &amp; he_i &amp; 0   &amp; \cdots &amp; 0),\quad
+      \end{array}
+  \end{array}
+  \begin{array}{c}
+      \begin{array}{ccccccc}
+               &amp;        &amp;   &amp; \text{\(i\)-th} &amp;   &amp;        &amp; \\
+      e_i = (0 &amp; \cdots &amp; 0 &amp; 1 &amp; 0   &amp; \cdots &amp; 0)^\top.
+      \end{array}
+  \end{array}
+\end{gather*}
+Let \(A = (Wz - y)z^\top\). Then,
+\begin{align*}
+  h \frac{\partial E}{\partial w_{ij}}
+  &amp;= \langle A,\, H_{ij} \rangle \\
+  &amp;= h \trace ( A^\top E_{ij} ) \\
+  &amp;\;
+  \begin{array}{c}
+    \begin{array}{ccccccc}
+      &amp;        &amp;   &amp; \text{\(j\)-th} &amp;   &amp;        &amp; \\
+      = h\trace (0 &amp; \cdots &amp; 0 &amp; (\text{\(A\)'s \(i\)-th row})^\top &amp; 0   &amp; \cdots &amp; 0),
+    \end{array}
+  \end{array} \\
+  &amp;= h a_{ij}
+\end{align*}
+Thus we have
+\begin{align*}
+  \frac{\partial E}{\partial w_{ij}} &amp;= a_{ij},
+\end{align*}
+and the partial derivative of \(E\) with respect to \(w_{ij}\) is
+\begin{align*}
+  \frac{\partial E}{\partial w_{ij}} = [(Wz - y)x^\top]_{ij},
+\end{align*}
+where \([A]_{ij}\) is the \((i,\,j)\)-the element of a matrix \(A\).
+</p>
+</section>
+{% endblock %}
