@@ -50,7 +50,12 @@
           </div>
 
           <section>
-            <h2>Simple Example</h2>
+            <p>
+            <h3><em>This page is a draft.</em></h3>
+            </p>
+          </section>
+          <section>
+            <h2>Simple Example 1</h2>
             <p>
               Let \(W \in \mathbb{R}^{m \times n}\) be the final linear layer of a multi-layer neural network,
               \(z \in \mathbb{R}^n\) be the output of the previous layer
@@ -118,11 +123,8 @@
               D(g \circ f)(Wz)(H) = \langle Wz - y,\, Hz \rangle = \langle (Wz - y)z^\top,\, H \rangle.
               \end{align*}
             </p>
-          </section>
-          <section>
-            <h2>Elements of the Derivative</h2>
-            <p>
-              To compute
+            <h3>Elements of the Derivative</h3>
+            <p>To compute
               \(\partial E / \partial w_{ij}\),
               define
               \(H_{ij} \in \mathbb{R}^{m \times n}\)
@@ -162,14 +164,70 @@
               \end{align*}
               and the partial derivative of \(E\) with respect to \(w_{ij}\) is
               \begin{align*}
-              \frac{\partial E}{\partial w_{ij}} = [(Wz - y)x^\top]_{ij},
+              \frac{\partial E}{\partial w_{ij}} = [(Wz - y)z^\top]_{ij},
               \end{align*}
               where \([A]_{ij}\) is the \((i,\,j)\)-the element of a matrix \(A\).
             </p>
           </section>
           <section>
+            <h2>Simple Example 2</h2>
             <p>
-            <h3><em>This page is a draft.</em></h3>
+              \(W \in \mathbb{R}^{m \times n}\)
+              \begin{gather}
+              E(W) = \frac{1}{2}\|u' - y\|,\\
+              u' = W'z, \\
+              z = \sigma(u),\\
+              u = Wx.
+              \end{gather}
+              Here \(\sigma\) is an activation function of the form
+              \begin{align*}
+              \sigma(x) =
+              \begin{pmatrix}
+              \sigma_1(x_1) \\
+              \vdots \\
+              \sigma_n(x_n) \\
+              \end{pmatrix}.
+              \end{align*}
+              We suppose each \(\sigma_i\) is differentiable;
+              for any \(\varepsilon &gt; 0\),
+              if we take \(h_i\) whose norm is sufficiently small, it holds that
+              \begin{align*}
+              | \sigma_i(x_i + h_i) - \sigma_i(x_i) - \sigma_i'(x_i) h_i | \leq \varepsilon |h_i|
+              \end{align*}
+              for all \(i \in \{1,\,\ldots,\,n\}\). Then,
+              \begin{align*}
+              \left\|
+              \sigma(x + h) - \sigma(x) -
+              \begin{pmatrix}
+              \sigma(x_1) h_1 \\
+              \vdots \\
+              \sigma (x_n) h_n
+              \end{pmatrix}
+              \right\|
+              &amp;= \sqrt{\sum_{k = 1}^n \left(\sigma_k(x_k + h_k) - \sigma_k(x_k) - \sigma_k(x_k) h_k\right)^2 } \\
+              &amp;\leq \sqrt{\sum_{k = 1}^n \varepsilon^2 |h_k|^2 } \\
+              &amp;= \varepsilon \|h\|
+              \end{align*}
+              Therefore we have
+              \begin{align*}
+              D\sigma(x)(h)
+              &amp;=
+              \begin{pmatrix}
+              \sigma'(x_1) h_1 \\
+              \vdots \\
+              \sigma'(x_n) h_n
+              \end{pmatrix} \\
+              &amp;= \begin{pmatrix}
+              \sigma_1'(x_1) &amp; \cdots &amp; O \\
+              \vdots &amp; \ddots &amp; \vdots \\
+              O &amp; \cdots &amp; \sigma_n'(x_n)
+              \end{pmatrix}
+              \begin{pmatrix}
+              h_1 \\
+              \vdots \\
+              h_n
+              \end{pmatrix}.
+              \end{align*}
             </p>
           </section>
 
