@@ -1,7 +1,7 @@
 {% extends '_layout/_article.njk' %}
-{% set lang = 'en' %}
+{% set lang = 'ja' %}
 {% set mathematical = 'true' %}
-{% set title = 'Computing Backpropagation Using Fréchet Derivative' %}
+{% set title = 'Calculating Backpropagation Using Fréchet Derivative' %}
 {% set posted = '2022-10-09' %}
 
 {% block post %}
@@ -9,31 +9,108 @@
 <p><h3><em>This page is a draft.</em></h3></p>
 </section>
 <section>
-<h2>Simple Example 1</h2>
 <p>
-Let \(W \in \mathbb{R}^{m \times n}\) be the final linear layer of a multi-layer neural network,
-\(z \in \mathbb{R}^n\) be the output of the previous layer
-computed from an arbitrary input vector \(x_i \in \mathbb{R}^n\),
-and \(y = y_i \in \mathbb{R}^m\) be the target vector corresponding to \(x_i \in \mathbb{R}^n\).
-The activation function of the last layer is the identity function for simplicity.
-</p>
-<p>The loss function \(E\) is defined as
-\begin{align}
-  E(W) = \frac{1}{2}\|Wz - y\|^2.
-\end{align}
-To derive Fréchet deriative of \(E\),
-we first compute \(E(W + H) - E(W)\).
+Consider a multilayer perceptron consisting of \(L\) layers, whose \(\ell\)-th layer has \(n(\ell)\) nodes.
+The loss function is the squared error
 \begin{align*}
-  &amp; E(W + H) - E(W) \\
-  &amp;= \frac{1}{2}\|(W + H)z - y\|^2 - \frac{1}{2}\|Wz - y\|^2 \\
-  &amp;= \frac{1}{2} \langle Wz + Hz - y,\, Wz + Hz - y \rangle
-  -\frac{1}{2}{\| Wz - y \|}^2 \\
-  &amp;= \frac{1}{2}{\| Wz - y \|}^2
-  + \langle Wz - y,\, Hz \rangle
-  + \frac{1}{2}{\|Hz\|}^2
-  -\frac{1}{2}{\| Wz - y \|}^2 \\
-  &amp;= \trace ((Wz - y)z^\top H^\top )+ \frac{1}{2} {\|Hz\|}^2 \\
-  &amp;= \langle (Wz - y)z^\top,\, H \rangle + \frac{1}{2} {\|Hz\|}^2.
+  E(z) =
+  \frac{1}{2}
+  {
+    \left\|
+      z  - y
+    \right\|
+  }^2,
+\end{align*}
+and the activation function for the \(\ell\)-th layer is
+\(\sigma^{(\ell)}\colon \mathbb{R}^{n(\ell)} \to \mathbb{R}^{n(\ell)}\)
+and
+\(\sigma^{(\ell)}_i\colon \mathbb{R} \to \mathbb{R}\)
+The activation function is expressed as
+\begin{gather*}
+  \sigma^{(\ell)}(x) =
+    \begin{pmatrix}
+      \sigma_1^{(\ell)}(x_1) \\
+      \vdots \\
+      \sigma_{n(\ell)}^{(\ell)}\left(x_{n(\ell)}\right)
+    \end{pmatrix},\\[5pt]
+\end{gather*}
+where each \(\sigma^{(\ell)}_i\colon \mathbb{R} \to \mathbb{R}\) is differentiable.
+Let \(u^{(\ell)} \in \mathbb{R}^{n(\ell)}\) be the input to the \(\ell\)-th layer
+and \(z^{(\ell)} \in \mathbb{R}^{n(\ell)}\) be the output from the \(\ell\)-th layer:
+\begin{align*}
+  z^{(\ell)} = \sigma^{(\ell)} \left( u^{(\ell)} \right).
+\end{align*}
+The weight of the \(\ell\)-th layer is
+\(W^{(\ell)} \in \mathbb{R}^{n(\ell) \times n(\ell - 1)}\), which is expressed as
+\begin{align*}
+  W^{(\ell)} =
+  \begin{pmatrix}
+    w_{1,\,1}^{(\ell)}       &amp; \cdots &amp; w_{1,\,n(\ell - 1)}^{(\ell)} \\
+    \vdots                   &amp; \ddots &amp; \vdots \\
+    w_{n(\ell),\,1}^{(\ell)} &amp; \cdots &amp; w_{n(\ell),\,n(\ell - 1)}
+  \end{pmatrix},
+\end{align*}
+so this means that
+\begin{align*}
+  u^{(\ell)} = W^{(\ell)} z^{(\ell - 1)} = W^{(\ell)} \sigma^{(\ell - 1)} \left( u^{(\ell - 1)} \right),\quad
+\end{align*}
+I use the symbol \(W\) for the linear map \(z^{(\ell - 1)} \mapsto W^{(\ell) } z^{(\ell - 1)}\) as well.
+<figure class="centered">
+  <figcaption><strong>Figure 1:</strong> Architecture of the neural network.</figcaption>
+  <img
+    src="/static/images/nn.svg"
+    alt="Architecture of the neural network"
+    style="background-color: transparent; min-width: 700px; margin-top: 2ex;"
+  />
+</figure>
+</p>
+<p>
+The goal of this post is to derive the derivative of \(E\) with respect to \(W\)
+because other cases are easily derived in similar ways.
+First, assume each variable is one-dimensional to aid intuitive understanding.
+Then,
+\begin{align*}
+  \frac{dE}{dW^{(L - 1)}} =
+    \frac{dE}{dz^{(L)}}
+    \frac{dz^{(L)}}{du^{(L)}}
+    \frac{du^{(L)}}{du^{(L - 1)}}
+    \frac{du^{(L - 1)}}{dW^{(L - 1)}},
+    \label{one-dim-chain}
+\end{align*}
+In general cases where dimensions are greater than one, the following analogous formula holds
+\begin{align}
+  D_z E\left(W^{(L - 1)}\right)(H) =
+  \left(
+    D_{z^{(L)}} E \circ
+    D_{z^{(L)}} u^{(L)} \circ
+    D_{u^{(L)}} z^{(L)} \circ
+    D_{u^{(L - 1)}} u^{(L)} \circ
+    D_{W^{(L - 1)}} u^{(L - 1)}
+  \right)(H)
+  \label{chain}
+\end{align}
+where \(D_x f(x_0)(h)\) denotes the Fréchet derivative of \(f\) at a point \(x_0\) with respect to \(x\)
+along \(h\).
+
+Calculation of (\ref{chain}) is decomposed into the following calculations:
+<ol class="math">
+  <li>Calculate \(D_{z} E(z)(h) \) where \(E\colon \mathbb{R}^n \to \mathbb{R}_+\) is defined as \(\displaystyle E = \frac{1}{2}{\left\|z - y\right\|}^2\).</li>
+  <li>Calculate \(D_{z} \sigma(z)(h)\) where \(\sigma\colon \mathbb{R}^n \to \mathbb{R}^n\) is of the form \(\displaystyle \sigma(z) = \begin{pmatrix}\sigma_1(z_1) \\ \vdots \\ \sigma_n(z_n)\end{pmatrix}\).</li>
+  <li>\(D_W Wz \).</li>
+  <li>\(D_W \left(u \mapsto W\sigma(u') \right)\).</li>
+  <li>Derivative of \(E\) with respect to \(W^{(\ell)}\).</li>
+</ol>
+Before calculating the derivatives above,
+understand why we need to calculate them.
+By using the chain rule, it holds that
+\ref{one-dim-chain} holds even if \(n\),
+However, the symbol \(d\)
+\begin{align}
+  E = \frac{1}{2} \|z - y\|^2
+\end{align}
+
+I use the same symbol for mapping \(W\colon \mathcal{R}\)
+\begin{align*}
 \end{align*}
 By using Cauchy&ndash;Schwarz inequality,
 \begin{align*}
@@ -59,13 +136,6 @@ and \(f\colon \mathbb{R}^{m \times n} \to \mathbb{R}^m\) as follows:
   g(u) = \frac{1}{2}\|u - y\|^2,\quad f(W) = Wz.
 \end{align*}
 Then
-\begin{align*}
-  g(z + h) - g(z)
-  &amp;= \frac{1}{2}\|u + h - y\|^2 - \frac{1}{2}\|z - y\|^2 \\
-  &amp;= \frac{1}{2}\langle u + h - y,\, u + h - y\rangle - \frac{2}{2}\| u - y \|^2 \\
-  &amp;= \frac{1}{2} \| u - y \|^2 + \langle u - y,\, h\rangle - \frac{1}{2}\| u - y \|^2 \\
-  &amp;= \langle u - y,\, h\rangle,
-\end{align*}
 and
 \begin{align*}
   f(W + H) - f(W)

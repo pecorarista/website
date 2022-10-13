@@ -23,7 +23,7 @@ body {
   font-family: $western-font, $jp-font, sans-serif;
   font-size: 1.1rem;
   font-weight: 400;
-  font-feature-settings: 'kern' 1, 'palt';  // 'palt' is not valid for Not Sans JP
+  font-feature-settings: 'kern' 1, 'palt';  // 'palt' is not valid for Noto Sans JP
   font-feature-settings: 'liga' 0;
   font-variant-ligatures: none;
   background-color: $white-smoke;
@@ -152,6 +152,17 @@ ol.bracket {
       left: -1.4em;
       content: '[' counter(oln) '] ';
       counter-increment: oln;
+    }
+  }
+}
+
+ol.math {
+  li {
+    position: relative;
+
+    &::before {
+      padding-right: 1em;
+      font-weight: bold;
     }
   }
 }
