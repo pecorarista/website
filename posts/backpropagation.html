@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:site" content="@pecorarista">
-  <meta name="twitter:title" content="Computing Backpropagation Using Fréchet Derivative — pecorarista.com">
+  <meta name="twitter:title" content="Calculating Backpropagation Using Fréchet Derivative — pecorarista.com">
   <meta name="twitter:description" content="">
   <meta name="twitter:image" content="https://pecorarista.com/static/images/avatar.png">
   <link rel="icon" href="/favicon.ico">
@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="/static/css/prism-lucario.css" />
   <link rel="stylesheet" href="/static/css/main.css" />
 
-  <title>Computing Backpropagation Using Fréchet Derivative</title>
+  <title>Calculating Backpropagation Using Fréchet Derivative</title>
 </head>
 
 <body>
@@ -43,190 +43,181 @@
 
       <article>
         <div class="container">
-          <h1>Computing Backpropagation Using Fréchet Derivative</h1>
+          <h1>Calculating Backpropagation Using Fréchet Derivative</h1>
           <div class="info text-muted">
             Posted: 2022-10-09
 
           </div>
 
           <section>
+            <p>This post is those who have trouble understanding backpropagation</p>
             <p>
-            <h3><em>This page is a draft.</em></h3>
-            </p>
-          </section>
-          <section>
-            <h2>Simple Example 1</h2>
-            <p>
-              Let \(W \in \mathbb{R}^{m \times n}\) be the final linear layer of a multi-layer neural network,
-              \(z \in \mathbb{R}^n\) be the output of the previous layer
-              computed from an arbitrary input vector \(x_i \in \mathbb{R}^n\),
-              and \(y = y_i \in \mathbb{R}^m\) be the target vector corresponding to \(x_i \in \mathbb{R}^n\).
-              The activation function of the last layer is the identity function for simplicity.
-            </p>
-            <p>The loss function \(E\) is defined as
-              \begin{align}
-              E(W) = \frac{1}{2}\|Wz - y\|^2.
-              \end{align}
-              To derive Fréchet deriative of \(E\),
-              we first compute \(E(W + H) - E(W)\).
+              Consider a multilayer perceptron consisting of \(L\) layers, whose \(\ell\)-th layer has \(n(\ell)\) nodes.
+              The loss function is the squared error
               \begin{align*}
-              &amp; E(W + H) - E(W) \\
-              &amp;= \frac{1}{2}\|(W + H)z - y\|^2 - \frac{1}{2}\|Wz - y\|^2 \\
-              &amp;= \frac{1}{2} \langle Wz + Hz - y,\, Wz + Hz - y \rangle
-              -\frac{1}{2}{\| Wz - y \|}^2 \\
-              &amp;= \frac{1}{2}{\| Wz - y \|}^2
-              + \langle Wz - y,\, Hz \rangle
-              + \frac{1}{2}{\|Hz\|}^2
-              -\frac{1}{2}{\| Wz - y \|}^2 \\
-              &amp;= \trace ((Wz - y)z^\top H^\top )+ \frac{1}{2} {\|Hz\|}^2 \\
-              &amp;= \langle (Wz - y)z^\top,\, H \rangle + \frac{1}{2} {\|Hz\|}^2.
+              E(z) =
+              \frac{1}{2}
+              {
+              \left\|
+              z - y
+              \right\|
+              }^2,
               \end{align*}
-              By using Cauchy&ndash;Schwarz inequality,
-              \begin{align*}
-              \frac{1}{2} {\|Hz\|}^2 \leq \frac{1}{2} \|H\|^2 \|z\|^2.
-              \end{align*}
-              Therefore, for any \(\varepsilon &gt; 0\),
-              if we take \(H\) satisfying \(\displaystyle \|H\| \leq \frac{\varepsilon}{2 \|z\|^2 + 1}\),
-              \begin{align*}
-              | E(W + H) - E(W) - \langle (Wz - y)z^\top,\, H \rangle | \leq \varepsilon \| H \|.
-              \end{align*}
-              Thus we have
-              \begin{align}
-              DE(W)(H) = \langle (Wz - y)z^\top,\, H \rangle. \label{dewzy}
-              \end{align}
-            </p>
-            <p>We can have (\ref{dewzy}) in another way using the chain rule:
-              \begin{align*}
-              D(g \circ f) = Dg(f(x)) \circ Df(x).
-              \end{align*}
-              Define \(g\colon \mathbb{R}^{m} \to \mathbb{R}\)
-              and \(f\colon \mathbb{R}^{m \times n} \to \mathbb{R}^m\) as follows:
-              \begin{align*}
-              g(u) = \frac{1}{2}\|u - y\|^2,\quad f(W) = Wz.
-              \end{align*}
-              Then
-              \begin{align*}
-              g(z + h) - g(z)
-              &amp;= \frac{1}{2}\|u + h - y\|^2 - \frac{1}{2}\|z - y\|^2 \\
-              &amp;= \frac{1}{2}\langle u + h - y,\, u + h - y\rangle - \frac{2}{2}\| u - y \|^2 \\
-              &amp;= \frac{1}{2} \| u - y \|^2 + \langle u - y,\, h\rangle - \frac{1}{2}\| u - y \|^2 \\
-              &amp;= \langle u - y,\, h\rangle,
-              \end{align*}
+              and the activation function for the \(\ell\)-th layer is
+              \(\sigma^{(\ell)}\colon \mathbb{R}^{n(\ell)} \to \mathbb{R}^{n(\ell)}\)
               and
+              \(\sigma^{(\ell)}_i\colon \mathbb{R} \to \mathbb{R}\)
+              The activation function is expressed as
+              \begin{gather*}
+              \sigma^{(\ell)}(x) =
+              \begin{pmatrix}
+              \sigma_1^{(\ell)}(x_1) \\
+              \vdots \\
+              \sigma_{n(\ell)}^{(\ell)}\left(x_{n(\ell)}\right)
+              \end{pmatrix},\\[5pt]
+              \end{gather*}
+              where each \(\sigma^{(\ell)}_i\colon \mathbb{R} \to \mathbb{R}\) is differentiable.
+              Let \(u^{(\ell)} \in \mathbb{R}^{n(\ell)}\) be the input to the \(\ell\)-th layer
+              and \(z^{(\ell)} \in \mathbb{R}^{n(\ell)}\) be the output from the \(\ell\)-th layer:
               \begin{align*}
-              f(W + H) - f(W)
-              &amp;= (W + H)z - Wz \\
-              &amp;= Hz.
+              z^{(\ell)} = \sigma^{(\ell)} \left( u^{(\ell)} \right).
+              \end{align*}
+              The weight of the \(\ell\)-th layer is
+              \(W^{(\ell)} \in \mathbb{R}^{n(\ell) \times n(\ell - 1)}\), which is expressed as
+              \begin{align*}
+              W^{(\ell)} =
+              \begin{pmatrix}
+              w_{1,\,1}^{(\ell)} &amp; \cdots &amp; w_{1,\,n(\ell - 1)}^{(\ell)} \\
+              \vdots &amp; \ddots &amp; \vdots \\
+              w_{n(\ell),\,1}^{(\ell)} &amp; \cdots &amp; w_{n(\ell),\,n(\ell - 1)}
+              \end{pmatrix},
+              \end{align*}
+              so this means that
+              \begin{align*}
+              u^{(\ell)} = W^{(\ell)} z^{(\ell - 1)} = W^{(\ell)} \sigma^{(\ell - 1)} \left( u^{(\ell - 1)} \right),\quad
+              \end{align*}
+              I use the symbol \(W\) for the linear map \(z^{(\ell - 1)} \mapsto W^{(\ell) } z^{(\ell - 1)}\) as well.
+            <figure class="centered">
+              <figcaption><strong>Figure 1:</strong> Architecture of the neural network.</figcaption>
+              <img src="/static/images/nn.svg" alt="Architecture of the neural network" style="background-color: transparent; min-width: 700px; margin-top: 2ex;" />
+            </figure>
+            </p>
+            <p>
+              The goal of this post is to derive the derivative of \(E\) with respect to \(W\)
+              because other cases are easily derived in similar ways.
+              First, assume each variable is one-dimensional to aid intuitive understanding.
+              Then,
+              \begin{align*}
+              \frac{dE}{dW^{(L - 1)}} =
+              \frac{dE}{dz^{(L)}}
+              \frac{dz^{(L)}}{du^{(L)}}
+              \frac{du^{(L)}}{du^{(L - 1)}}
+              \frac{du^{(L - 1)}}{dW^{(L - 1)}},
+              \label{one-dim-chain}
+              \end{align*}
+              In general cases where dimensions are greater than one, the following analogous formula holds
+              \begin{align}
+              &amp; D_z E\left(W^{(L - 1)}\right)(H) \notag \\
+              &amp;=
+              \left(D_{z^{(L)}} E\left(z^{(L)}\right)
+              \circ D_{u^{(L)}} z^{(L)}\left(u^{(L)}\right)
+              \circ D_{u^{(L - 1)}} u^{(L)}\left(u^{(L - 1)}\right)
+              \circ D_{W^{(L - 1)}} u^{(L - 1)}
+              \right)(H)
+              \label{chain}
+              \end{align}
+              where \(D_x f(x_0)(h)\) denotes the Fréchet derivative of \(f\) at a point \(x_0\) with respect to \(x\)
+              along \(h\).
+
+              Calculation of (\ref{chain}) is decomposed into the following calculations:
+            <ol class="math">
+              <li>Calculate \(D_{z} E(z)(h) \) where \(E\colon \mathbb{R}^n \to \mathbb{R}_+\) is defined as \(\displaystyle E = \frac{1}{2}{\left\|z - y\right\|}^2\).</li>
+              <li>Calculate \(D_{u} \sigma(u)(h)\) where \(\sigma\colon \mathbb{R}^n \to \mathbb{R}^n\) is of the form \(\displaystyle \sigma(u) = \begin{pmatrix}\sigma_1(u_1) \\ \vdots \\ \sigma_n(u_n)\end{pmatrix}\).</li>
+              <li>Calculate \(D_u (W \circ \sigma) (u)(h) \).</li>
+              <li>Calculate \(D_W W (u)(h) \).</li>
+            </ol>
+            \begin{align*}
+            \end{align*}
+            </p>
+            <h3>1. \(D_zE(z)(h)\)</h3>
+            <p>For any \(\varepsilon &gt; 0\),
+              if we take \(h\) so small that it satisfies\(\displaystyle \|h\| \leq 2\varepsilon\),
+              \begin{align*}
+              E(z + h) - E(z)
+              &amp;= \frac{1}{2}\| (z + h) - y \|^2 - \frac{1}{2}\| z - y \|^2 \\
+              &amp;= \langle z + h - y ,\, z + h - y \rangle - \frac{1}{2} {\|z - y\|}^2 \\
+              &amp;= \frac{1}{2}{\|z - y\|}^2 + \langle h,\, z - y \rangle + \frac{1}{2}{\|h\|}^2 - \frac{1}{2} {\|z - y\|}^2 \\
+              &amp;\leq \langle z - y,\, h \rangle + \varepsilon{\|h\|}.
               \end{align*}
               Therefore
-              \begin{align*}
-              D(g \circ f)(Wz)(H) = \langle Wz - y,\, Hz \rangle = \langle (Wz - y)z^\top,\, H \rangle.
-              \end{align*}
+              \begin{align}
+              D_z E(z)(h) = \langle z - y,\, h \rangle.
+              \end{align}
             </p>
-            <h3>Elements of the Derivative</h3>
-            <p>To compute
-              \(\partial E / \partial w_{ij}\),
-              define
-              \(H_{ij} \in \mathbb{R}^{m \times n}\)
-              as follows:
-              \begin{gather*}
-              \begin{array}{c}
-              \begin{array}{ccccccc}
-              &amp; &amp; &amp; \text{\(j\)-th} &amp; &amp; &amp; \\
-              H_{ij} = hE_{ij},\quad
-              E_{ij} = (0 &amp; \cdots &amp; 0 &amp; he_i &amp; 0 &amp; \cdots &amp; 0),\quad
-              \end{array}
-              \end{array}
-              \begin{array}{c}
-              \begin{array}{ccccccc}
-              &amp; &amp; &amp; \text{\(i\)-th} &amp; &amp; &amp; \\
-              e_i = (0 &amp; \cdots &amp; 0 &amp; 1 &amp; 0 &amp; \cdots &amp; 0)^\top.
-              \end{array}
-              \end{array}
-              \end{gather*}
-              Let \(A = (Wz - y)z^\top\). Then,
-              \begin{align*}
-              h \frac{\partial E}{\partial w_{ij}}
-              &amp;= \langle A,\, H_{ij} \rangle \\
-              &amp;= h \trace ( A^\top E_{ij} ) \\
-              &amp;\;
-              \begin{array}{c}
-              \begin{array}{ccccccc}
-              &amp; &amp; &amp; \text{\(j\)-th} &amp; &amp; &amp; \\
-              = h\trace (0 &amp; \cdots &amp; 0 &amp; (\text{\(A\)'s \(i\)-th row})^\top &amp; 0 &amp; \cdots &amp; 0),
-              \end{array}
-              \end{array} \\
-              &amp;= h a_{ij}
-              \end{align*}
-              Thus we have
-              \begin{align*}
-              \frac{\partial E}{\partial w_{ij}} &amp;= a_{ij},
-              \end{align*}
-              and the partial derivative of \(E\) with respect to \(w_{ij}\) is
-              \begin{align*}
-              \frac{\partial E}{\partial w_{ij}} = [(Wz - y)z^\top]_{ij},
-              \end{align*}
-              where \([A]_{ij}\) is the \((i,\,j)\)-the element of a matrix \(A\).
-            </p>
-          </section>
-          <section>
-            <h2>Simple Example 2</h2>
+            <h3>2. \(D_u \sigma(u)(h)\)</h3>
             <p>
-              \(W \in \mathbb{R}^{m \times n}\)
-              \begin{gather}
-              E(W) = \frac{1}{2}\|u' - y\|,\\
-              u' = W'z, \\
-              z = \sigma(u),\\
-              u = Wx.
-              \end{gather}
-              Here \(\sigma\) is an activation function of the form
               \begin{align*}
-              \sigma(x) =
+              \sigma(u) =
               \begin{pmatrix}
-              \sigma_1(x_1) \\
+              \sigma_1(u_1) \\
               \vdots \\
-              \sigma_n(x_n) \\
+              \sigma_n(u_n) \\
               \end{pmatrix}.
               \end{align*}
               We suppose each \(\sigma_i\) is differentiable;
               for any \(\varepsilon &gt; 0\),
               if we take \(h_i\) whose norm is sufficiently small, it holds that
               \begin{align*}
-              | \sigma_i(x_i + h_i) - \sigma_i(x_i) - \sigma_i'(x_i) h_i | \leq \varepsilon |h_i|
+              | \sigma_i(u_i + h_i) - \sigma_i(u_i) - \sigma_i'(u_i) h_i | \leq \varepsilon |h_i|
               \end{align*}
               for all \(i \in \{1,\,\ldots,\,n\}\). Then,
               \begin{align*}
               \left\|
-              \sigma(x + h) - \sigma(x) -
+              \sigma(u + h) - \sigma(u) -
               \begin{pmatrix}
-              \sigma(x_1) h_1 \\
+              \sigma(u_1) h_1 \\
               \vdots \\
-              \sigma (x_n) h_n
+              \sigma (u_n) h_n
               \end{pmatrix}
               \right\|
-              &amp;= \sqrt{\sum_{k = 1}^n \left(\sigma_k(x_k + h_k) - \sigma_k(x_k) - \sigma_k(x_k) h_k\right)^2 } \\
+              &amp;= \sqrt{\sum_{k = 1}^n \left(\sigma_k(u_k + h_k) - \sigma_k(u_k) - \sigma_k(u_k) h_k\right)^2 } \\
               &amp;\leq \sqrt{\sum_{k = 1}^n \varepsilon^2 |h_k|^2 } \\
               &amp;= \varepsilon \|h\|
               \end{align*}
               Therefore we have
-              \begin{align*}
+              \begin{align}
               D\sigma(x)(h)
               &amp;=
               \begin{pmatrix}
-              \sigma'(x_1) h_1 \\
+              \sigma(u_1) h_1 \\
               \vdots \\
-              \sigma'(x_n) h_n
-              \end{pmatrix} \\
+              \sigma(u_n) h_n
+              \end{pmatrix} \notag \\
               &amp;= \begin{pmatrix}
-              \sigma_1'(x_1) &amp; \cdots &amp; O \\
+              \sigma_1(u_1) &amp; \cdots &amp; O \\
               \vdots &amp; \ddots &amp; \vdots \\
-              O &amp; \cdots &amp; \sigma_n'(x_n)
+              O &amp; \cdots &amp; \sigma_n(u_n)
               \end{pmatrix}
               \begin{pmatrix}
               h_1 \\
               \vdots \\
               h_n
               \end{pmatrix}.
+              \label{activation}
+              \end{align}
+            </p>
+            <h3>3. \(D_u (W \circ \sigma) (u)(h)\)</h3>
+            <p>Since
+              \begin{align*}
+              W(u + h) - W(u) = Wh,
+              \end{align*}
+              we have
+              \begin{align*}
+              D_h W(u)(h) = Wh.
+              \end{align*}
+              Along with (\ref{activation}),
+              \begin{align*}
+              D_h (W \circ \sigma)(u)(h) = W h.
               \end{align*}
             </p>
           </section>

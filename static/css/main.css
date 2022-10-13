@@ -131,6 +131,14 @@ ol.bracket li::before {
   counter-increment: oln;
 }
 
+ol.math li {
+  position: relative;
+}
+ol.math li::before {
+  padding-right: 1em;
+  font-weight: bold;
+}
+
 .profile {
   text-align: center;
 }
