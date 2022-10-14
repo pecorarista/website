@@ -243,9 +243,13 @@
               \circ \left( h \mapsto J^{(L)}_{u^{(L)}} \right)
               \circ \left(H \mapsto H z^{(L - 1)}\right)(H) \notag \\
               &amp;=
-              \left\langle z^{(L)} - y,\, J_{u^{(L)}} H z^{(L - 1)} \right\rangle.
+              \left\langle z^{(L)} - y,\, J^{(L)}_{u^{(L)}} H z^{(L - 1)} \right\rangle \notag \\
+              &amp;= h \trace \left( \left(z^{(L)} - y\right)^\top J^{(L)}_{u^{(L)}} E_{ij} z^{(L - 1)} \right) \notag \\
+              &amp;= h \trace \left( z^{(L - 1)}{} \left(z^{(L)} - y\right)^\top J^{(L)}_{u^{(L)}} E_{ij} \right) \notag \\
+              &amp;= h \trace \left( {\left(J^{(L)}_{u^{(L)}} \left(z^{(L)} - y\right) z^{(L - 1)}{}^\top \right)}^\top E_{ij} \right)
               \label{result-L}
               \end{align}
+              Note that \(J^{(L)}_{u^{(L)}} = J^{(L)}_{u^{(L)}}{}^\top\) beacuse \(J^{(L)}_{u^{(L)}}\) is symmetric.
               Each \(\displaystyle \frac{\partial E}{\partial w_{i,\, j}^{(L)}}\) is computed by letting \(H\) be
               \begin{gather*}
               \begin{array}{c}
@@ -258,19 +262,11 @@
               \begin{array}{c}
               \begin{array}{ccccccc}
               &amp; &amp; &amp; \text{\(i\)-th} &amp; &amp; &amp; \\
-              e_i = (0 &amp; \cdots &amp; 0 &amp; 1 &amp; 0 &amp; \cdots &amp; 0)^\top.
+              e_i = (0 &amp; \cdots &amp; 0 &amp; 1 &amp; 0 &amp; \cdots &amp; 0)^\top,
               \end{array}
               \end{array}
               \end{gather*}
-              Then, since \(J^{(L)}_{u^{(L)}}\) is symmetric,
-              \begin{align*}
-              h \frac{\partial E}{\partial w_{ij}}
-              &amp;= \langle z^{(L)} - y,\, J^{(L)}_{u^{L}} H_{ij} z^{(L - 1)} \rangle \\
-              &amp;= h \trace \left( \left(z^{(L)} - y\right)^\top J^{(L)}_{u^{(L)}} E_{ij} z^{(L - 1)} \right) \\
-              &amp;= h \trace \left( z^{(L - 1)}{} \left(z^{(L)} - y\right)^\top J^{(L)}_{u^{(L)}} E_{ij} \right) \\
-              &amp;= h \trace \left( {\left(J^{(L)}_{u^{(L)}} \left(z^{(L)} - y\right) z^{(L - 1)}{}^\top \right)}^\top E_{ij} \right)
-              \end{align*}
-              Let \(A := {\left(J^{(L)}_{u^{(L)}} \left(z^{(L)} - y\right) z^{(L - 1)}{}^\top \right)} \). Then,
+              and \(A = J^{(L)}_{u^{(L)}} \left(z^{(L)} - y\right) z^{(L - 1)}{}^\top \). Then,
               \begin{align*}
               &amp;\;
               \begin{array}{c}
