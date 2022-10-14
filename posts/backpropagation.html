@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:site" content="@pecorarista">
-  <meta name="twitter:title" content="Calculating Backpropagation Using Fréchet Derivative — pecorarista.com">
+  <meta name="twitter:title" content="Calculating Backpropagation Using Fréchet Derivatives — pecorarista.com">
   <meta name="twitter:description" content="">
   <meta name="twitter:image" content="https://pecorarista.com/static/images/avatar.png">
   <link rel="icon" href="/favicon.ico">
@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="/static/css/prism-lucario.css" />
   <link rel="stylesheet" href="/static/css/main.css" />
 
-  <title>Calculating Backpropagation Using Fréchet Derivative</title>
+  <title>Calculating Backpropagation Using Fréchet Derivatives</title>
 </head>
 
 <body>
@@ -43,7 +43,7 @@
 
       <article>
         <div class="container">
-          <h1>Calculating Backpropagation Using Fréchet Derivative</h1>
+          <h1>Calculating Backpropagation Using Fréchet Derivatives</h1>
           <div class="info text-muted">
             Posted: 2022-10-09
 
@@ -142,7 +142,7 @@
               where \(D_x f(x_0)(h)\) denotes the Fréchet derivative of \(f\) at a point \(x_0\) with respect to \(x\)
               along \(h\).
 
-              Calculation of (\ref{chain}) is decomposed into the following calculations:
+              Calculation of (\ref{chain-L}) and (\ref{chain-L-1}) is decomposed into the following calculations:
             <ol class="math">
               <li>Calculate \(D_{z} E(z)(h) \) where \(E\colon \mathbb{R}^n \to \mathbb{R}_+\) is defined as \(\displaystyle E = \frac{1}{2}{\left\|z - y\right\|}^2\).</li>
               <li>Calculate \(D_{u} \sigma(u)(h)\) where \(\sigma\colon \mathbb{R}^n \to \mathbb{R}^n\) is of the form \(\displaystyle \sigma(u) = \begin{pmatrix}\sigma_1(u_1) \\ \vdots \\ \sigma_n(u_n)\end{pmatrix}\).</li>
@@ -230,24 +230,23 @@
               (\ref{derivative-of-activation}),
               and (\ref{derivative-of-product-right}).
               First, (\ref{chain-L}) is calculated as
-              \begin{align}
+              \begin{align*}
               D_{W^{(L)}} E\left(W^{(L)}\right)(H)
               &amp;=
               \left(D_{z^{(L)}} E\left(z^{(L)}\right)
               \circ D_{u^{(L)}} z^{(L)}\left(u^{(L)}\right)
               \circ D_{W^{(L)}} u^{(L)}\left(u^{(L)}\right)
-              \right)(H) \notag \\
+              \right)(H) \\
               &amp;=
               \left( h \mapsto \left\langle z^{(L)} - y,\, h \right\rangle \right)
               \circ \left( h \mapsto J^{(L)}_{u^{(L)}} \right)
-              \circ \left(H \mapsto H z^{(L - 1)}\right)(H) \notag \\
+              \circ \left(H \mapsto H z^{(L - 1)}\right)(H) \\
               &amp;=
-              \left\langle z^{(L)} - y,\, J^{(L)}_{u^{(L)}} H z^{(L - 1)} \right\rangle \notag \\
-              &amp;= \trace \left( \left(z^{(L)} - y\right)^\top J^{(L)}_{u^{(L)}} H z^{(L - 1)} \right) \notag \\
-              &amp;= \trace \left( z^{(L - 1)}{} \left(z^{(L)} - y\right)^\top J^{(L)}_{u^{(L)}} H \right) \notag \\
+              \left\langle z^{(L)} - y,\, J^{(L)}_{u^{(L)}} H z^{(L - 1)} \right\rangle \\
+              &amp;= \trace \left( \left(z^{(L)} - y\right)^\top J^{(L)}_{u^{(L)}} H z^{(L - 1)} \right) \\
+              &amp;= \trace \left( z^{(L - 1)}{} \left(z^{(L)} - y\right)^\top J^{(L)}_{u^{(L)}} H \right) \\
               &amp;= \trace \left( {\left(J^{(L)}_{u^{(L)}} \left(z^{(L)} - y\right) z^{(L - 1)}{}^\top \right)}^\top H \right)
-              \label{result-L}
-              \end{align}
+              \end{align*}
               Note that \(J^{(L)}_{u^{(L)}} = J^{(L)}_{u^{(L)}}{}^\top\) beacuse \(J^{(L)}_{u^{(L)}}\) is symmetric.
               Each \(\displaystyle \frac{\partial E}{\partial w_{i,\, j}^{(L)}}\) is computed by letting \(H\) be
               \begin{gather*}
