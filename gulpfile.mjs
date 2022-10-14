@@ -2,7 +2,7 @@ import gulp from 'gulp';
 
 import { source, dest } from './tasks/config.mjs';
 import { compileSass, copyVendorStyle } from './tasks/style.mjs';
-import { compileTypeScript, copyVendorJavaScript  } from './tasks/script.mjs';
+import { compileTypeScript, copyJavaScript, copyVendorJavaScript  } from './tasks/script.mjs';
 import { compileNunjucks } from './tasks/nunjucks.mjs';
 import { writeContents } from './tasks/content.mjs';
 import { copyMisc, copyImage, copyVideos } from './tasks/resource.mjs';
@@ -20,6 +20,7 @@ export const watch = (done) => {
   gulp.watch(source.sassFiles, gulp.series(compileSass, reload));
   gulp.watch(source.typeScriptFile, gulp.series(compileTypeScript, reload));
   gulp.watch(source.vendorJavaScriptFiles, gulp.series(copyVendorJavaScript, reload));
+  gulp.watch(source.javaScriptFile, gulp.series(copyJavaScript, reload));
   done();
 };
 
@@ -31,6 +32,7 @@ export const build =
       copyImage,
       copyVideos,
       copyVendorStyle,
+      copyJavaScript,
       compileSass,
       compileTypeScript,
       gulp.series(

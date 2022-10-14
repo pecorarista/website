@@ -22,8 +22,16 @@ export const compileTypeScript = (done) => {
   done();
 };
 
+export const copyJavaScript = (done) => {
+  gulp
+    .src(source.javaScriptFile)
+    .pipe(gulp.dest(dest.javaScriptFile));
+  done();
+};
+
 export const copyVendorJavaScript = (done) => {
-  gulp.src(source.vendorJavaScriptFiles)
+  gulp
+    .src(source.vendorJavaScriptFiles)
     .pipe(gulp.dest(dest.vendorJavaScriptFiles));
   done();
 };

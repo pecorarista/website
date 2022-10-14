@@ -14,6 +14,7 @@ export const source = {
     'node_modules/prism-themes/themes/prism-lucario.css'
   ],
   typeScriptFile: 'typescripts/main.ts',
+  javaScriptFile: 'javascripts/mathjax.js',
   nunjucks: [
     'nunjucks/**/*.njk',
     '!nunjucks/**/_*.njk'
@@ -39,6 +40,7 @@ export const dest = {
   root: 'dist',
   styleFiles: 'dist/static/css',
   typeScriptFile: 'dist/static/js/',
+  javaScriptFile: 'dist/static/js/',
   nunjucks: 'dist/',
   vendorJavaScriptFiles: 'dist/static/js/',
   imageFiles: 'dist/static/images/',
