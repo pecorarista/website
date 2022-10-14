@@ -50,9 +50,7 @@
           </div>
 
           <section>
-            <p>This post is those who have trouble understanding backpropagation</p>
-            <p>
-              Consider a multilayer perceptron consisting of \(L\) layers, whose \(\ell\)-th layer has \(n(\ell)\) nodes.
+            <p>Consider a multilayer perceptron consisting of \(L\) layers, whose \(\ell\)-th layer has \(n(\ell)\) nodes.
               The loss function is the squared error
               \begin{align*}
               E(z) =
@@ -103,27 +101,41 @@
             </figure>
             </p>
             <p>
-              The goal of this post is to derive the derivative of \(E\) with respect to \(W\)
-              because other cases are easily derived in similar ways.
+              The goal of this post is to derive the derivative of \(E\) with respect to \(W^{(L)}\)
+              and \(W^{(L - 1)}\) because other cases are easily derived in similar ways.
               First, assume each variable is one-dimensional to aid intuitive understanding.
               Then,
-              \begin{align*}
+              \begin{gather}
+              \frac{dE}{dW^{(L)}} =
+              \frac{dE}{dz^{(L)}}
+              \frac{dz^{(L)}}{du^{(L)}}
+              \frac{du^{(L)}}{dW^{(L)}},
+              \label{one-dim-chain} \\
+              \end{gather}
+              \begin{gather}
               \frac{dE}{dW^{(L - 1)}} =
               \frac{dE}{dz^{(L)}}
               \frac{dz^{(L)}}{du^{(L)}}
               \frac{du^{(L)}}{du^{(L - 1)}}
-              \frac{du^{(L - 1)}}{dW^{(L - 1)}},
-              \label{one-dim-chain}
-              \end{align*}
+              \frac{du^{(L - 1)}}{dW^{(L - 1)}}.
+              \label{one-dim-chain2}
+              \end{gather}
               In general cases where dimensions are greater than one, the following analogous formula holds
               \begin{align}
-              &amp; D_z E\left(W^{(L - 1)}\right)(H) \notag \\
-              &amp;=
+              D_{W^{(L)}} E\left(W^{(L)}\right)(H) =
               \left(D_{z^{(L)}} E\left(z^{(L)}\right)
               \circ D_{u^{(L)}} z^{(L)}\left(u^{(L)}\right)
+              \circ D_{W^{(L)}} u^{(L)}\left(u^{(L)}\right)
+              \right)(H),
+              \end{align}
+              \begin{align}
+              &amp;D_{W^{(L - 1)}} E\left(W^{(L - 1)}\right)(H)
+              \\
+              &amp;= \left(D_{z^{(L)}} E\left(z^{(L)}\right)
+              \circ D_{u^{(L)}} z^{(L)}\left(u^{(L)}\right)
               \circ D_{u^{(L - 1)}} u^{(L)}\left(u^{(L - 1)}\right)
-              \circ D_{W^{(L - 1)}} u^{(L - 1)}
-              \right)(H)
+              \circ D_{W^{(L - 1)}} u^{(L - 1)}\left(u^{(L - 1)}\right)
+              \right)(H),
               \label{chain}
               \end{align}
               where \(D_x f(x_0)(h)\) denotes the Fréchet derivative of \(f\) at a point \(x_0\) with respect to \(x\)
@@ -134,39 +146,30 @@
               <li>Calculate \(D_{z} E(z)(h) \) where \(E\colon \mathbb{R}^n \to \mathbb{R}_+\) is defined as \(\displaystyle E = \frac{1}{2}{\left\|z - y\right\|}^2\).</li>
               <li>Calculate \(D_{u} \sigma(u)(h)\) where \(\sigma\colon \mathbb{R}^n \to \mathbb{R}^n\) is of the form \(\displaystyle \sigma(u) = \begin{pmatrix}\sigma_1(u_1) \\ \vdots \\ \sigma_n(u_n)\end{pmatrix}\).</li>
               <li>Calculate \(D_u (W \circ \sigma) (u)(h) \).</li>
-              <li>Calculate \(D_W W (u)(h) \).</li>
+              <li>Calculate \(D_W g(W) (H) \), where \(g(W) = Wz \).</li>
             </ol>
             \begin{align*}
             \end{align*}
             </p>
             <h3>1. \(D_zE(z)(h)\)</h3>
-            <p>For any \(\varepsilon &gt; 0\),
-              if we take \(h\) so small that it satisfies\(\displaystyle \|h\| \leq 2\varepsilon\),
+            <p>Note that \({\|U\|}^2 = \langle U,\, U \rangle\) and that \( \langle U,\, V\rangle = \trace (U{}^\top V)\).
               \begin{align*}
               E(z + h) - E(z)
               &amp;= \frac{1}{2}\| (z + h) - y \|^2 - \frac{1}{2}\| z - y \|^2 \\
               &amp;= \langle z + h - y ,\, z + h - y \rangle - \frac{1}{2} {\|z - y\|}^2 \\
               &amp;= \frac{1}{2}{\|z - y\|}^2 + \langle h,\, z - y \rangle + \frac{1}{2}{\|h\|}^2 - \frac{1}{2} {\|z - y\|}^2 \\
-              &amp;\leq \langle z - y,\, h \rangle + \varepsilon{\|h\|}.
+              &amp;\leq \langle z - y,\, h \rangle + \frac{1}{2} \|h\|^2
               \end{align*}
               Therefore
               \begin{align}
               D_z E(z)(h) = \langle z - y,\, h \rangle.
+              \label{derivative-of-norm}
               \end{align}
             </p>
             <h3>2. \(D_u \sigma(u)(h)\)</h3>
-            <p>
-              \begin{align*}
-              \sigma(u) =
-              \begin{pmatrix}
-              \sigma_1(u_1) \\
-              \vdots \\
-              \sigma_n(u_n) \\
-              \end{pmatrix}.
-              \end{align*}
-              We suppose each \(\sigma_i\) is differentiable;
+            <p>Since we assume each \(\sigma_i\) is differentiable,
               for any \(\varepsilon &gt; 0\),
-              if we take \(h_i\) whose norm is sufficiently small, it holds that
+              we can take \(h_i\) satisfying
               \begin{align*}
               | \sigma_i(u_i + h_i) - \sigma_i(u_i) - \sigma_i'(u_i) h_i | \leq \varepsilon |h_i|
               \end{align*}
@@ -184,26 +187,27 @@
               &amp;\leq \sqrt{\sum_{k = 1}^n \varepsilon^2 |h_k|^2 } \\
               &amp;= \varepsilon \|h\|
               \end{align*}
-              Therefore we have
-              \begin{align}
-              D\sigma(x)(h)
-              &amp;=
+              Defining
+              \begin{align*}
+              \varSigma(u) =
               \begin{pmatrix}
-              \sigma(u_1) h_1 \\
-              \vdots \\
-              \sigma(u_n) h_n
-              \end{pmatrix} \notag \\
-              &amp;= \begin{pmatrix}
               \sigma_1(u_1) &amp; \cdots &amp; O \\
               \vdots &amp; \ddots &amp; \vdots \\
               O &amp; \cdots &amp; \sigma_n(u_n)
-              \end{pmatrix}
+              \end{pmatrix},
+              \quad
+              h =
               \begin{pmatrix}
               h_1 \\
               \vdots \\
               h_n
-              \end{pmatrix}.
-              \label{activation}
+              \end{pmatrix},
+              \end{align*}
+              we obtain
+              \begin{align}
+              D_u \sigma(u)(h)
+              = \varSigma(u) h
+              \label{derivative-of-activation}
               \end{align}
             </p>
             <h3>3. \(D_u (W \circ \sigma) (u)(h)\)</h3>
@@ -213,13 +217,59 @@
               \end{align*}
               we have
               \begin{align*}
-              D_h W(u)(h) = Wh.
+              D_u W(u)(h) = Wh.
               \end{align*}
-              Along with (\ref{activation}),
+              Along with (\ref{derivative-of-activation}),
+              \begin{align}
+              D_u (W \circ \sigma)(u)(h) = W \varSigma(u) h.
+              \label{derivative-of-wsigma}
+              \end{align}
+            </p>
+            <h3>4. \(D_W g(W) (H) \)</h3>
+            <p>
+              Since
               \begin{align*}
-              D_h (W \circ \sigma)(u)(h) = W h.
+              g(W + H) - g(W) = (W + H) z - W z = Hz,
+              \end{align*}
+              we obtain
+              \begin{align}
+              D_W g(W)(H) = Hz.
+              \label{derivative-of-product-right}
+              \end{align}
+            </p>
+            <h3>Untitled</h3>
+            <p>Combining
+              (\ref{derivative-of-norm}),
+              (\ref{derivative-of-activation}),
+              (\ref{derivative-of-wsigma}),
+              and (\ref{derivative-of-product-right}),
+              \begin{align*}
+              D_{W^{(L)}} E\left(W^{(L)}\right)(H)
+              &amp;=
+              \left(D_{z^{(L)}} E\left(z^{(L)}\right)
+              \circ D_{u^{(L)}} z^{(L)}\left(u^{(L)}\right)
+              \circ D_{W^{(L)}} u^{(L)}\left(u^{(L)}\right)
+              \right)(H) \\
+              &amp;=
+              \left( h \mapsto \left\langle z^{(L)} - y,\, h \right\rangle \right) \circ
+              \left( h \mapsto \varSigma^{(L)}(u^{(L)}) \right)
+              \circ \left(H \mapsto H z^{(L - 1)}\right)(H) \\
+              &amp;=
+              \left\langle z^{(L)} - y,\, W^{(L)} \varSigma^{(L)}(u^{(L)}) H z^{(L - 1)} \right\rangle
               \end{align*}
             </p>
+            <h3>Untitled 2</h3>
+            \begin{align*}
+            &amp;D_{W^{(L - 1)}} E\left(W^{(L - 1)}\right)(H)
+            \\
+            &amp;= \left(D_{z^{(L)}} E\left(z^{(L)}\right)
+            \circ D_{u^{(L)}} z^{(L)}\left(u^{(L)}\right)
+            \circ D_{u^{(L - 1)}} u^{(L)}\left(u^{(L - 1)}\right)
+            \circ D_{W^{(L - 1)}} u^{(L - 1)}\left(u^{(L - 1)}\right)
+            \right)(H) \\
+            &amp;= \left\langle z^{(L)} - y,\, \cdot \right\rangle \circ
+            W^{(L)} \varSigma^{(L)}(u^{(L)}) H z^{(L - 1)}
+            \end{align*}
           </section>
 
         </div>
@@ -249,49 +299,9 @@
     <script src="/static/js/main.js"></script>
 
 
-    <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-    </script>
-    <script>
-      MathJax = {
-        loader: {
-          load: [
-            '[tex]/cases',
-            '[tex]/empheq'
-          ]
-        },
-        tex: {
-          packages: {
-            '[+]': [
-              'empheq',
-              'cases'
-            ]
-          },
-          autoload: {
-            cases: [
-              [],
-              ['numcases', 'subnumcases']
-            ]
-          },
-          macros: {
-            abs: ["\\left|#1\\right|", 1],
-            brackets: ["\\left[#1\\right]", 1],
-            diag: "\\mathop{\\rm diag}",
-            ff: "\\mathop{\\rm FF}",
-            id: "\\mathop{\\rm id}",
-            imaginary: "\\mathop{\\rm Im}",
-            minimize: "\\mathop{\\rm minimize}",
-            nn: "\\mathop{\\rm NN}",
-            norm: ["\\left\\|#1\\right\\|", 1],
-            parentheses: ["\\left(#1\\right)", 1],
-            real: "\\mathop{\\rm Re}",
-            res: "\\mathop{\\rm Res}",
-            relu: "\\mathop{\\rm ReLU}",
-            trace: "\\mathop{\\rm tr}",
-            softmax: "\\mathop{\\rm softmax}"
-          },
-          tags: 'ams',
-        }
-      };
+    <script src="/static/js/mathjax.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js?config=TeX-AMS_HTML"></script>
     </script>
 
   </div>
