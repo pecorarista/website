@@ -3,9 +3,11 @@
 {% set mathematical = 'true' %}
 {% set title = 'Calculating Backpropagation Using Fréchet Derivative' %}
 {% set posted = '2022-10-09' %}
+{% set updated = '2022-10-14' %}
 
 {% block post %}
 <section>
+<h2><em>This is a draft.</em></h2>
 <p>Consider a multilayer perceptron consisting of \(L\) layers, whose \(\ell\)-th layer has \(n(\ell)\) nodes.
 The loss function is the squared error
 \begin{align*}
@@ -65,21 +67,19 @@ The goal of this post is to derive the derivative of \(E\) with respect to \(W^{
 and \(W^{(L - 1)}\) because other cases are easily derived in similar ways.
 First, assume each variable is one-dimensional to aid intuitive understanding.
 Then,
-\begin{gather}
+\begin{gather*}
   \frac{dE}{dW^{(L)}} =
     \frac{dE}{dz^{(L)}}
     \frac{dz^{(L)}}{du^{(L)}}
     \frac{du^{(L)}}{dW^{(L)}},
-    \label{one-dim-chain} \\
-\end{gather}
-\begin{gather}
+\end{gather*}
+\begin{gather*}
   \frac{dE}{dW^{(L - 1)}} =
     \frac{dE}{dz^{(L)}}
     \frac{dz^{(L)}}{du^{(L)}}
     \frac{du^{(L)}}{du^{(L - 1)}}
     \frac{du^{(L - 1)}}{dW^{(L - 1)}}.
-    \label{one-dim-chain2}
-\end{gather}
+\end{gather*}
 In general cases where dimensions are greater than one, the following analogous formula holds
 \begin{align}
   D_{W^{(L)}} E\left(W^{(L)}\right)(H) =
@@ -87,16 +87,17 @@ In general cases where dimensions are greater than one, the following analogous 
   \circ D_{u^{(L)}} z^{(L)}\left(u^{(L)}\right)
   \circ D_{W^{(L)}} u^{(L)}\left(u^{(L)}\right)
   \right)(H),
+  \label{chain-L}
 \end{align}
 \begin{align}
   &amp;D_{W^{(L - 1)}} E\left(W^{(L - 1)}\right)(H)
-  \\
+  \notag \\
   &amp;= \left(D_{z^{(L)}} E\left(z^{(L)}\right)
   \circ D_{u^{(L)}} z^{(L)}\left(u^{(L)}\right)
   \circ D_{u^{(L - 1)}} u^{(L)}\left(u^{(L - 1)}\right)
   \circ  D_{W^{(L - 1)}} u^{(L - 1)}\left(u^{(L - 1)}\right)
   \right)(H),
-  \label{chain}
+  \label{chain-L-1}
 \end{align}
 where \(D_x f(x_0)(h)\) denotes the Fréchet derivative of \(f\) at a point \(x_0\) with respect to \(x\)
 along \(h\).
@@ -105,13 +106,12 @@ Calculation of (\ref{chain}) is decomposed into the following calculations:
 <ol class="math">
   <li>Calculate \(D_{z} E(z)(h) \) where \(E\colon \mathbb{R}^n \to \mathbb{R}_+\) is defined as \(\displaystyle E = \frac{1}{2}{\left\|z - y\right\|}^2\).</li>
   <li>Calculate \(D_{u} \sigma(u)(h)\) where \(\sigma\colon \mathbb{R}^n \to \mathbb{R}^n\) is of the form \(\displaystyle \sigma(u) = \begin{pmatrix}\sigma_1(u_1) \\ \vdots \\ \sigma_n(u_n)\end{pmatrix}\).</li>
-  <li>Calculate \(D_u (W \circ \sigma) (u)(h) \).</li>
-  <li>Calculate \(D_W g(W) (H) \), where \(g(W) = Wz  \).</li>
+  <li>Calculate \(D_W (W \mapsto Wz) (W) (H) \).</li>
 </ol>
 \begin{align*}
 \end{align*}
 </p>
-<h3>1. \(D_zE(z)(h)\)</h3>
+<h4>1. \(D_zE(z)(h)\)</h4>
 <p>Note that \({\|U\|}^2 = \langle U,\, U \rangle\) and that \( \langle U,\, V\rangle = \trace (U{}^\top V)\).
 \begin{align*}
   E(z + h) - E(z)
@@ -126,7 +126,7 @@ Therefore
   \label{derivative-of-norm}
 \end{align}
 </p>
-<h3>2. \(D_u \sigma(u)(h)\)</h3>
+<h4>2. \(D_u \sigma(u)(h)\)</h4>
 <p>Since we assume each \(\sigma_i\) is differentiable,
 for any \(\varepsilon &gt; 0\),
 we can take \(h_i\) satisfying
@@ -149,7 +149,7 @@ for all \(i \in \{1,\,\ldots,\,n\}\). Then,
 \end{align*}
 Defining
 \begin{align*}
-  \varSigma(u) =
+  J_u =
     \begin{pmatrix}
       \sigma_1(u_1) &amp; \cdots &amp; O \\
       \vdots &amp; \ddots &amp; \vdots \\
@@ -166,59 +166,84 @@ Defining
 we obtain
 \begin{align}
   D_u \sigma(u)(h)
-  = \varSigma(u) h
+  = J_u h
   \label{derivative-of-activation}
 \end{align}
 </p>
-<h3>3. \(D_u (W \circ \sigma) (u)(h)\)</h3>
-<p>Since
-\begin{align*}
-  W(u + h) - W(u) = Wh,
-\end{align*}
-we have
-\begin{align*}
-  D_u W(u)(h) = Wh.
-\end{align*}
-Along with (\ref{derivative-of-activation}),
-\begin{align}
-  D_u (W \circ \sigma)(u)(h) = W \varSigma(u) h.
-  \label{derivative-of-wsigma}
-\end{align}
-</p>
-<h3>4. \(D_W g(W) (H) \)</h3>
+<h4>3. \(D_W (W \mapsto Wz) (W) (H) \)</h4>
 <p>
 Since
 \begin{align*}
-  g(W + H) - g(W) = (W + H) z - W z = Hz,
+  (W + H) z - W z = Hz,
 \end{align*}
 we obtain
 \begin{align}
-  D_W g(W)(H) = Hz.
+  D_W (W \mapsto Wz) (W) (H) = Hz.
   \label{derivative-of-product-right}
 \end{align}
 </p>
-<h3>Untitled</h3>
-<p>Combining
-(\ref{derivative-of-norm}),
+</section>
+<section>
+<h3>Backpropagation</h3>
+<p>Now we can calculate (\ref{chain-L}) and (\ref{chain-L-1}) by
+using (\ref{derivative-of-norm}),
 (\ref{derivative-of-activation}),
-(\ref{derivative-of-wsigma}),
-and (\ref{derivative-of-product-right}),
-\begin{align*}
+and (\ref{derivative-of-product-right}).
+First, (\ref{chain-L}) is calculated as
+\begin{align}
   D_{W^{(L)}} E\left(W^{(L)}\right)(H)
   &amp;=
   \left(D_{z^{(L)}} E\left(z^{(L)}\right)
   \circ D_{u^{(L)}} z^{(L)}\left(u^{(L)}\right)
   \circ D_{W^{(L)}} u^{(L)}\left(u^{(L)}\right)
-  \right)(H) \\
+  \right)(H) \notag \\
   &amp;=
-  \left( h \mapsto \left\langle z^{(L)} - y,\, h \right\rangle \right) \circ
-	\left( h \mapsto \varSigma^{(L)}(u^{(L)}) \right)
-	\circ \left(H \mapsto H z^{(L - 1)}\right)(H) \\
+  \left( h \mapsto \left\langle z^{(L)} - y,\, h \right\rangle \right)
+  \circ \left( h \mapsto J^{(L)}_{u^{(L)}} \right)
+	\circ \left(H \mapsto H z^{(L - 1)}\right)(H) \notag \\
   &amp;=
-  \left\langle z^{(L)} - y,\, W^{(L)} \varSigma^{(L)}(u^{(L)}) H z^{(L - 1)} \right\rangle
+  \left\langle z^{(L)} - y,\, J_{u^{(L)}} H z^{(L - 1)} \right\rangle.
+  \label{result-L}
+\end{align}
+Each \(\displaystyle \frac{\partial E}{\partial w_{i,\, j}^{(L)}}\) is computed by letting \(H\) be
+\begin{gather*}
+  \begin{array}{c}
+      \begin{array}{ccccccc}
+                  &amp;        &amp;   &amp; \text{\(j\)-th} &amp;   &amp;        &amp; \\
+                  H = hE_{ij},\quad
+      E_{ij} = (0 &amp; \cdots &amp; 0 &amp; he_i &amp; 0   &amp; \cdots &amp; 0),\quad
+      \end{array}
+  \end{array}
+  \begin{array}{c}
+      \begin{array}{ccccccc}
+               &amp;        &amp;   &amp; \text{\(i\)-th} &amp;   &amp;        &amp; \\
+      e_i = (0 &amp; \cdots &amp; 0 &amp; 1 &amp; 0   &amp; \cdots &amp; 0)^\top.
+      \end{array}
+  \end{array}
+\end{gather*}
+Then, since \(J^{(L)}_{u^{(L)}}\) is symmetric,
+\begin{align*}
+  h \frac{\partial E}{\partial w_{ij}}
+  &amp;= \langle z^{(L)} - y,\, J^{(L)}_{u^{L}} H_{ij} z^{(L - 1)} \rangle \\
+  &amp;= h \trace \left( \left(z^{(L)} - y\right)^\top J^{(L)}_{u^{(L)}} E_{ij} z^{(L - 1)} \right) \\
+  &amp;= h \trace \left( z^{(L - 1)}{} \left(z^{(L)} - y\right)^\top J^{(L)}_{u^{(L)}} E_{ij} \right) \\
+  &amp;= h \trace \left( {\left(J^{(L)}_{u^{(L)}} \left(z^{(L)} - y\right) z^{(L - 1)}{}^\top \right)}^\top E_{ij} \right)
 \end{align*}
+Let \(A :=  {\left(J^{(L)}_{u^{(L)}} \left(z^{(L)} - y\right) z^{(L - 1)}{}^\top \right)} \). Then,
+\begin{align*}
+  &amp;\;
+  \begin{array}{c}
+    \begin{array}{ccccccc}
+      &amp;        &amp;   &amp; \text{\(j\)-th} &amp;   &amp;        &amp; \\
+      \displaystyle \frac{\partial E}{\partial w_{ij}}
+      = \trace (0 &amp; \cdots &amp; 0 &amp; (\text{\(A\)'s \(i\)-th row})^\top &amp; 0   &amp; \cdots &amp; 0)
+      = [A]_{i,\,j}
+    \end{array}
+  \end{array}
+\end{align*}
+where \([A]_{i,\,j}\) is the \((i,\,j)\)-the element of a matrix \(A\).
 </p>
-<h3>Untitled 2</h3>
+<p>Similarly, (\ref{chain-L-1}) is calculated as
 \begin{align*}
   &amp;D_{W^{(L - 1)}} E\left(W^{(L - 1)}\right)(H)
   \\
@@ -227,8 +252,13 @@ and (\ref{derivative-of-product-right}),
   \circ D_{u^{(L - 1)}} u^{(L)}\left(u^{(L - 1)}\right)
   \circ  D_{W^{(L - 1)}} u^{(L - 1)}\left(u^{(L - 1)}\right)
   \right)(H) \\
-  &amp;= \left\langle z^{(L)} - y,\, \cdot \right\rangle \circ
- W^{(L)} \varSigma^{(L)}(u^{(L)}) H z^{(L - 1)}
+  &amp;= \left( h \mapsto \left\langle z^{(L)} - y,\, h \right\rangle \right)
+  \circ \left( h \mapsto J^{(L)}_{u^{(L)}} h \right)
+  \circ \left( h \mapsto W^{(L)} J^{(L - 1)}_{u^{(L - 1)}} h  \right)
+  \circ \left( H \mapsto H z^{(L - 1)} \right)(H) \\
+  &amp;= \left\langle z^{(L)} - y,\, J^{(L)}_{u^{(L)}} W^{(L)} J^{(L - 1)}_{u^{(L - 1)}} H z^{(L - 2)} \right\rangle \\
+  &amp;= \trace \left( (z^{(L)} - y) J^{(L)}_{u^{(L)}} W^{(L)} J^{(L - 1)}_{u^{(L - 1)}} H z^{(L - 2)} \right).
 \end{align*}
+</p>
 </section>
 {% endblock %}
