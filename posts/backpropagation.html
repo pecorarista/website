@@ -47,12 +47,11 @@
           <div class="info text-muted">
             Posted: 2022-10-09
 
-            (Updated: 2022-10-14)
+            (Updated: 2022-10-15)
 
           </div>
 
           <section>
-            <h2><em>This is a draft.</em></h2>
             <p>Consider a multilayer perceptron consisting of \(L\) layers, whose \(\ell\)-th layer has \(n(\ell)\) nodes.
               The loss function is the squared error
               \begin{align*}
@@ -271,11 +270,11 @@
               \begin{array}{c}
               \begin{array}{ccccccc}
               &amp; &amp; &amp; \text{\(j\)-th} &amp; &amp; &amp; \\
-              \displaystyle h \frac{\partial E}{\partial w_{ij}}
+              \displaystyle h \frac{\partial E}{\partial w_{i,\,j}}
               = \trace (0 &amp; \cdots &amp; 0 &amp; (\text{\(A\)'s \(i\)-th row})^\top &amp; 0 &amp; \cdots &amp; 0)
               \end{array}
               \end{array} \\
-              \displaystyle \frac{\partial E}{\partial w_{ij}} = [A]_{i,\, j},
+              \displaystyle \frac{\partial E}{\partial w_{i,\,j}} = [A]_{i,\, j},
               \end{gather*}
               where \([A]_{i,\,j}\) is the \((i,\,j)\)-the element of a matrix \(A\).
             </p>
@@ -297,7 +296,22 @@
               &amp;= \trace \left( z^{(L - 2)} \left(z^{(L)} - y\right)^\top J^{(L)}_{u^{(L)}} W^{(L)} J^{(L - 1)}_{u^{(L - 1)}} H \right) \\
               &amp;= \trace \left( {\left(J^{(L - 1)}_{u^{(L - 1)}} W^{(L)}{}^\top J^{(L)}_{u^{(L)}} \left(z^{(L)} - y\right) z^{(L - 2)}{}^\top \right)}^\top H \right)
               \end{align*}
-              Let \(\varDelta^{(L)} = J^{(L)}_{u^{(L)}} \left(z^{(L)} - y\right) \).
+              Define \(\varDelta^{(\ell)}\) by
+              \begin{align*}
+              \varDelta^{(\ell)} =
+              \begin{cases}
+              J_{u^{(L)}} (z^{(L)} - y)
+              &amp; \text{if \(\ell = L\),} \\
+              J^{(\ell)}_{u^{(\ell)}} W^{(\ell + 1)}{}^\top \varDelta^{(\ell + 1)}
+              &amp; \text{if \(\ell \in \{1,\,\ldots,\, L - 1\}\).}
+              \end{cases}
+              \end{align*}
+              Then
+              \begin{align*}
+              \frac{\partial E}{\partial w^{(\ell)}_{i,\,j}} = \left[ \varDelta^{(\ell)} z^{(\ell - 1)} \right]_{i,\, j}.
+              \end{align*}
+              Since each \(\varDelta^{(\ell)}\) is computed from \(\varDelta^{(\ell + 1)}\),
+              this computation is called <em>back propagation</em>.
             </p>
           </section>
 
