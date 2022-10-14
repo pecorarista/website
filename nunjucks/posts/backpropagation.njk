@@ -203,9 +203,9 @@ First, (\ref{chain-L}) is calculated as
 	\circ \left(H \mapsto H z^{(L - 1)}\right)(H) \notag \\
   &amp;=
   \left\langle z^{(L)} - y,\, J^{(L)}_{u^{(L)}} H z^{(L - 1)} \right\rangle \notag \\
-  &amp;= h \trace \left( \left(z^{(L)} - y\right)^\top J^{(L)}_{u^{(L)}} E_{ij} z^{(L - 1)} \right) \notag \\
-  &amp;= h \trace \left( z^{(L - 1)}{} \left(z^{(L)} - y\right)^\top J^{(L)}_{u^{(L)}} E_{ij} \right) \notag \\
-  &amp;= h \trace \left( {\left(J^{(L)}_{u^{(L)}} \left(z^{(L)} - y\right) z^{(L - 1)}{}^\top \right)}^\top E_{ij} \right)
+  &amp;= \trace \left( \left(z^{(L)} - y\right)^\top J^{(L)}_{u^{(L)}} H z^{(L - 1)} \right) \notag \\
+  &amp;= \trace \left( z^{(L - 1)}{} \left(z^{(L)} - y\right)^\top J^{(L)}_{u^{(L)}} H \right) \notag \\
+  &amp;= \trace \left( {\left(J^{(L)}_{u^{(L)}} \left(z^{(L)} - y\right) z^{(L - 1)}{}^\top \right)}^\top H \right)
   \label{result-L}
 \end{align}
 Note that \(J^{(L)}_{u^{(L)}} = J^{(L)}_{u^{(L)}}{}^\top\) beacuse \(J^{(L)}_{u^{(L)}}\) is symmetric.
@@ -226,17 +226,16 @@ Each \(\displaystyle \frac{\partial E}{\partial w_{i,\, j}^{(L)}}\) is computed 
   \end{array}
 \end{gather*}
 and \(A =  J^{(L)}_{u^{(L)}} \left(z^{(L)} - y\right) z^{(L - 1)}{}^\top  \). Then,
-\begin{align*}
-  &amp;\;
+\begin{gather*}
   \begin{array}{c}
     \begin{array}{ccccccc}
       &amp;        &amp;   &amp; \text{\(j\)-th} &amp;   &amp;        &amp; \\
-      \displaystyle \frac{\partial E}{\partial w_{ij}}
+      \displaystyle h \frac{\partial E}{\partial w_{ij}}
       = \trace (0 &amp; \cdots &amp; 0 &amp; (\text{\(A\)'s \(i\)-th row})^\top &amp; 0   &amp; \cdots &amp; 0)
-      = [A]_{i,\,j}
     \end{array}
-  \end{array}
-\end{align*}
+  \end{array} \\
+  \displaystyle \frac{\partial E}{\partial w_{ij}} = [A]_{i,\, j},
+\end{gather*}
 where \([A]_{i,\,j}\) is the \((i,\,j)\)-the element of a matrix \(A\).
 </p>
 <p>Similarly, (\ref{chain-L-1}) is calculated as
@@ -253,8 +252,11 @@ where \([A]_{i,\,j}\) is the \((i,\,j)\)-the element of a matrix \(A\).
   \circ \left( h \mapsto W^{(L)} J^{(L - 1)}_{u^{(L - 1)}} h  \right)
   \circ \left( H \mapsto H z^{(L - 1)} \right)(H) \\
   &amp;= \left\langle z^{(L)} - y,\, J^{(L)}_{u^{(L)}} W^{(L)} J^{(L - 1)}_{u^{(L - 1)}} H z^{(L - 2)} \right\rangle \\
-  &amp;= \trace \left( (z^{(L)} - y) J^{(L)}_{u^{(L)}} W^{(L)} J^{(L - 1)}_{u^{(L - 1)}} H z^{(L - 2)} \right).
+  &amp;= \trace \left( {(z^{(L)} - y)}^\top J^{(L)}_{u^{(L)}} W^{(L)} J^{(L - 1)}_{u^{(L - 1)}} H z^{(L - 2)} \right) \\
+  &amp;= \trace \left( z^{(L - 2)} \left(z^{(L)} - y\right)^\top J^{(L)}_{u^{(L)}} W^{(L)} J^{(L - 1)}_{u^{(L - 1)}} H \right) \\
+  &amp;= \trace \left( {\left(J^{(L - 1)}_{u^{(L - 1)}} W^{(L)}{}^\top J^{(L)}_{u^{(L)}} \left(z^{(L)} - y\right) z^{(L - 2)}{}^\top \right)}^\top H \right)
 \end{align*}
+Let \(\varDelta^{(L)} = J^{(L)}_{u^{(L)}} \left(z^{(L)} - y\right) \).
 </p>
 </section>
 {% endblock %}
