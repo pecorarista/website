@@ -65,9 +65,7 @@
               \end{align*}
               and the activation function for the \(\ell\)-th layer is
               \(\sigma^{(\ell)}\colon \mathbb{R}^{n(\ell)} \to \mathbb{R}^{n(\ell)}\)
-              and
-              \(\sigma^{(\ell)}_i\colon \mathbb{R} \to \mathbb{R}\)
-              The activation function is expressed as
+              and expressed as
               \begin{gather*}
               \sigma^{(\ell)}(x) =
               \begin{pmatrix}
@@ -96,15 +94,16 @@
               \begin{align*}
               u^{(\ell)} = W^{(\ell)} z^{(\ell - 1)} = W^{(\ell)} \sigma^{(\ell - 1)} \left( u^{(\ell - 1)} \right),\quad
               \end{align*}
-              I use the symbol \(W\) for the linear map \(z^{(\ell - 1)} \mapsto W^{(\ell) } z^{(\ell - 1)}\) as well.
+              The multi-layer perceptron defined above is illustrated as the figure below.
             <figure class="centered">
               <figcaption><strong>Figure 1:</strong> Architecture of the neural network.</figcaption>
               <img src="/static/images/nn.svg" alt="Architecture of the neural network" style="background-color: transparent; min-width: 700px; margin-top: 2ex;" />
             </figure>
             </p>
             <p>
-              The goal of this post is to derive the derivative of \(E\) with respect to \(W^{(L)}\)
-              and \(W^{(L - 1)}\) because other cases are easily derived in similar ways.
+              The goal of this post is to derive the derivative of \(E\) with respect to \(W^{(\ell)}\),
+              but it suffices to show the case of \(W^{(L)}\) is \(W^{(L - 1)}\),
+              because others are easily derived from them.
               First, assume each variable is one-dimensional to aid intuitive understanding.
               Then,
               \begin{gather*}
@@ -191,9 +190,9 @@
               \begin{align*}
               J_u =
               \begin{pmatrix}
-              \sigma_1(u_1) &amp; \cdots &amp; O \\
+              \displaystyle \frac{d \sigma_1}{ d u_1 }\left(u_1\right) &amp; \cdots &amp; O \\
               \vdots &amp; \ddots &amp; \vdots \\
-              O &amp; \cdots &amp; \sigma_n(u_n)
+              O &amp; \cdots &amp; \displaystyle \frac{d\sigma_n}{du_n}\left(u_n\right)
               \end{pmatrix},
               \quad
               h =
