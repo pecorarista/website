@@ -55,13 +55,13 @@ The multi-layer perceptron defined above is illustrated as the figure below.
   <img
     src="/static/images/nn.svg"
     alt="Architecture of the neural network"
-    style="background-color: transparent; min-width: 700px; margin-top: 2ex;"
+    style="background-color: transparent; width: 100%; height: auto; max-width: 800px; margin-top: 2ex;"
   />
 </figure>
 </p>
 <p>
 The goal of this post is to derive the derivative of \(E\) with respect to \(W^{(\ell)}\),
-but it suffices to show the case of \(W^{(L)}\) is \(W^{(L - 1)}\),
+but it suffices to show the case of \(W^{(L)}\) is \(W^{(L - 1)}\)
 because others are easily derived from them.
 First, assume each variable is one-dimensional to aid intuitive understanding.
 Then,
@@ -103,7 +103,7 @@ along \(h\).
 Calculation of (\ref{chain-L}) and (\ref{chain-L-1}) is decomposed into the following calculations:
 <ol class="math">
   <li>Calculate \(D_{z} E(z)(h) \) where \(E\colon \mathbb{R}^n \to \mathbb{R}_+\) is defined as \(\displaystyle E = \frac{1}{2}{\left\|z - y\right\|}^2\).</li>
-  <li>Calculate \(D_{u} \sigma(u)(h)\) where \(\sigma\colon \mathbb{R}^n \to \mathbb{R}^n\) is of the form \(\displaystyle \sigma(u) = \begin{pmatrix}\sigma_1(u_1) \\ \vdots \\ \sigma_n(u_n)\end{pmatrix}\).</li>
+  <li>Calculate \(D_{u} \sigma^{(\ell)}(u)(h)\) where \(\sigma\colon \mathbb{R}^n \to \mathbb{R}^n\) is of the form \(\displaystyle \sigma^{(\ell)}(u) = \begin{pmatrix}\sigma^{(\ell)}_1(u_1) \\ \vdots \\ \sigma^{(\ell)}_n(u_n)\end{pmatrix}\).</li>
   <li>Calculate \(D_W (W \mapsto Wz) (W) (H) \).</li>
 </ol>
 \begin{align*}
@@ -124,47 +124,50 @@ Therefore
   \label{derivative-of-norm}
 \end{align}
 </p>
-<h4>2. \(D_u \sigma(u)(h)\)</h4>
+<h4>2. \(D_u \sigma^{(\ell)}(u)(h)\)</h4>
 <p>Since we assume each \(\sigma_i\) is differentiable,
 for any \(\varepsilon &gt; 0\),
 we can take \(h_i\) satisfying
 \begin{align*}
-  | \sigma_i(u_i + h_i) - \sigma_i(u_i) - \sigma_i'(u_i)  h_i  | \leq \varepsilon |h_i|
+  \left|
+    \sigma_i^{(\ell)}(u_i + h_i) - \sigma_i^{(\ell)}(u_i)
+    - \frac{d\sigma^{(\ell)}_i}{du_i}\left(u_i\right)  h_i
+  \right|
+  \leq \varepsilon \left|h_i\right|
 \end{align*}
 for all \(i \in \{1,\,\ldots,\,n\}\). Then,
 \begin{align*}
+&amp;
 \left\|
-  \sigma(u + h) - \sigma(u) -
+  \sigma^{(\ell)}(u + h) - \sigma^{(\ell)}(u) -
     \begin{pmatrix}
-      \sigma(u_1) h_1 \\
-      \vdots \\
-      \sigma (u_n) h_n
+    \displaystyle \frac{d \sigma^{(\ell)}}{du_1}\left(u_1\right) &amp;
+      \cdots &amp;
+      \displaystyle \frac{d \sigma^{(\ell)}}{du_n} \left(u_n\right)
     \end{pmatrix}
-\right\|
+    \begin{pmatrix}
+      h_1 \\
+      \vdots \\
+      h_n
+    \end{pmatrix}
+\right\| \\
 &amp;= \sqrt{\sum_{k = 1}^n \left(\sigma_k(u_k + h_k)  - \sigma_k(u_k) - \sigma_k(u_k) h_k\right)^2 } \\
 &amp;\leq \sqrt{\sum_{k = 1}^n \varepsilon^2 |h_k|^2 }  \\
 &amp;= \varepsilon \|h\|
 \end{align*}
 Defining
 \begin{align*}
-  J_u =
+  J^{(\ell)}_{u} =
     \begin{pmatrix}
-      \displaystyle \frac{d \sigma_1}{ d u_1 }\left(u_1\right) &amp; \cdots &amp; O \\
+      \displaystyle \frac{d \sigma^{(\ell)}_1}{ d u_1 }\left(u_1\right) &amp; \cdots &amp; O \\
       \vdots &amp; \ddots &amp; \vdots \\
-      O &amp; \cdots &amp; \displaystyle \frac{d\sigma_n}{du_n}\left(u_n\right)
-    \end{pmatrix},
-    \quad
-    h =
-    \begin{pmatrix}
-      h_1 \\
-      \vdots \\
-      h_n
+      O &amp; \cdots &amp; \displaystyle \frac{d\sigma^{(\ell)}_n}{du_n}\left(u_n\right)
     \end{pmatrix},
 \end{align*}
 we obtain
 \begin{align}
-  D_u \sigma(u)(h)
-  = J_u h
+  D_u \sigma^{(\ell)}(u)(h)
+  = J^{(\ell)}_u h
   \label{derivative-of-activation}
 \end{align}
 </p>
