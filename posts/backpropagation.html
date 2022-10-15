@@ -153,7 +153,7 @@
             <h4>1. \(D_zE(z)(h)\)</h4>
             <p>Note that \({\|U\|}^2 = \langle U,\, U \rangle\) and that \( \langle U,\, V\rangle = \trace (U{}^\top V)\).
               \begin{align*}
-              E(z + h) - E(z)
+              &amp;E(z + h) - E(z) \\
               &amp;= \frac{1}{2}\| (z + h) - y \|^2 - \frac{1}{2}\| z - y \|^2 \\
               &amp;= \langle z + h - y ,\, z + h - y \rangle - \frac{1}{2} {\|z - y\|}^2 \\
               &amp;= \frac{1}{2}{\|z - y\|}^2 + \langle h,\, z - y \rangle + \frac{1}{2}{\|h\|}^2 - \frac{1}{2} {\|z - y\|}^2 \\
@@ -176,7 +176,7 @@
               \right|
               \leq \varepsilon \left|h_i\right|
               \end{align*}
-              for all \(i \in \{1,\,\ldots,\,n\}\). Then,
+              for all \(i \in \{1,\,\ldots,\,n\}\). Therefore we have the evaluation below:
               \begin{align*}
               &amp;
               \left\|
@@ -196,21 +196,21 @@
               &amp;\leq \sqrt{\sum_{k = 1}^n \varepsilon^2 |h_k|^2 } \\
               &amp;= \varepsilon \|h\|
               \end{align*}
-              Defining
+              This mean that
+              \begin{align}
+              D_u \sigma^{(\ell)}(u)(h)
+              = J^{(\ell)}_u h,
+              \label{derivative-of-activation}
+              \end{align}
+              where
               \begin{align*}
               J^{(\ell)}_{u} =
               \begin{pmatrix}
               \displaystyle \frac{d \sigma^{(\ell)}_1}{ d u_1 }\left(u_1\right) &amp; \cdots &amp; O \\
               \vdots &amp; \ddots &amp; \vdots \\
               O &amp; \cdots &amp; \displaystyle \frac{d\sigma^{(\ell)}_n}{du_n}\left(u_n\right)
-              \end{pmatrix},
+              \end{pmatrix} \in \mathbb{R}^{n \times n}.
               \end{align*}
-              we obtain
-              \begin{align}
-              D_u \sigma^{(\ell)}(u)(h)
-              = J^{(\ell)}_u h
-              \label{derivative-of-activation}
-              \end{align}
             </p>
             <h4>3. \(D_W (W \mapsto Wz) (W) (H) \)</h4>
             <p>
@@ -233,7 +233,7 @@
               and (\ref{derivative-of-product-right}).
               First, (\ref{chain-L}) is calculated as
               \begin{align*}
-              D_{W^{(L)}} E\left(W^{(L)}\right)(H)
+              &amp;D_{W^{(L)}} E\left(W^{(L)}\right)(H) \\
               &amp;=
               \left(D_{z^{(L)}} E\left(z^{(L)}\right)
               \circ D_{u^{(L)}} z^{(L)}\left(u^{(L)}\right)
@@ -277,7 +277,7 @@
               \end{array} \\
               \displaystyle \frac{\partial E}{\partial w_{i,\,j}} = [A]_{i,\, j},
               \end{gather*}
-              where \([A]_{i,\,j}\) is the \((i,\,j)\)-the element of a matrix \(A\).
+              where \([A]_{i,\,j}\) is the \((i,\,j)\)-the component of a matrix \(A\).
             </p>
             <p>Similarly, (\ref{chain-L-1}) is calculated as
               \begin{align*}
