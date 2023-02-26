@@ -17,7 +17,6 @@ release: $(DIST)/CNAME \
 	$(IMAGES) \
 	$(VIDEOS) \
 	$(VECTOR_IMAGES) \
-	$(addprefix $(DIST)/static/js/, $(notdir $(VENDOR_SCRIPTS))) \
 	$(DIST)/static/css/main.css \
 	$(DIST)/static/js/mathjax.js \
 	$(DIST)/static/js/main.js \
@@ -43,13 +42,6 @@ $(DIST)/static/images/%.svg: latex/%.svg
 $(DIST)/static/videos/%: videos/%
 	@mkdir -p $(@D)
 	@cp $< $@
-
-$(DIST)/static/js/%.js: $(VENDOR_SCRIPTS)
-	@mkdir -p $(@D)
-	@cp $< $@
-
-$(VENDOR_SCRIPTS):
-	@npm install
 
 $(DIST)/static/js/mathjax.js: javascripts/mathjax.js
 	@mkdir -p $(@D)
