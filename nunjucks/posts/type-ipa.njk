@@ -1,4 +1,4 @@
-{% extends '_layout/_article.njk' %}
+{% extends 'nunjucks/_layout/_article.njk' %}
 
 {% set lang = 'en' %}
 {% set title = 'How to type phonetic symbols' %}
@@ -67,6 +67,6 @@
 <section id="appendix">
   <h2>Appendix</h2>
   <p>The table below shows how to type each symbol (Compose is the default key sequences of Wincompose). <strong>Note that all of the input methods is customizable on your need</strong>.</p>
-  {% include 'posts/_include/_ipa-table.njk' %}
+  {% include 'nunjucks/posts/_include/_ipa-table.njk' %}
 </section>
 {% endblock %}
