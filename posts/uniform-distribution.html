@@ -1,199 +1,182 @@
 <!DOCTYPE html>
 <html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@pecorarista">
+    <meta name="twitter:title" content="一様分布の期待値と分散 — pecorarista.com">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="https://pecorarista.com/static/images/avatar.png">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri&family=Judson&family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400;700&family=Roboto+Mono:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cosmo/bootstrap.min.css" integrity="sha384-5QFXyVb+lrCzdN228VS3HmzpiE7ZVwLQtkt+0d9W43LQMzz4HBnnqvVxKg6O+04d" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-lucario.min.css" integrity="sha512-Aj5jCt/M5XlTn+Y93TazO+EjpRTiUGMrMuaJOcBcu80Fopd7+LSL094m3pbVTNJxf1hOAMSYI/hONBGjvPWwGQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="/static/css/main.css"/>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:site" content="@pecorarista">
-  <meta name="twitter:title" content="一様分布の期待値と分散 — pecorarista.com">
-  <meta name="twitter:description" content="">
-  <meta name="twitter:image" content="https://pecorarista.com/static/images/avatar.png">
-  <link rel="icon" href="/favicon.ico">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Noto+Serif+JP&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Judson&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cosmo/bootstrap.min.css" integrity="sha384-5QFXyVb+lrCzdN228VS3HmzpiE7ZVwLQtkt+0d9W43LQMzz4HBnnqvVxKg6O+04d" crossorigin="anonymous">
-  <link rel="stylesheet" href="/static/css/prism-lucario.css" />
-  <link rel="stylesheet" href="/static/css/main.css" />
+    <title>一様分布の期待値と分散</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <div class="navbar-header pull-left"><a class="navbar-brand" href="/">pecorarista.com</a></div>
+    <div class="navbar-header pull-right">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link active" href="/resources">Resources</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
-  <title>一様分布の期待値と分散</title>
-</head>
-
-<body>
-  <div class="wrapper">
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-          <div class="navbar-header pull-left"><a class="navbar-brand" href="/">pecorarista.com</a></div>
-          <div class="navbar-header pull-right">
-            <ul class="navbar-nav">
-              <li class="nav-item"><a class="nav-link active" href="/resources">Resources</a></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-
-    </header>
-    <main>
-
-      <article>
-        <div class="container">
-          <h1>一様分布の期待値と分散</h1>
-          <div class="info text-muted">
-            Posted: 2022-09-22
-
-            (Updated: 2022-09-24)
-
-          </div>
-
-          <section>
-            <p>
-              Lebesgue積分を定義通りに計算することがなかったので（する必要はないが），
-              一様分布の期待値と分散を題材に計算してみる．
-            </p>
-            <p>
-              確率空間
-              \(
-              (\varOmega,\, \mathcal{F},\, P)
-              \)
-              で考える．
-              確率変数
-              \(X\colon \varOmega \to \mathbb{R}\)
-              が一様分布
-              \(\mathcal{U}(0,\,1)\)
-              に従うとは，
-              \(X\)
-              の分布関数
-              \(F \colon \mathbb{R} \to [0,\,1]\)
-              が以下で与えられることである：
-              \begin{align*}
-              F(x) :=
-              P(\{\omega \in \varOmega \mid X(\omega) \leq x\}) =
-              \begin{cases}
-              0 &amp; \text{if \(x \in (-\infty,\, 0),\)} \\[3pt]
-              x &amp; \text{if \(x \in [0,\, 1),\)} \\[3pt]
-              1 &amp; \text{if \(x \in [1,\, \infty).\)} \\
-              \end{cases}
-              \end{align*}
-              \(F\)
-              の密度関数
-              \(f\)
-              は
-              \begin{align*}
-              f(x) =
-              \begin{cases}
-              1 &amp; \text{if \(x \in [0,\, 1),\)} \\[3pt]
-              0 &amp; \text{otherwise.} \\
-              \end{cases}
-              \end{align*}
-              \(X\)
-              の期待値は
-              \begin{align*}
-              E[X]
-              &amp;= \int_{\varOmega} X(\omega) P(d\omega) \\
-              &amp;= \int_{0}^{1} x f(x) dx \\
-              &amp;= \lim_{n \to \infty} \sum_{k = 1}^{2^n}
-              \frac{k - 1}{2^n} P
-              \left(
-              \left\{
-              \omega \in \varOmega \;\middle|\;
-              X(\omega) \in
-              \left[
-              \frac{k - 1}{2^n},\,\frac{k}{2^n}
-              \right)
-              \right\}
-              \right) \\
-              &amp;= \lim_{n \to \infty} \frac{1}{2^n} \cdot \frac{2^n}{2} \cdot ({0 + 2^n - 1}) \cdot \frac{1}{2^n} \\
-              &amp;= \lim_{n \to \infty} \frac{1}{2} \cdot \parentheses{1 - \frac{1}{2^n}} \\
-              &amp;= \frac{1}{2}.
-              \end{align*}
-              \(X\)
-              の分散は
-              \begin{align*}
-              V[X]
-              &amp;= E[X^2] - (E[X])^2 \\
-              &amp;= \int_{0}^1 x^2 f(x) dx - \frac{1}{4} \\
-              &amp;= \lim_{n \to \infty} \sum_{k = 1}^{2^n}
-              \parentheses{\frac{k - 1}{2^{n}}}^2 P
-              \left(
-              \left\{
-              \omega \in \varOmega \;\middle|\;
-              X(\omega) \in
-              \left[
-              \parentheses{\frac{k - 1}{2^n}}^2,\,\parentheses{\frac{k}{2^n}}^2
-              \right)
-              \right\}
-              \right)
-              - \frac{1}{4}
-              \\
-              &amp;= \lim_{n \to \infty} \sum_{k = 1}^{2^n}
-              \frac{(k - 1)^2}{2^{2n}} \cdot \frac{1}{2^n} - \frac{1}{4} \\
-              &amp;= \lim_{n \to \infty} \frac{1}{2^{3n}} \cdot \frac{1}{6} \cdot (2^n - 1) \cdot 2^n \cdot (2 \cdot 2^n - 1) - \frac{1}{4} \\
-              &amp;= \lim_{n \to \infty} \frac{1}{6\cdot 2^{3n}} \cdot \parentheses{2 \cdot 2^{3n} - 3 \cdot 2^{2n} + 2^n } - \frac{1}{4} \\
-              &amp;= \frac{1}{12}.
-              \end{align*}
-            </p>
-            <p>一般に確率変数
-              \(X'\)
-              が一様分布
-              \(\mathcal{U}(a,\,b)\)
-              にしたがうとき，
-              \(X \sim \mathcal{U}(0,\, 1)\)
-              を用いて
-              \(X' = (b - a) X + a\)
-              と表すことができるから，期待値と分散はそれぞれ
-              \begin{align*}
-              E[X'] &amp;= E[(b - a)X + a] \\
-              &amp;= \frac{b - a}{2}\cdot E[X] + a \\
-              &amp;= \frac{a + b}{2},
-              \end{align*}
-              \begin{align*}
-              V[X'] &amp;= V[(b - a)X + a] \\
-              &amp;= (b - a)^2 \cdot V[X] \\
-              &amp;=\frac{(b - a)^2}{12}
-              \end{align*}
-              と計算できる．
-            </p>
-          </section>
-
-        </div>
-      </article>
-
-    </main>
-    <footer>
-      <div class="footer text-center">
-        <span>© 2015&ndash;2022 Akira Miyazawa</span>
-      </div>
-
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap.native@2.0.15/dist/bootstrap-native-v4.min.js"></script>
-    <script src="/static/js/prism.js"></script>
-    <script src="/static/js/prism-bash.min.js"></script>
-    <script src="/static/js/prism-latex.min.js"></script>
-    <script src="/static/js/prism-makefile.min.js"></script>
-    <script src="/static/js/prism-java.min.js"></script>
-    <script src="/static/js/prism-javascript.min.js"></script>
-    <script src="/static/js/prism-scala.min.js"></script>
-    <script src="/static/js/prism-markdown.min.js"></script>
-    <script src="/static/js/prism-apacheconf.min.js"></script>
-    <script src="/static/js/prism-perl.min.js"></script>
-    <script src="/static/js/prism-haskell.min.js"></script>
-    <script src="/static/js/prism-lua.min.js"></script>
-    <script src="https://kit.fontawesome.com/30a99ec99f.js" crossorigin="anonymous"></script>
-    <script src="/static/js/main.js"></script>
-
-
-    <script src="/static/js/mathjax.js"></script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js?config=TeX-AMS_HTML"></script>
-    </script>
+      </header>
+      <main>
+        
+<article>
+  <div class="container">
+    <h1>一様分布の期待値と分散</h1>
+    <div class="info text-muted">
+      Posted: 2022-09-22
+      
+        (Updated: 2022-09-24)
+      
+    </div>
+    
+<section>
+<p>
+Lebesgue積分を定義通りに計算することがなかったので（する必要はないが），
+一様分布の期待値と分散を題材に計算してみる．
+</p>
+<p>
+確率空間
+\(
+  (\varOmega,\, \mathcal{F},\, P)
+\)
+で考える．
+確率変数
+\(X\colon \varOmega \to \mathbb{R}\)
+が一様分布
+\(\mathcal{U}(0,\,1)\)
+に従うとは，
+\(X\)
+の分布関数
+\(F \colon \mathbb{R} \to [0,\,1]\)
+が以下で与えられることである：
+\begin{align*}
+  F(x) :=
+  P(\{\omega \in \varOmega \mid X(\omega) \leq x\}) =
+  \begin{cases}
+    0 &amp; \text{if \(x \in (-\infty,\, 0),\)} \\[3pt]
+    x &amp; \text{if \(x \in [0,\, 1),\)} \\[3pt]
+    1 &amp; \text{if \(x \in [1,\, \infty).\)} \\
+  \end{cases}
+\end{align*}
+\(F\)
+の密度関数
+\(f\)
+は
+\begin{align*}
+  f(x) =
+  \begin{cases}
+    1 &amp; \text{if \(x \in [0,\, 1),\)} \\[3pt]
+    0 &amp; \text{otherwise.} \\
+  \end{cases}
+\end{align*}
+\(X\)
+の期待値は
+\begin{align*}
+  E[X]
+  &amp;= \int_{\varOmega} X(\omega) P(d\omega) \\
+  &amp;= \int_{0}^{1} x f(x) dx \\
+  &amp;= \lim_{n \to \infty} \sum_{k = 1}^{2^n}
+  \frac{k - 1}{2^n} P
+    \left(
+      \left\{
+      \omega \in \varOmega \;\middle|\;
+        X(\omega) \in
+        \left[
+          \frac{k - 1}{2^n},\,\frac{k}{2^n}
+        \right)
+      \right\}
+    \right) \\
+  &amp;= \lim_{n \to \infty} \frac{1}{2^n} \cdot \frac{2^n}{2} \cdot ({0 + 2^n - 1}) \cdot \frac{1}{2^n} \\
+  &amp;= \lim_{n \to \infty} \frac{1}{2} \cdot \parentheses{1 - \frac{1}{2^n}} \\
+  &amp;= \frac{1}{2}.
+\end{align*}
+\(X\)
+の分散は
+\begin{align*}
+  V[X]
+  &amp;= E[X^2] - (E[X])^2 \\
+  &amp;= \int_{0}^1 x^2 f(x) dx - \frac{1}{4} \\
+  &amp;= \lim_{n \to \infty} \sum_{k = 1}^{2^n}
+  \parentheses{\frac{k - 1}{2^{n}}}^2 P
+    \left(
+      \left\{
+      \omega \in \varOmega \;\middle|\;
+        X(\omega) \in
+        \left[
+          \parentheses{\frac{k - 1}{2^n}}^2,\,\parentheses{\frac{k}{2^n}}^2
+        \right)
+      \right\}
+    \right)
+    - \frac{1}{4}
+    \\
+  &amp;= \lim_{n \to \infty} \sum_{k = 1}^{2^n}
+  \frac{(k - 1)^2}{2^{2n}} \cdot \frac{1}{2^n} - \frac{1}{4} \\
+  &amp;= \lim_{n \to \infty} \frac{1}{2^{3n}} \cdot \frac{1}{6} \cdot (2^n - 1) \cdot 2^n \cdot (2 \cdot 2^n - 1) - \frac{1}{4} \\
+  &amp;= \lim_{n \to \infty} \frac{1}{6\cdot 2^{3n}} \cdot \parentheses{2 \cdot 2^{3n} - 3 \cdot 2^{2n} + 2^n } - \frac{1}{4} \\
+  &amp;= \frac{1}{12}.
+\end{align*}
+</p>
+<p>一般に確率変数
+\(X'\)
+が一様分布
+\(\mathcal{U}(a,\,b)\)
+にしたがうとき，
+\(X \sim \mathcal{U}(0,\, 1)\)
+を用いて
+\(X' = (b - a) X + a\)
+と表すことができるから，期待値と分散はそれぞれ
+\begin{align*}
+  E[X'] &amp;= E[(b - a)X + a] \\
+        &amp;= \frac{b - a}{2}\cdot E[X] + a \\
+        &amp;= \frac{a + b}{2},
+\end{align*}
+\begin{align*}
+  V[X'] &amp;= V[(b - a)X + a] \\
+        &amp;= (b - a)^2 \cdot V[X] \\
+        &amp;=\frac{(b - a)^2}{12}
+\end{align*}
+と計算できる．
+</p>
+</section>
 
   </div>
-</body>
+</article>
 
+      </main>
+      <footer>
+        <div class="footer text-center">
+  <span>© 2015&ndash;2022 Akira Miyazawa</span>
+</div>
+
+      </footer>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap.native@2.0.15/dist/bootstrap-native-v4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" integrity="sha512-SkmBfuA2hqjzEVpmnMt/LINrjop3GKWqsuLSSB3e7iBmYK7JuWw4ldmmxwD9mdm2IRTTi0OxSAfEGvgEi0i2Kw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://kit.fontawesome.com/30a99ec99f.js" crossorigin="anonymous"></script>
+<script src="/static/js/main.js"></script>
+
+      
+        <script src="/static/js/mathjax.js"></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js?config=TeX-AMS_HTML"></script>
+        </script>
+      
+    </div>
+  </body>
 </html>

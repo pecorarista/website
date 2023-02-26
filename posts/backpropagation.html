@@ -1,370 +1,357 @@
 <!DOCTYPE html>
 <html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@pecorarista">
+    <meta name="twitter:title" content="Calculating Backpropagation Using Fréchet Derivatives — pecorarista.com">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="https://pecorarista.com/static/images/avatar.png">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri&family=Judson&family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400;700&family=Roboto+Mono:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cosmo/bootstrap.min.css" integrity="sha384-5QFXyVb+lrCzdN228VS3HmzpiE7ZVwLQtkt+0d9W43LQMzz4HBnnqvVxKg6O+04d" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-lucario.min.css" integrity="sha512-Aj5jCt/M5XlTn+Y93TazO+EjpRTiUGMrMuaJOcBcu80Fopd7+LSL094m3pbVTNJxf1hOAMSYI/hONBGjvPWwGQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="/static/css/main.css"/>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:site" content="@pecorarista">
-  <meta name="twitter:title" content="Calculating Backpropagation Using Fréchet Derivatives — pecorarista.com">
-  <meta name="twitter:description" content="">
-  <meta name="twitter:image" content="https://pecorarista.com/static/images/avatar.png">
-  <link rel="icon" href="/favicon.ico">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Noto+Serif+JP&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Judson&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cosmo/bootstrap.min.css" integrity="sha384-5QFXyVb+lrCzdN228VS3HmzpiE7ZVwLQtkt+0d9W43LQMzz4HBnnqvVxKg6O+04d" crossorigin="anonymous">
-  <link rel="stylesheet" href="/static/css/prism-lucario.css" />
-  <link rel="stylesheet" href="/static/css/main.css" />
+    <title>Calculating Backpropagation Using Fréchet Derivatives</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <div class="navbar-header pull-left"><a class="navbar-brand" href="/">pecorarista.com</a></div>
+    <div class="navbar-header pull-right">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link active" href="/resources">Resources</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
-  <title>Calculating Backpropagation Using Fréchet Derivatives</title>
-</head>
+      </header>
+      <main>
+        
+<article>
+  <div class="container">
+    <h1>Calculating Backpropagation Using Fréchet Derivatives</h1>
+    <div class="info text-muted">
+      Posted: 2022-10-09
+      
+        (Updated: 2022-10-15)
+      
+    </div>
+    
+<section>
+<p>Consider a multilayer perceptron consisting of \(L\) layers, whose \(\ell\)-th layer has \(n(\ell)\) nodes.
+The loss function is the squared error
+\begin{align*}
+  E(z) =
+  \frac{1}{2}
+  {
+    \left\|
+      z  - y
+    \right\|
+  }^2,
+\end{align*}
+and the activation function for the \(\ell\)-th layer is
+\(\sigma^{(\ell)}\colon \mathbb{R}^{n(\ell)} \to \mathbb{R}^{n(\ell)}\)
+and expressed as
+\begin{gather*}
+  \sigma^{(\ell)}(x) =
+    \begin{pmatrix}
+      \sigma_1^{(\ell)}(x_1) \\
+      \vdots \\
+      \sigma_{n(\ell)}^{(\ell)}\left(x_{n(\ell)}\right)
+    \end{pmatrix},\\[5pt]
+\end{gather*}
+where each \(\sigma^{(\ell)}_i\colon \mathbb{R} \to \mathbb{R}\) is differentiable.
+Let \(u^{(\ell)} \in \mathbb{R}^{n(\ell)}\) be the input to the \(\ell\)-th layer
+and \(z^{(\ell)} \in \mathbb{R}^{n(\ell)}\) be the output from the \(\ell\)-th layer:
+\begin{align*}
+  z^{(\ell)} = \sigma^{(\ell)} \left( u^{(\ell)} \right).
+\end{align*}
+The weight of the \(\ell\)-th layer is
+\(W^{(\ell)} \in \mathbb{R}^{n(\ell) \times n(\ell - 1)}\), which is expressed as
+\begin{align*}
+  W^{(\ell)} =
+  \begin{pmatrix}
+    w_{1,\,1}^{(\ell)}       &amp; \cdots &amp; w_{1,\,n(\ell - 1)}^{(\ell)} \\
+    \vdots                   &amp; \ddots &amp; \vdots \\
+    w_{n(\ell),\,1}^{(\ell)} &amp; \cdots &amp; w_{n(\ell),\,n(\ell - 1)}
+  \end{pmatrix},
+\end{align*}
+so this means that
+\begin{align*}
+  u^{(\ell)} = W^{(\ell)} z^{(\ell - 1)} = W^{(\ell)} \sigma^{(\ell - 1)} \left( u^{(\ell - 1)} \right),\quad
+\end{align*}
+The multi-layer perceptron defined above is illustrated as the figure below.
+<figure class="centered">
+  <figcaption><strong>Figure 1:</strong> Architecture of the neural network.</figcaption>
+  <img
+    src="/static/images/nn.svg"
+    alt="Architecture of the neural network"
+    style="background-color: transparent; width: 100%; height: auto; max-width: 800px; margin-top: 2ex;"
+  />
+</figure>
+</p>
+<p>
+The goal of this post is to derive the derivative of \(E\) with respect to \(W^{(\ell)}\),
+but it suffices to show the case of \(W^{(L)}\) is \(W^{(L - 1)}\)
+because others are easily derived from them.
+First, assume each variable is one-dimensional to aid intuitive understanding.
+Then,
+\begin{gather*}
+  \frac{dE}{dW^{(L)}} =
+    \frac{dE}{dz^{(L)}}
+    \frac{dz^{(L)}}{du^{(L)}}
+    \frac{du^{(L)}}{dW^{(L)}},
+\end{gather*}
+\begin{gather*}
+  \frac{dE}{dW^{(L - 1)}} =
+    \frac{dE}{dz^{(L)}}
+    \frac{dz^{(L)}}{du^{(L)}}
+    \frac{du^{(L)}}{du^{(L - 1)}}
+    \frac{du^{(L - 1)}}{dW^{(L - 1)}}.
+\end{gather*}
+In general cases where dimensions are greater than one, the following analogous formula holds
+\begin{align}
+  D_{W^{(L)}} E\left(W^{(L)}\right)(H) =
+  \left(D_{z^{(L)}} E\left(z^{(L)}\right)
+  \circ D_{u^{(L)}} z^{(L)}\left(u^{(L)}\right)
+  \circ D_{W^{(L)}} u^{(L)}\left(u^{(L)}\right)
+  \right)(H),
+  \label{chain-L}
+\end{align}
+\begin{align}
+  &amp;D_{W^{(L - 1)}} E\left(W^{(L - 1)}\right)(H)
+  \notag \\
+  &amp;= \left(D_{z^{(L)}} E\left(z^{(L)}\right)
+  \circ D_{u^{(L)}} z^{(L)}\left(u^{(L)}\right)
+  \circ D_{u^{(L - 1)}} u^{(L)}\left(u^{(L - 1)}\right)
+  \circ  D_{W^{(L - 1)}} u^{(L - 1)}\left(u^{(L - 1)}\right)
+  \right)(H),
+  \label{chain-L-1}
+\end{align}
+where \(D_x f(x_0)(h)\) denotes the Fréchet derivative of \(f\) at a point \(x_0\) with respect to \(x\)
+along \(h\).
 
-<body>
-  <div class="wrapper">
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-          <div class="navbar-header pull-left"><a class="navbar-brand" href="/">pecorarista.com</a></div>
-          <div class="navbar-header pull-right">
-            <ul class="navbar-nav">
-              <li class="nav-item"><a class="nav-link active" href="/resources">Resources</a></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-
-    </header>
-    <main>
-
-      <article>
-        <div class="container">
-          <h1>Calculating Backpropagation Using Fréchet Derivatives</h1>
-          <div class="info text-muted">
-            Posted: 2022-10-09
-
-            (Updated: 2022-10-15)
-
-          </div>
-
-          <section>
-            <p>Consider a multilayer perceptron consisting of \(L\) layers, whose \(\ell\)-th layer has \(n(\ell)\) nodes.
-              The loss function is the squared error
-              \begin{align*}
-              E(z) =
-              \frac{1}{2}
-              {
-              \left\|
-              z - y
-              \right\|
-              }^2,
-              \end{align*}
-              and the activation function for the \(\ell\)-th layer is
-              \(\sigma^{(\ell)}\colon \mathbb{R}^{n(\ell)} \to \mathbb{R}^{n(\ell)}\)
-              and expressed as
-              \begin{gather*}
-              \sigma^{(\ell)}(x) =
-              \begin{pmatrix}
-              \sigma_1^{(\ell)}(x_1) \\
-              \vdots \\
-              \sigma_{n(\ell)}^{(\ell)}\left(x_{n(\ell)}\right)
-              \end{pmatrix},\\[5pt]
-              \end{gather*}
-              where each \(\sigma^{(\ell)}_i\colon \mathbb{R} \to \mathbb{R}\) is differentiable.
-              Let \(u^{(\ell)} \in \mathbb{R}^{n(\ell)}\) be the input to the \(\ell\)-th layer
-              and \(z^{(\ell)} \in \mathbb{R}^{n(\ell)}\) be the output from the \(\ell\)-th layer:
-              \begin{align*}
-              z^{(\ell)} = \sigma^{(\ell)} \left( u^{(\ell)} \right).
-              \end{align*}
-              The weight of the \(\ell\)-th layer is
-              \(W^{(\ell)} \in \mathbb{R}^{n(\ell) \times n(\ell - 1)}\), which is expressed as
-              \begin{align*}
-              W^{(\ell)} =
-              \begin{pmatrix}
-              w_{1,\,1}^{(\ell)} &amp; \cdots &amp; w_{1,\,n(\ell - 1)}^{(\ell)} \\
-              \vdots &amp; \ddots &amp; \vdots \\
-              w_{n(\ell),\,1}^{(\ell)} &amp; \cdots &amp; w_{n(\ell),\,n(\ell - 1)}
-              \end{pmatrix},
-              \end{align*}
-              so this means that
-              \begin{align*}
-              u^{(\ell)} = W^{(\ell)} z^{(\ell - 1)} = W^{(\ell)} \sigma^{(\ell - 1)} \left( u^{(\ell - 1)} \right),\quad
-              \end{align*}
-              The multi-layer perceptron defined above is illustrated as the figure below.
-            <figure class="centered">
-              <figcaption><strong>Figure 1:</strong> Architecture of the neural network.</figcaption>
-              <img src="/static/images/nn.svg" alt="Architecture of the neural network" style="background-color: transparent; width: 100%; height: auto; max-width: 800px; margin-top: 2ex;" />
-            </figure>
-            </p>
-            <p>
-              The goal of this post is to derive the derivative of \(E\) with respect to \(W^{(\ell)}\),
-              but it suffices to show the case of \(W^{(L)}\) is \(W^{(L - 1)}\)
-              because others are easily derived from them.
-              First, assume each variable is one-dimensional to aid intuitive understanding.
-              Then,
-              \begin{gather*}
-              \frac{dE}{dW^{(L)}} =
-              \frac{dE}{dz^{(L)}}
-              \frac{dz^{(L)}}{du^{(L)}}
-              \frac{du^{(L)}}{dW^{(L)}},
-              \end{gather*}
-              \begin{gather*}
-              \frac{dE}{dW^{(L - 1)}} =
-              \frac{dE}{dz^{(L)}}
-              \frac{dz^{(L)}}{du^{(L)}}
-              \frac{du^{(L)}}{du^{(L - 1)}}
-              \frac{du^{(L - 1)}}{dW^{(L - 1)}}.
-              \end{gather*}
-              In general cases where dimensions are greater than one, the following analogous formula holds
-              \begin{align}
-              D_{W^{(L)}} E\left(W^{(L)}\right)(H) =
-              \left(D_{z^{(L)}} E\left(z^{(L)}\right)
-              \circ D_{u^{(L)}} z^{(L)}\left(u^{(L)}\right)
-              \circ D_{W^{(L)}} u^{(L)}\left(u^{(L)}\right)
-              \right)(H),
-              \label{chain-L}
-              \end{align}
-              \begin{align}
-              &amp;D_{W^{(L - 1)}} E\left(W^{(L - 1)}\right)(H)
-              \notag \\
-              &amp;= \left(D_{z^{(L)}} E\left(z^{(L)}\right)
-              \circ D_{u^{(L)}} z^{(L)}\left(u^{(L)}\right)
-              \circ D_{u^{(L - 1)}} u^{(L)}\left(u^{(L - 1)}\right)
-              \circ D_{W^{(L - 1)}} u^{(L - 1)}\left(u^{(L - 1)}\right)
-              \right)(H),
-              \label{chain-L-1}
-              \end{align}
-              where \(D_x f(x_0)(h)\) denotes the Fréchet derivative of \(f\) at a point \(x_0\) with respect to \(x\)
-              along \(h\).
-
-              Calculation of (\ref{chain-L}) and (\ref{chain-L-1}) is decomposed into the following calculations:
-            <ol class="math">
-              <li>Calculate \(D_{z} E(z)(h) \) where \(E\colon \mathbb{R}^n \to \mathbb{R}_+\) is defined as \(\displaystyle E = \frac{1}{2}{\left\|z - y\right\|}^2\).</li>
-              <li>Calculate \(D_{u} \sigma^{(\ell)}(u)(h)\) where \(\sigma\colon \mathbb{R}^n \to \mathbb{R}^n\) is of the form \(\displaystyle \sigma^{(\ell)}(u) = \begin{pmatrix}\sigma^{(\ell)}_1(u_1) \\ \vdots \\ \sigma^{(\ell)}_n(u_n)\end{pmatrix}\).</li>
-              <li>Calculate \(D_W (W \mapsto Wz) (W) (H) \).</li>
-            </ol>
-            \begin{align*}
-            \end{align*}
-            </p>
-            <h4>1. \(D_zE(z)(h)\)</h4>
-            <p>Note that \({\|U\|}^2 = \langle U,\, U \rangle\) and that \( \langle U,\, V\rangle = \trace (U{}^\top V)\).
-              \begin{align*}
-              &amp;E(z + h) - E(z) \\
-              &amp;= \frac{1}{2}\| (z + h) - y \|^2 - \frac{1}{2}\| z - y \|^2 \\
-              &amp;= \langle z + h - y ,\, z + h - y \rangle - \frac{1}{2} {\|z - y\|}^2 \\
-              &amp;= \frac{1}{2}{\|z - y\|}^2 + \langle h,\, z - y \rangle + \frac{1}{2}{\|h\|}^2 - \frac{1}{2} {\|z - y\|}^2 \\
-              &amp;\leq \langle z - y,\, h \rangle + \frac{1}{2} \|h\|^2
-              \end{align*}
-              Therefore
-              \begin{align}
-              D_z E(z)(h) = \langle z - y,\, h \rangle.
-              \label{derivative-of-norm}
-              \end{align}
-            </p>
-            <h4>2. \(D_u \sigma^{(\ell)}(u)(h)\)</h4>
-            <p>Since we assume each \(\sigma_i\) is differentiable,
-              for any \(\varepsilon &gt; 0\),
-              we can take \(h_i\) satisfying
-              \begin{align*}
-              \left|
-              \sigma_i^{(\ell)}(u_i + h_i) - \sigma_i^{(\ell)}(u_i)
-              - \frac{d\sigma^{(\ell)}_i}{du_i}\left(u_i\right) h_i
-              \right|
-              \leq \varepsilon \left|h_i\right|
-              \end{align*}
-              for all \(i \in \{1,\,\ldots,\,n\}\). Therefore we have the evaluation below:
-              \begin{align*}
-              &amp;
-              \left\|
-              \sigma^{(\ell)}(u + h) - \sigma^{(\ell)}(u) -
-              \begin{pmatrix}
-              \displaystyle \frac{d \sigma^{(\ell)}}{du_1}\left(u_1\right) &amp;
-              \cdots &amp;
-              \displaystyle \frac{d \sigma^{(\ell)}}{du_n} \left(u_n\right)
-              \end{pmatrix}
-              \begin{pmatrix}
-              h_1 \\
-              \vdots \\
-              h_n
-              \end{pmatrix}
-              \right\| \\
-              &amp;= \sqrt{\sum_{k = 1}^n \left(\sigma^{(\ell)}_k(u_k + h_k) - \sigma^{(\ell)}_k(u_k) - \sigma^{(\ell)}_k(u_k) h_k\right)^2 } \\
-              &amp;\leq \sqrt{\sum_{k = 1}^n \varepsilon^2 |h_k|^2 } \\
-              &amp;= \varepsilon \|h\|
-              \end{align*}
-              This means that
-              \begin{align}
-              D_u \sigma^{(\ell)}(u)(h)
-              = J^{(\ell)}_u h,
-              \label{derivative-of-activation}
-              \end{align}
-              where
-              \begin{align*}
-              J^{(\ell)}_{u} =
-              \begin{pmatrix}
-              \displaystyle \frac{d \sigma^{(\ell)}_1}{ d u_1 }\left(u_1\right) &amp; \cdots &amp; O \\
-              \vdots &amp; \ddots &amp; \vdots \\
-              O &amp; \cdots &amp; \displaystyle \frac{d\sigma^{(\ell)}_n}{du_n}\left(u_n\right)
-              \end{pmatrix} \in \mathbb{R}^{n \times n}.
-              \end{align*}
-            </p>
-            <h4>3. \(D_W (W \mapsto Wz) (W) (H) \)</h4>
-            <p>
-              Since
-              \begin{align*}
-              (W + H) z - W z = Hz,
-              \end{align*}
-              we obtain
-              \begin{align}
-              D_W (W \mapsto Wz) (W) (H) = Hz.
-              \label{derivative-of-product-right}
-              \end{align}
-            </p>
-          </section>
-          <section>
-            <h3>Backpropagation</h3>
-            <p>Now we can calculate (\ref{chain-L}) and (\ref{chain-L-1}) by
-              using (\ref{derivative-of-norm}),
-              (\ref{derivative-of-activation}),
-              and (\ref{derivative-of-product-right}).
-              First, (\ref{chain-L}) is calculated as
-              \begin{align*}
-              &amp;D_{W^{(L)}} E\left(W^{(L)}\right)(H) \\
-              &amp;=
-              \left(D_{z^{(L)}} E\left(z^{(L)}\right)
-              \circ D_{u^{(L)}} z^{(L)}\left(u^{(L)}\right)
-              \circ D_{W^{(L)}} u^{(L)}\left(u^{(L)}\right)
-              \right)(H) \\
-              &amp;=
-              \left( h \mapsto \left\langle z^{(L)} - y,\, h \right\rangle \right)
-              \circ \left( h \mapsto J^{(L)}_{u^{(L)}} \right)
-              \circ \left(H \mapsto H z^{(L - 1)}\right)(H) \\
-              &amp;=
-              \left\langle z^{(L)} - y,\, J^{(L)}_{u^{(L)}} H z^{(L - 1)} \right\rangle \\
-              &amp;= \trace \left( \left(z^{(L)} - y\right)^\top J^{(L)}_{u^{(L)}} H z^{(L - 1)} \right) \\
-              &amp;= \trace \left( z^{(L - 1)}{} \left(z^{(L)} - y\right)^\top J^{(L)}_{u^{(L)}} H \right) \\
-              &amp;= \trace \left( {\left(J^{(L)}_{u^{(L)}} \left(z^{(L)} - y\right) z^{(L - 1)}{}^\top \right)}^\top H \right)
-              \end{align*}
-              Here I used the formula \(\trace(ABC) = \trace(CBA) \) and symmetry \(J^{(L)}_{u^{(L)}} = J^{(L)}_{u^{(L)}}{}^\top \).
-              Each \(\displaystyle \frac{\partial E}{\partial w_{i,\, j}^{(L)}}\) is computed by letting \(H = hE_{i,\,j}\)
-              where
-              \begin{gather*}
-              \begin{array}{c}
-              \begin{array}{ccccccc}
-              &amp; &amp; &amp; \downarrow\ \text{\(j\)-th col.} &amp; &amp; &amp; \\
-              E_{i,\,j} = (0 &amp; \cdots &amp; 0 &amp; he_i &amp; 0 &amp; \cdots &amp; 0),\quad
-              \end{array}
-              \end{array} \\
-              e_i =
-              \left(
-              \begin{array}{c}
-              0 \\
-              \vdots \\
-              0 \\
-              1 \\
-              0 \\
-              \vdots \\
-              0
-              \end{array}
-              \right)
-              \;
-              \begin{array}{c}
-              \\
-              \\
-              \\
-              \leftarrow\ \text{\(i\)-th row}\\
-              \\
-              \\
-              \\
-              \end{array},
-              \end{gather*}
-              and \(A = J^{(L)}_{u^{(L)}} \left(z^{(L)} - y\right) z^{(L - 1)}{}^\top \). Then,
-              \begin{gather*}
-              \begin{array}{c}
-              \begin{array}{ccccccc}
-              &amp; &amp; &amp; \downarrow\ \text{\(j\)-th col.} &amp; &amp; &amp; \\
-              \displaystyle h \frac{\partial E}{\partial w_{i,\,j}}
-              = \trace (0 &amp; \cdots &amp; 0 &amp; (\text{\(A\)'s \(i\)-th row})^\top &amp; 0 &amp; \cdots &amp; 0)
-              \end{array}
-              \end{array} \\
-              \displaystyle \frac{\partial E}{\partial w_{i,\,j}} = [A]_{i,\, j},
-              \end{gather*}
-              where \([A]_{i,\,j}\) is the \((i,\,j)\)-the component of a matrix \(A\).
-            </p>
-            <p>Similarly, (\ref{chain-L-1}) is calculated as
-              \begin{align*}
-              &amp;D_{W^{(L - 1)}} E\left(W^{(L - 1)}\right)(H)
-              \\
-              &amp;= \left(D_{z^{(L)}} E\left(z^{(L)}\right)
-              \circ D_{u^{(L)}} z^{(L)}\left(u^{(L)}\right)
-              \circ D_{u^{(L - 1)}} u^{(L)}\left(u^{(L - 1)}\right)
-              \circ D_{W^{(L - 1)}} u^{(L - 1)}\left(u^{(L - 1)}\right)
-              \right)(H) \\
-              &amp;= \left( h \mapsto \left\langle z^{(L)} - y,\, h \right\rangle \right)
-              \circ \left( h \mapsto J^{(L)}_{u^{(L)}} h \right)
-              \circ \left( h \mapsto W^{(L)} J^{(L - 1)}_{u^{(L - 1)}} h \right)
-              \circ \left( H \mapsto H z^{(L - 1)} \right)(H) \\
-              &amp;= \left\langle z^{(L)} - y,\, J^{(L)}_{u^{(L)}} W^{(L)} J^{(L - 1)}_{u^{(L - 1)}} H z^{(L - 2)} \right\rangle \\
-              &amp;= \trace \left( {(z^{(L)} - y)}^\top J^{(L)}_{u^{(L)}} W^{(L)} J^{(L - 1)}_{u^{(L - 1)}} H z^{(L - 2)} \right) \\
-              &amp;= \trace \left( z^{(L - 2)} \left(z^{(L)} - y\right)^\top J^{(L)}_{u^{(L)}} W^{(L)} J^{(L - 1)}_{u^{(L - 1)}} H \right) \\
-              &amp;= \trace \left( {\left(J^{(L - 1)}_{u^{(L - 1)}} W^{(L)}{}^\top J^{(L)}_{u^{(L)}} \left(z^{(L)} - y\right) z^{(L - 2)}{}^\top \right)}^\top H \right)
-              \end{align*}
-              Define \(\varDelta^{(\ell)}\) by
-              \begin{align*}
-              \varDelta^{(\ell)} =
-              \begin{cases}
-              J_{u^{(L)}} (z^{(L)} - y)
-              &amp; \text{if \(\ell = L\),} \\
-              J^{(\ell)}_{u^{(\ell)}} W^{(\ell + 1)}{}^\top \varDelta^{(\ell + 1)}
-              &amp; \text{if \(\ell \in \{1,\,\ldots,\, L - 1\}\).}
-              \end{cases}
-              \end{align*}
-              Then
-              \begin{align*}
-              \frac{\partial E}{\partial w^{(\ell)}_{i,\,j}} = \left[ \varDelta^{(\ell)} z^{(\ell - 1)} \right]_{i,\, j}.
-              \end{align*}
-              Since each \(\varDelta^{(\ell)}\) is computed from \(\varDelta^{(\ell + 1)}\),
-              this computation is called <em>back propagation</em>.
-            </p>
-          </section>
-
-        </div>
-      </article>
-
-    </main>
-    <footer>
-      <div class="footer text-center">
-        <span>© 2015&ndash;2022 Akira Miyazawa</span>
-      </div>
-
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap.native@2.0.15/dist/bootstrap-native-v4.min.js"></script>
-    <script src="/static/js/prism.js"></script>
-    <script src="/static/js/prism-bash.min.js"></script>
-    <script src="/static/js/prism-latex.min.js"></script>
-    <script src="/static/js/prism-makefile.min.js"></script>
-    <script src="/static/js/prism-java.min.js"></script>
-    <script src="/static/js/prism-javascript.min.js"></script>
-    <script src="/static/js/prism-scala.min.js"></script>
-    <script src="/static/js/prism-markdown.min.js"></script>
-    <script src="/static/js/prism-apacheconf.min.js"></script>
-    <script src="/static/js/prism-perl.min.js"></script>
-    <script src="/static/js/prism-haskell.min.js"></script>
-    <script src="/static/js/prism-lua.min.js"></script>
-    <script src="https://kit.fontawesome.com/30a99ec99f.js" crossorigin="anonymous"></script>
-    <script src="/static/js/main.js"></script>
-
-
-    <script src="/static/js/mathjax.js"></script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js?config=TeX-AMS_HTML"></script>
-    </script>
+Calculation of (\ref{chain-L}) and (\ref{chain-L-1}) is decomposed into the following calculations:
+<ol class="math">
+  <li>Calculate \(D_{z} E(z)(h) \) where \(E\colon \mathbb{R}^n \to \mathbb{R}_+\) is defined as \(\displaystyle E = \frac{1}{2}{\left\|z - y\right\|}^2\).</li>
+  <li>Calculate \(D_{u} \sigma^{(\ell)}(u)(h)\) where \(\sigma\colon \mathbb{R}^n \to \mathbb{R}^n\) is of the form \(\displaystyle \sigma^{(\ell)}(u) = \begin{pmatrix}\sigma^{(\ell)}_1(u_1) \\ \vdots \\ \sigma^{(\ell)}_n(u_n)\end{pmatrix}\).</li>
+  <li>Calculate \(D_W (W \mapsto Wz) (W) (H) \).</li>
+</ol>
+\begin{align*}
+\end{align*}
+</p>
+<h4>1. \(D_zE(z)(h)\)</h4>
+<p>Note that \({\|U\|}^2 = \langle U,\, U \rangle\) and that \( \langle U,\, V\rangle = \trace (U{}^\top V)\).
+\begin{align*}
+  &amp;E(z + h) - E(z) \\
+  &amp;= \frac{1}{2}\| (z + h) - y \|^2 - \frac{1}{2}\| z - y \|^2 \\
+  &amp;= \langle z + h - y ,\, z + h - y \rangle - \frac{1}{2} {\|z - y\|}^2 \\
+  &amp;= \frac{1}{2}{\|z - y\|}^2 + \langle h,\, z - y \rangle + \frac{1}{2}{\|h\|}^2 - \frac{1}{2} {\|z - y\|}^2 \\
+  &amp;\leq \langle z - y,\, h \rangle + \frac{1}{2} \|h\|^2
+\end{align*}
+Therefore
+\begin{align}
+  D_z E(z)(h) = \langle z - y,\, h \rangle.
+  \label{derivative-of-norm}
+\end{align}
+</p>
+<h4>2. \(D_u \sigma^{(\ell)}(u)(h)\)</h4>
+<p>Since we assume each \(\sigma_i\) is differentiable,
+for any \(\varepsilon &gt; 0\),
+we can take \(h_i\) satisfying
+\begin{align*}
+  \left|
+    \sigma_i^{(\ell)}(u_i + h_i) - \sigma_i^{(\ell)}(u_i)
+    - \frac{d\sigma^{(\ell)}_i}{du_i}\left(u_i\right)  h_i
+  \right|
+  \leq \varepsilon \left|h_i\right|
+\end{align*}
+for all \(i \in \{1,\,\ldots,\,n\}\). Therefore we have the evaluation below:
+\begin{align*}
+&amp;
+\left\|
+  \sigma^{(\ell)}(u + h) - \sigma^{(\ell)}(u) -
+    \begin{pmatrix}
+    \displaystyle \frac{d \sigma^{(\ell)}}{du_1}\left(u_1\right) &amp;
+      \cdots &amp;
+      \displaystyle \frac{d \sigma^{(\ell)}}{du_n} \left(u_n\right)
+    \end{pmatrix}
+    \begin{pmatrix}
+      h_1 \\
+      \vdots \\
+      h_n
+    \end{pmatrix}
+\right\| \\
+&amp;= \sqrt{\sum_{k = 1}^n \left(\sigma^{(\ell)}_k(u_k + h_k)  - \sigma^{(\ell)}_k(u_k) - \sigma^{(\ell)}_k(u_k) h_k\right)^2 } \\
+&amp;\leq \sqrt{\sum_{k = 1}^n \varepsilon^2 |h_k|^2 }  \\
+&amp;= \varepsilon \|h\|
+\end{align*}
+This means that
+\begin{align}
+  D_u \sigma^{(\ell)}(u)(h)
+  = J^{(\ell)}_u h,
+  \label{derivative-of-activation}
+\end{align}
+where
+\begin{align*}
+  J^{(\ell)}_{u} =
+    \begin{pmatrix}
+      \displaystyle \frac{d \sigma^{(\ell)}_1}{ d u_1 }\left(u_1\right) &amp; \cdots &amp; O \\
+      \vdots &amp; \ddots &amp; \vdots \\
+      O &amp; \cdots &amp; \displaystyle \frac{d\sigma^{(\ell)}_n}{du_n}\left(u_n\right)
+    \end{pmatrix} \in \mathbb{R}^{n \times n}.
+\end{align*}
+</p>
+<h4>3. \(D_W (W \mapsto Wz) (W) (H) \)</h4>
+<p>
+Since
+\begin{align*}
+  (W + H) z - W z = Hz,
+\end{align*}
+we obtain
+\begin{align}
+  D_W (W \mapsto Wz) (W) (H) = Hz.
+  \label{derivative-of-product-right}
+\end{align}
+</p>
+</section>
+<section>
+<h3>Backpropagation</h3>
+<p>Now we can calculate (\ref{chain-L}) and (\ref{chain-L-1}) by
+using (\ref{derivative-of-norm}),
+(\ref{derivative-of-activation}),
+and (\ref{derivative-of-product-right}).
+First, (\ref{chain-L}) is calculated as
+\begin{align*}
+  &amp;D_{W^{(L)}} E\left(W^{(L)}\right)(H) \\
+  &amp;=
+  \left(D_{z^{(L)}} E\left(z^{(L)}\right)
+  \circ D_{u^{(L)}} z^{(L)}\left(u^{(L)}\right)
+  \circ D_{W^{(L)}} u^{(L)}\left(u^{(L)}\right)
+  \right)(H) \\
+  &amp;=
+  \left( h \mapsto \left\langle z^{(L)} - y,\, h \right\rangle \right)
+  \circ \left( h \mapsto J^{(L)}_{u^{(L)}} \right)
+	\circ \left(H \mapsto H z^{(L - 1)}\right)(H) \\
+  &amp;=
+  \left\langle z^{(L)} - y,\, J^{(L)}_{u^{(L)}} H z^{(L - 1)} \right\rangle \\
+  &amp;= \trace \left( \left(z^{(L)} - y\right)^\top J^{(L)}_{u^{(L)}} H z^{(L - 1)} \right) \\
+  &amp;= \trace \left( z^{(L - 1)}{} \left(z^{(L)} - y\right)^\top J^{(L)}_{u^{(L)}} H \right) \\
+  &amp;= \trace \left( {\left(J^{(L)}_{u^{(L)}} \left(z^{(L)} - y\right) z^{(L - 1)}{}^\top \right)}^\top H \right)
+\end{align*}
+Here I used the formula \(\trace(ABC) = \trace(CBA) \) and symmetry \(J^{(L)}_{u^{(L)}} = J^{(L)}_{u^{(L)}}{}^\top \).
+Each \(\displaystyle \frac{\partial E}{\partial w_{i,\, j}^{(L)}}\) is computed by letting \(H = hE_{i,\,j}\)
+where
+\begin{gather*}
+  \begin{array}{c}
+      \begin{array}{ccccccc}
+                     &amp;        &amp;   &amp; \downarrow\ \text{\(j\)-th col.} &amp;   &amp;        &amp; \\
+      E_{i,\,j} = (0 &amp; \cdots &amp; 0 &amp; he_i &amp; 0   &amp; \cdots &amp; 0),\quad
+      \end{array}
+  \end{array} \\
+  e_i =
+  \left(
+  \begin{array}{c}
+    0 \\
+    \vdots \\
+    0 \\
+    1 \\
+    0 \\
+    \vdots \\
+    0
+  \end{array}
+  \right)
+  \;
+  \begin{array}{c}
+    \\
+    \\
+    \\
+    \leftarrow\ \text{\(i\)-th row}\\
+    \\
+    \\
+    \\
+  \end{array},
+\end{gather*}
+and \(A =  J^{(L)}_{u^{(L)}} \left(z^{(L)} - y\right) z^{(L - 1)}{}^\top  \). Then,
+\begin{gather*}
+  \begin{array}{c}
+    \begin{array}{ccccccc}
+      &amp;        &amp;   &amp; \downarrow\ \text{\(j\)-th col.} &amp;   &amp;        &amp; \\
+      \displaystyle h \frac{\partial E}{\partial w_{i,\,j}}
+      = \trace (0 &amp; \cdots &amp; 0 &amp; (\text{\(A\)'s \(i\)-th row})^\top &amp; 0   &amp; \cdots &amp; 0)
+    \end{array}
+  \end{array} \\
+  \displaystyle \frac{\partial E}{\partial w_{i,\,j}} = [A]_{i,\, j},
+\end{gather*}
+where \([A]_{i,\,j}\) is the \((i,\,j)\)-the component of a matrix \(A\).
+</p>
+<p>Similarly, (\ref{chain-L-1}) is calculated as
+\begin{align*}
+  &amp;D_{W^{(L - 1)}} E\left(W^{(L - 1)}\right)(H)
+  \\
+  &amp;= \left(D_{z^{(L)}} E\left(z^{(L)}\right)
+  \circ D_{u^{(L)}} z^{(L)}\left(u^{(L)}\right)
+  \circ D_{u^{(L - 1)}} u^{(L)}\left(u^{(L - 1)}\right)
+  \circ  D_{W^{(L - 1)}} u^{(L - 1)}\left(u^{(L - 1)}\right)
+  \right)(H) \\
+  &amp;= \left( h \mapsto \left\langle z^{(L)} - y,\, h \right\rangle \right)
+  \circ \left( h \mapsto J^{(L)}_{u^{(L)}} h \right)
+  \circ \left( h \mapsto W^{(L)} J^{(L - 1)}_{u^{(L - 1)}} h  \right)
+  \circ \left( H \mapsto H z^{(L - 1)} \right)(H) \\
+  &amp;= \left\langle z^{(L)} - y,\, J^{(L)}_{u^{(L)}} W^{(L)} J^{(L - 1)}_{u^{(L - 1)}} H z^{(L - 2)} \right\rangle \\
+  &amp;= \trace \left( {(z^{(L)} - y)}^\top J^{(L)}_{u^{(L)}} W^{(L)} J^{(L - 1)}_{u^{(L - 1)}} H z^{(L - 2)} \right) \\
+  &amp;= \trace \left( z^{(L - 2)} \left(z^{(L)} - y\right)^\top J^{(L)}_{u^{(L)}} W^{(L)} J^{(L - 1)}_{u^{(L - 1)}} H \right) \\
+  &amp;= \trace \left( {\left(J^{(L - 1)}_{u^{(L - 1)}} W^{(L)}{}^\top J^{(L)}_{u^{(L)}} \left(z^{(L)} - y\right) z^{(L - 2)}{}^\top \right)}^\top H \right)
+\end{align*}
+Define \(\varDelta^{(\ell)}\) by
+\begin{align*}
+  \varDelta^{(\ell)} =
+  \begin{cases}
+    J_{u^{(L)}} (z^{(L)} - y)
+    &amp; \text{if \(\ell = L\),} \\
+    J^{(\ell)}_{u^{(\ell)}} W^{(\ell + 1)}{}^\top \varDelta^{(\ell + 1)}
+    &amp; \text{if \(\ell \in \{1,\,\ldots,\, L - 1\}\).}
+  \end{cases}
+\end{align*}
+Then
+\begin{align*}
+  \frac{\partial E}{\partial w^{(\ell)}_{i,\,j}} = \left[ \varDelta^{(\ell)} z^{(\ell - 1)} \right]_{i,\, j}.
+\end{align*}
+Since each \(\varDelta^{(\ell)}\) is computed from \(\varDelta^{(\ell + 1)}\),
+this computation is called <em>back propagation</em>.
+</p>
+</section>
 
   </div>
-</body>
+</article>
 
+      </main>
+      <footer>
+        <div class="footer text-center">
+  <span>© 2015&ndash;2022 Akira Miyazawa</span>
+</div>
+
+      </footer>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap.native@2.0.15/dist/bootstrap-native-v4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" integrity="sha512-SkmBfuA2hqjzEVpmnMt/LINrjop3GKWqsuLSSB3e7iBmYK7JuWw4ldmmxwD9mdm2IRTTi0OxSAfEGvgEi0i2Kw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://kit.fontawesome.com/30a99ec99f.js" crossorigin="anonymous"></script>
+<script src="/static/js/main.js"></script>
+
+      
+        <script src="/static/js/mathjax.js"></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js?config=TeX-AMS_HTML"></script>
+        </script>
+      
+    </div>
+  </body>
 </html>

@@ -1,85 +1,79 @@
 <!DOCTYPE html>
 <html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@pecorarista">
+    <meta name="twitter:title" content="ScalaからCaboChaを使う — pecorarista.com">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="https://pecorarista.com/static/images/avatar.png">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri&family=Judson&family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400;700&family=Roboto+Mono:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cosmo/bootstrap.min.css" integrity="sha384-5QFXyVb+lrCzdN228VS3HmzpiE7ZVwLQtkt+0d9W43LQMzz4HBnnqvVxKg6O+04d" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-lucario.min.css" integrity="sha512-Aj5jCt/M5XlTn+Y93TazO+EjpRTiUGMrMuaJOcBcu80Fopd7+LSL094m3pbVTNJxf1hOAMSYI/hONBGjvPWwGQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="/static/css/main.css"/>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:site" content="@pecorarista">
-  <meta name="twitter:title" content="ScalaからCaboChaを使う — pecorarista.com">
-  <meta name="twitter:description" content="">
-  <meta name="twitter:image" content="https://pecorarista.com/static/images/avatar.png">
-  <link rel="icon" href="/favicon.ico">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Noto+Serif+JP&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Judson&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cosmo/bootstrap.min.css" integrity="sha384-5QFXyVb+lrCzdN228VS3HmzpiE7ZVwLQtkt+0d9W43LQMzz4HBnnqvVxKg6O+04d" crossorigin="anonymous">
-  <link rel="stylesheet" href="/static/css/prism-lucario.css" />
-  <link rel="stylesheet" href="/static/css/main.css" />
+    <title>ScalaからCaboChaを使う</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <div class="navbar-header pull-left"><a class="navbar-brand" href="/">pecorarista.com</a></div>
+    <div class="navbar-header pull-right">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link active" href="/resources">Resources</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
-  <title>ScalaからCaboChaを使う</title>
-</head>
+      </header>
+      <main>
+        
+<article>
+  <div class="container">
+    <h1>ScalaからCaboChaを使う</h1>
+    <div class="info text-muted">
+      Posted: 2016-11-22
+      
+        (Updated: 2019-03-17)
+      
+    </div>
+    
+<section id="Requirements">
+  <h2>事前に必要なもの</h2>
+  <ol>
+    <li>Scala (2.x)</li>
+    <li>sbt (1.x)</li>
+    <li>CaboChaのインストールが済んでいること。</li>
+  </ol>
+</section>
 
-<body>
-  <div class="wrapper">
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-          <div class="navbar-header pull-left"><a class="navbar-brand" href="/">pecorarista.com</a></div>
-          <div class="navbar-header pull-right">
-            <ul class="navbar-nav">
-              <li class="nav-item"><a class="nav-link active" href="/resources">Resources</a></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-
-    </header>
-    <main>
-
-      <article>
-        <div class="container">
-          <h1>ScalaからCaboChaを使う</h1>
-          <div class="info text-muted">
-            Posted: 2016-11-22
-
-            (Updated: 2019-03-17)
-
-          </div>
-
-          <section id="Requirements">
-            <h2>事前に必要なもの</h2>
-            <ol>
-              <li>Scala (2.x)</li>
-              <li>sbt (1.x)</li>
-              <li>CaboChaのインストールが済んでいること。</li>
-            </ol>
-          </section>
-
-          <section id="Java">
-            <h2>Javaライブラリのコンパイル</h2>
-            <p>CaboChaインストールのときに使ったソースコードが残っていればそれを使ってください。捨ててしまった場合は<a class="uri" href="https://github.com/taku910/cabocha">https://github.com/taku910/cabocha</a>からクローンしてください。</p>
-            <p><code>cabocha/java/Makefile</code>の<code>INCLUDE</code>を使っているJavaに合わせて変更します。</p>
-            <pre><code class="language-makefile"># INCLUDE=/usr/lib/jvm/default-java/include
+<section id="Java">
+  <h2>Javaライブラリのコンパイル</h2>
+  <p>CaboChaインストールのときに使ったソースコードが残っていればそれを使ってください。捨ててしまった場合は<a class="uri" href="https://github.com/taku910/cabocha">https://github.com/taku910/cabocha</a>からクローンしてください。</p>
+  <p><code>cabocha/java/Makefile</code>の<code>INCLUDE</code>を使っているJavaに合わせて変更します。</p>
+  <pre><code class="language-makefile"># INCLUDE=/usr/lib/jvm/default-java/include
 INCLUDE=$(HOME)/Development/jdk-11.0.2/include</code></pre>
-            <p>どのJavaを使っているのかわからない場合は、<code>which java</code>や<code>update-java-alternatives</code>で調べてください。変更が終わったら<code>cabocha/java</code>ディレクトリで<code>make</code>と打ち込んでコンパイルします。</p>
-          </section>
+  <p>どのJavaを使っているのかわからない場合は、<code>which java</code>や<code>update-java-alternatives</code>で調べてください。変更が終わったら<code>cabocha/java</code>ディレクトリで<code>make</code>と打ち込んでコンパイルします。</p>
+</section>
 
-          <section id="Scala">
-            <h2>Scalaからの利用例</h2>
-            <p>実際にプロジェクトを作成して使ってみることにします。まず、先ほど生成された<code>CaboCha.jar</code>と<code>libCaboCha.so lib</code>をプロジェクトの<code>lib</code>ディレクトリにコピーします。</p>
-            <pre class="command-line"><code class="language-bash">sbt new sbt/scala-seed.g8
+<section id="Scala">
+  <h2>Scalaからの利用例</h2>
+  <p>実際にプロジェクトを作成して使ってみることにします。まず、先ほど生成された<code>CaboCha.jar</code>と<code>libCaboCha.so lib</code>をプロジェクトの<code>lib</code>ディレクトリにコピーします。</p>
+  <pre class="command-line"><code class="language-bash">sbt new sbt/scala-seed.g8
 name [Scala Seed Project]: &lt;project_name&gt;
 cd &lt;project_name&gt;
 mkdir lib
 cp path/to/cabocha/java/CaboCha.jar lib/
 cp path/to/cabocha/java/libCaboCha.so lib/</code></pre>
-            <p><code>&lt;project_name&gt;/src/main/scala/example/Hello.scala</code>を編集します。</p>
-            <pre><code class="language-scala">// Hello.scala
+  <p><code>&lt;project_name&gt;/src/main/scala/example/Hello.scala</code>を編集します。</p>
+  <pre><code class="language-scala">// Hello.scala
 package example
 
 object Main extends App {
@@ -94,8 +88,8 @@ object Main extends App {
     }
   }
 }</code></pre>
-            <p><code>&lt;project_name&gt;/src/main/scala/example/CaboChaWrapper.scala</code>を作成します。</p>
-            <pre><code class="language-scala">// CaboChaWrapper.scala
+  <p><code>&lt;project_name&gt;/src/main/scala/example/CaboChaWrapper.scala</code>を作成します。</p>
+  <pre><code class="language-scala">// CaboChaWrapper.scala
 package cabochawrapper
 
 import org.chasen.cabocha.{
@@ -165,8 +159,8 @@ class Parser {
       )
   }
 }</code></pre>
-            <p><code>sbt run</code>で実行します。</p>
-            <pre><code class="language-none"># 出力結果
+  <p><code>sbt run</code>で実行します。</p>
+  <pre><code class="language-none"># 出力結果
 0→4 太郎
 0→4 は
 1→4 二郎
@@ -177,36 +171,25 @@ class Parser {
 4→-1 渡し
 4→-1 た
 4→-1 ．</code></pre>
-          </section>
-
-        </div>
-      </article>
-
-    </main>
-    <footer>
-      <div class="footer text-center">
-        <span>© 2015&ndash;2022 Akira Miyazawa</span>
-      </div>
-
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap.native@2.0.15/dist/bootstrap-native-v4.min.js"></script>
-    <script src="/static/js/prism.js"></script>
-    <script src="/static/js/prism-bash.min.js"></script>
-    <script src="/static/js/prism-latex.min.js"></script>
-    <script src="/static/js/prism-makefile.min.js"></script>
-    <script src="/static/js/prism-java.min.js"></script>
-    <script src="/static/js/prism-javascript.min.js"></script>
-    <script src="/static/js/prism-scala.min.js"></script>
-    <script src="/static/js/prism-markdown.min.js"></script>
-    <script src="/static/js/prism-apacheconf.min.js"></script>
-    <script src="/static/js/prism-perl.min.js"></script>
-    <script src="/static/js/prism-haskell.min.js"></script>
-    <script src="/static/js/prism-lua.min.js"></script>
-    <script src="https://kit.fontawesome.com/30a99ec99f.js" crossorigin="anonymous"></script>
-    <script src="/static/js/main.js"></script>
-
+</section>
 
   </div>
-</body>
+</article>
 
+      </main>
+      <footer>
+        <div class="footer text-center">
+  <span>© 2015&ndash;2022 Akira Miyazawa</span>
+</div>
+
+      </footer>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap.native@2.0.15/dist/bootstrap-native-v4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" integrity="sha512-SkmBfuA2hqjzEVpmnMt/LINrjop3GKWqsuLSSB3e7iBmYK7JuWw4ldmmxwD9mdm2IRTTi0OxSAfEGvgEi0i2Kw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://kit.fontawesome.com/30a99ec99f.js" crossorigin="anonymous"></script>
+<script src="/static/js/main.js"></script>
+
+      
+    </div>
+  </body>
 </html>

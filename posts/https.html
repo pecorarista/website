@@ -1,112 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@pecorarista">
+    <meta name="twitter:title" content="How to make HTTPS default on Apache HTTP Server (CentOS 7) — pecorarista.com">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="https://pecorarista.com/static/images/avatar.png">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri&family=Judson&family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400;700&family=Roboto+Mono:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cosmo/bootstrap.min.css" integrity="sha384-5QFXyVb+lrCzdN228VS3HmzpiE7ZVwLQtkt+0d9W43LQMzz4HBnnqvVxKg6O+04d" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-lucario.min.css" integrity="sha512-Aj5jCt/M5XlTn+Y93TazO+EjpRTiUGMrMuaJOcBcu80Fopd7+LSL094m3pbVTNJxf1hOAMSYI/hONBGjvPWwGQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="/static/css/main.css"/>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:site" content="@pecorarista">
-  <meta name="twitter:title" content="How to make HTTPS default on Apache HTTP Server (CentOS 7) — pecorarista.com">
-  <meta name="twitter:description" content="">
-  <meta name="twitter:image" content="https://pecorarista.com/static/images/avatar.png">
-  <link rel="icon" href="/favicon.ico">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Noto+Serif+JP&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Judson&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cosmo/bootstrap.min.css" integrity="sha384-5QFXyVb+lrCzdN228VS3HmzpiE7ZVwLQtkt+0d9W43LQMzz4HBnnqvVxKg6O+04d" crossorigin="anonymous">
-  <link rel="stylesheet" href="/static/css/prism-lucario.css" />
-  <link rel="stylesheet" href="/static/css/main.css" />
+    <title>How to make HTTPS default on Apache HTTP Server (CentOS 7)</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <div class="navbar-header pull-left"><a class="navbar-brand" href="/">pecorarista.com</a></div>
+    <div class="navbar-header pull-right">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link active" href="/resources">Resources</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
-  <title>How to make HTTPS default on Apache HTTP Server (CentOS 7)</title>
-</head>
-
-<body>
-  <div class="wrapper">
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-          <div class="navbar-header pull-left"><a class="navbar-brand" href="/">pecorarista.com</a></div>
-          <div class="navbar-header pull-right">
-            <ul class="navbar-nav">
-              <li class="nav-item"><a class="nav-link active" href="/resources">Resources</a></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-
-    </header>
-    <main>
-
-      <article>
-        <div class="container">
-          <h1>How to make HTTPS default on Apache HTTP Server (CentOS 7)</h1>
-          <div class="info text-muted">
-            Posted: 2016-09-17
-
-          </div>
-
-          <section>
-            <ol>
-              <li>Install required packages.
-                <pre class="command-line" data-user="root" data-host="server"><code class="language-none">yum install epel-release
+      </header>
+      <main>
+        
+<article>
+  <div class="container">
+    <h1>How to make HTTPS default on Apache HTTP Server (CentOS 7)</h1>
+    <div class="info text-muted">
+      Posted: 2016-09-17
+      
+    </div>
+    
+<section>
+  <ol>
+    <li>Install required packages.
+      <pre class="command-line" data-user="root" data-host="server"><code class="language-none">yum install epel-release
 yum install httpd mod_ssl python-certbot-apache</code></pre>
-              </li>
-              <li>Start and enable Apache.<pre class="command-line" data-user="root" data-host="server"><code class="language-none">systemctl start httpd
+    </li>
+    <li>Start and enable Apache.<pre class="command-line" data-user="root" data-host="server"><code class="language-none">systemctl start httpd
 systemctl enable httpd</code></pre>
-              </li>
-              <li> Allow access via HTTP and HTTPS.<pre class="command-line" data-user="root" data-host="server"><code class="language-none">firewall-cmd --zone=public --permanent --add-service=http
+    </li>
+    <li> Allow access via HTTP and HTTPS.<pre class="command-line" data-user="root" data-host="server"><code class="language-none">firewall-cmd --zone=public --permanent --add-service=http
 firewall-cmd --zone=public --permanent --add-service=https
 firewall-cmd --reload</code></pre>
-              </li>
-              <li>Edit <code>/etc/httpd/conf/httpd.conf</code>.<pre><code class="language-apacheconf">ServerName &lt;your-domain&gt;</code></pre>
-              </li>
-              <li>Edit <code>/etc/httpd/conf.d/ssl.conf</code>.<pre><code class="language-apacheconf">SSLCertificateFile /etc/letsencrypt/live/&lt;your-domain&gt;/cert.pem
+    </li>
+    <li>Edit <code>/etc/httpd/conf/httpd.conf</code>.<pre><code class="language-apacheconf">ServerName &lt;your-domain&gt;</code></pre>
+    </li>
+    <li>Edit <code>/etc/httpd/conf.d/ssl.conf</code>.<pre><code class="language-apacheconf">SSLCertificateFile /etc/letsencrypt/live/&lt;your-domain&gt;/cert.pem
 SSLCertificateKeyFile /etc/letsencrypt/live/&lt;your-domain&gt;/privkey.pem
 SSLCertificateChainFile /etc/letsencrypt/live/&lt;your-domain&gt;/chain.pem</code></pre>
-              </li>
-              <li>Edit <code>/etc/httpd/conf.d/&lt;your-domain&gt;.conf</code><pre><code class="language-apacheconf">&lt;VirtualHost *:80&gt;
+    </li>
+    <li>Edit <code>/etc/httpd/conf.d/&lt;your-domain&gt;.conf</code><pre><code class="language-apacheconf">&lt;VirtualHost *:80&gt;
 Redirect permanent / https://&lt;your-domain&gt;/
 &lt;/VirtualHost&gt;</code></pre>
-              </li>
-              <li>Restart Apache HTTP Server.<pre class="command-line" data-user="root" data-host="server"><code class="language-none">systemctl restart httpd</code></pre>
-              </li>
-              <li>Install certificate. (Reference: https://certbot.eff.org/all-instructions/#centos-rhel-7-apache)<pre class="command-line" data-user="root" data-host="server"><code class="language-none">certbot --apache -d &lt;your-domain&gt;</code></pre>
-              </li>
-            </ol>
-          </section>
-
-        </div>
-      </article>
-
-    </main>
-    <footer>
-      <div class="footer text-center">
-        <span>© 2015&ndash;2022 Akira Miyazawa</span>
-      </div>
-
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap.native@2.0.15/dist/bootstrap-native-v4.min.js"></script>
-    <script src="/static/js/prism.js"></script>
-    <script src="/static/js/prism-bash.min.js"></script>
-    <script src="/static/js/prism-latex.min.js"></script>
-    <script src="/static/js/prism-makefile.min.js"></script>
-    <script src="/static/js/prism-java.min.js"></script>
-    <script src="/static/js/prism-javascript.min.js"></script>
-    <script src="/static/js/prism-scala.min.js"></script>
-    <script src="/static/js/prism-markdown.min.js"></script>
-    <script src="/static/js/prism-apacheconf.min.js"></script>
-    <script src="/static/js/prism-perl.min.js"></script>
-    <script src="/static/js/prism-haskell.min.js"></script>
-    <script src="/static/js/prism-lua.min.js"></script>
-    <script src="https://kit.fontawesome.com/30a99ec99f.js" crossorigin="anonymous"></script>
-    <script src="/static/js/main.js"></script>
-
+    </li>
+    <li>Restart Apache HTTP Server.<pre class="command-line" data-user="root" data-host="server"><code class="language-none">systemctl restart httpd</code></pre>
+    </li>
+    <li>Install certificate. (Reference: https://certbot.eff.org/all-instructions/#centos-rhel-7-apache)<pre class="command-line" data-user="root" data-host="server"><code class="language-none">certbot --apache -d &lt;your-domain&gt;</code></pre>
+    </li>
+  </ol>
+</section>
 
   </div>
-</body>
+</article>
 
+      </main>
+      <footer>
+        <div class="footer text-center">
+  <span>© 2015&ndash;2022 Akira Miyazawa</span>
+</div>
+
+      </footer>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap.native@2.0.15/dist/bootstrap-native-v4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" integrity="sha512-SkmBfuA2hqjzEVpmnMt/LINrjop3GKWqsuLSSB3e7iBmYK7JuWw4ldmmxwD9mdm2IRTTi0OxSAfEGvgEi0i2Kw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://kit.fontawesome.com/30a99ec99f.js" crossorigin="anonymous"></script>
+<script src="/static/js/main.js"></script>
+
+      
+    </div>
+  </body>
 </html>

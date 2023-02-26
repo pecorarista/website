@@ -1,1 +1,9 @@
-!function n(o,u,i){function c(e,t){if(!u[e]){if(!o[e]){var r="function"==typeof require&&require;if(!t&&r)return r(e,!0);if(f)return f(e,!0);throw(t=new Error("Cannot find module '"+e+"'")).code="MODULE_NOT_FOUND",t}r=u[e]={exports:{}},o[e][0].call(r.exports,function(t){return c(o[e][1][t]||t)},r,r.exports,n,o,u,i)}return u[e].exports}for(var f="function"==typeof require&&require,t=0;t<i.length;t++)c(i[t]);return c}({1:[function(t,e,r){document.addEventListener("DOMContentLoaded",function(t){document.querySelectorAll('a[href^="http"]').forEach(function(t){t.setAttribute("target","_blank")});var e=document.querySelector("section:last-child");e&&(e.style.paddingBottom="20px")})},{}]},{},[1]);
+document.addEventListener('DOMContentLoaded', event => {
+    document.querySelectorAll('a[href^="http"]').forEach(element => {
+        element.setAttribute('target', '_blank');
+    });
+    let lastSection = document.querySelector('section:last-child');
+    if (lastSection) {
+        lastSection.style.paddingBottom = '20px';
+    }
+});

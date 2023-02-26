@@ -1,67 +1,61 @@
 <!DOCTYPE html>
 <html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@pecorarista">
+    <meta name="twitter:title" content="ScalaでElasticsearchを使う(elastic4s) — pecorarista.com">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="https://pecorarista.com/static/images/avatar.png">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri&family=Judson&family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400;700&family=Roboto+Mono:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cosmo/bootstrap.min.css" integrity="sha384-5QFXyVb+lrCzdN228VS3HmzpiE7ZVwLQtkt+0d9W43LQMzz4HBnnqvVxKg6O+04d" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-lucario.min.css" integrity="sha512-Aj5jCt/M5XlTn+Y93TazO+EjpRTiUGMrMuaJOcBcu80Fopd7+LSL094m3pbVTNJxf1hOAMSYI/hONBGjvPWwGQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="/static/css/main.css"/>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:site" content="@pecorarista">
-  <meta name="twitter:title" content="ScalaでElasticsearchを使う(elastic4s) — pecorarista.com">
-  <meta name="twitter:description" content="">
-  <meta name="twitter:image" content="https://pecorarista.com/static/images/avatar.png">
-  <link rel="icon" href="/favicon.ico">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Noto+Serif+JP&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Judson&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cosmo/bootstrap.min.css" integrity="sha384-5QFXyVb+lrCzdN228VS3HmzpiE7ZVwLQtkt+0d9W43LQMzz4HBnnqvVxKg6O+04d" crossorigin="anonymous">
-  <link rel="stylesheet" href="/static/css/prism-lucario.css" />
-  <link rel="stylesheet" href="/static/css/main.css" />
+    <title>ScalaでElasticsearchを使う(elastic4s)</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <div class="navbar-header pull-left"><a class="navbar-brand" href="/">pecorarista.com</a></div>
+    <div class="navbar-header pull-right">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link active" href="/resources">Resources</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
-  <title>ScalaでElasticsearchを使う(elastic4s)</title>
-</head>
-
-<body>
-  <div class="wrapper">
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-          <div class="navbar-header pull-left"><a class="navbar-brand" href="/">pecorarista.com</a></div>
-          <div class="navbar-header pull-right">
-            <ul class="navbar-nav">
-              <li class="nav-item"><a class="nav-link active" href="/resources">Resources</a></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-
-    </header>
-    <main>
-
-      <article>
-        <div class="container">
-          <h1>ScalaでElasticsearchを使う(elastic4s)</h1>
-          <div class="info text-muted">
-            Posted: 2019-11-27
-
-          </div>
-
-          <section>
-            <p>ScalaでElasticsearchを扱うライブラリ<a href="https://github.com/sksamuel/elastic4s">elastic4s</a>について、比較的古めの情報しか見つからなかったので、使い方をまとめておきます。HTTPのAPIを提供するサーバーを作るコードを使って解説していきます。完全なコードは<a href="https://github.com/pecorarista/elastic4s-example">pecorarista/elastic4s-example</a>を参照してください。</p>
-            <p>elastic4sを使う理由ですが<a href="https://doc.akka.io/docs/alpakka/current/elasticsearch.html">Alpakka
-                Elasticsearch</a>と違い、日本語の文字を使ったクエリに対応できていたからです。ただAlpakka Elasticsearchに<a href="https://github.com/akka/alpakka/pull/2008">PRを出したところマージされた</a>ので、今後のリリースでは解消されると思います。<strong>elastic4sとAlpakka
+      </header>
+      <main>
+        
+<article>
+  <div class="container">
+    <h1>ScalaでElasticsearchを使う(elastic4s)</h1>
+    <div class="info text-muted">
+      Posted: 2019-11-27
+      
+    </div>
+    
+<section>
+  <p>ScalaでElasticsearchを扱うライブラリ<a href="https://github.com/sksamuel/elastic4s">elastic4s</a>について、比較的古めの情報しか見つからなかったので、使い方をまとめておきます。HTTPのAPIを提供するサーバーを作るコードを使って解説していきます。完全なコードは<a href="https://github.com/pecorarista/elastic4s-example">pecorarista/elastic4s-example</a>を参照してください。</p>
+  <p>elastic4sを使う理由ですが<a href="https://doc.akka.io/docs/alpakka/current/elasticsearch.html">Alpakka
+    Elasticsearch</a>と違い、日本語の文字を使ったクエリに対応できていたからです。ただAlpakka Elasticsearchに<a href="https://github.com/akka/alpakka/pull/2008">PRを出したところマージされた</a>ので、今後のリリースでは解消されると思います。<strong>elastic4sとAlpakka
     Elasticsearchの違いとしては前者がDSLを使ってクエリを作る</strong>ことが挙げられます。ここらへんは好みが分かれるところだと思いますが、個人的にはDSLを使う方が好きなのでelastic4sを使うことにしてよかったです。
-          </section>
-          <section>
-            <h2>Elasticsearchの準備</h2>
-            <p><strong>elastic4sのバージョンと整合性をとる必要がある</strong>ため、今回は7.3.2をインストールします。インストール方法についてはよい解説がたくさんあるため、ここでは特に説明しません。</p>
-            <p>今回使うデータの仕様を定義した<code>index.json</code>を準備します。<code>retrieved</code>（取得日時）はUNIX Timeを表す整数です。</p>
-            <figure>
-              <figcaption class="monospace">index.json</figcaption>
-              <pre><code class="language-javascript">{
+</section>
+<section>
+  <h2>Elasticsearchの準備</h2>
+  <p><strong>elastic4sのバージョンと整合性をとる必要がある</strong>ため、今回は7.3.2をインストールします。インストール方法についてはよい解説がたくさんあるため、ここでは特に説明しません。</p>
+  <p>今回使うデータの仕様を定義した<code>index.json</code>を準備します。<code>retrieved</code>（取得日時）はUNIX Timeを表す整数です。</p>
+  <figure>
+    <figcaption class="monospace">index.json</figcaption>
+    <pre><code class="language-javascript">{
   "settings": {
     "analysis": {
       "analyzer": {
@@ -78,36 +72,36 @@
     }
   }
 }</code></pre>
-            </figure>
-            <p>これを使用してインデックスを作成します。</p>
-            <figure>
-              <pre class="command-line"><code class="language-bash">curl -X PUT \
+  </figure>
+  <p>これを使用してインデックスを作成します。</p>
+  <figure>
+    <pre class="command-line"><code class="language-bash">curl -X PUT \
     --header "Content-Type: application/json"  \
     "http://localhost:9200/documents" \
     --data-binary @index.json</code></pre>
-            </figure>
-            <p>次に登録するデータを準備します。ここでは<a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.3/docs-bulk.html">bulk API</a>を使うので、以下のような形式のファイルを作成します。</p>
-            <figure>
-              <figcaption class="monospace">data.jsonl</figcaption>
-              <pre><code class="language-javascript">{"index": {"_index": "documents", "_id": "http://example.com/article/123"}}
+  </figure>
+  <p>次に登録するデータを準備します。ここでは<a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.3/docs-bulk.html">bulk API</a>を使うので、以下のような形式のファイルを作成します。</p>
+  <figure>
+    <figcaption class="monospace">data.jsonl</figcaption>
+    <pre><code class="language-javascript">{"index": {"_index": "documents", "_id": "http://example.com/article/123"}}
 {"uri": "http://example.com/article/123", "title": "テスト", "retrieved": 1319937300, "content": "本文"}
 ...</code></pre>
-            </figure>
-            <p>これを以下のコマンドでElasticsearchに送ります。</p>
-            <figure>
-              <pre class="command-line"><code class="language-bash">curl -X POST \
+  </figure>
+  <p>これを以下のコマンドでElasticsearchに送ります。</p>
+  <figure>
+    <pre class="command-line"><code class="language-bash">curl -X POST \
     --header "Content-Type: application/json"
     "http://localhost:9200/_bulk" \
     --data-binary @data.jsonl</code></pre>
-            </figure>
-          </section>
-          <section>
-            <h2>依存関係の定義</h2>
-            <p><a href="https://github.com/sksamuel/elastic4s">elastic4sのREADME</a>を参考にbuild.sbtを編集します。今回はHTTPサーバーの機能を使うので<a href="https://doc.akka.io/docs/akka-http/current/introduction.html">Akka HTTP</a>の関連するライブラリも依存関係に含めます。このとき<strong>elastic4sのメジャーバージョン・マイナーバージョンがElasticsearchのそれと一致するように気をつけてください。</strong>
-            </p>
-            <figure>
-              <figcaption class="monospace">${project_root}/build.sbt</figcaption>
-              <pre><code class="language-scala">name := "example"
+  </figure>
+</section>
+<section>
+<h2>依存関係の定義</h2>
+<p><a href="https://github.com/sksamuel/elastic4s">elastic4sのREADME</a>を参考にbuild.sbtを編集します。今回はHTTPサーバーの機能を使うので<a href="https://doc.akka.io/docs/akka-http/current/introduction.html">Akka HTTP</a>の関連するライブラリも依存関係に含めます。このとき<strong>elastic4sのメジャーバージョン・マイナーバージョンがElasticsearchのそれと一致するように気をつけてください。</strong>
+  </p>
+  <figure>
+    <figcaption class="monospace">${project_root}/build.sbt</figcaption>
+    <pre><code class="language-scala">name := "example"
 version := "0.1.0"
 lazy val root = (project in file("."))
 scalaVersion := "2.12.10"
@@ -124,14 +118,14 @@ libraryDependencies += "com.sksamuel.elastic4s" %% "elastic4s-json-spray" % elas
 libraryDependencies += "com.sksamuel.elastic4s" %% "elastic4s-testkit" % elastic4sVersion % "test"
 libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.1.3" % Runtime
 libraryDependencies += "ch.megard" %% "akka-http-cors" % "0.4.1"</code></pre>
-            </figure>
-          </section>
-          <section>
-            <h2>Scalaでのデータ型の定義</h2>
-            <p>まずは型クラス(case class)を定義します。今回はGETリクエストによる検索と、POSTリクエストによる更新のみの単純なAPIを作るので、以下の2つの型クラスを定義すれば十分です。</p>
-            <figure>
-              <figcaption class="monospace">${project_root}/src/main/scala/${organization}/${app}/ApplicationTypes.scala</figcaption>
-              <pre><code class="language-scala">object ApplicationTypes {
+  </figure>
+</section>
+<section>
+  <h2>Scalaでのデータ型の定義</h2>
+  <p>まずは型クラス(case class)を定義します。今回はGETリクエストによる検索と、POSTリクエストによる更新のみの単純なAPIを作るので、以下の2つの型クラスを定義すれば十分です。</p>
+  <figure>
+    <figcaption class="monospace">${project_root}/src/main/scala/${organization}/${app}/ApplicationTypes.scala</figcaption>
+    <pre><code class="language-scala">object ApplicationTypes {
   case class Document(
     uri: String,
     title: String,
@@ -145,19 +139,19 @@ libraryDependencies += "ch.megard" %% "akka-http-cors" % "0.4.1"</code></pre>
     content: Option[String]
   )
 }</code></pre>
-            </figure>
-            <p>次にJSONをScalaの型クラスに変換する方法を定義します。elastic4sは以下のライブラリをサポートしているので好きなものを使ってください。今回はSpray Jsonを使います。これはAkka HTTPがSpray Jsonをサポートしているため、自分でコードを書く量が減らせるからです。</p>
-            <ul>
-              <li>Jackson</li>
-              <li>Circe</li>
-              <li>Json4s</li>
-              <li>PlayJson</li>
-              <li>Spray Json</li>
-            </ul>
-            <p>今回はJSONとScalaにおける型が1対1で対応するため、<code>jsonFormatN</code>を指定するだけで自動的に変換規則が生成されます。<code>jsonFormatN</code>の<code>N</code>は型クラスのフィールド数に合わせる必要があります。</p>
-            <figure>
-              <figcaption class="monospace">${project_root}/src/main/scala/${organization}/${app}/JsonProtocol.scala</figcaption>
-              <pre><code class="language-scala">import ApplicationTypes._
+  </figure>
+  <p>次にJSONをScalaの型クラスに変換する方法を定義します。elastic4sは以下のライブラリをサポートしているので好きなものを使ってください。今回はSpray Jsonを使います。これはAkka HTTPがSpray Jsonをサポートしているため、自分でコードを書く量が減らせるからです。</p>
+  <ul>
+    <li>Jackson</li>
+    <li>Circe</li>
+    <li>Json4s</li>
+    <li>PlayJson</li>
+    <li>Spray Json</li>
+  </ul>
+  <p>今回はJSONとScalaにおける型が1対1で対応するため、<code>jsonFormatN</code>を指定するだけで自動的に変換規則が生成されます。<code>jsonFormatN</code>の<code>N</code>は型クラスのフィールド数に合わせる必要があります。</p>
+  <figure>
+    <figcaption class="monospace">${project_root}/src/main/scala/${organization}/${app}/JsonProtocol.scala</figcaption>
+    <pre><code class="language-scala">import ApplicationTypes._
 import spray.json.DefaultJsonProtocol
 import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
 
@@ -166,14 +160,14 @@ trait JsonProtocol extends SprayJsonSupport with DefaultJsonProtocol {
   implicit val documentUpdateRequestFormat = jsonFormat4(UpdateDocumentRequest)
 }
 object JsonProtocol extends JsonProtocol</code></pre>
-            </figure>
-          </section>
-          <section>
-            <h2>クエリの組み立て方</h2>
-            <p>elastic4sのドキュメントはやや古くなっている箇所が多いので<a href="https://github.com/sksamuel/elastic4s/tree/master/elastic4s-core/src/main/scala/com/sksamuel/elastic4s/requests/searches/queries">elastic4s/src/main/scala/com/requests/searches/queries</a>のあたりを参考にしながら書くとよいと思います。</p>
-            <figure>
-              <figcaption class="monospace">${project_root}/src/main/scala/${organization}/${app}/Route.scala</figcaption>
-              <pre><code class="language-scala">private def findDocuments(term: Option[String]): Future[Seq[Document]] = {
+  </figure>
+</section>
+<section>
+  <h2>クエリの組み立て方</h2>
+  <p>elastic4sのドキュメントはやや古くなっている箇所が多いので<a href="https://github.com/sksamuel/elastic4s/tree/master/elastic4s-core/src/main/scala/com/sksamuel/elastic4s/requests/searches/queries">elastic4s/src/main/scala/com/requests/searches/queries</a>のあたりを参考にしながら書くとよいと思います。</p>
+  <figure>
+    <figcaption class="monospace">${project_root}/src/main/scala/${organization}/${app}/Route.scala</figcaption>
+    <pre><code class="language-scala">private def findDocuments(term: Option[String]): Future[Seq[Document]] = {
   val queryBody = term match {
     case Some(s) => matchQuery("content", s)
     case None => matchAllQuery()
@@ -204,14 +198,14 @@ private def updateDocument(request: UpdateDocumentRequest): Future[Option[String
         case _ => None
       }
     }</code></pre>
-            </figure>
-          </section>
-          <section>
-            <h2>ルーティング規則の定義</h2>
-            <p><a href="https://doc.akka.io/docs/akka-http/current/index.html">Akka HTTP</a>のドキュメントを参考に、ルーティング規則を書いていきます。またAPIを提供するとき<a href="https://developer.mozilla.org/ja/docs/Web/HTTP/CORS">オリジン間リソース共有 (CORS)</a>について制御する必要が生じると思うので、<code>cors()</code>を呼んでいます。今回の範囲では特に必要ではないので省いても大丈夫です。</p>
-            <figure>
-              <figcaption class="monospace">${project_root}/src/main/scala/${organization}/${app}/Route.scala</figcaption>
-              <pre><code class="language-scala">trait Route {
+  </figure>
+</section>
+<section>
+  <h2>ルーティング規則の定義</h2>
+  <p><a href="https://doc.akka.io/docs/akka-http/current/index.html">Akka HTTP</a>のドキュメントを参考に、ルーティング規則を書いていきます。またAPIを提供するとき<a href="https://developer.mozilla.org/ja/docs/Web/HTTP/CORS">オリジン間リソース共有 (CORS)</a>について制御する必要が生じると思うので、<code>cors()</code>を呼んでいます。今回の範囲では特に必要ではないので省いても大丈夫です。</p>
+  <figure>
+    <figcaption class="monospace">${project_root}/src/main/scala/${organization}/${app}/Route.scala</figcaption>
+    <pre><code class="language-scala">trait Route {
 
   implicit val elasticClient: ElasticClient
   implicit val executionContext: ExecutionContext
@@ -239,14 +233,14 @@ private def updateDocument(request: UpdateDocumentRequest): Future[Option[String
   private def updateDocument(request: UpdateDocumentRequest): Future[Option[String]] = ...
 
 }</code></pre>
-            </figure>
-          </section>
-          <section>
-            <h2>実行</h2>
-            <p>サーバーを起動するため、実行可能なオブジェクトを作成します</p>
-            <figure>
-              <figcaption class="monospace">${project_root}/src/main/scala/${organization}/${app}/Main.scala</figcaption>
-              <pre><code class="language-scala">object Main extends App with Route {
+  </figure>
+</section>
+<section>
+  <h2>実行</h2>
+  <p>サーバーを起動するため、実行可能なオブジェクトを作成します</p>
+  <figure>
+    <figcaption class="monospace">${project_root}/src/main/scala/${organization}/${app}/Main.scala</figcaption>
+    <pre><code class="language-scala">object Main extends App with Route {
 
   implicit val system = ActorSystem()
   implicit val executionContext = system.dispatcher
@@ -265,44 +259,33 @@ private def updateDocument(request: UpdateDocumentRequest): Future[Option[String
     .onComplete { _ => system.terminate() }
 
 }</code></pre>
-            </figure>
-            <p>Scala側でサーバーを起動する前に、Elasticsearchが9200番のポートでアクセス可能なことを確認します。それができたら<code>sbt</code>コマンドで対話環境に入り、<code>run</code>と打ってHTTPサーバーを起動します。ここまでできたら、ブラウザのアドレスバーに<code>http://localhost:8080/documents?term=...</code>（<code>...</code>の部分は好きな文字列）と入力すると、検索結果が返ってくるはずです（termクエリなので単語の分かち書きを考慮した検索になっていることに注意してください。）。また更新については以下のようなPOSTリクエストを投げると“Success!”と帰ってくるはずです。もう一度検索し、タイトルが更新されていることを確認してみてください。</p>
-            <figure>
-              <pre class="command-line"><code class="language-bash">curl -X POST \
+  </figure>
+  <p>Scala側でサーバーを起動する前に、Elasticsearchが9200番のポートでアクセス可能なことを確認します。それができたら<code>sbt</code>コマンドで対話環境に入り、<code>run</code>と打ってHTTPサーバーを起動します。ここまでできたら、ブラウザのアドレスバーに<code>http://localhost:8080/documents?term=...</code>（<code>...</code>の部分は好きな文字列）と入力すると、検索結果が返ってくるはずです（termクエリなので単語の分かち書きを考慮した検索になっていることに注意してください。）。また更新については以下のようなPOSTリクエストを投げると“Success!”と帰ってくるはずです。もう一度検索し、タイトルが更新されていることを確認してみてください。</p>
+  <figure>
+    <pre class="command-line"><code class="language-bash">curl -X POST \
     --header "Content-Type: application/json"  \
     "http://localhost:8080/documents" \
     --data '{"uri": "http://example.com/article/123", "title": "更新"}'</code></pre>
-            </figure>
-          </section>
-
-        </div>
-      </article>
-
-    </main>
-    <footer>
-      <div class="footer text-center">
-        <span>© 2015&ndash;2022 Akira Miyazawa</span>
-      </div>
-
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap.native@2.0.15/dist/bootstrap-native-v4.min.js"></script>
-    <script src="/static/js/prism.js"></script>
-    <script src="/static/js/prism-bash.min.js"></script>
-    <script src="/static/js/prism-latex.min.js"></script>
-    <script src="/static/js/prism-makefile.min.js"></script>
-    <script src="/static/js/prism-java.min.js"></script>
-    <script src="/static/js/prism-javascript.min.js"></script>
-    <script src="/static/js/prism-scala.min.js"></script>
-    <script src="/static/js/prism-markdown.min.js"></script>
-    <script src="/static/js/prism-apacheconf.min.js"></script>
-    <script src="/static/js/prism-perl.min.js"></script>
-    <script src="/static/js/prism-haskell.min.js"></script>
-    <script src="/static/js/prism-lua.min.js"></script>
-    <script src="https://kit.fontawesome.com/30a99ec99f.js" crossorigin="anonymous"></script>
-    <script src="/static/js/main.js"></script>
-
+  </figure>
+</section>
 
   </div>
-</body>
+</article>
 
+      </main>
+      <footer>
+        <div class="footer text-center">
+  <span>© 2015&ndash;2022 Akira Miyazawa</span>
+</div>
+
+      </footer>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap.native@2.0.15/dist/bootstrap-native-v4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" integrity="sha512-SkmBfuA2hqjzEVpmnMt/LINrjop3GKWqsuLSSB3e7iBmYK7JuWw4ldmmxwD9mdm2IRTTi0OxSAfEGvgEi0i2Kw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://kit.fontawesome.com/30a99ec99f.js" crossorigin="anonymous"></script>
+<script src="/static/js/main.js"></script>
+
+      
+    </div>
+  </body>
 </html>

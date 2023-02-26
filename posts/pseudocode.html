@@ -1,241 +1,146 @@
 <!DOCTYPE html>
 <html lang="">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@pecorarista">
+    <meta name="twitter:title" content="LaTeXで擬似コード — pecorarista.com">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="https://pecorarista.com/static/images/avatar.png">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri&family=Judson&family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400;700&family=Roboto+Mono:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cosmo/bootstrap.min.css" integrity="sha384-5QFXyVb+lrCzdN228VS3HmzpiE7ZVwLQtkt+0d9W43LQMzz4HBnnqvVxKg6O+04d" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-lucario.min.css" integrity="sha512-Aj5jCt/M5XlTn+Y93TazO+EjpRTiUGMrMuaJOcBcu80Fopd7+LSL094m3pbVTNJxf1hOAMSYI/hONBGjvPWwGQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="/static/css/main.css"/>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:site" content="@pecorarista">
-  <meta name="twitter:title" content="LaTeXで擬似コード — pecorarista.com">
-  <meta name="twitter:description" content="">
-  <meta name="twitter:image" content="https://pecorarista.com/static/images/avatar.png">
-  <link rel="icon" href="/favicon.ico">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Noto+Serif+JP&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Judson&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cosmo/bootstrap.min.css" integrity="sha384-5QFXyVb+lrCzdN228VS3HmzpiE7ZVwLQtkt+0d9W43LQMzz4HBnnqvVxKg6O+04d" crossorigin="anonymous">
-  <link rel="stylesheet" href="/static/css/prism-lucario.css" />
-  <link rel="stylesheet" href="/static/css/main.css" />
+    <title>LaTeXで擬似コード</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <div class="navbar-header pull-left"><a class="navbar-brand" href="/">pecorarista.com</a></div>
+    <div class="navbar-header pull-right">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link active" href="/resources">Resources</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
-  <title>LaTeXで擬似コード</title>
-</head>
-
-<body>
-  <div class="wrapper">
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-          <div class="navbar-header pull-left"><a class="navbar-brand" href="/">pecorarista.com</a></div>
-          <div class="navbar-header pull-right">
-            <ul class="navbar-nav">
-              <li class="nav-item"><a class="nav-link active" href="/resources">Resources</a></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-
-    </header>
-    <main>
-
-      <article>
-        <div class="container">
-          <h1>LaTeXで擬似コード</h1>
-          <div class="info text-muted">
-            Posted: 2015-08-24
-
-            (Updated: 2019-03-21)
-
-          </div>
-
-          <p>アルゴリズムやプログラミングに関する文書を書いているとき、擬似コードを書くことがあると思います。この記事ではLaTeXで擬似コードを書く方法と見た目を変更する方法をいくつか説明したいと思います。環境としてはLuaTeXを想定していますが、それ以外の場合でも若干の変更で動くと思います。</p>
-          <section id="usage">
-            <h2>1. 主な使い方</h2>
-            <p>まずは
-              <code>algpseudocode</code> というパッケージを読み込みます。
-              以下のように挿入ソートのアルゴリズムを書いてみます。
-            </p>
-            <figure>
-              <pre><code class="language-latex">\documentclass{article}
-\usepackage{newtxtext,newtxmath}
-\usepackage{algpseudocode}
-\pagestyle{empty}
-\begin{document}
-    \begin{algorithmic}[1]
-        \Procedure{Insertion-Sort}{$A$}
-            \For{$j = 2 \, \ldots \, A.\mathrm{length}$}
-            \State{$k = A[j]$}
-                \State{$i = j - 1$}
-                \While{$i &gt; 0$ and $A[i] &gt; k$}
-                    \State{$A[i + 1] = A[i]$}
-                    \State{$i = i - 1$}
-                \EndWhile
-                \State{$A[i + 1] = k$}
-            \EndFor
-        \EndProcedure
-    \end{algorithmic}
-\end{document}
-</code></pre>
-            </figure>
-            <p>表示されるのは以下のような擬似コードになります。</p>
-            <figure class="centered">
-              <img src="/static/images/insertion-sort.svg" alt="疑似コードの例" class="pseudocode" />
-            </figure>
-            <p>普段Pythonなど
-              <code>end</code> を明示しない言語に慣れていると少し冗長に感じるかもしれません。そのような記号を明示したくない場合はパッケージ読込時に
-            </p>
-            <figure>
-              <pre><code class="language-latex">\usepackage[noend]{algpseudocode}</code></pre>
-            </figure>
-            <p>のように書いておくと</p>
-            <figure class="centered">
-              <img src="/static/images/insertion-sort-no-end.svg" alt="`End`を用いない疑似コードの例" class="pseudocode" />
-            </figure>
-            <p> のようなPython風の擬似コードになります。さらに<code>do</code>の記述も不要ならば、ヘッダ部分に以下のように記述します。</p>
-            <pre><code class="language-latex">\algrenewcommand\algorithmicdo{}</code></pre>
-            <p>いま
-              <code>for</code> の始点と終点の間には<code>…</code> を使っていますが、もし変えたければ<code>algpseudocode.sty</code> にならい新しい制御構造<code>\ForTo</code> をプリアンブルで定義します。
-            </p>
-            <figure>
-              <pre><code class="language-latex">\documentclass{article}
-\usepackage{newtxtext,newtxmath}
-\usepackage[noend]{algpseudocode}
-\algnewcommand\algorithmicto{\textbf{to}}
-\algdef{SE}[FOR]{ForTo}{EndFor}[2]{%
-  \algorithmicfor\ #1\ \algorithmicto\ #2\ \algorithmicdo
-}{%
-  \algorithmicend\ \algorithmicfor
-}
-\pagestyle{empty}
-\begin{document}
-    \begin{algorithmic}[1]
-        \Procedure{Insertion-Sort}{$A$}
-        \ForTo{$j = 2$}{$A.\mathrm{length}$}
-            \State{$k = A[j]$}
-                \State{$i = j - 1$}
-                \While{$i &gt; 0$ and $A[i] &gt; k$}
-                    \State{$A[i + 1] = A[i]$}
-                    \State{$i = i - 1$}
-                \EndWhile
-                \State{$A[i + 1] = k$}
-            \EndFor
-        \EndProcedure
-    \end{algorithmic}
-\end{document}
-</code></pre>
-            </figure>
-            <p>アルゴリズム中
-              <code>\For</code> を新しく定義した
-              <code>\ForTo</code> に置き換えて次のような出力を得ます。
-            </p>
-            <figure class="centered">
-              <img src="/static/images/insertion-sort-for-to.svg" alt="ForToの表示を変更した疑似コードの例" class="pseudocode" />
-            </figure>
-            <p>新しく定義した制御構造については
-              <code>[noend]</code> オプションが適用されないのため、要らなければ
-              <code>algtext*{EndFor}</code> を
-              <code>\ForTo</code> の定義の次の行にでも書いておきましょう。
-            </p>
-          </section>
-          <section>
-            <h3>2. よく変更を加える項目について</h3>
-            <p>行間は<code>\setlength{\baselineskip}{Npt}</code>（<code>N</code> は自然数 ）で変更できます。ここでは新たに<code>broadalgo</code> という環境を定義することにします。</p>
-            <figure>
-              <pre><code class="language-latex">\newenvironment{broadalgo}{%
+      </header>
+      <main>
+        
+<article>
+  <div class="container">
+    <h1>LaTeXで擬似コード</h1>
+    <div class="info text-muted">
+      Posted: 2015-08-24
+      
+        (Updated: 2019-03-21)
+      
+    </div>
+    
+<p>アルゴリズムやプログラミングに関する文書を書いているとき、擬似コードを書くことがあると思います。この記事ではLaTeXで擬似コードを書く方法と見た目を変更する方法をいくつか説明したいと思います。環境としてはLuaTeXを想定していますが、それ以外の場合でも若干の変更で動くと思います。</p>
+<section id="usage">
+  <h2>1. 主な使い方</h2>
+  <p>まずは
+    <code>algpseudocode</code> というパッケージを読み込みます。
+    以下のように挿入ソートのアルゴリズムを書いてみます。</p>
+  <figure>
+    <pre><code class="language-latex"></code></pre>
+  </figure>
+  <p>表示されるのは以下のような擬似コードになります。</p>
+  <figure class="centered">
+    <img
+      src="/static/images/insertion-sort.svg"
+      alt="疑似コードの例"
+      class="pseudocode"
+    />
+  </figure>
+  <p>普段Pythonなど
+    <code>end</code> を明示しない言語に慣れていると少し冗長に感じるかもしれません。そのような記号を明示したくない場合はパッケージ読込時に</p>
+    <figure>
+      <pre><code class="language-latex">\usepackage[noend]{algpseudocode}</code></pre>
+    </figure>
+  <p>のように書いておくと</p>
+    <figure class="centered">
+      <img
+        src="/static/images/insertion-sort-no-end.svg"
+        alt="`End`を用いない疑似コードの例"
+        class="pseudocode"
+      />
+    </figure>
+  <p> のようなPython風の擬似コードになります。さらに<code>do</code>の記述も不要ならば、ヘッダ部分に以下のように記述します。</p>
+    <pre><code class="language-latex">\algrenewcommand\algorithmicdo{}</code></pre>
+  <p>いま
+    <code>for</code> の始点と終点の間には<code>…</code> を使っていますが、もし変えたければ<code>algpseudocode.sty</code> にならい新しい制御構造<code>\ForTo</code> をプリアンブルで定義します。</p>
+  <figure>
+    <pre><code class="language-latex"></code></pre>
+  </figure>
+  <p>アルゴリズム中
+    <code>\For</code> を新しく定義した
+    <code>\ForTo</code> に置き換えて次のような出力を得ます。</p>
+  <figure class="centered">
+    <img
+      src="/static/images/insertion-sort-for-to.svg"
+      alt="ForToの表示を変更した疑似コードの例"
+      class="pseudocode"
+    />
+  </figure>
+  <p>新しく定義した制御構造については
+    <code>[noend]</code> オプションが適用されないのため、要らなければ
+    <code>algtext*{EndFor}</code> を
+    <code>\ForTo</code> の定義の次の行にでも書いておきましょう。</p>
+</section>
+<section>
+  <h3>2. よく変更を加える項目について</h3>
+  <p>行間は<code>\setlength{\baselineskip}{Npt}</code>（<code>N</code> は自然数 ）で変更できます。ここでは新たに<code>broadalgo</code> という環境を定義することにします。</p>
+  <figure>
+    <pre><code class="language-latex">\newenvironment{broadalgo}{%
   \setlength{\baselineskip}{17pt}
   \begin{algorithmic}[1]
 }{%
   \end{algorithmic}
 }</code></pre>
-            </figure>
-            <p>この例では出てきませんが<code>\Return</code> には行番号が振られないようになっています。あったほうがよいならば再定義する必要があります。</p>
-            <figure>
-              <pre><code class="language-latex">\let\oldReturn\Return
+  </figure>
+  <p>この例では出てきませんが<code>\Return</code> には行番号が振られないようになっています。あったほうがよいならば再定義する必要があります。</p>
+  <figure>
+    <pre><code class="language-latex">\let\oldReturn\Return
 \renewcommand{\Return}{\State\oldReturn}</code></pre>
-            </figure>
-            <p>上記の設定を使った文書の例です。</p>
-            <pre><code class="language-latex">\documentclass{article}
-\usepackage{amsmath}
-\usepackage[noend]{algpseudocode}
-%%%%% フォント関連 %%%%%
-\usepackage{unicode-math}
-\setmainfont[Ligatures=TeX]{TeX Gyre Termes}
-\setmathfont{TeX Gyre Termes Math}
-\newfontfamily\algfont{TeX Gyre Cursor}
-\makeatletter
-\renewcommand{\ALG@beginalgorithmic}{\algfont}
-\makeatother
-%%%%%%%%%%%%%%%%%%%%
-\algnewcommand\algorithmicto{\textbf{to}}
-\algdef{SE}[FOR]{ForTo}{EndFor}[2]{%
-    \algorithmicfor\ #1\ \algorithmicto\ #2\ \algorithmicdo
-}{%
-    \algorithmicend\ \algorithmicfor
-}
-\algrenewcommand\algorithmicdo{}
-\let\oldReturn\Return
-\renewcommand{\Return}{\State\oldReturn}
-\algtext*{EndFor}
-\algrenewcommand\alglinenumber[1]{{\texttt{#1:}}}
-\newenvironment{broadalgo}{%
-  \setlength{\baselineskip}{17pt}
-  \begin{algorithmic}[1]
-}{%
-  \end{algorithmic}
-}
-\pagestyle{empty}
-\begin{document}
-    \begin{broadalgo}
-        \Procedure{Insertion-Sort}{$A$}
-        \ForTo{$j = 2$}{$A.\mathrm{length}$}
-            \State{$k = A[j]$}
-                \State{$i = j - 1$}
-                \While{$i &gt; 0$ and $A[i] &gt; k$}
-                    \State{$A[i + 1] = A[i]$}
-                    \State{$i = i - 1$}
-                \EndWhile
-                \State{$A[i + 1] = k$}
-            \EndFor
-        \EndProcedure
-    \end{broadalgo}
-\end{document}
-</code></pre>
-            <figure class="centered">
-              <img src="/static/images/final.svg" alt="上記で説明した変更を適用した疑似コードの例" class="pseudocode" />
-            </figure>
-          </section>
-
-        </div>
-      </article>
-
-    </main>
-    <footer>
-      <div class="footer text-center">
-        <span>© 2015&ndash;2022 Akira Miyazawa</span>
-      </div>
-
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap.native@2.0.15/dist/bootstrap-native-v4.min.js"></script>
-    <script src="/static/js/prism.js"></script>
-    <script src="/static/js/prism-bash.min.js"></script>
-    <script src="/static/js/prism-latex.min.js"></script>
-    <script src="/static/js/prism-makefile.min.js"></script>
-    <script src="/static/js/prism-java.min.js"></script>
-    <script src="/static/js/prism-javascript.min.js"></script>
-    <script src="/static/js/prism-scala.min.js"></script>
-    <script src="/static/js/prism-markdown.min.js"></script>
-    <script src="/static/js/prism-apacheconf.min.js"></script>
-    <script src="/static/js/prism-perl.min.js"></script>
-    <script src="/static/js/prism-haskell.min.js"></script>
-    <script src="/static/js/prism-lua.min.js"></script>
-    <script src="https://kit.fontawesome.com/30a99ec99f.js" crossorigin="anonymous"></script>
-    <script src="/static/js/main.js"></script>
-
+  </figure>
+  <p>上記の設定を使った文書の例です。</p>
+    <pre><code class="language-latex"></code></pre>
+    <figure class="centered">
+      <img
+        src="/static/images/final.svg"
+        alt="上記で説明した変更を適用した疑似コードの例"
+        class="pseudocode"
+      />
+    </figure>
+</section>
 
   </div>
-</body>
+</article>
 
+      </main>
+      <footer>
+        <div class="footer text-center">
+  <span>© 2015&ndash;2022 Akira Miyazawa</span>
+</div>
+
+      </footer>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap.native@2.0.15/dist/bootstrap-native-v4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" integrity="sha512-SkmBfuA2hqjzEVpmnMt/LINrjop3GKWqsuLSSB3e7iBmYK7JuWw4ldmmxwD9mdm2IRTTi0OxSAfEGvgEi0i2Kw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://kit.fontawesome.com/30a99ec99f.js" crossorigin="anonymous"></script>
+<script src="/static/js/main.js"></script>
+
+      
+    </div>
+  </body>
 </html>

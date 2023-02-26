@@ -1,453 +1,108 @@
 <!DOCTYPE html>
 <html lang="">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@pecorarista">
+    <meta name="twitter:title" content="LaTeX (Beamer)で学会発表用のポスターを作る — pecorarista.com">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="https://pecorarista.com/static/images/avatar.png">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri&family=Judson&family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400;700&family=Roboto+Mono:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cosmo/bootstrap.min.css" integrity="sha384-5QFXyVb+lrCzdN228VS3HmzpiE7ZVwLQtkt+0d9W43LQMzz4HBnnqvVxKg6O+04d" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-lucario.min.css" integrity="sha512-Aj5jCt/M5XlTn+Y93TazO+EjpRTiUGMrMuaJOcBcu80Fopd7+LSL094m3pbVTNJxf1hOAMSYI/hONBGjvPWwGQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="/static/css/main.css"/>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:site" content="@pecorarista">
-  <meta name="twitter:title" content="LaTeX (Beamer)で学会発表用のポスターを作る — pecorarista.com">
-  <meta name="twitter:description" content="">
-  <meta name="twitter:image" content="https://pecorarista.com/static/images/avatar.png">
-  <link rel="icon" href="/favicon.ico">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Noto+Serif+JP&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Judson&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cosmo/bootstrap.min.css" integrity="sha384-5QFXyVb+lrCzdN228VS3HmzpiE7ZVwLQtkt+0d9W43LQMzz4HBnnqvVxKg6O+04d" crossorigin="anonymous">
-  <link rel="stylesheet" href="/static/css/prism-lucario.css" />
-  <link rel="stylesheet" href="/static/css/main.css" />
+    <title>LaTeX (Beamer)で学会発表用のポスターを作る</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <div class="navbar-header pull-left"><a class="navbar-brand" href="/">pecorarista.com</a></div>
+    <div class="navbar-header pull-right">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link active" href="/resources">Resources</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
-  <title>LaTeX (Beamer)で学会発表用のポスターを作る</title>
-</head>
-
-<body>
-  <div class="wrapper">
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-          <div class="navbar-header pull-left"><a class="navbar-brand" href="/">pecorarista.com</a></div>
-          <div class="navbar-header pull-right">
-            <ul class="navbar-nav">
-              <li class="nav-item"><a class="nav-link active" href="/resources">Resources</a></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-
-    </header>
-    <main>
-
-      <article>
-        <div class="container">
-          <h1>LaTeX (Beamer)で学会発表用のポスターを作る</h1>
-          <div class="info text-muted">
-            Posted: 2015-08-24
-
-            (Updated: 2019-03-31)
-
-          </div>
-
-          <section>
-            <p>初めて学会の発表で使うポスターを作るにあたり、分からないことが多かったため、調べたり試行錯誤した内容についてまとめておこうと思います。</p>
-            <p>まず、どのツールを使うかですが、周りの数人に聞いたところ全員が<a href="https://products.office.com/ja-jp/powerpoint" target="_blank">PowerPoint</a> を使っているようでした。なので私もPowerPointを使るつもりだったのですが、以前に</p>
-            <ul>
-              <li>テストエビデンスのスクショをエクセルに貼り付ける作業</li>
-              <li>Office のバージョンアップによってレイアウトが崩れたファイルをいじる作業</li>
-            </ul>
-            <p>などを行っていたため、MS Officeを使うことに抵抗があり、LaTeX (Beamer)で作ることにしました。</p>
-          </section>
-          <section>
-            <h2>1. どんな感じになるのか</h2>
-            <p>デザインのセンス次第でいくらでも綺麗なものは作れると思いますが以下のような感じのものが作れます。</p>
-            <figure>
-              <img src="/static/images/complex-poster.svg" alt="複雑なポスターの例" />
-            </figure>
-            <p>印刷の向きに関しては<code>beamerposter</code>のオプションで</p>
-            <ul>
-              <li>横：<code>orientation=landscape</code></li>
-              <li>縦：<code>orientation=portrait</code></li>
-            </ul>
-            <p>のように指定することができます。</p>
-            <figure>
-              <figcaption>上のポスターのコード</figcaption>
-              <pre><code class="language-latex">\documentclass[unicode,colorlinks]{beamer}
-\usepackage[orientation=landscape,size=a0,scale=1.4]{beamerposter}
-\usetheme[footertext={フッターに何か適当なことを書くこともできます．}]{SimplePoster}
-\usepackage{lipsum}
-\usepackage{amsmath,amssymb}
-\newcommand{\absolute}[1]{\left|#1\right|}
-\usepackage{tikz}
-\usepackage{pgfplots}
-\usetikzlibrary{arrows.meta}
-\usepackage{tabularx}
-\usepackage{listings}
-\usepackage[no-math]{luatexja-fontspec}
-\usepackage{unicode-math}
-\ltjsetparameter{%
-    jacharrange={%
-        -2, % Exclude Greek and Cyrillic letters.
-        -3  % Punctuations and Miscellaneous symbols.
-    }
-}
-\usepackage{babel}
-\babelprovide[main]{japanese}
-\setsansfont[BoldFont={FrutigerLTStd-Bold}]{OpenSans}
-\renewcommand{\familydefault}{\sfdefault}
-\renewcommand{\kanjifamilydefault}{\gtdefault}
-\newfontfamily\ipafont{FreeSerif}
-\babelprovide{french}
-\babelfont[french]{sf}[Script=Cyrillic]{OpenSans}
-\setsansjfont[BoldFont={HiraKakuPro-W6}]
-{HiraKakuPro-W3}
-\setmonofont{Source Code Pro}
-\makeatletter
-\mode&lt;presentation&gt;{\beamer@suppressreplacementstrue}
-\makeatother
-\usefonttheme{professionalfonts}
-\setmathfontface\asanamath{Asana Math}
-\setoperatorfont\asanamath
-\usepackage{arabluatex}
-\newfontfamily\arabicfont[%
-    Script=Arabic,     % enable ligatures
-    RawFeature={%
-        +anum,         % use eastern arabic numerals
-        +ss05}         % put kasrah below shadda
-]{Amiri}
-\SetTranslitFont{\ipafont}
-\SetTranslitStyle{\upshape}
-\SetTranslitConvention{dmg}
-\usepackage{booktabs}
-\setlength\heavyrulewidth{3pt}
-\newcolumntype{C}{&gt;{\centering\arraybackslash}X}
-\lstset{%
-    language={Python},
-    basicstyle={\ttfamily},%
-    keywordstyle={\color{red}\ttfamily\bfseries},%
-    commentstyle={\color{gray}\ttfamily},
-    stringstyle={\ttfamily},
-    xleftmargin=2em,
-}
-\pgfplotsset{%
-    compat=newest,
-    xlabel near ticks,
-    ylabel near ticks
-}
-\title{ポスターのサンプル}
-\author{著者名}
-\institute{所属機関名}
-\date{\today}
-\begin{document}
-\begin{frame}[fragile]
-\begin{columns}[t]
-    \begin{column}{.32\linewidth}
-        \begin{block}{はじめに}
-            \LaTeX{} (Beamer)でポスターを作りましょう．
-        \end{block}
-        \begin{block}{数式}
-            \LaTeX{}で作るので数式の挿入が簡単にできます．
-
-            （最近はPowerPointでもできるらしいですが...）
-
-            \bigskip
-            \bigskip
-
-            \textbf{Lebesgueの収束定理} (小谷, 2005)
-
-            $(f_n)_n$は$X$上可測関数列で，ある非負可積分関数$g$により
-            \begin{align*}
-                \absolute{f_n(x)} \leq g(x) \quad (x \in X)
-            \end{align*}
-            が成り立つとする．極限 $\lim_{n \to \infty}f_n(x) = f(x)$ が存在するなら
-            \begin{align*}
-                \int_X \lim_{n \to \infty}f(x) \mu(dx)
-                = \lim_{n \to \infty}\int_X f_n (x) \mu(dx)
-            \end{align*}
-        \end{block}
-        \begin{block}{ダミーテキスト}
-            \lipsum[1]
-        \end{block}
-        必ず\texttt{beamercolorbox}の中に書かなければならない，というわけではありません．
-    \end{column}
-    \begin{column}{.32\linewidth}
-        \begin{block}{グラフ}
-            \verb+\includegraphics+でRなどで作成したグラフを取り込むことはもちろん，
-            TikZでLaTeXソースコード中にグラフのコードを書くこともできます．
-
-            \bigskip
-
-            \tikzset{%
-                declare function={%
-                    normcdf(\x,\m,\s)=1/(1 + exp(-0.07056*((\x-\m)/\s)^3 - 1.5976*(\x-\m)/\s));
-                },
-                % http://tex.stackexchange.com/questions/5461/is-it-possible-to-change-the-size-of-an-arrowhead-in-tikz-pgf
-                % TikZ manual p. 202
-                &gt;={Straight Barb[width=5mm,length=5mm]}
-            }
-            \begin{center}
-                \begin{tikzpicture}
-                    \begin{axis}[
-                        samples=500,
-                        domain=-10:10,
-                        width=30cm, height=20cm,
-                        xmin=-10.5, xmax=10.5,
-                        ymin=-0.3, ymax=1.5,
-                        axis x line=center,
-                        axis y line=center,
-                        xlabel={$x$},
-                        ylabel={$y$},
-                        axis line style={-&gt;, ultra thick},
-                        xtick={-5,0,5},
-                        ytick={0,0.5}]
-                    \addplot[color=red,ultra thick] plot{normcdf(0.626657*x,0,1)} node[pos=0.4](cum){};
-                    \addplot[color=blue,ultra thick,dashed] plot (\x,{1/(1+exp((-1)*x))}) node[pos=0.6](a){} ;
-                    \node [color=blue,below right] at (a) {${\displaystyle y=\frac{1}{1+\exp(-x)}}$};
-                    \node [color=red,above left] at (cum) {${\displaystyle y=\varPhi\left(\sqrt{\frac{\pi}{8}}x\right)}$};
-                    \addplot[dashed,ultra thick] plot (\x,{1}) node[pos=0.5](b){};
-                    \node [above left] at (b) {$y=1$};
-                    \node at (0,0) [anchor=north west]{$O$};
-                    \end{axis}
-                \end{tikzpicture}
-            \end{center}
-        \end{block}
-
-        \begin{block}{プログラム}
-            \texttt{listings}パッケージを読み込んでプログラムのソースコードを書くことができます．
-            フレームに\texttt{fragile}オプションを渡す必要があるので気をつけましょう．
-
-            \bigskip
-
-            \begin{lstlisting}
-# This function does not always work!
-def plural(word):
-    if word.endswith(&#39;y&#39;):
-        return word[:-1] + &#39;ies&#39;
-    elif word[-1] in &#39;sx&#39;:
-        return word + &#39;es&#39;
-    else:
-        return word + &#39;s&#39;
-            \end{lstlisting}
-        \end{block}
-    \end{column}
-    \begin{column}{.32\linewidth}
-        \begin{block}{文字}
-            アラビア文字など日本語の文書中に混在させにくい文字も
-            \LaTeX{}のパッケージを利用して簡単に入力することができます。
-
-            \bigskip
-            \bigskip
-
-
-            \begin{ipafont}
-                kaanat rijħu ʃʃamaali tatadʒaadalu wa ʃʃamsa fij ʔajjin minhumaa kaanat ʔaqwaa min alʔuxraa
-            \end{ipafont}
-
-            \bigskip
-            \bigskip
-
-            \begin{arab}[fullvoc]
-                kAnat rI.hu &#39;l-^samAli tatajAdalu wa &#39;l-^samsa fI &#39;ayyiN minhumA kAnat &#39;aqw_A mina &#39;l-&#39;uxr_A.
-            \end{arab}
-
-            \bigskip
-            \bigskip
-
-            \hfill {\small 『国際音声記号ガイドブック』「アラビア語」より}
-
-            \bigskip
-            \bigskip
-
-            【アラビア文字部分の実際の入力】
-
-            \verb+kAnat rI.hu &#39;l-^samAli tatajAdalu+
-            \verb+wa &#39;l-^samsa fI &#39;ayyiN minhumA kAnat+
-            \verb+&#39;aqw_A mina &#39;l-&#39;uxr_A.+
-        \end{block}
-
-        \begin{block}{実験結果}
-            過去に作った\LaTeX ファイルがそのまま流用できます．
-
-            \bigskip
-            \bigskip
-
-            \begin{center}
-                \begin{tabularx}{0.5\textwidth}{CC}
-                    \toprule
-                             &amp; スコア \\
-                    \midrule
-                    手法1    &amp; 0.11   \\
-                    手法2    &amp; 0.22   \\
-                    手法3    &amp; 0.33   \\
-                    手法2    &amp; 0.44   \\
-                    \bottomrule
-                \end{tabularx}
-            \end{center}
-        \end{block}
-
-
-        \begin{block}{参考文献}
-            \begin{enumerate}
-                \item 小谷眞一『測度と確率』, 岩波書店 (2005).
-                \item 国際音声学会編, 竹林滋・神山孝夫訳『国際音声記号ガイドブッ
-
-                    ク』, 大修館書店 (2003).
-            \end{enumerate}
-        \end{block}
-
-        \href{https://github.com/deselaers/latex-beamerposter}{\texttt{beamerposter}パッケージ}
-        の\texttt{examples}を参考にして自分用の\texttt{.sty}ファイルを作成しましょう．
-    \end{column}
-\end{columns}
-\end{frame}
-\end{document}
-</code></pre>
-            </figure>
-          </section>
-          <section>
-            <h2>2. 単純なポスターを作ってみる</h2>
-            <p>TeX Live に収録されている<a href="https://ctan.org/pkg/beamerposter">beamerposter</a>パッケージを使います。以下のようなコードを<code>simple-poster.tex</code>のような名前で保存してください。</p>
-            <pre><code class="language-latex">\documentclass[unicode]{beamer}
-\usepackage[orientation=landscape,size=a0,scale=1.4]{beamerposter}
-\usetheme[footertext={フッター}]{SimplePoster}
-\usepackage{luatexja}
-\title{ポスターのサンプル}
-\author{著者名}
-\institute{所属機関名}
-\date{\today}
-\begin{document}
-\begin{frame}
-\begin{columns}[t]
-    \begin{column}{.32\linewidth}
-        \begin{block}{はじめに}
-            \LaTeX{}(Beamer)でポスターを作りましょう．
-        \end{block}
-    \end{column}
-\end{columns}
-\end{frame}
-\end{document}
-</code></pre>
-            <p>次に<code>beamerthemeSimplePoster.sty</code>という名前で以下の内容を現在作業しているディレクトリに保存してください。</p>
-            <pre><code class="language-latex">\ProvidesPackage{beamerthemeSimplePoster}
-\mode&lt;presentation&gt;
-\DeclareOptionBeamer{footertext}{\def\SimplePoster@footertext{#1}}
-\ProcessOptionsBeamer
-\selectcolormodel{RGB}
-\definecolor{royalblue}{RGB}{1,72,152}
-\definecolor{aliceblue}{RGB}{240,248,255}
-\setbeamercolor{headline}{fg=white,bg=royalblue}
-\setbeamercolor{footline}{fg=white,bg=royalblue}
-\setbeamercolor{title in headline}{fg=white}
-\setbeamercolor{author in headline}{fg=white}
-\setbeamercolor{institute in headline}{fg=white}
-\setbeamercolor{conference in headline}{fg=white}
-\setbeamercolor*{normal text}{fg=black,bg=white}
-\setbeamercolor*{block body}{fg=black,bg=aliceblue}
-\setbeamercolor*{block title}{fg=white,bg=royalblue}
-\setbeamerfont{block title}{size=\large,series=\bf}
-\setbeamercolor{structure}{fg=red}
-\setbeamertemplate{navigation symbols}{}
-\setbeamertemplate{block begin}{%
-    \vskip.5ex
-    \begin{beamercolorbox}[
-        rounded=true,
-        shadow=true,
-        leftskip=1em,
-        colsep*=.75ex]{block title}%
-        \usebeamerfont*{block title}\insertblocktitle
-    \end{beamercolorbox}%
-    \usebeamerfont{block body}%
-    \begin{beamercolorbox}[
-        rounded=true,
-        shadow=true,
-        leftskip=1em,
-        rightskip=1em,
-        colsep*=.75ex,
-        sep=1ex,
-        vmode]{block body}%
-}
-\setbeamertemplate{block end}{%
-    \end{beamercolorbox}
-    \vskip1.5ex
-}
-\setbeamertemplate{headline}{%
-    \leavevmode
-    \begin{beamercolorbox}[wd=\paperwidth]{headline}
-        \centering
-        \vskip4ex
-        \usebeamercolor{title in headline}{%
-            \color{fg}\textbf{\LARGE{\inserttitle}}\\[2.5ex]
-        }
-        \usebeamercolor{author in headline}{%
-            \color{fg}\large{\insertauthor}\\[1.2ex]
-        }
-        \usebeamercolor{institute in headline}{%
-            \color{fg}\large{\insertinstitute}
-        }
-        \vskip2ex
-    \end{beamercolorbox}
-}
-\setbeamertemplate{footline}{%
-    \begin{beamercolorbox}[wd=\paperwidth,ht=11ex]{footline}
-    \leavevmode%
-    \begin{columns}[T]
-        \begin{column}{0.7\paperwidth}
-        \end{column}
-        \begin{column}{0.3\paperwidth}
-            \usebeamercolor{conference in headline}{%
-                \color{fg}\large{\SimplePoster@footertext}
-            }
-        \end{column}
-    \end{columns}
-    \vskip3ex
-    \end{beamercolorbox}
-}
-</code></pre>
-            <p>LuaLaTeXでタイプセットしたいので上の2つと同じ場所に設定ファイル<code>latexmkrc</code>を置いておきます。</p>
-            <pre><code class="language-perl">#!/usr/bin/perl
-$pdflatex = &#39;lualatex %O %S&#39;;
-$bibtex = &#39;upbibtex %O %B&#39;;
-$pdf_mode = 1;
-$bibtex_use = 2;
-$clean_ext .= &#39;%R.bbl %R.ltjruby %R.nav %R.snm %R.vrb&#39;;
-</code></pre>
-            <p>これらのファイルがある場所で<code>latexmk poster.tex</code> コマンドを実行すると以下のような PDF ができあがります。</p>
-            <figure>
-              <img src="/static/images/simple-poster.svg" alt="単純なポスターの例" />
-            </figure>
-            <p>あとは色を変更したり、中身を追加していくだけです。</p>
-          </section>
-
-        </div>
-      </article>
-
-    </main>
-    <footer>
-      <div class="footer text-center">
-        <span>© 2015&ndash;2022 Akira Miyazawa</span>
-      </div>
-
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap.native@2.0.15/dist/bootstrap-native-v4.min.js"></script>
-    <script src="/static/js/prism.js"></script>
-    <script src="/static/js/prism-bash.min.js"></script>
-    <script src="/static/js/prism-latex.min.js"></script>
-    <script src="/static/js/prism-makefile.min.js"></script>
-    <script src="/static/js/prism-java.min.js"></script>
-    <script src="/static/js/prism-javascript.min.js"></script>
-    <script src="/static/js/prism-scala.min.js"></script>
-    <script src="/static/js/prism-markdown.min.js"></script>
-    <script src="/static/js/prism-apacheconf.min.js"></script>
-    <script src="/static/js/prism-perl.min.js"></script>
-    <script src="/static/js/prism-haskell.min.js"></script>
-    <script src="/static/js/prism-lua.min.js"></script>
-    <script src="https://kit.fontawesome.com/30a99ec99f.js" crossorigin="anonymous"></script>
-    <script src="/static/js/main.js"></script>
-
+      </header>
+      <main>
+        
+<article>
+  <div class="container">
+    <h1>LaTeX (Beamer)で学会発表用のポスターを作る</h1>
+    <div class="info text-muted">
+      Posted: 2015-08-24
+      
+        (Updated: 2019-03-31)
+      
+    </div>
+    
+<section>
+<p>初めて学会の発表で使うポスターを作るにあたり、分からないことが多かったため、調べたり試行錯誤した内容についてまとめておこうと思います。</p>
+<p>まず、どのツールを使うかですが、周りの数人に聞いたところ全員が<a href="https://products.office.com/ja-jp/powerpoint" target="_blank">PowerPoint</a> を使っているようでした。なので私もPowerPointを使るつもりだったのですが、以前に</p>
+<ul>
+  <li>テストエビデンスのスクショをエクセルに貼り付ける作業</li>
+  <li>Office のバージョンアップによってレイアウトが崩れたファイルをいじる作業</li>
+</ul>
+<p>などを行っていたため、MS Officeを使うことに抵抗があり、LaTeX (Beamer)で作ることにしました。</p>
+</section>
+<section>
+  <h2>1. どんな感じになるのか</h2>
+  <p>デザインのセンス次第でいくらでも綺麗なものは作れると思いますが以下のような感じのものが作れます。</p>
+  <figure>
+    <img src="/static/images/complex-poster.svg" alt="複雑なポスターの例" />
+  </figure>
+  <p>印刷の向きに関しては<code>beamerposter</code>のオプションで</p>
+  <ul>
+    <li>横：<code>orientation=landscape</code></li>
+    <li>縦：<code>orientation=portrait</code></li>
+  </ul>
+  <p>のように指定することができます。</p>
+  <figure>
+    <figcaption>上のポスターのコード</figcaption>
+    <pre><code class="language-latex"></code></pre>
+  </figure>
+</section>
+<section>
+  <h2>2. 単純なポスターを作ってみる</h2>
+  <p>TeX Live に収録されている<a href="https://ctan.org/pkg/beamerposter">beamerposter</a>パッケージを使います。以下のようなコードを<code>simple-poster.tex</code>のような名前で保存してください。</p>
+    <pre><code class="language-latex"></code></pre>
+  <p>次に<code>beamerthemeSimplePoster.sty</code>という名前で以下の内容を現在作業しているディレクトリに保存してください。</p>
+    <pre><code class="language-latex"></code></pre>
+  <p>LuaLaTeXでタイプセットしたいので上の2つと同じ場所に設定ファイル<code>latexmkrc</code>を置いておきます。</p>
+  <pre><code class="language-perl"></code></pre>
+  <p>これらのファイルがある場所で<code>latexmk poster.tex</code> コマンドを実行すると以下のような PDF ができあがります。</p>
+  <figure>
+    <img src="/static/images/simple-poster.svg" alt="単純なポスターの例" />
+  </figure>
+  <p>あとは色を変更したり、中身を追加していくだけです。</p>
+</section>
 
   </div>
-</body>
+</article>
 
+      </main>
+      <footer>
+        <div class="footer text-center">
+  <span>© 2015&ndash;2022 Akira Miyazawa</span>
+</div>
+
+      </footer>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap.native@2.0.15/dist/bootstrap-native-v4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" integrity="sha512-SkmBfuA2hqjzEVpmnMt/LINrjop3GKWqsuLSSB3e7iBmYK7JuWw4ldmmxwD9mdm2IRTTi0OxSAfEGvgEi0i2Kw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://kit.fontawesome.com/30a99ec99f.js" crossorigin="anonymous"></script>
+<script src="/static/js/main.js"></script>
+
+      
+    </div>
+  </body>
 </html>
