@@ -28,17 +28,17 @@
   <p>のように指定することができます。</p>
   <figure>
     <figcaption>上のポスターのコード</figcaption>
-    <pre><code class="language-latex">{{ ComplexPoster }}</code></pre>
+    <pre><code class="language-latex">{{ includeFile('latex/complex-poster.tex') }}</code></pre>
   </figure>
 </section>
 <section>
   <h2>2. 単純なポスターを作ってみる</h2>
   <p>TeX Live に収録されている<a href="https://ctan.org/pkg/beamerposter">beamerposter</a>パッケージを使います。以下のようなコードを<code>simple-poster.tex</code>のような名前で保存してください。</p>
-    <pre><code class="language-latex">{{ SimplePoster }}</code></pre>
+    <pre><code class="language-latex">{{ includeFile('latex/simple-poster.tex') }}</code></pre>
   <p>次に<code>beamerthemeSimplePoster.sty</code>という名前で以下の内容を現在作業しているディレクトリに保存してください。</p>
-    <pre><code class="language-latex">{{ beamerthemeSimplePoster }}</code></pre>
+    <pre><code class="language-latex">{{ includeFile('latex/beamerthemeSimplePoster.sty') }}</code></pre>
   <p>LuaLaTeXでタイプセットしたいので上の2つと同じ場所に設定ファイル<code>latexmkrc</code>を置いておきます。</p>
-  <pre><code class="language-perl">{{ latexmkrc }}</code></pre>
+  <pre><code class="language-perl">{{ includeFile('latex/latexmkrc.pl') }}</code></pre>
   <p>これらのファイルがある場所で<code>latexmk poster.tex</code> コマンドを実行すると以下のような PDF ができあがります。</p>
   <figure>
     <img src="/static/images/simple-poster.svg" alt="単純なポスターの例" />

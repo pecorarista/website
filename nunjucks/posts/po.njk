@@ -1,0 +1,42 @@
+{% extends 'nunjucks/_layout/_article.njk' %}
+{% set lang = 'ja' %}
+{% set mathematical = 'true' %}
+{% set title = '位置エンコーディング(positional encoding)の理解' %}
+{% set posted = '2020-03-05' %}
+{% set updated = '2022-10-07' %}
+
+{% block post %}
+<section>
+<h2>背景にある発想</h2>
+<p>位置エンコーディング(positional encoding) は\(f\colon \mathbb{N} \to \mathbb{R}^D\)
+\begin{align*}
+  f(t) =
+  \begin{pmatrix}
+    \sin (\omega_1 t) \\
+    \cos (\omega_1 t) \\
+    \sin (\omega_2 t) \\
+    \cos (\omega_2 t) \\
+    \vdots \\
+    \sin (\omega_{D/2} t) \\
+    \cos (\omega_{D/2} t)
+  \end{pmatrix}
+\end{align*}
+ここで
+\(\sin \alpha x \)
+は
+\(\alpha\)
+が大きいほど周期が小さい。
+例えば
+\(D = 100\)
+のとき，
+\(\omega_0 = 1\)，
+
+\(\omega_{100} = \varepsilon^{\frac{98}{100}} \approx 10^{-4} \)
+\begin{align*}
+\omega_k = \varepsilon^{\frac{2}{D} \lfloor \frac{k - 1}{2} \rfloor},\ \varepsilon = 10^{-4}
+\end{align*}
+<img src="/static/images/sinx.svg" style="min-width: 100%; max-width: 100%;">
+<img src="/static/images/sin2x.svg" style="min-width: 100%; max-width: 100%;">
+</p>
+</section>
+{% endblock %}

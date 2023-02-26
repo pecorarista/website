@@ -25,9 +25,9 @@
       $\displaystyle \frac{\pi}{2}$, $\pi$, $\displaystyle \frac{3}{2}\pi$, $2\pi$
     }
   ]
-  \addplot[domain=-6.7:6.7, samples=200, smooth, very thick] {sin(deg(x))};
+  \addplot[domain=-6.7:6.7, samples=200, smooth, very thick] {sin(deg(0.5 * x))};
   \node (O) at (axis cs:0.2, -0.18) {$O$};
-  \node (O) at (axis cs:3, 0.75) {$y = \sin x$};
+  \node (O) at (axis cs:3, 0.75) {$\displaystyle y = \sin \frac{1}{2}x$};
   \end{axis}
 \end{tikzpicture}
 \end{document}
