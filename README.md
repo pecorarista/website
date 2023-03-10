@@ -6,5 +6,6 @@
 nvm install lts/gallium
 nvm use lts/gallium
 npm install
-npx gulp
+make
+npx @11ty/eleventy
 ```

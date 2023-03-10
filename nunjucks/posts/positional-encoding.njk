@@ -127,15 +127,15 @@
 </p>
 <p>
 下の
-<strong>図 1</strong>
+図 1
 と
-<strong>図 2</strong>
+図 2
 を見ると分かるように，
 \(\sin (\omega\, t) \)
 は
 \(\omega\)
 が小さくなるほど，周期が大きくなる。
-すなわち成分を縦に並べたときに下の方ほどゆっくり変化する。
+すなわち、成分を縦に並べたとき、下の方にある成分ほどゆっくり変化する。
 <figure class="centered">
 <figcaption><strong>図 1：</strong>\(y = \sin x\)
 のグラフ。</figcaption>
@@ -155,7 +155,7 @@
   />
 </figure>
 ヒートマップを使って可視化すると
-<strong>図 3</strong>
+図 3
 のようになる．
 <figure class="centered">
   <figcaption><strong>図 3：</strong>\(D = 128,\,t = 0,\,\ldots,\,50\)
@@ -163,8 +163,12 @@
   <img
     src="/static/images/heatmap.svg"
     alt=""
-    style="background-color: transparent; width: 100%; height: auto; max-width: 800px; margin-top: 2ex;"
+    style="background-color: transparent; width: 100%; height: auto; max-width: 800px;"
   />
+</figure>
+<figure>
+  <figcaption>ヒートマップの作成に使用した Python スクリプト。</figcaption>
+  <pre><code class="language-python">{{ includeFile('python/main.py') }}</code></pre>
 </figure>
 位置の加法は、線型変換とみなせる。
 \begin{align*}
@@ -211,15 +215,14 @@
   &amp;=
   R(t') f(t)
 \end{align*}
-<pre><code class="language-python">{{ includeFile('python/main.py') }}</code></pre>
 </p>
 </section>
 <section id="materials">
   <h2>参考文献</h2>
   <ul>
-  <li id="Jonathan-kernes"><a href="https://towardsdatascience.com/master-positional-encoding-part-i-63c05d90a0c3">Towards Data Science | <em>Master Positional Encoding: Part I</em></a></li>
+  <li id="amirhossein-kazemnejad"><a href="https://kazemnejad.com/blog/transformer_architecture_positional_encoding/">Amirhossein Kazemnejad's Blog | <em>Transformer Architecture: The Positional Encoding—Let's use sinusoidal functions to inject the order of words in our model</em></a></li>
   <li id="kikaben"><a href="https://kikaben.com/transformers-positional-encoding/">KiKaBeN | <em>Transformer’s Positional Encoding: How Does It Know Word Positions Without Recurrence?</em></a></li>
-    <li id="amirhossein-kazemnejad"><a href="https://kazemnejad.com/blog/transformer_architecture_positional_encoding/">Amirhossein Kazemnejad's Blog | <em>Transformer Architecture: The Positional Encoding—Let's use sinusoidal functions to inject the order of words in our model</em></a></li>
+  <li id="Jonathan-kernes"><a href="https://towardsdatascience.com/master-positional-encoding-part-i-63c05d90a0c3">Towards Data Science | <em>Master Positional Encoding: Part I</em></a></li>
   </ul>
 </section>
 {% endblock %}

@@ -1,7 +1,8 @@
+import itertools
+
 import numpy
 import seaborn
 from matplotlib import pyplot
-import itertools
 
 
 def main() -> None:
