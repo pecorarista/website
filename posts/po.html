@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@pecorarista">
-    <meta name="twitter:title" content="Solving Linear Regression Problems Using Fréchet Derivatives — pecorarista.com">
+    <meta name="twitter:title" content="位置エンコーディング(positional encoding)の理解 — pecorarista.com">
     <meta name="twitter:description" content="">
     <meta name="twitter:image" content="https://pecorarista.com/static/images/avatar.png">
     <link rel="icon" href="/favicon.ico">
@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-lucario.min.css" integrity="sha512-Aj5jCt/M5XlTn+Y93TazO+EjpRTiUGMrMuaJOcBcu80Fopd7+LSL094m3pbVTNJxf1hOAMSYI/hONBGjvPWwGQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="/static/css/main.css"/>
 
-    <title>Solving Linear Regression Problems Using Fréchet Derivatives</title>
+    <title>位置エンコーディング(positional encoding)の理解</title>
   </head>
   <body>
     <div class="wrapper">
@@ -37,166 +37,45 @@
         
 <article>
   <div class="container">
-    <h1>Solving Linear Regression Problems Using Fréchet Derivatives</h1>
+    <h1>位置エンコーディング(positional encoding)の理解</h1>
     <div class="info text-muted">
-      Posted: 2022-10-07
+      Posted: 2020-03-05
       
-        (Updated: 2022-10-09)
+        (Updated: 2022-10-07)
       
     </div>
     
 <section>
-Suppose we have a linear regression problem,
-where input vectors are in \(\mathbb{R}^n\)
-and output vectors are in \(\mathbb{R}^m\).
-Let \(N\) be the size of dataset.
-For each sample \((x^i,\,y^i)\), we write
-\begin{gather*}
-  x^i =
+<h2>背景にある発想</h2>
+<p>位置エンコーディング(positional encoding) は\(f\colon \mathbb{N} \to \mathbb{R}^D\)
+\begin{align*}
+  f(t) =
   \begin{pmatrix}
-    x^i_1 \\
+    \sin (\omega_1 t) \\
+    \cos (\omega_1 t) \\
+    \sin (\omega_2 t) \\
+    \cos (\omega_2 t) \\
     \vdots \\
-    x^i_n
-  \end{pmatrix},
-  \quad
-  y^i =
-  \begin{pmatrix}
-    y^i_1 \\
-    \vdots \\
-    y^i_m
-  \end{pmatrix},
-\end{gather*}
-and define \(X\) and \(Y\) as
-\begin{gather*}
-  X =
-  \begin{pmatrix}
-    x^1 &amp;
-    \cdots &amp;
-    x^N
+    \sin (\omega_{D/2} t) \\
+    \cos (\omega_{D/2} t)
   \end{pmatrix}
-  =
-  \begin{pmatrix}
-    x^1_1    &amp; \cdots &amp; x^N_1 \\
-    \vdots &amp; \ddots &amp; \vdots\\
-    x^1_n    &amp; \cdots &amp; x^N_n \\
-  \end{pmatrix}, \\
-  Y =
-  \begin{pmatrix}
-    y^1 &amp;
-    \cdots &amp;
-    y^N
-  \end{pmatrix}
-  =
-  \begin{pmatrix}
-    y^1_1  &amp; \cdots &amp; y^N_1 \\
-    \vdots &amp; \ddots &amp; \vdots \\
-    y^1_m  &amp; \cdots &amp; y^N_m
-  \end{pmatrix}.
-\end{gather*}
-Let \(W \in \mathbb{R}^{m \times n}\)
-be the matrix of coefficients as follows:
-\begin{gather*}
-  W =
-  \begin{pmatrix}
-    w_{11}  &amp; \cdots &amp; w_{1n} \\
-    \vdots  &amp; \ddots &amp; \vdots \\
-    w_{m1}  &amp; \cdots &amp; w_{mn}
-  \end{pmatrix}. \\
-\end{gather*}
-The squared error \(E\) is
-\begin{align*}
-  E(W) = \frac{1}{2} \| WX - Y \|^2,
 \end{align*}
-where \(\|\cdot\|\) is the Frobenius norm.</p>
-<p>If we change \(W\) along \(H\),
-\(E\) changes as below:
-\begin{align}
-  E(W + H) - E(H)
-  &amp;= \frac{1}{2}{
-    \left\|
-      (W + H)X - Y
-    \right\|
-  }^2
-  -
-  \frac{1}{2}
-  {
-    \left\|
-      WX - Y
-    \right\|
-  }^2 \notag \\
-  &amp;=
-  \frac{1}{2}
-  \langle
-    WX - Y + HX,\,
-    WX - Y + HX
-  \rangle
-  -
-  \frac{1}{2}
-  {
-    \left\|
-      WX - Y
-    \right\|
-  }^2 \notag \\
-  &amp;=
-  \frac{1}{2}
-  {\| WX - Y \|}^2
-  +
-  \langle
-    WX - Y,\,
-    HX
-  \rangle
-  +
-  \frac{1}{2}
-  {\|
-    HX
-  \|}^2
-  -
-  \frac{1}{2}
-  {\|
-    WX - Y
-  \|}^2 \notag \\
-  &amp;=
-  \trace (
-    (WX - Y) (HX)^\top
-  )
-  +\frac{1}{2}
-  {\|HX\|}^2 \notag \\
-  &amp;=
-  \trace(
-    (WX - Y)X^\top H^\top
-  )
-  +\frac{1}{2}
-  {\|HX\|}^2 \notag \\
-  &amp;=
-  \langle
-    (WX - Y)X^\top,\,
-    H
-  \rangle
-  + \frac{1}{2}{\|HX\|}^2 \label{result}
-\end{align}
-According to Cauchy&ndash;Schwarz inequality, \(\|HX\|^2 \leq {\|H\|}^2 {\|X\|}^2 \).
-Therefore,
-for any \(\varepsilon &gt; 0\),
-if we take \(H\) so small that
-\(\|H\| \leq \displaystyle \frac{\varepsilon}{2 \|X\|^2 + 1},\)
+ここで
+\(\sin \alpha x \)
+は
+\(\alpha\)
+が大きいほど周期が小さい。
+例えば
+\(D = 100\)
+のとき，
+\(\omega_0 = 1\)，
+
+\(\omega_{100} = \varepsilon^{\frac{98}{100}} \approx 10^{-4} \)
 \begin{align*}
-  \|f(W + H) - f(W) - \langle ( WX - Y)X^\top,\, H \rangle\| \leq \varepsilon \|H\|
+\omega_k = \varepsilon^{\frac{2}{D} \lfloor \frac{k - 1}{2} \rfloor},\ \varepsilon = 10^{-4}
 \end{align*}
-The derivative of \(f\) with respect to \(W\) at an arbitrary point \(W\) along \(H\)
-is the first term of the right-hand side of (\ref{result}):
-\begin{align*}
-  D_W f(W)(H) = \langle ( WX - Y )X^\top,\, H \rangle.
-\end{align*}
-Since \(f\) is convex,
-\(f\) has the global minimum if and only if
-\begin{gather*}
-  ( WX - Y )X^\top = 0 \\
-  W XX^\top = YX^\top
-\end{gather*}
-If \(XX^\top\) is regular,
-\begin{gather*}
-  W = Y X^\top (XX^\top)^{-1}.
-\end{gather*}
+<img src="/static/images/sinx.svg" style="min-width: 100%; max-width: 100%;">
+<img src="/static/images/sin2x.svg" style="min-width: 100%; max-width: 100%;">
 </p>
 </section>
 
