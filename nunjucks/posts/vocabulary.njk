@@ -38,18 +38,18 @@
   <h2>2. テンプレートの作成</h2>
   <p>各言語に対応したフォントが自動で割り当てられるようにbabelなどのパッケージの設定を書いたテンプレートを準備しておきます。これを<code>vocabulary.tex</code>などの名前で保存します。</p>
   <figure>
-    <pre><code class="language-latex">{{ VocabularyTemplate }}</code></pre>
+    <pre><code class="language-latex">{{ includeFile('latex/vocabulary.tex') }}</code></pre>
   </figure>
   <p>次にPandocの「フィルター」と呼ばれるものを書きます。これを使ってMarkdownからLaTeXに変換する方法を指定し、少しでも入力が楽になるようにします。ここでは頻繁に入力するスモールキャピタルはアンダースコア2つ<code>__</code>で入力できるようにしました。またロシア語アルファベットが使われている部分は、自動でロシア語とマークアップされるようにしました。</p>
   <figure>
-    <pre><code class="language-lua">{{ PandocLuaFilter }}</code></pre>
+    <pre><code class="language-lua">{{ includeFile('latex/filter.lua') }}</code></pre>
   </figure>
 </section>
 <section>
   <h2>3. 単語のリスト作成</h2>
   <p>Markdown形式で単語のリストを書いていきます。テキストエディタを使い、以下のような単語のリストを作って<code>words.md</code>のような名前で保存します。アラビア文字の入力の仕方は<a href="https://pecorarista.com/posts/arabluatex.html">「LaTeXでRTL（右横書き）の文書をつくる」</a>を、発音記号の入力の仕方は<a href="https://pecorarista.com/posts/type-ipa.html"><em>How to type phonetic symbols</em></a>をご参照ください。</p>
   <figure>
-    <pre><code class="language-markdown">{{ VocabularyList }}</code></pre>
+    <pre><code class="language-markdown">{{ includeFile('latex/words.md') }}</code></pre>
   </figure>
   <p>タイプセットする際にLuaLaTeXを使いたいので<code>latexmkrc</code>を作ります。</p>
   <figure>

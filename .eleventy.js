@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs');
 
 module.exports = function(eleventyConfig) {
 
@@ -6,6 +7,12 @@ module.exports = function(eleventyConfig) {
     return (data) => {
       let filename = path.parse(data.page.inputPath).base;
       return filename.startsWith('_') ? false : `${data.page.filePathStem}.${data.page.outputFileExtension}`;
+    };
+  });
+
+  eleventyConfig.addGlobalData('includeFile', () => {
+    return (filename) => {
+      return fs.readFileSync(filename);
     };
   });
 

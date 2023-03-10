@@ -1,0 +1,225 @@
+{% extends 'nunjucks/_layout/_article.njk' %}
+{% set lang = 'ja' %}
+{% set mathematical = 'true' %}
+{% set title = '位置エンコーディング' %}
+{% set posted = '2023-03-10' %}
+
+{% block post %}
+<section>
+<p>
+<strong>定義</strong>
+\(D\)
+を
+正の偶数とする．
+\(\mathbb{R}^D\)
+への位置エンコーディング
+\(f\)
+は，
+\(\mathbb{N} = \{0,\,1,\,\ldots\}\)
+から
+\(\mathbb{R}^D\)
+への写像で，
+像
+\(f(t)\)
+の第
+\(i\)
+成分
+\({f(t)}_i\)
+が
+\begin{align*}
+{f(t)}_i =
+  \begin{cases}
+    \sin (\omega_{\varphi(i)}\, t) &amp; \text{if \(i \equiv 1 \bmod 2\)}, \\
+    \cos (\omega_{\varphi(i)}\, t) &amp; \text{otherwise}, \\
+  \end{cases}
+\end{align*}
+ただし，
+\begin{align*}
+  \varphi(i) = 2 \left\lfloor \frac{i - 1}{2} \right\rfloor,\quad
+  \omega_k
+  =
+  \frac{1}{10000^{
+      \frac{k}{D}
+    }
+  }
+\end{align*}
+のように定める．
+</p>
+<p>
+<strong>例</strong>
+\begin{align*}
+  \varphi(1) = 0,\,\varphi(2) = 0,\,\varphi(3) = 2,\,\varphi(4) = 2,\,\varphi(5) = 4,\,\varphi(6) = 4,\,\ldots
+\end{align*}
+</p>
+<p>
+<strong>例</strong>
+\(D = 128\)
+のとき
+\begin{gather*}
+  f(0) =
+  \begin{pmatrix}
+    \sin (0) \\
+    \cos (0) \\
+    \vdots \\
+    \sin (0) \\
+    \cos (0)
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    0 \\
+    1 \\
+    \vdots \\
+    0 \\
+    1
+  \end{pmatrix}
+  ,\\[4pt]
+  f(1) =
+  \begin{pmatrix}
+    \sin (\omega_{\varphi(1)}) \\
+    \cos (\omega_{\varphi(2)}) \\
+    \vdots \\
+    \sin (\omega_{\varphi(127)}) \\
+    \cos (\omega_{\varphi(128)})
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    \sin {\frac{1}{10000^{0/128}}} \\
+    \cos {\frac{1}{10000^{0/128}}} \\
+    \vdots \\
+    \sin {\frac{1}{10000^{126/128}}} \\
+    \cos {\frac{1}{10000^{126/128}}} \\
+  \end{pmatrix}
+  \approx
+    \begin{pmatrix}
+      0.8414 \\
+      0.5403 \\
+      \vdots \\
+      0.0001 \\
+      0.9999
+    \end{pmatrix}
+    ,\\[4pt]
+  f(2) =
+  \begin{pmatrix}
+    \sin (\omega_{\varphi(1)} \cdot 2) \\
+    \cos (\omega_{\varphi(2)} \cdot 2) \\
+    \vdots \\
+    \sin (\omega_{\varphi(127)} \cdot 2) \\
+    \cos (\omega_{\varphi(128)} \cdot 2)
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    \sin {\frac{2}{10000^{0/128}}} \\
+    \cos {\frac{2}{10000^{0/128}}} \\
+    \vdots \\
+    \sin {\frac{2}{10000^{126/128}}} \\
+    \cos {\frac{2}{10000^{126/128}}} \\
+  \end{pmatrix}
+  \approx
+    \begin{pmatrix}
+      0.9092 \\
+      -0.4161 \\
+      \vdots \\
+      0.0002 \\
+      0.9999
+    \end{pmatrix}
+\end{gather*}
+となる．
+</p>
+<p>
+下の
+<strong>図 1</strong>
+と
+<strong>図 2</strong>
+を見ると分かるように，
+\(\sin (\omega\, t) \)
+は
+\(\omega\)
+が小さくなるほど，周期が大きくなる。
+すなわち成分を縦に並べたときに下の方ほどゆっくり変化する。
+<figure class="centered">
+<figcaption><strong>図 1：</strong>\(y = \sin x\)
+のグラフ。</figcaption>
+  <img
+    src="/static/images/sinx.svg"
+    alt=""
+    style="background-color: transparent; width: 100%; height: auto; max-width: 1200px; margin-top: 2ex;"
+  />
+</figure>
+<figure class="centered">
+<figcaption><strong>図 2：</strong>\(\displaystyle y = \sin \frac{1}{2}x\)
+のグラフ。</figcaption>
+  <img
+    src="/static/images/sin0.5x.svg"
+    alt=""
+    style="background-color: transparent; width: 100%; height: auto; max-width: 1200px; margin-top: 2ex;"
+  />
+</figure>
+ヒートマップを使って可視化すると
+<strong>図 3</strong>
+のようになる．
+<figure class="centered">
+  <figcaption><strong>図 3：</strong>\(D = 128,\,t = 0,\,\ldots,\,50\)
+のヒートマップ。</figcaption>
+  <img
+    src="/static/images/heatmap.svg"
+    alt=""
+    style="background-color: transparent; width: 100%; height: auto; max-width: 800px; margin-top: 2ex;"
+  />
+</figure>
+位置の加法は、線型変換とみなせる。
+\begin{align*}
+  f(t + t')
+  &amp;=
+  \begin{pmatrix}
+    \sin (\omega_{\varphi(1)}\, (t + t')) \\
+    \cos (\omega_{\varphi(2)}\, (t + t')) \\
+    \vdots \\
+    \sin (\omega_{\varphi(D - 1)}\, (t + t')) \\
+    \cos (\omega_{\varphi(D)}\, (t + t'))
+  \end{pmatrix} \\[4pt]
+  &amp;=
+  \begin{pmatrix}
+    \sin (\omega_0 \, t + \omega_0 \, t') \\
+    \cos (\omega_0 \, t + \omega_0 \, t') \\
+    \vdots \\
+    \sin (\omega_{D/2}\, t + \omega_{D/2}\, t') \\
+    \cos (\omega_{D/2}\, t + \omega_{D/2}\, t')
+  \end{pmatrix} \\[4pt]
+  &amp;=
+  \begin{pmatrix}
+    \sin (\omega_0\, t) \cos (\omega_0\, t') + \cos (\omega_0\, t) \sin (\omega_0\, t') \\
+    \cos (\omega_0\, t) \cos (\omega_0\, t') - \sin (\omega_0\, t) \sin (\omega_0\, t') \\
+    \vdots \\
+    \sin (\omega_{D/2}\, t) \cos (\omega_{D/2}\, t') + \cos (\omega_{D/2}\, t) \sin (\omega_{D/2}\, t') \\
+    \cos (\omega_{D/2}\, t) \cos (\omega_{D/2}\, t') - \sin (\omega_{D/2}\, t) \sin (\omega_{D/2}\, t') \\
+  \end{pmatrix} \\[4pt]
+  &amp;=
+  \begin{pmatrix}
+\cos(\omega_0\,t')  &amp; \sin(\omega_0\,t') &amp; \cdots &amp; 0                      &amp; 0                      \\
+-\sin(\omega_0\,t') &amp; \cos(\omega_0\,t') &amp; \cdots &amp; 0                      &amp; 0                      \\
+           \vdots   &amp;          \vdots    &amp; \ddots &amp; \vdots                 &amp; \vdots                 \\
+           0        &amp;               0    &amp; \cdots &amp; \cos(\omega_{D/2}\,t') &amp; \sin(\omega_{D/2}\,t') \\
+           0        &amp;               0    &amp; \cdots &amp; -\sin(_{D/2}\,t')      &amp; \cos(\omega_{D/2}\,t') \\
+  \end{pmatrix}
+  \begin{pmatrix}
+    \sin (\omega_0\, t) \\
+    \cos (\omega_0\, t) \\
+    \vdots \\
+    \sin (\omega_{D/2}\, t) \\
+    \cos (\omega_{D/2}\, t)
+  \end{pmatrix} \\[4pt]
+  &amp;=
+  R(t') f(t)
+\end{align*}
+<pre><code class="language-python">{{ includeFile('python/main.py') }}</code></pre>
+</p>
+</section>
+<section id="materials">
+  <h2>参考文献</h2>
+  <ul>
+  <li id="Jonathan-kernes"><a href="https://towardsdatascience.com/master-positional-encoding-part-i-63c05d90a0c3">Towards Data Science | <em>Master Positional Encoding: Part I</em></a></li>
+  <li id="kikaben"><a href="https://kikaben.com/transformers-positional-encoding/">KiKaBeN | <em>Transformer’s Positional Encoding: How Does It Know Word Positions Without Recurrence?</em></a></li>
+    <li id="amirhossein-kazemnejad"><a href="https://kazemnejad.com/blog/transformer_architecture_positional_encoding/">Amirhossein Kazemnejad's Blog | <em>Transformer Architecture: The Positional Encoding—Let's use sinusoidal functions to inject the order of words in our model</em></a></li>
+  </ul>
+</section>
+{% endblock %}
