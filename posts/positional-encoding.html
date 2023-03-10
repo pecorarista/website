@@ -165,15 +165,15 @@
 </p>
 <p>
 下の
-<strong>図 1</strong>
+図 1
 と
-<strong>図 2</strong>
+図 2
 を見ると分かるように，
 \(\sin (\omega\, t) \)
 は
 \(\omega\)
 が小さくなるほど，周期が大きくなる。
-すなわち成分を縦に並べたときに下の方ほどゆっくり変化する。
+すなわち、成分を縦に並べたとき、下の方にある成分ほどゆっくり変化する。
 <figure class="centered">
 <figcaption><strong>図 1：</strong>\(y = \sin x\)
 のグラフ。</figcaption>
@@ -193,7 +193,7 @@
   />
 </figure>
 ヒートマップを使って可視化すると
-<strong>図 3</strong>
+図 3
 のようになる．
 <figure class="centered">
   <figcaption><strong>図 3：</strong>\(D = 128,\,t = 0,\,\ldots,\,50\)
@@ -201,8 +201,42 @@
   <img
     src="/static/images/heatmap.svg"
     alt=""
-    style="background-color: transparent; width: 100%; height: auto; max-width: 800px; margin-top: 2ex;"
+    style="background-color: transparent; width: 100%; height: auto; max-width: 800px;"
   />
+</figure>
+<figure>
+  <figcaption>ヒートマップの作成に使用した Python スクリプト。</figcaption>
+  <pre><code class="language-python">import itertools
+
+import numpy
+import seaborn
+from matplotlib import pyplot
+
+
+def main() -&gt; None:
+    D = 128
+    T = 51
+    data = numpy.zeros((T, D), dtype=float)
+    for (t, d) in itertools.product(range(T), range(D)):
+        f = numpy.sin if d % 2 == 0 else numpy.cos
+        omega = 1 / (10_000 ** (2 * numpy.floor(d / 2) / D))
+        data[t, d] = f(omega * t)
+    h = seaborn.heatmap(data.T, vmin=-1.0, cbar_kws={&#39;ticks&#39;: [-1.0, -0.5, 0.0, 0.5, 1.0]})
+    h.set_xlabel(&#39;t (position)&#39;)
+    h.set_ylabel(&#39;i (dimension)&#39;)
+    xticklabels = [t for t in range(T) if t % 10 == 0]
+    h.set_xticks([x + 0.5 for x in xticklabels])
+    h.set_xticklabels(xticklabels)
+    yticklabels = [1] + [y for y in range(D + 1) if y % 16 == 0 and y &gt; 0]
+    h.set_yticks([y - 0.5 for y in yticklabels])
+    h.set_yticklabels(yticklabels)
+    pyplot.savefig(&#39;../images/heatmap.svg&#39;, bbox_inches=&#39;tight&#39;, transparent=True)
+    pyplot.show()
+
+
+if __name__ == &#39;__main__&#39;:
+    main()
+</code></pre>
 </figure>
 位置の加法は、線型変換とみなせる。
 \begin{align*}
@@ -249,44 +283,14 @@
   &amp;=
   R(t') f(t)
 \end{align*}
-<pre><code class="language-python">import numpy
-import seaborn
-from matplotlib import pyplot
-import itertools
-
-
-def main() -&gt; None:
-    D = 128
-    T = 51
-    data = numpy.zeros((T, D), dtype=float)
-    for (t, d) in itertools.product(range(T), range(D)):
-        f = numpy.sin if d % 2 == 0 else numpy.cos
-        omega = 1 / (10_000 ** (2 * numpy.floor(d / 2) / D))
-        data[t, d] = f(omega * t)
-    h = seaborn.heatmap(data.T, vmin=-1.0, cbar_kws={&#39;ticks&#39;: [-1.0, -0.5, 0.0, 0.5, 1.0]})
-    h.set_xlabel(&#39;t (position)&#39;)
-    h.set_ylabel(&#39;i (dimension)&#39;)
-    xticklabels = [t for t in range(T) if t % 10 == 0]
-    h.set_xticks([x + 0.5 for x in xticklabels])
-    h.set_xticklabels(xticklabels)
-    yticklabels = [1] + [y for y in range(D + 1) if y % 16 == 0 and y &gt; 0]
-    h.set_yticks([y - 0.5 for y in yticklabels])
-    h.set_yticklabels(yticklabels)
-    pyplot.savefig(&#39;../images/heatmap.svg&#39;, bbox_inches=&#39;tight&#39;, transparent=True)
-    pyplot.show()
-
-
-if __name__ == &#39;__main__&#39;:
-    main()
-</code></pre>
 </p>
 </section>
 <section id="materials">
   <h2>参考文献</h2>
   <ul>
-  <li id="Jonathan-kernes"><a href="https://towardsdatascience.com/master-positional-encoding-part-i-63c05d90a0c3">Towards Data Science | <em>Master Positional Encoding: Part I</em></a></li>
+  <li id="amirhossein-kazemnejad"><a href="https://kazemnejad.com/blog/transformer_architecture_positional_encoding/">Amirhossein Kazemnejad's Blog | <em>Transformer Architecture: The Positional Encoding—Let's use sinusoidal functions to inject the order of words in our model</em></a></li>
   <li id="kikaben"><a href="https://kikaben.com/transformers-positional-encoding/">KiKaBeN | <em>Transformer’s Positional Encoding: How Does It Know Word Positions Without Recurrence?</em></a></li>
-    <li id="amirhossein-kazemnejad"><a href="https://kazemnejad.com/blog/transformer_architecture_positional_encoding/">Amirhossein Kazemnejad's Blog | <em>Transformer Architecture: The Positional Encoding—Let's use sinusoidal functions to inject the order of words in our model</em></a></li>
+  <li id="Jonathan-kernes"><a href="https://towardsdatascience.com/master-positional-encoding-part-i-63c05d90a0c3">Towards Data Science | <em>Master Positional Encoding: Part I</em></a></li>
   </ul>
 </section>
 
