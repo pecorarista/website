@@ -126,6 +126,9 @@
 となる．
 </p>
 <p>
+<h2>なぜ三角関数を使うのか？</h2>
+三角関数を用いる理由は，各成分の周期を変えることにより，
+位置に固有のベクトルを生成できるからである．
 下の
 図 1
 と
@@ -134,11 +137,11 @@
 \(\sin (\omega\, t) \)
 は
 \(\omega\)
-が小さくなるほど，周期が大きくなる。
-すなわち、成分を縦に並べたとき、下の方にある成分ほどゆっくり変化する。
+が小さくなるほど，周期 \((= 2\pi / \omega)\) が大きくなる．
+すなわち，成分を縦に並べたとき，下の方にある成分ほどゆっくり変化する．
 <figure class="centered">
 <figcaption><strong>図 1：</strong>\(y = \sin x\)
-のグラフ。</figcaption>
+のグラフ．周期は \(2\pi\)．</figcaption>
   <img
     src="/static/images/sinx.svg"
     alt=""
@@ -147,7 +150,7 @@
 </figure>
 <figure class="centered">
 <figcaption><strong>図 2：</strong>\(\displaystyle y = \sin \frac{1}{2}x\)
-のグラフ。</figcaption>
+のグラフ．周期は \(\displaystyle \frac{2\pi }{1 / 2} = 4\pi\)．</figcaption>
   <img
     src="/static/images/sin0.5x.svg"
     alt=""
@@ -159,7 +162,7 @@
 のようになる．
 <figure class="centered">
   <figcaption><strong>図 3：</strong>\(D = 128,\,t = 0,\,\ldots,\,50\)
-のヒートマップ。</figcaption>
+のヒートマップ．</figcaption>
   <img
     src="/static/images/heatmap.svg"
     alt=""
@@ -167,10 +170,25 @@
   />
 </figure>
 <figure>
-  <figcaption>ヒートマップの作成に使用した Python スクリプト。</figcaption>
+  <figcaption>ヒートマップの作成に使用した Python スクリプト．</figcaption>
   <pre><code class="language-python">{{ includeFile('python/main.py') }}</code></pre>
 </figure>
-位置の加法は、線型変換とみなせる。
+
+
+<h2>なぜ \(\sin\) と \(\cos\) の両方を使うのか？また，なぜ \(\omega\) の添え字が2個ずつ同じになっているのか？</h2>
+<p>位置の変位を線型変換に対応させたいから．</p>
+<figure class="blockquote">
+<blockquote>
+<p>We chose this function because we hypothesized it would allow the model to easily learn to attend by
+relative positions, since for any fixed offset \(k\), \(PE_{ \mathit{pos} + k}\) can be represented as a linear function of
+\(PE_\mathit{pos}\).</p>
+</blockquote>
+<figcaption class="blockquote-footer">
+Vaswani et al. (2017)
+</figcaption>
+</figure>
+<p>
+<strong>証明</strong>
 \begin{align*}
   f(t + t')
   &amp;=
@@ -213,13 +231,33 @@
     \cos (\omega_{D/2}\, t)
   \end{pmatrix} \\[4pt]
   &amp;=
-  R(t') f(t)
+  A(t') f(t).
 \end{align*}
+ここで
+\begin{gather}
+  A(t') =
+  \begin{pmatrix}
+    R_0\,(t) &amp; O        &amp; \cdots &amp; O            \\
+    O        &amp; R_2\,(t) &amp; \cdots &amp; O            \\
+    \vdots   &amp; \vdots   &amp; \ddots &amp; \vdots       \\
+    O        &amp; O        &amp; \cdots &amp; R_{D/2}\,(t) \\
+  \end{pmatrix},
+  \notag \\[4pt]
+  R_k(t') =
+  \begin{pmatrix}
+    \cos (\omega_k\,t) &amp; \sin (\omega_k\, t) \\
+    -\sin (\omega_k\,t) &amp; \cos (\omega_k\, t) \\
+    \end{pmatrix}.
+  \tag*{&#8718;}
+\end{gather}
 </p>
+<p>\(R_k (t')\) は \(\mathbb{R}^2\) の要素を \(- \omega_k\, t'\) だけ回転させる線型変換である．
+この結果を得るために \(\sin\), \(\cos\) の両方を用い，また \(\omega\) の添え字を2個ずつ同じにしているのである．</p>
 </section>
 <section id="materials">
   <h2>参考文献</h2>
   <ul>
+  <li><a href="https://papers.nips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html">Vaswani et al. (2017). “Attention Is All You Need”. In <em>Advances in Neural Information Processing Systems.</em> Vol. 30.</a></li>
   <li id="amirhossein-kazemnejad"><a href="https://kazemnejad.com/blog/transformer_architecture_positional_encoding/">Amirhossein Kazemnejad's Blog | <em>Transformer Architecture: The Positional Encoding—Let's use sinusoidal functions to inject the order of words in our model</em></a></li>
   <li id="kikaben"><a href="https://kikaben.com/transformers-positional-encoding/">KiKaBeN | <em>Transformer’s Positional Encoding: How Does It Know Word Positions Without Recurrence?</em></a></li>
   <li id="Jonathan-kernes"><a href="https://towardsdatascience.com/master-positional-encoding-part-i-63c05d90a0c3">Towards Data Science | <em>Master Positional Encoding: Part I</em></a></li>

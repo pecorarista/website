@@ -167,6 +167,22 @@ ol.math {
   }
 }
 
+figure.blockquote {
+  padding: 3px 15px;
+  margin: 40px 2px;
+  border-left: 4px solid #ccc;
+}
+
+figcaption.blockquote-footer {
+  &::before {
+    content: '';
+  }
+
+  font-size: 100%;
+  color: inherit;
+  text-align: right;
+}
+
 .profile {
   text-align: center;
 
