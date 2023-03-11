@@ -139,6 +139,21 @@ ol.math li::before {
   font-weight: bold;
 }
 
+figure.blockquote {
+  padding: 3px 15px;
+  margin: 40px 2px;
+  border-left: 4px solid #ccc;
+}
+
+figcaption.blockquote-footer {
+  font-size: 100%;
+  color: inherit;
+  text-align: right;
+}
+figcaption.blockquote-footer::before {
+  content: "";
+}
+
 .profile {
   text-align: center;
 }
