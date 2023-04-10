@@ -41,37 +41,59 @@
     <div class="info text-muted">
       Posted: 2023-03-10
       
+        (Updated: 2023-04-10)
+      
     </div>
     
 <section>
 <p>
-<strong>定義</strong>
-\(D\)
-を
-正の偶数とする．
+\(D\)を整数とする．
 \(\mathbb{R}^D\)
 への位置エンコーディング
 \(f\)
-は，
-\(\mathbb{N} = \{0,\,1,\,\ldots\}\)
-から
+とは，
+文中における単語の位置
+\(t \in \{0,\,1,\,\ldots,\,T\}\)
+に
 \(\mathbb{R}^D\)
-への写像で，
-像
+の元を対応させる写像で
+\begin{align}
+  t \neq t' \; \Rightarrow \; f(t) \neq f(t')
+  \label{uniqueness}
+\end{align}
+を満たすものである．
+</p>
+<p>
+更に以下を満たしていることが望ましい．
+<ol type="i">
+  <li>有界である．</li>
+  <li>決定的（非確率的）である．</li>
+  <li>文長に依存しない．</li>
+  <li>相対位置が簡潔に表現できる．</li>
+</ol>
+</p>
+<p><a href="https://papers.nips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html">Vaswani et al. 2017</a>
+では（自分の都合で記法を換えているが）
+以下のように計算される．
+まず
+\(D\)
+を正の偶数に限定する．
+そして像
 \(f(t)\)
 の第
 \(i\)
 成分
 \({f(t)}_i\)
-が
+と表すとき，
 \begin{align*}
 {f(t)}_i =
   \begin{cases}
     \sin (\omega_{\varphi(i)}\, t) &amp; \text{if \(i \equiv 1 \bmod 2\)}, \\
-    \cos (\omega_{\varphi(i)}\, t) &amp; \text{otherwise}, \\
+    \cos (\omega_{\varphi(i)}\, t) &amp; \text{otherwise} \\
   \end{cases}
 \end{align*}
-ただし，
+と定める．
+ここで
 \begin{align*}
   \varphi(i) = 2 \left\lfloor \frac{i - 1}{2} \right\rfloor,\quad
   \omega_k
@@ -81,13 +103,33 @@
     }
   }
 \end{align*}
-のように定める．
+である．
+これは
+(\(\ref{uniqueness}\))
+を満たす．
+なぜならば
+\(0 \leq \theta \leq 1\)
+の範囲では
+\(\theta \lt \theta' \)
+ならば
+\(\sin \theta \lt \sin \theta'\)
+かつ
+\(\cos \theta \gt \cos \theta'\)
+が成り立つからである．
+また，満たしていることが望ましい性質
+i.–iii.
+についても明らかに満たされている．
+iv.
+については，後で確認する．
 </p>
 <p>
 <strong>例</strong>
-\begin{align*}
-  \varphi(1) = 0,\,\varphi(2) = 0,\,\varphi(3) = 2,\,\varphi(4) = 2,\,\varphi(5) = 4,\,\varphi(6) = 4,\,\ldots
-\end{align*}
+\begin{gather*}
+\varphi(1) = 0,\quad\varphi(2) = 0,\\
+\varphi(3) = 2,\quad\varphi(4) = 2,\\
+\varphi(5) = 4,\quad\varphi(6) = 4,\\
+\varphi(7) = 6,\quad\varphi(8) = 6.
+\end{gather*}
 </p>
 <p>
 <strong>例</strong>
@@ -164,9 +206,9 @@
 となる．
 </p>
 <p>
-<h2>なぜ三角関数を使うのか？</h2>
-三角関数を用いる理由は，各成分の周期を変えることにより，
-位置に固有のベクトルを生成できるからである．
+各成分ごとに三角関数の周期を変えることで，
+(\(\ref{uniqueness}\))
+を簡単に満たすことができる．
 下の
 図 1
 と
@@ -241,55 +283,44 @@ if __name__ == &#39;__main__&#39;:
     main()
 </code></pre>
 </figure>
-
-
-<h2>なぜ \(\sin\) と \(\cos\) の両方を使うのか？また，なぜ \(\omega\) の添え字が2個ずつ同じになっているのか？</h2>
-<p>位置の変位を線型変換に対応させたいから．</p>
-<figure class="blockquote">
-<blockquote>
-<p>We chose this function because we hypothesized it would allow the model to easily learn to attend by
-relative positions, since for any fixed offset \(k\), \(PE_{ \mathit{pos} + k}\) can be represented as a linear function of
-\(PE_\mathit{pos}\).</p>
-</blockquote>
-<figcaption class="blockquote-footer">
-Vaswani et al. (2017)
-</figcaption>
-</figure>
+<p>最後に
+iv.
+について確認する．</p>
 <p>
 <strong>証明</strong>
 \begin{align*}
-  f(t + t')
+  f(t + \varDelta t)
   &amp;=
   \begin{pmatrix}
-    \sin (\omega_{\varphi(1)}\, (t + t')) \\
-    \cos (\omega_{\varphi(2)}\, (t + t')) \\
+    \sin (\omega_{\varphi(1)}\, (t + \varDelta t)) \\
+    \cos (\omega_{\varphi(2)}\, (t + \varDelta t)) \\
     \vdots \\
-    \sin (\omega_{\varphi(D - 1)}\, (t + t')) \\
-    \cos (\omega_{\varphi(D)}\, (t + t'))
+    \sin (\omega_{\varphi(D - 1)}\, (t + \varDelta t)) \\
+    \cos (\omega_{\varphi(D)}\, (t + \varDelta t))
   \end{pmatrix} \\[4pt]
   &amp;=
   \begin{pmatrix}
-    \sin (\omega_0 \, t + \omega_0 \, t') \\
-    \cos (\omega_0 \, t + \omega_0 \, t') \\
+    \sin (\omega_0 \, t + \omega_0 \, \varDelta t) \\
+    \cos (\omega_0 \, t + \omega_0 \, \varDelta t) \\
     \vdots \\
-    \sin (\omega_{D/2}\, t + \omega_{D/2}\, t') \\
-    \cos (\omega_{D/2}\, t + \omega_{D/2}\, t')
+    \sin (\omega_{D/2}\, t + \omega_{D/2}\, \varDelta t) \\
+    \cos (\omega_{D/2}\, t + \omega_{D/2}\, \varDelta t)
   \end{pmatrix} \\[4pt]
   &amp;=
   \begin{pmatrix}
-    \sin (\omega_0\, t) \cos (\omega_0\, t') + \cos (\omega_0\, t) \sin (\omega_0\, t') \\
-    \cos (\omega_0\, t) \cos (\omega_0\, t') - \sin (\omega_0\, t) \sin (\omega_0\, t') \\
+    \sin (\omega_0\, t) \cos (\omega_0\, \varDelta t) + \cos (\omega_0\, t) \sin (\omega_0\, \varDelta t) \\
+    \cos (\omega_0\, t) \cos (\omega_0\, \varDelta t) - \sin (\omega_0\, t) \sin (\omega_0\, \varDelta t) \\
     \vdots \\
-    \sin (\omega_{D/2}\, t) \cos (\omega_{D/2}\, t') + \cos (\omega_{D/2}\, t) \sin (\omega_{D/2}\, t') \\
-    \cos (\omega_{D/2}\, t) \cos (\omega_{D/2}\, t') - \sin (\omega_{D/2}\, t) \sin (\omega_{D/2}\, t') \\
+    \sin (\omega_{D/2}\, t) \cos (\omega_{D/2}\, \varDelta t) + \cos (\omega_{D/2}\, t) \sin (\omega_{D/2}\, \varDelta t) \\
+    \cos (\omega_{D/2}\, t) \cos (\omega_{D/2}\, \varDelta t) - \sin (\omega_{D/2}\, t) \sin (\omega_{D/2}\, \varDelta t) \\
   \end{pmatrix} \\[4pt]
   &amp;=
   \begin{pmatrix}
-\cos(\omega_0\,t')  &amp; \sin(\omega_0\,t') &amp; \cdots &amp; 0                      &amp; 0                      \\
--\sin(\omega_0\,t') &amp; \cos(\omega_0\,t') &amp; \cdots &amp; 0                      &amp; 0                      \\
+\cos(\omega_0\,\varDelta t)  &amp; \sin(\omega_0\,\varDelta t) &amp; \cdots &amp; 0                      &amp; 0                      \\
+-\sin(\omega_0\,\varDelta t) &amp; \cos(\omega_0\,\varDelta t) &amp; \cdots &amp; 0                      &amp; 0                      \\
            \vdots   &amp;          \vdots    &amp; \ddots &amp; \vdots                 &amp; \vdots                 \\
-           0        &amp;               0    &amp; \cdots &amp; \cos(\omega_{D/2}\,t') &amp; \sin(\omega_{D/2}\,t') \\
-           0        &amp;               0    &amp; \cdots &amp; -\sin(_{D/2}\,t')      &amp; \cos(\omega_{D/2}\,t') \\
+           0        &amp;               0    &amp; \cdots &amp; \cos(\omega_{D/2}\,\varDelta t) &amp; \sin(\omega_{D/2}\,\varDelta t) \\
+           0        &amp;               0    &amp; \cdots &amp; -\sin(_{D/2}\,\varDelta t)      &amp; \cos(\omega_{D/2}\,\varDelta t) \\
   \end{pmatrix}
   \begin{pmatrix}
     \sin (\omega_0\, t) \\
@@ -299,28 +330,30 @@ Vaswani et al. (2017)
     \cos (\omega_{D/2}\, t)
   \end{pmatrix} \\[4pt]
   &amp;=
-  A(t') f(t).
+  A(\varDelta t) f(t).
 \end{align*}
 ここで
 \begin{gather}
-  A(t') =
+  A(\varDelta t) =
   \begin{pmatrix}
-    R_0\,(t) &amp; O        &amp; \cdots &amp; O            \\
-    O        &amp; R_2\,(t) &amp; \cdots &amp; O            \\
+    R_0\,(\varDelta t) &amp; O        &amp; \cdots &amp; O            \\
+    O        &amp; R_2\,(\varDelta t) &amp; \cdots &amp; O            \\
     \vdots   &amp; \vdots   &amp; \ddots &amp; \vdots       \\
-    O        &amp; O        &amp; \cdots &amp; R_{D/2}\,(t) \\
+    O        &amp; O        &amp; \cdots &amp; R_{D/2}\,(\varDelta t) \\
   \end{pmatrix},
   \notag \\[4pt]
-  R_k(t') =
+  R_k(\varDelta t) =
   \begin{pmatrix}
-    \cos (\omega_k\,t) &amp; \sin (\omega_k\, t) \\
-    -\sin (\omega_k\,t) &amp; \cos (\omega_k\, t) \\
+    \cos (\omega_k\,\varDelta t) &amp; \sin (\omega_k\,\varDelta t) \\
+    -\sin (\omega_k\,\varDelta t) &amp; \cos (\omega_k\,\varDelta t) \\
     \end{pmatrix}.
   \tag*{&#8718;}
 \end{gather}
 </p>
-<p>\(R_k (t')\) は \(\mathbb{R}^2\) の要素を \(- \omega_k\, t'\) だけ回転させる線型変換である．
+<p>
+\(R_k (\varDelta t)\) は \(\mathbb{R}^2\) の要素を \(- \omega_k\, \varDelta t\) だけ回転させる線型変換である．
 この結果を得るために \(\sin\), \(\cos\) の両方を用い，また \(\omega\) の添え字を2個ずつ同じにしているのである．</p>
+</p>
 </section>
 <section id="materials">
   <h2>参考文献</h2>
