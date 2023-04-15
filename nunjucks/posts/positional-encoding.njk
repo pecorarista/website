@@ -3,29 +3,27 @@
 {% set mathematical = 'true' %}
 {% set title = '位置エンコーディング' %}
 {% set posted = '2023-03-10' %}
-{% set updated = '2023-04-10' %}
+{% set updated = '2023-04-15' %}
 
 {% block post %}
 <section>
 <p>
-\(D\)を整数とする．
-\(\mathbb{R}^D\)
-への位置エンコーディング
-\(f\)
-とは，
-文中における単語の位置
-\(t \in \{0,\,1,\,\ldots,\,T\}\)
-に
-\(\mathbb{R}^D\)
-の元を対応させる写像で
+文中における単語の位置を
+\(\mathcal{T} =  \{0,\,1,\,\ldots,\,T\}\)
+の元で表す．<strong>位置エンコーディング</strong>とは，多くの場合，写像
+\(
+f\colon \mathcal{T} \to \mathbb{R}^D
+\)（
+\(D\)
+は正整数
+）で，
+特に単射であるもの，すなわち
 \begin{align}
   t \neq t' \; \Rightarrow \; f(t) \neq f(t')
   \label{uniqueness}
 \end{align}
-を満たすものである．
-</p>
-<p>
-更に以下を満たしていることが望ましい．
+を満たすものを指す．
+さらに実用の観点から，以下を満たしていることが望ましい．
 <ol type="i">
   <li>有界である．</li>
   <li>決定的（非確率的）である．</li>
