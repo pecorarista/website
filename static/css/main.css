@@ -139,10 +139,6 @@ ol.citation li::before {
   font-size: 119.5%;
 }
 
-span.mathitem {
-  margin-right: 0.5rem;
-}
-
 table.math {
   margin: 18px;
 }
