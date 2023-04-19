@@ -139,16 +139,42 @@ In general cases where dimensions are greater than one, the following analogous 
 where \(D_x f(x_0)(h)\) denotes the Fréchet derivative of \(f\) at a point \(x_0\) with respect to \(x\)
 along \(h\).
 
-Calculation of (\ref{chain-L}) and (\ref{chain-L-1}) is decomposed into the following calculations:
-<ol class="math">
-  <li>Calculate \(D_{z} E(z)(h) \) where \(E\colon \mathbb{R}^n \to \mathbb{R}_+\) is defined as \(\displaystyle E = \frac{1}{2}{\left\|z - y\right\|}^2\).</li>
-  <li>Calculate \(D_{u} \sigma^{(\ell)}(u)(h)\) where \(\sigma\colon \mathbb{R}^n \to \mathbb{R}^n\) is of the form \(\displaystyle \sigma^{(\ell)}(u) = \begin{pmatrix}\sigma^{(\ell)}_1(u_1) \\ \vdots \\ \sigma^{(\ell)}_n(u_n)\end{pmatrix}\).</li>
-  <li>Calculate \(D_W (W \mapsto Wz) (W) (H) \).</li>
-</ol>
+Calculation of (\ref{chain-L}) and (\ref{chain-L-1}) is decomposed into the following calculations <span class="mathitem">C1</span>, <span class="mathitem">C2</span>, and <span class="mathitem">C3</span>.
+<table class="math">
+  <tr>
+    <td class="mathitem">
+      (C1)
+    </td>
+    <td>
+      Calculate \(D_{z} E(z)(h) \)
+      where \(E\colon \mathbb{R}^n \to \mathbb{R}_+\)
+      is defined as \(\displaystyle E = \frac{1}{2}{\left\|z - y\right\|}^2\).
+    </td>
+  </tr>
+  <tr>
+    <td class="mathitem">
+      (C2)
+    </td>
+    <td>
+      Calculate \(D_{u} \sigma^{(\ell)}(u)(h)\)
+      where \(\sigma\colon \mathbb{R}^n \to \mathbb{R}^n\)
+      is of the form
+      \(\displaystyle \sigma^{(\ell)}(u) = \begin{pmatrix}\sigma^{(\ell)}_1(u_1) \\ \vdots \\ \sigma^{(\ell)}_n(u_n)\end{pmatrix}\).
+    </td>
+  </tr>
+  <tr>
+    <td class="mathitem">
+      (C3)
+    </td>
+    <td>
+      Calculate \(D_W (W \mapsto Wz) (W) (H) \).
+    </td>
+  </tr>
+</table>
 \begin{align*}
 \end{align*}
 </p>
-<h4>1. \(D_zE(z)(h)\)</h4>
+<h4><span class="mathitem">(C1)</span> \(D_zE(z)(h)\)</h4>
 <p>Note that \({\|U\|}^2 = \langle U,\, U \rangle\) and that \( \langle U,\, V\rangle = \trace (U{}^\top V)\).
 \begin{align*}
   &amp;E(z + h) - E(z) \\
@@ -163,7 +189,7 @@ Therefore
   \label{derivative-of-norm}
 \end{align}
 </p>
-<h4>2. \(D_u \sigma^{(\ell)}(u)(h)\)</h4>
+<h4><span class="mathitem">(C2)</span> \(D_u \sigma^{(\ell)}(u)(h)\)</h4>
 <p>Since we assume each \(\sigma_i\) is differentiable,
 for any \(\varepsilon &gt; 0\),
 we can take \(h_i\) satisfying
@@ -210,7 +236,7 @@ where
     \end{pmatrix} \in \mathbb{R}^{n \times n}.
 \end{align*}
 </p>
-<h4>3. \(D_W (W \mapsto Wz) (W) (H) \)</h4>
+<h4><span class="mathitem">(C3)</span> \(D_W (W \mapsto Wz) (W) (H) \)</h4>
 <p>
 Since
 \begin{align*}
