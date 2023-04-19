@@ -15,6 +15,11 @@ $ipa-font: 'Judson';
 $arabic-font: 'Amiri';
 $mono-font: 'Roboto Mono';
 
+@font-face {
+  font-family: 'mathematical';
+  src: url('/static/fonts/MathJax_Main-Regular.otf') format('opentype');
+}
+
 html {
   font-size: 100%;
 }
@@ -139,9 +144,8 @@ figure {
   }
 }
 
-ol.bracket {
-  margin: 0;
-  counter-reset: oln;
+ol.citation {
+  counter-reset: n;
 
   li {
     position: relative;
@@ -149,20 +153,34 @@ ol.bracket {
 
     &::before {
       position: absolute;
-      left: -1.4em;
-      content: '[' counter(oln) '] ';
-      counter-increment: oln;
+      left: -2.1rem;
+      content: '[' counter(n) ']';
+      counter-increment: n;
     }
   }
 }
 
-ol.math {
-  li {
-    position: relative;
+.mathitem {
+  font-family: 'mathematical', serif;
+  font-size: 119.5%;
+}
 
-    &::before {
-      padding-right: 1em;
-      font-weight: bold;
+span.mathitem {
+  margin-right: 0.5rem;
+}
+
+table.math {
+  margin: 18px;
+
+  tr > td {
+    padding-bottom: 12px;
+
+    &.mathitem {
+      text-align: center;
+    }
+
+    + td {
+      padding-left: 0.5rem;
     }
   }
 }

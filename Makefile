@@ -2,8 +2,9 @@
 
 DIST := dist
 IMAGES := $(addprefix $(DIST)/static/images/, $(notdir $(wildcard images/*)))
-VECTOR_IMAGES := $(addprefix $(DIST)/static/images/, $(notdir $(wildcard latex/*.svg)))
 VIDEOS := $(addprefix $(DIST)/static/videos/, $(notdir $(wildcard videos/*)))
+VECTOR_IMAGES := $(addprefix $(DIST)/static/images/, $(notdir $(wildcard latex/*.svg)))
+FONTS := $(addprefix $(DIST)/static/fonts/, $(notdir $(wildcard fonts/*)))
 POST_SOURCES := $(wildcard nunjucks/posts/*.njk)
 POST_TARGETS := $(addprefix $(DIST)/posts/, $(notdir $(POST_SOURCES:.njk=.html)))
 MAIN_PAGE_SOURCES := $(wildcard nunjucks/*.njk)
@@ -17,6 +18,7 @@ release: $(DIST)/CNAME \
 	$(IMAGES) \
 	$(VIDEOS) \
 	$(VECTOR_IMAGES) \
+	$(FONTS) \
 	$(DIST)/static/css/main.css \
 	$(DIST)/static/js/mathjax.js \
 	$(DIST)/static/js/main.js \
@@ -40,6 +42,10 @@ $(DIST)/static/images/%.svg: latex/%.svg
 	@cp $< $@
 
 $(DIST)/static/videos/%: videos/%
+	@mkdir -p $(@D)
+	@cp $< $@
+
+$(DIST)/static/fonts/%: fonts/%
 	@mkdir -p $(@D)
 	@cp $< $@
 

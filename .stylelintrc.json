@@ -9,6 +9,7 @@
   "rules": {
     "font-family-name-quotes": "always-unless-keyword",
     "string-quotes": "single",
-    "order/properties-alphabetical-order": null
+    "order/properties-alphabetical-order": null,
+    "scss/double-slash-comment-empty-line-before": "never"
   }
 }
