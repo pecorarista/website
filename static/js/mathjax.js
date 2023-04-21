@@ -2,18 +2,23 @@ MathJax = {
   loader: {
     load: [
       '[tex]/cases',
-      '[tex]/empheq'
+      '[tex]/empheq',
+      '[tex]/upgreek',
+      '[tex]/bussproofs',
     ]
   },
   tex: {
     packages: {
       '[+]': [
         'empheq',
-        'cases'
+        'cases',
+        'upgreek',
+        'bussproofs',
       ]
     },
     autoload: {
-      cases: [[], ['numcases', 'subnumcases']]
+      cases: [[], ['numcases', 'subnumcases']],
+      upgreek: ['upsigma']
     },
     macros: {
       abs: ["\\left|#1\\right|", 1],
@@ -32,6 +37,6 @@ MathJax = {
       softmax: "\\mathop{\\rm softmax}",
       trace: "\\mathop{\\rm tr}"
     },
-    tags: 'ams',
+    tags: 'ams'
   }
 };

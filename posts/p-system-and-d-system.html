@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@pecorarista">
+    <meta name="twitter:title" content="p-system と d-system — pecorarista.com">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="https://pecorarista.com/static/images/avatar.png">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri&family=Judson&family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400;700&family=Roboto+Mono:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cosmo/bootstrap.min.css" integrity="sha384-5QFXyVb+lrCzdN228VS3HmzpiE7ZVwLQtkt+0d9W43LQMzz4HBnnqvVxKg6O+04d" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-lucario.min.css" integrity="sha512-Aj5jCt/M5XlTn+Y93TazO+EjpRTiUGMrMuaJOcBcu80Fopd7+LSL094m3pbVTNJxf1hOAMSYI/hONBGjvPWwGQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="/static/css/main.css"/>
+
+    <title>p-system と d-system</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <div class="navbar-header pull-left"><a class="navbar-brand" href="/">pecorarista.com</a></div>
+    <div class="navbar-header pull-right">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link active" href="/resources">Resources</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+      </header>
+      <main>
+        
+<article>
+  <div class="container">
+    <h1>p-system と d-system</h1>
+    <div class="info text-muted">
+      Posted: 2023-04-15
+      
+    </div>
+    
+<section>
+<h3>1. \(\sigma\)-加法族</h3>
+<p style="text-spacing: auto;">集合
+\(E\)
+の部分集合族
+\(
+  \mathcal{E}
+  \subset
+  2^E
+\)
+が
+<strong>\(\sigma\)-加法族</strong>
+(\(\sigma\)-algebra)
+であるとは，以下の
+<span class="mathitem">(s1)</span>&ndash;<span class="mathitem">(s3)</span>
+が成り立つことである．
+<ol class="math">
+  <li class="s">
+    \( E \in \mathcal{E} \)．
+  </li>
+  <li class="s">
+    \(A \in \mathcal{E}\)
+    ならば
+    \(E \setminus A \in \mathcal{E}\)．
+  </li>
+  <li class="s">
+    集合列
+    \((A_n)_{n \in \mathbb{N}}\)
+    について，任意の
+    \(n \in \mathbb{N}\)
+    で
+    \(A_n \in \mathcal{E}\)
+    ならば
+    \(\displaystyle \bigcup_{n \in \mathbb{N}} A_n \in \mathcal{E}\)．
+  </li>
+</ol>
+</p>
+</section>
+<section>
+<h3>2. p-system</h3>
+<p>集合
+\(E\)
+の部分集合族
+\(\mathcal{E} \subset 2^E \)
+が
+<strong>p-system</strong>
+であるとは，
+\(\mathcal{E}\)
+が積
+(product)
+について閉じていることをいう．すなわち以下の
+<span class="mathitem">(p1)</span>
+が成り立つことをいう．
+<ol class="math">
+  <li class="p">
+    \(A_1 \in \mathcal{E}\)
+    かつ
+    \(A_2 \in \mathcal{E}\)
+    ならば
+    \(A_1 \cap A_2 \subset \mathcal{E}\)．
+  </li>
+</ol>
+</p>
+</section>
+<section>
+<h3>3. d-system</h3>
+<p>集合
+\(E\)
+の部分集合族
+\(\mathcal{E} \subset 2^E\)
+が
+<strong>d-system</strong>
+であるとは，以下の
+<span class="mathitem">(d1)</span>&ndash;<span class="mathitem">(d3)</span>
+が成り立つことである．
+<ol class="math">
+  <li class="d">
+    \(E \in \mathcal{E} \)．
+  </li>
+  <li class="d">
+    \(A_1 \in \mathcal{E}\)
+    かつ
+    \(A_2 \in \mathcal{E}\)
+    かつ
+    \(A_1 \subset A_2\)
+    ならば
+    \(A_2 \setminus A_1 \in \mathcal{E}\)．
+  </li>
+  <li class="d">
+    増加する集合列
+    \((A_n)_{n \in \mathbb{N}}\)
+    について，
+    任意の
+    \(n \in \mathbb{N}\)
+    で
+    \(A_n \in \mathcal{E}\)
+    ならば，
+    \(\displaystyle \bigcup_{n \in \mathbb{N}} A_n \in \mathcal{E}\)．
+  </li>
+</ol>
+\((A_n)_{n \in \mathbb{N}}\)
+が増加する集合列（以降，単に増加列と呼ぶ）であるとは，各 \(n\) で
+\(A_n \subset A_{n + 1} \subset\)
+が成り立つことである．
+\(A := \bigcup_n A_n\)
+をその極限と呼ぶ．
+</p>
+<p>d-system
+の
+&lang;d&rang;
+は
+<a href="https://en.wikipedia.org/wiki/Eugene_Dynkin">Eugene Dynkin</a>
+にちなむ．
+</p>
+</section>
+<section>
+<h3>命題</h3>
+<p>
+\(E\)
+が
+\(\mathcal{E}\)
+の
+&sigma;-加法族であることは，
+\(E\)
+が
+\(\mathcal{E}\)
+の
+p-system
+かつ
+d-system
+であることと同値である．</p>
+<strong>証明</strong>
+<p>
+\(\sigma\)-加法族ならば
+p-systemであることを示す．
+\(A_1 \in \mathcal{E}\)
+かつ
+\(A_2 \in \mathcal{E}\)
+ならば
+<span class="mathitem">(s2)</span>
+により
+\(E \setminus A_1 \in \mathcal{E}\)
+かつ
+\(E \setminus A_2 \in \mathcal{E}\)
+が成り立つ．このとき
+<span class="mathitem">(s3)</span>
+より
+\((E \setminus A_1) \cup (E \setminus A_2) \in \mathcal{E}\)
+である．<span class="mathitem">(s3)</span>
+と
+De Morgan
+の法則により
+\(A_1 \cap A_2 = E \setminus ((E \setminus A_1) \cup (E \setminus A_2) ) ) \in \mathcal{E}\)
+を得る．
+<figure>
+証明木 \(\Pi_1\)
+\begin{prooftree}
+  \AxiomC{$[\text{$\sigma$-algebra}]_1$}
+  \RightLabel{ $\small \text{$\land\,$E}$}
+  \UnaryInfC{$(\text{s}3) \land (\text{s}2)$}
+  \AxiomC{$((\text{s}3) \land (\text{s}2)) \Rightarrow \text{p-system}$}
+  \RightLabel{ $\small \text{$\Rightarrow\,$E}$}
+  \BinaryInfC{$\text{p-system}$}
+\end{prooftree}
+</figure>
+</p>
+<p>次に
+\(\sigma\)-加法族ならば
+d-system
+であることを示す．
+<span class="mathitem">(d1)</span>
+と
+<span class="mathitem">(s1)</span>
+は同値である．
+<figure>
+証明木 \(\Pi_2\)
+\begin{prooftree}
+  \AxiomC{$[\text{$\sigma$-algebra}]_1$}
+  \RightLabel{ $\small \text{$\land\,$E}$}
+  \UnaryInfC{$(\text{s}1)$}
+  \AxiomC{$(\text{s}1) \Rightarrow (\text{d}1)$}
+  \RightLabel{ $\small \text{$\Rightarrow\,$E}$}
+  \BinaryInfC{$(\text{d}1)$}
+\end{prooftree}
+</figure>
+</p>
+<p>
+\(A_2 \setminus A_1 = A_2 \cap (E \setminus A_1)\)
+なので，<span class="mathitem">(s1)</span> と
+p-system
+であることから
+<span class="mathitem">(d2)</span>
+の成立が確認できる．
+<figure>
+証明木 \(\Pi_3\)
+\begin{prooftree}
+  \AxiomC{$[\text{$\sigma$-algebra}]_1$}
+  \UnaryInfC{$(\text{s}2)$}
+  \AxiomC{$\Pi_1$}
+	\noLine
+  \UnaryInfC{$\text{p-system}$}
+  \BinaryInfC{$(\text{s}2) \land \text{p-system}$}
+  \AxiomC{$(\text{s}) \land \text{p-system}) \Rightarrow (\text{d}2)$}
+  \RightLabel{ $\small \text{$\Rightarrow\,$E}$}
+  \BinaryInfC{$(\text{d}2)$}
+\end{prooftree}
+</figure>
+</p>
+<p>
+<span class="mathitem">(s3)</span>
+から
+<span class="mathitem">(d3)</span>
+は明らかである．
+<figure>
+証明木 \(\Pi_4\)
+\begin{prooftree}
+  \AxiomC{$[\text{$\sigma$-algebra}]_1$}
+  \RightLabel{ $\small \text{$\land\,$E}$}
+  \UnaryInfC{$(\text{s}3)$}
+  \AxiomC{$(\text{s}3) \Rightarrow (\text{d}3)$}
+  \RightLabel{ $\small \text{$\Rightarrow\,$E}$}
+  \BinaryInfC{$(\text{d}3)$}
+\end{prooftree}
+</figure>
+</p>
+<p>
+以上より
+\(\sigma\)-加法族ならば
+p-system
+かつ
+d-system
+であることが示された．
+<figure>
+証明木 \(\Pi_5\)
+\begin{prooftree}
+  \AxiomC{$\Pi_1$}
+	\noLine
+  \UnaryInfC{$\text{p-system}$}
+  \AxiomC{$\Pi_1$}
+	\noLine
+  \UnaryInfC{$(\text{d}2)$}
+  \AxiomC{$\Pi_2$}
+	\noLine
+  \UnaryInfC{$(\text{d}3)$}
+  \AxiomC{$\Pi_3$}
+	\noLine
+  \UnaryInfC{$(\text{d}1)$}
+  \RightLabel{ $\small \text{$\land\,$I}$}
+	\TrinaryInfC{$\text{d-system}$}
+	\BinaryInfC{$\text{p-system} \land \text{d-system}$}
+  \RightLabel{ $\small \text{1, $\Rightarrow\,$I}$}
+  \UnaryInfC{$\text{$\sigma$-algebra} \Rightarrow (\text{p-system} \land \text{d-system})$}
+\end{prooftree}
+</figure>
+</p>
+<p>逆を示す．
+<span class="mathitem">(s1)</span>
+と
+<span class="mathitem">(d1)</span>
+は同値である．
+<figure>
+証明木 \(\Pi_5\)
+\begin{prooftree}
+  \AxiomC{$[\text{p-system} \land \text{d-system}]_2$}
+  \RightLabel{ $\small \text{$\land\,$E}$}
+  \UnaryInfC{$(\text{d}1)$}
+  \AxiomC{$(\text{d}1) \Rightarrow (\text{s}1)$}
+  \RightLabel{ $\small \text{$\Rightarrow\,$E}$}
+  \BinaryInfC{$(\text{s}1)$}
+\end{prooftree}
+</figure>
+</p>
+<p>任意の
+\(A \in \mathcal{E}\)
+をとる．
+このとき
+<span class="mathitem">(d1)</span>
+より
+\(E \in \mathcal{E}\)
+であり，
+また明らかに
+\(A \subset E\)
+なので
+<span class="mathitem">(d2)</span>
+より
+\(E \setminus A \in \mathcal{E}\)．
+<figure>
+証明木 \(\Pi_6\)
+\begin{prooftree}
+  \AxiomC{$[\text{p-system} \land \text{d-system}]_2$}
+  \RightLabel{ $\small \text{$\land\,$E}$}
+  \UnaryInfC{$(\text{d}1) \land (\text{d}2)$}
+  \AxiomC{$(\text{d}1) \land (\text{d}2) \Rightarrow (\text{s}2)$}
+  \RightLabel{ $\small \text{$\Rightarrow\,$E}$}
+  \BinaryInfC{$(\text{s}2)$}
+\end{prooftree}
+</figure>
+</p>
+<p>
+集合列
+\((A_n)_{n \in \mathbb{N}}\)
+が各
+\(n\)
+で
+\(A_n \in \mathcal{E}\)
+を満たしているとする．
+このとき増加列
+\((B_n)_{n \in \mathbb{N}}\)
+を
+\(B_n = \bigcup_{i = 0}^n A_i\)
+で定義する．
+\( A_0 \cup A_1 = E \setminus ( (E \setminus A_0) \cap ( E \setminus A_1 )) \)
+であり，
+<span class="mathitem">(d2)</span>
+より
+\(E \setminus A_0 \in \mathcal{E}\)
+かつ
+\(E \setminus A_1 \in \mathcal{E}\)．
+p-system
+であることより
+\((E \setminus A_0) \cap (E \setminus A_1) \in \mathcal{E}\)．
+再度
+<span class="mathitem">(d2)</span>
+を用いることで
+\(A_0 \cup A_1 \in \mathcal{E}\)
+となる．
+帰納的に任意の
+\(n \in \mathbb{N}\)
+で
+\(B_n \in \mathcal{E}\)
+であることが容易に確認できるので，
+<span class="mathitem">(d3)</span>
+より
+\(\bigcup_{n \in \mathbb{N}} B_n \in \mathcal{E}\)
+である．
+\(\bigcup_{n \in \mathbb{N}} B_n = \bigcup_{n \in \mathbb{N}} A_n\)
+であるから
+\(\bigcup_{n \in \mathbb{N}} A_n \in \mathcal{E}\)．
+<figure>
+証明木 \(\Pi_7\)
+\begin{prooftree}
+  \AxiomC{$[\text{p-system} \land \text{d-system}]_2$}
+  \RightLabel{ $\small \text{$\land\,$E}$}
+  \UnaryInfC{$\text{p-system} \land (\text{d}2) \land (\text{d}3)$}
+  \AxiomC{$(\text{p-system} \land (\text{d}2) \land (\text{d}3)) \Rightarrow (\text{s}3)$}
+  \RightLabel{ $\small \text{$\Rightarrow\,$E}$}
+  \BinaryInfC{$(\text{s}3)$}
+\end{prooftree}
+</figure>
+</p>
+<p>
+したがって
+p-system
+かつ
+d-system
+であるとき，
+\(\sigma\)-加法族であることが示された．
+<figure>
+証明木 \(\Pi_8\)
+\begin{prooftree}
+  \AxiomC{$\Pi_5$}
+	\noLine
+  \UnaryInfC{$(\text{s}1)$}
+  \AxiomC{$\Pi_6$}
+	\noLine
+  \UnaryInfC{$(\text{s}2)$}
+  \AxiomC{$\Pi_7$}
+	\noLine
+  \UnaryInfC{$(\text{s}3)$}
+  \RightLabel{ $\small \text{$\land\,$I}$}
+	\TrinaryInfC{$\text{$\sigma$-algebra}$}
+  \RightLabel{ $\small \text{2, $\Rightarrow\,$I}$}
+	\UnaryInfC{$(\text{p-system} \land \text{d-system}) \Rightarrow \text{$\sigma$-algebra}$}
+\end{prooftree}
+</figure>
+</p>
+<ul style="display: table; width: 100%; padding-left: 0;">
+  <li style="display: table-cell; text-align: left;">
+    以上より命題が証明された．
+  </li>
+  <li style="display: table-cell; text-align: right;">
+    <span class="mathitem">&#8718;</span>
+  </li>
+</ul>
+</section>
+<section id="materials">
+  <h2>参考文献</h2>
+  <ol class="citation">
+  <li><a href="https://link.springer.com/book/10.1007/978-0-387-87859-1">Erhan &Ccedil;&#x131;nlar (2011) <em>Probability and Stochastics</em>. Springer New York.</a></li>
+  </ul>
+</section>
+
+  </div>
+</article>
+
+      </main>
+      <footer>
+        <div class="footer text-center">
+  <span>© 2015&ndash;2023 Akira Miyazawa</span>
+</div>
+
+      </footer>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap.native@2.0.15/dist/bootstrap-native-v4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" integrity="sha512-SkmBfuA2hqjzEVpmnMt/LINrjop3GKWqsuLSSB3e7iBmYK7JuWw4ldmmxwD9mdm2IRTTi0OxSAfEGvgEi0i2Kw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://kit.fontawesome.com/30a99ec99f.js" crossorigin="anonymous"></script>
+<script src="/static/js/main.js"></script>
+
+      
+        <script src="/static/js/mathjax.js"></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js?config=TeX-AMS_HTML"></script>
+        </script>
+      
+    </div>
+  </body>
+</html>

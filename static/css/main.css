@@ -73,10 +73,7 @@ h4 {
 }
 
 section {
-  padding-bottom: 18px;
-}
-section h2 {
-  margin-top: 30px;
+  padding-bottom: 30px;
 }
 section section {
   padding-top: 10px;
@@ -137,6 +134,7 @@ ol.citation li::before {
 .mathitem {
   font-family: "mathematical", serif;
   font-size: 119.5%;
+  font-feature-settings: "palt";
 }
 
 table.math {
@@ -150,6 +148,39 @@ table.math tr > td.mathitem {
 }
 table.math tr > td + td {
   padding-left: 0.5rem;
+}
+
+ol.math {
+  padding-left: 1rem;
+  counter-reset: m;
+}
+ol.math li {
+  position: relative;
+  margin: 1.8ex;
+  list-style: none;
+}
+ol.math li::before {
+  position: relative;
+  padding-right: 1rem;
+  font-family: "mathematical", serif;
+  font-size: 119.5%;
+  counter-increment: m;
+}
+
+ol.math li.s::before {
+  content: "(s" counter(m) ")";
+}
+
+ol.math li.p::before {
+  content: "(p" counter(m) ")";
+}
+
+ol.math li.d::before {
+  content: "(d" counter(m) ")";
+}
+
+ol.math li.capc::before {
+  content: "(C" counter(m) ")";
 }
 
 figure.blockquote {
@@ -258,7 +289,7 @@ pre code {
 }
 
 .info {
-  padding-bottom: 6ex;
+  padding-bottom: 9ex;
 }
 
 kbd {
