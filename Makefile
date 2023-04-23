@@ -11,8 +11,6 @@ MAIN_PAGE_SOURCES := $(wildcard nunjucks/*.njk)
 MAIN_PAGE_TARGETS := $(addprefix $(DIST)/, $(notdir $(MAIN_PAGE_SOURCES:.njk=.html)))
 VOCAB := $(addsuffix .njk, $(addprefix nunjucks/posts/_include/_inner-universe-vocabulary-, $(shell seq 1 8)))
 
-# nunjucks/posts/_include/_inner-universe-vocabulary-1.njk: data/inner-universe.json
-
 release: $(DIST)/CNAME \
 	$(DIST)/favicon.ico \
 	$(IMAGES) \
@@ -22,6 +20,7 @@ release: $(DIST)/CNAME \
 	$(DIST)/static/css/main.css \
 	$(DIST)/static/js/mathjax.js \
 	$(DIST)/static/js/main.js \
+	$(DIST)/static/js/findAndReplaceDOMText.js \
 	$(MAIN_PAGE_TARGETS) \
 	$(POST_PAGE_TARGETS)
 
@@ -49,13 +48,13 @@ $(DIST)/static/fonts/%: fonts/%
 	@mkdir -p $(@D)
 	@cp $< $@
 
-$(DIST)/static/js/mathjax.js: javascripts/mathjax.js
+$(DIST)/static/js/main.js: javascripts/main.js
 	@mkdir -p $(@D)
 	@cp $< $@
 
-$(DIST)/static/js/main.js: typescripts/main.ts
+$(DIST)/static/js/findAndReplaceDOMText.js: node_modules/findandreplacedomtext/src/findAndReplaceDOMText.js
 	@mkdir -p $(@D)
-	@npx tsc --target es2022 --outDir $(@D) typescripts/main.ts
+	@cp $< $@
 
 $(DIST)/static/css/main.css: scss/main.scss
 	@mkdir -p $(@D)
