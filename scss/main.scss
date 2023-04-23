@@ -10,7 +10,7 @@ $code-body: #f8f8f2;
 $code-background: #263e52;
 $footer-height: 70px;
 $western-font: 'Roboto';
-$jp-font: 'Noto Sans JP';
+$jp-font: 'hiragino-kaku-gothic-pron';
 $ipa-font: 'Judson';
 $arabic-font: 'Amiri';
 $mono-font: 'Roboto Mono';
@@ -28,7 +28,7 @@ body {
   font-family: $western-font, $jp-font, sans-serif;
   font-size: 1.1rem;
   font-weight: 400;
-  font-feature-settings: 'kern' 1, 'palt';  // 'palt' is not valid for Noto Sans JP
+  font-feature-settings: 'kern' 1, 'palt';
   font-feature-settings: 'liga' 0;
   font-variant-ligatures: none;
   background-color: $white-smoke;
@@ -284,15 +284,7 @@ th {
   &::after {
     display: inline;
     font-family: $jp-font, monospace;
-    letter-spacing: -0.1rem;
-    content: ' ';
-  }
-}
-
-.half {
-  &::after {
-    display: inline;
-    font-family: $jp-font, monospace;
+    font-size: 50%;
     content: ' ';
   }
 }
@@ -310,8 +302,7 @@ code {
     font-family: $mono-font, monospace;
   }
 
-  .quarter,
-  .half {
+  .quarter {
     display: none;
   }
 }
@@ -325,8 +316,7 @@ pre {
     border-radius: 3px;
   }
 
-  .quarter,
-  .half {
+  .quarter {
     display: none;
   }
 
@@ -345,23 +335,19 @@ kbd {
   background-color: $code-background;
   border-radius: 3px;
 
-  .quarter,
-  .half {
+  .quarter {
     display: none;
   }
 }
 
 samp {
-  .quarter,
-  .half {
+  .quarter {
     display: none;
   }
 }
 
 ol > .quarter,
-ul > .quarter,
-ol > .half,
-ul > .half {
+ul > .quarter {
   display: none;
 }
 
