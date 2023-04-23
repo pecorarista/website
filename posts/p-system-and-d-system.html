@@ -5,10 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@pecorarista">
-    <meta name="twitter:title" content="p-system と d-system — pecorarista.com">
+    <meta name="twitter:title" content="p-systemとd-system — pecorarista.com">
     <meta name="twitter:description" content="">
     <meta name="twitter:image" content="https://pecorarista.com/static/images/avatar.png">
     <link rel="icon" href="/favicon.ico">
+		<script>
+			(function(d) {
+				var config = {
+					kitId: 'mbi1yhb',
+					scriptTimeout: 3000,
+					async: true
+				},
+				h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+			})(document);
+		</script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Judson&family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400;700&family=Roboto+Mono:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -16,7 +26,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-lucario.min.css" integrity="sha512-Aj5jCt/M5XlTn+Y93TazO+EjpRTiUGMrMuaJOcBcu80Fopd7+LSL094m3pbVTNJxf1hOAMSYI/hONBGjvPWwGQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="/static/css/main.css"/>
 
-    <title>p-system と d-system</title>
+    <title>p-systemとd-system</title>
   </head>
   <body>
     <div class="wrapper">
@@ -37,7 +47,7 @@
         
 <article>
   <div class="container">
-    <h1>p-system と d-system</h1>
+    <h1>p-systemとd-system</h1>
     <div class="info text-muted">
       Posted: 2023-04-15
       
@@ -53,12 +63,7 @@
   \subset
   2^E
 \)
-が
-<strong>\(\sigma\)-加法族</strong>
-(\(\sigma\)-algebra)
-であるとは，以下の
-<span class="mathitem">(s1)</span>&ndash;<span class="mathitem">(s3)</span>
-が成り立つことである．
+が<span class="quarter"></span><strong>\(\sigma\)-加法族</strong>(\(\sigma\)-algebra)であるとは，以下の<span class="mathitem">(s1)</span>&ndash;<span class="mathitem">(s3)</span>が成り立つことである．
 <ol class="math">
   <li class="s">
     \( E \in \mathcal{E} \)．
@@ -87,15 +92,9 @@
 \(E\)
 の部分集合族
 \(\mathcal{E} \subset 2^E \)
-が
-<strong>p-system</strong>
-であるとは，
+が<strong>p-system</strong>であるとは，
 \(\mathcal{E}\)
-が積
-(product)
-について閉じていることをいう．すなわち以下の
-<span class="mathitem">(p1)</span>
-が成り立つことをいう．
+が積(product)について閉じていることをいう．すなわち以下の<span class="mathitem">(p1)</span>が成り立つことをいう．
 <ol class="math">
   <li class="p">
     \(A_1 \in \mathcal{E}\)
@@ -113,11 +112,7 @@
 \(E\)
 の部分集合族
 \(\mathcal{E} \subset 2^E\)
-が
-<strong>d-system</strong>
-であるとは，以下の
-<span class="mathitem">(d1)</span>&ndash;<span class="mathitem">(d3)</span>
-が成り立つことである．
+が<strong>d-system</strong>であるとは，以下の<span class="mathitem">(d1)</span>&ndash;<span class="mathitem">(d3)</span>が成り立つことである．
 <ol class="math">
   <li class="d">
     \(E \in \mathcal{E} \)．
@@ -144,18 +139,15 @@
   </li>
 </ol>
 \((A_n)_{n \in \mathbb{N}}\)
-が増加する集合列（以降，単に増加列と呼ぶ）であるとは，各 \(n\) で
+が増加する集合列（以降，単に増加列と呼ぶ）であるとは，各
+\(n\)
+で
 \(A_n \subset A_{n + 1} \subset\)
 が成り立つことである．
 \(A := \bigcup_n A_n\)
 をその極限と呼ぶ．
 </p>
-<p>d-system
-の
-&lang;d&rang;
-は
-<a href="https://en.wikipedia.org/wiki/Eugene_Dynkin">Eugene Dynkin</a>
-にちなむ．
+<p>d-systemの&lang;d&rang;は<a href="https://en.wikipedia.org/wiki/Eugene_Dynkin">Eugene Dynkin</a>にちなむ．
 </p>
 </section>
 <section>
@@ -164,21 +156,13 @@
 \(E\)
 が
 \(\mathcal{E}\)
-の
-&sigma;-加法族であることは，
+の<span class="quarter"></span>\(\sigma\)-加法族であることは，
 \(E\)
 が
 \(\mathcal{E}\)
-の
-p-system
-かつ
-d-system
-であることと同値である．</p>
+のp-systemかつd-systemであることと同値である．</p>
 <strong>証明</strong>
-<p>
-\(\sigma\)-加法族ならば
-p-systemであることを示す．
-\(A_1 \in \mathcal{E}\)
+<p>\(\sigma\)-加法族ならばp-systemであることを示す．\(A_1 \in \mathcal{E}\)
 かつ
 \(A_2 \in \mathcal{E}\)
 ならば
@@ -187,18 +171,14 @@ p-systemであることを示す．
 \(E \setminus A_1 \in \mathcal{E}\)
 かつ
 \(E \setminus A_2 \in \mathcal{E}\)
-が成り立つ．このとき
-<span class="mathitem">(s3)</span>
-より
+が成り立つ．このとき<span class="mathitem">(s3)</span>より
 \((E \setminus A_1) \cup (E \setminus A_2) \in \mathcal{E}\)
-である．<span class="mathitem">(s3)</span>
-と
-De Morgan
-の法則により
+である．<span class="mathitem">(s3)</span>とDe Morganの法則により
 \(A_1 \cap A_2 = E \setminus ((E \setminus A_1) \cup (E \setminus A_2) ) ) \in \mathcal{E}\)
 を得る．
 <figure>
-証明木 \(\Pi_1\)
+証明木
+\(\Pi_1\)
 \begin{prooftree}
   \AxiomC{$[\text{$\sigma$-algebra}]_1$}
   \RightLabel{ $\small \text{$\land\,$E}$}
@@ -209,16 +189,10 @@ De Morgan
 \end{prooftree}
 </figure>
 </p>
-<p>次に
-\(\sigma\)-加法族ならば
-d-system
-であることを示す．
-<span class="mathitem">(d1)</span>
-と
-<span class="mathitem">(s1)</span>
-は同値である．
+<p>次に<span class="quarter"></span>\(\sigma\)-加法族ならばd-systemであることを示す．<span class="mathitem">(d1)</span>と<span class="mathitem">(s1)</span>は同値である．
 <figure>
-証明木 \(\Pi_2\)
+証明木
+\(\Pi_2\)
 \begin{prooftree}
   \AxiomC{$[\text{$\sigma$-algebra}]_1$}
   \RightLabel{ $\small \text{$\land\,$E}$}
@@ -229,15 +203,11 @@ d-system
 \end{prooftree}
 </figure>
 </p>
-<p>
-\(A_2 \setminus A_1 = A_2 \cap (E \setminus A_1)\)
-なので，<span class="mathitem">(s1)</span> と
-p-system
-であることから
-<span class="mathitem">(d2)</span>
-の成立が確認できる．
+<p>\(A_2 \setminus A_1 = A_2 \cap (E \setminus A_1)\)
+なので，<span class="mathitem">(s1)</span> とp-systemであることから<span class="mathitem">(d2)</span>の成立が確認できる．
 <figure>
-証明木 \(\Pi_3\)
+証明木
+\(\Pi_3\)
 \begin{prooftree}
   \AxiomC{$[\text{$\sigma$-algebra}]_1$}
   \UnaryInfC{$(\text{s}2)$}
@@ -251,13 +221,10 @@ p-system
 \end{prooftree}
 </figure>
 </p>
-<p>
-<span class="mathitem">(s3)</span>
-から
-<span class="mathitem">(d3)</span>
-は明らかである．
+<p><span class="mathitem">(s3)</span>から<span class="mathitem">(d3)</span>は明らかである．
 <figure>
-証明木 \(\Pi_4\)
+証明木
+\(\Pi_4\)
 \begin{prooftree}
   \AxiomC{$[\text{$\sigma$-algebra}]_1$}
   \RightLabel{ $\small \text{$\land\,$E}$}
@@ -269,14 +236,10 @@ p-system
 </figure>
 </p>
 <p>
-以上より
-\(\sigma\)-加法族ならば
-p-system
-かつ
-d-system
-であることが示された．
+以上より<span class="quarter"></span>\(\sigma\)-加法族ならばp-systemかつd-systemであることが示された．
 <figure>
-証明木 \(\Pi_5\)
+証明木
+\(\Pi_5\)
 \begin{prooftree}
   \AxiomC{$\Pi_1$}
 	\noLine
@@ -298,11 +261,7 @@ d-system
 \end{prooftree}
 </figure>
 </p>
-<p>逆を示す．
-<span class="mathitem">(s1)</span>
-と
-<span class="mathitem">(d1)</span>
-は同値である．
+<p>逆を示す．<span class="mathitem">(s1)</span>と<span class="mathitem">(d1)</span>は同値である．
 <figure>
 証明木 \(\Pi_5\)
 \begin{prooftree}
@@ -317,17 +276,11 @@ d-system
 </p>
 <p>任意の
 \(A \in \mathcal{E}\)
-をとる．
-このとき
-<span class="mathitem">(d1)</span>
-より
+をとる．このとき<span class="mathitem">(d1)</span>より
 \(E \in \mathcal{E}\)
-であり，
-また明らかに
+であり，また明らかに
 \(A \subset E\)
-なので
-<span class="mathitem">(d2)</span>
-より
+なので<span class="mathitem">(d2)</span>より
 \(E \setminus A \in \mathcal{E}\)．
 <figure>
 証明木 \(\Pi_6\)
@@ -348,28 +301,19 @@ d-system
 \(n\)
 で
 \(A_n \in \mathcal{E}\)
-を満たしているとする．
-このとき増加列
+を満たしているとする．このとき増加列
 \((B_n)_{n \in \mathbb{N}}\)
 を
 \(B_n = \bigcup_{i = 0}^n A_i\)
 で定義する．
 \( A_0 \cup A_1 = E \setminus ( (E \setminus A_0) \cap ( E \setminus A_1 )) \)
-であり，
-<span class="mathitem">(d2)</span>
-より
+であり，<span class="mathitem">(d2)</span>より
 \(E \setminus A_0 \in \mathcal{E}\)
 かつ
-\(E \setminus A_1 \in \mathcal{E}\)．
-p-system
-であることより
-\((E \setminus A_0) \cap (E \setminus A_1) \in \mathcal{E}\)．
-再度
-<span class="mathitem">(d2)</span>
-を用いることで
+\(E \setminus A_1 \in \mathcal{E}\)．p-systemであることより
+\((E \setminus A_0) \cap (E \setminus A_1) \in \mathcal{E}\)．再度<span class="mathitem">(d2)</span>を用いることで
 \(A_0 \cup A_1 \in \mathcal{E}\)
-となる．
-帰納的に任意の
+となる．帰納的に任意の
 \(n \in \mathbb{N}\)
 で
 \(B_n \in \mathcal{E}\)
@@ -382,7 +326,8 @@ p-system
 であるから
 \(\bigcup_{n \in \mathbb{N}} A_n \in \mathcal{E}\)．
 <figure>
-証明木 \(\Pi_7\)
+証明木
+\(\Pi_7\)
 \begin{prooftree}
   \AxiomC{$[\text{p-system} \land \text{d-system}]_2$}
   \RightLabel{ $\small \text{$\land\,$E}$}
@@ -394,14 +339,10 @@ p-system
 </figure>
 </p>
 <p>
-したがって
-p-system
-かつ
-d-system
-であるとき，
-\(\sigma\)-加法族であることが示された．
+したがってp-systemかつd-systemであるとき，\(\sigma\)-加法族であることが示された．
 <figure>
-証明木 \(\Pi_8\)
+証明木
+\(\Pi_8\)
 \begin{prooftree}
   \AxiomC{$\Pi_5$}
 	\noLine

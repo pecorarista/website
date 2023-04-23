@@ -7,7 +7,7 @@ html {
 }
 
 body {
-  font-family: "Roboto", "Noto Sans JP", sans-serif;
+  font-family: "Roboto", "hiragino-kaku-gothic-pron", sans-serif;
   font-size: 1.1rem;
   font-weight: 400;
   font-feature-settings: "kern" 1, "palt";
@@ -23,7 +23,7 @@ em {
 }
 
 :lang(ar) {
-  font-family: "Amiri", "Roboto", "Noto Sans JP", sans-serif;
+  font-family: "Amiri", "Roboto", "hiragino-kaku-gothic-pron", sans-serif;
 }
 
 .wrapper {
@@ -244,21 +244,15 @@ th {
 
 .quarter::after {
   display: inline;
-  font-family: "Noto Sans JP", monospace;
-  letter-spacing: -0.1rem;
-  content: " ";
-}
-
-.half::after {
-  display: inline;
-  font-family: "Noto Sans JP", monospace;
+  font-family: "hiragino-kaku-gothic-pron", monospace;
+  font-size: 50%;
   content: " ";
 }
 
 code {
   padding: 2px 5px;
   margin: 0;
-  font-family: "Roboto Mono", "Noto Sans JP", monospace;
+  font-family: "Roboto Mono", "hiragino-kaku-gothic-pron", monospace;
   font-size: 85%;
   color: #f8f8f2;
   background-color: #263e52;
@@ -267,8 +261,7 @@ code {
 code[class*=language-] {
   font-family: "Roboto Mono", monospace;
 }
-code .quarter,
-code .half {
+code .quarter {
   display: none;
 }
 
@@ -280,8 +273,7 @@ pre[class*=language-] {
   font-family: "Roboto Mono", monospace;
   border-radius: 3px;
 }
-pre .quarter,
-pre .half {
+pre .quarter {
   display: none;
 }
 pre code {
@@ -298,20 +290,16 @@ kbd {
   background-color: #263e52;
   border-radius: 3px;
 }
-kbd .quarter,
-kbd .half {
+kbd .quarter {
   display: none;
 }
 
-samp .quarter,
-samp .half {
+samp .quarter {
   display: none;
 }
 
 ol > .quarter,
-ul > .quarter,
-ol > .half,
-ul > .half {
+ul > .quarter {
   display: none;
 }
 
