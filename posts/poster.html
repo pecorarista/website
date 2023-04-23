@@ -68,122 +68,122 @@
   <p>のように指定することができます。</p>
   <figure>
     <figcaption>上のポスターのコード</figcaption>
-    <pre><code class="language-latex">\documentclass[unicode,colorlinks]{beamer}
-\usepackage[orientation=landscape,size=a0,scale=1.4]{beamerposter}
-\usetheme[footertext={フッターに何か適当なことを書くこともできます．}]{SimplePoster}
-\usepackage{lipsum}
-\usepackage{amsmath,amssymb}
-\newcommand{\absolute}[1]{\left|#1\right|}
-\usepackage{tikz}
-\usepackage{pgfplots}
-\usetikzlibrary{arrows.meta}
-\usepackage{tabularx}
-\usepackage{listings}
-\usepackage[no-math]{luatexja-fontspec}
-\usepackage{unicode-math}
-\ltjsetparameter{%
+    <pre><code class="language-latex">&#92;documentclass[unicode,colorlinks]{beamer}
+&#92;usepackage[orientation=landscape,size=a0,scale=1.4]{beamerposter}
+&#92;usetheme[footertext={フッターに何か適当なことを書くこともできます．}]{SimplePoster}
+&#92;usepackage{lipsum}
+&#92;usepackage{amsmath,amssymb}
+&#92;newcommand{&#92;absolute}[1]{&#92;left|#1&#92;right|}
+&#92;usepackage{tikz}
+&#92;usepackage{pgfplots}
+&#92;usetikzlibrary{arrows.meta}
+&#92;usepackage{tabularx}
+&#92;usepackage{listings}
+&#92;usepackage[no-math]{luatexja-fontspec}
+&#92;usepackage{unicode-math}
+&#92;ltjsetparameter{%
     jacharrange={%
         -2, % Exclude Greek and Cyrillic letters.
         -3  % Punctuations and Miscellaneous symbols.
     }
 }
-\usepackage{babel}
-\babelprovide[main]{japanese}
-\setsansfont[BoldFont={FrutigerLTStd-Bold}]{OpenSans}
-\renewcommand{\familydefault}{\sfdefault}
-\renewcommand{\kanjifamilydefault}{\gtdefault}
-\newfontfamily\ipafont{FreeSerif}
-\babelprovide{french}
-\babelfont[french]{sf}[Script=Cyrillic]{OpenSans}
-\setsansjfont[BoldFont={HiraKakuPro-W6}]
+&#92;usepackage{babel}
+&#92;babelprovide[main]{japanese}
+&#92;setsansfont[BoldFont={FrutigerLTStd-Bold}]{OpenSans}
+&#92;renewcommand{&#92;familydefault}{&#92;sfdefault}
+&#92;renewcommand{&#92;kanjifamilydefault}{&#92;gtdefault}
+&#92;newfontfamily&#92;ipafont{FreeSerif}
+&#92;babelprovide{french}
+&#92;babelfont[french]{sf}[Script=Cyrillic]{OpenSans}
+&#92;setsansjfont[BoldFont={HiraKakuPro-W6}]
 {HiraKakuPro-W3}
-\setmonofont{Source Code Pro}
-\makeatletter
-\mode&lt;presentation&gt;{\beamer@suppressreplacementstrue}
-\makeatother
-\usefonttheme{professionalfonts}
-\setmathfontface\asanamath{Asana Math}
-\setoperatorfont\asanamath
-\usepackage{arabluatex}
-\newfontfamily\arabicfont[%
+&#92;setmonofont{Source Code Pro}
+&#92;makeatletter
+&#92;mode&lt;presentation&gt;{&#92;beamer@suppressreplacementstrue}
+&#92;makeatother
+&#92;usefonttheme{professionalfonts}
+&#92;setmathfontface&#92;asanamath{Asana Math}
+&#92;setoperatorfont&#92;asanamath
+&#92;usepackage{arabluatex}
+&#92;newfontfamily&#92;arabicfont[%
     Script=Arabic,     % enable ligatures
     RawFeature={%
         +anum,         % use eastern arabic numerals
         +ss05}         % put kasrah below shadda
 ]{Amiri}
-\SetTranslitFont{\ipafont}
-\SetTranslitStyle{\upshape}
-\SetTranslitConvention{dmg}
-\usepackage{booktabs}
-\setlength\heavyrulewidth{3pt}
-\newcolumntype{C}{&gt;{\centering\arraybackslash}X}
-\lstset{%
+&#92;SetTranslitFont{&#92;ipafont}
+&#92;SetTranslitStyle{&#92;upshape}
+&#92;SetTranslitConvention{dmg}
+&#92;usepackage{booktabs}
+&#92;setlength&#92;heavyrulewidth{3pt}
+&#92;newcolumntype{C}{&gt;{&#92;centering&#92;arraybackslash}X}
+&#92;lstset{%
     language={Python},
-    basicstyle={\ttfamily},%
-    keywordstyle={\color{red}\ttfamily\bfseries},%
-    commentstyle={\color{gray}\ttfamily},
-    stringstyle={\ttfamily},
+    basicstyle={&#92;ttfamily},%
+    keywordstyle={&#92;color{red}&#92;ttfamily&#92;bfseries},%
+    commentstyle={&#92;color{gray}&#92;ttfamily},
+    stringstyle={&#92;ttfamily},
     xleftmargin=2em,
 }
-\pgfplotsset{%
+&#92;pgfplotsset{%
     compat=newest,
     xlabel near ticks,
     ylabel near ticks
 }
-\title{ポスターのサンプル}
-\author{著者名}
-\institute{所属機関名}
-\date{\today}
-\begin{document}
-\begin{frame}[fragile]
-\begin{columns}[t]
-    \begin{column}{.32\linewidth}
-        \begin{block}{はじめに}
-            \LaTeX{} (Beamer)でポスターを作りましょう．
-        \end{block}
-        \begin{block}{数式}
-            \LaTeX{}で作るので数式の挿入が簡単にできます．
+&#92;title{ポスターのサンプル}
+&#92;author{著者名}
+&#92;institute{所属機関名}
+&#92;date{&#92;today}
+&#92;begin{document}
+&#92;begin{frame}[fragile]
+&#92;begin{columns}[t]
+    &#92;begin{column}{.32&#92;linewidth}
+        &#92;begin{block}{はじめに}
+            &#92;LaTeX{} (Beamer)でポスターを作りましょう．
+        &#92;end{block}
+        &#92;begin{block}{数式}
+            &#92;LaTeX{}で作るので数式の挿入が簡単にできます．
 
             （最近はPowerPointでもできるらしいですが...）
 
-            \bigskip
-            \bigskip
+            &#92;bigskip
+            &#92;bigskip
 
-            \textbf{Lebesgueの収束定理} (小谷, 2005)
+            &#92;textbf{Lebesgueの収束定理} (小谷, 2005)
 
             $(f_n)_n$は$X$上可測関数列で，ある非負可積分関数$g$により
-            \begin{align*}
-                \absolute{f_n(x)} \leq g(x) \quad (x \in X)
-            \end{align*}
-            が成り立つとする．極限 $\lim_{n \to \infty}f_n(x) = f(x)$ が存在するなら
-            \begin{align*}
-                \int_X \lim_{n \to \infty}f(x) \mu(dx)
-                = \lim_{n \to \infty}\int_X f_n (x) \mu(dx)
-            \end{align*}
-        \end{block}
-        \begin{block}{ダミーテキスト}
-            \lipsum[1]
-        \end{block}
-        必ず\texttt{beamercolorbox}の中に書かなければならない，というわけではありません．
-    \end{column}
-    \begin{column}{.32\linewidth}
-        \begin{block}{グラフ}
-            \verb+\includegraphics+でRなどで作成したグラフを取り込むことはもちろん，
+            &#92;begin{align*}
+                &#92;absolute{f_n(x)} &#92;leq g(x) &#92;quad (x &#92;in X)
+            &#92;end{align*}
+            が成り立つとする．極限 $&#92;lim_{n &#92;to &#92;infty}f_n(x) = f(x)$ が存在するなら
+            &#92;begin{align*}
+                &#92;int_X &#92;lim_{n &#92;to &#92;infty}f(x) &#92;mu(dx)
+                = &#92;lim_{n &#92;to &#92;infty}&#92;int_X f_n (x) &#92;mu(dx)
+            &#92;end{align*}
+        &#92;end{block}
+        &#92;begin{block}{ダミーテキスト}
+            &#92;lipsum[1]
+        &#92;end{block}
+        必ず&#92;texttt{beamercolorbox}の中に書かなければならない，というわけではありません．
+    &#92;end{column}
+    &#92;begin{column}{.32&#92;linewidth}
+        &#92;begin{block}{グラフ}
+            &#92;verb+&#92;includegraphics+でRなどで作成したグラフを取り込むことはもちろん，
             TikZでLaTeXソースコード中にグラフのコードを書くこともできます．
 
-            \bigskip
+            &#92;bigskip
 
-            \tikzset{%
+            &#92;tikzset{%
                 declare function={%
-                    normcdf(\x,\m,\s)=1/(1 + exp(-0.07056*((\x-\m)/\s)^3 - 1.5976*(\x-\m)/\s));
+                    normcdf(&#92;x,&#92;m,&#92;s)=1/(1 + exp(-0.07056*((&#92;x-&#92;m)/&#92;s)^3 - 1.5976*(&#92;x-&#92;m)/&#92;s));
                 },
                 % http://tex.stackexchange.com/questions/5461/is-it-possible-to-change-the-size-of-an-arrowhead-in-tikz-pgf
                 % TikZ manual p. 202
                 &gt;={Straight Barb[width=5mm,length=5mm]}
             }
-            \begin{center}
-                \begin{tikzpicture}
-                    \begin{axis}[
+            &#92;begin{center}
+                &#92;begin{tikzpicture}
+                    &#92;begin{axis}[
                         samples=500,
                         domain=-10:10,
                         width=30cm, height=20cm,
@@ -196,25 +196,25 @@
                         axis line style={-&gt;, ultra thick},
                         xtick={-5,0,5},
                         ytick={0,0.5}]
-                    \addplot[color=red,ultra thick] plot{normcdf(0.626657*x,0,1)} node[pos=0.4](cum){};
-                    \addplot[color=blue,ultra thick,dashed] plot (\x,{1/(1+exp((-1)*x))}) node[pos=0.6](a){} ;
-                    \node [color=blue,below right] at (a) {${\displaystyle y=\frac{1}{1+\exp(-x)}}$};
-                    \node [color=red,above left] at (cum) {${\displaystyle y=\varPhi\left(\sqrt{\frac{\pi}{8}}x\right)}$};
-                    \addplot[dashed,ultra thick] plot (\x,{1}) node[pos=0.5](b){};
-                    \node [above left] at (b) {$y=1$};
-                    \node at (0,0) [anchor=north west]{$O$};
-                    \end{axis}
-                \end{tikzpicture}
-            \end{center}
-        \end{block}
+                    &#92;addplot[color=red,ultra thick] plot{normcdf(0.626657*x,0,1)} node[pos=0.4](cum){};
+                    &#92;addplot[color=blue,ultra thick,dashed] plot (&#92;x,{1/(1+exp((-1)*x))}) node[pos=0.6](a){} ;
+                    &#92;node [color=blue,below right] at (a) {${&#92;displaystyle y=&#92;frac{1}{1+&#92;exp(-x)}}$};
+                    &#92;node [color=red,above left] at (cum) {${&#92;displaystyle y=&#92;varPhi&#92;left(&#92;sqrt{&#92;frac{&#92;pi}{8}}x&#92;right)}$};
+                    &#92;addplot[dashed,ultra thick] plot (&#92;x,{1}) node[pos=0.5](b){};
+                    &#92;node [above left] at (b) {$y=1$};
+                    &#92;node at (0,0) [anchor=north west]{$O$};
+                    &#92;end{axis}
+                &#92;end{tikzpicture}
+            &#92;end{center}
+        &#92;end{block}
 
-        \begin{block}{プログラム}
-            \texttt{listings}パッケージを読み込んでプログラムのソースコードを書くことができます．
-            フレームに\texttt{fragile}オプションを渡す必要があるので気をつけましょう．
+        &#92;begin{block}{プログラム}
+            &#92;texttt{listings}パッケージを読み込んでプログラムのソースコードを書くことができます．
+            フレームに&#92;texttt{fragile}オプションを渡す必要があるので気をつけましょう．
 
-            \bigskip
+            &#92;bigskip
 
-            \begin{lstlisting}
+            &#92;begin{lstlisting}
 # This function does not always work!
 def plural(word):
     if word.endswith(&#39;y&#39;):
@@ -223,137 +223,137 @@ def plural(word):
         return word + &#39;es&#39;
     else:
         return word + &#39;s&#39;
-            \end{lstlisting}
-        \end{block}
-    \end{column}
-    \begin{column}{.32\linewidth}
-        \begin{block}{文字}
+            &#92;end{lstlisting}
+        &#92;end{block}
+    &#92;end{column}
+    &#92;begin{column}{.32&#92;linewidth}
+        &#92;begin{block}{文字}
             アラビア文字など日本語の文書中に混在させにくい文字も
-            \LaTeX{}のパッケージを利用して簡単に入力することができます。
+            &#92;LaTeX{}のパッケージを利用して簡単に入力することができます。
 
-            \bigskip
-            \bigskip
+            &#92;bigskip
+            &#92;bigskip
 
 
-            \begin{ipafont}
+            &#92;begin{ipafont}
                 kaanat rijħu ʃʃamaali tatadʒaadalu wa ʃʃamsa fij ʔajjin minhumaa kaanat ʔaqwaa min alʔuxraa
-            \end{ipafont}
+            &#92;end{ipafont}
 
-            \bigskip
-            \bigskip
+            &#92;bigskip
+            &#92;bigskip
 
-            \begin{arab}[fullvoc]
+            &#92;begin{arab}[fullvoc]
                 kAnat rI.hu &#39;l-^samAli tatajAdalu wa &#39;l-^samsa fI &#39;ayyiN minhumA kAnat &#39;aqw_A mina &#39;l-&#39;uxr_A.
-            \end{arab}
+            &#92;end{arab}
 
-            \bigskip
-            \bigskip
+            &#92;bigskip
+            &#92;bigskip
 
-            \hfill {\small 『国際音声記号ガイドブック』「アラビア語」より}
+            &#92;hfill {&#92;small 『国際音声記号ガイドブック』「アラビア語」より}
 
-            \bigskip
-            \bigskip
+            &#92;bigskip
+            &#92;bigskip
 
             【アラビア文字部分の実際の入力】
 
-            \verb+kAnat rI.hu &#39;l-^samAli tatajAdalu+
-            \verb+wa &#39;l-^samsa fI &#39;ayyiN minhumA kAnat+
-            \verb+&#39;aqw_A mina &#39;l-&#39;uxr_A.+
-        \end{block}
+            &#92;verb+kAnat rI.hu &#39;l-^samAli tatajAdalu+
+            &#92;verb+wa &#39;l-^samsa fI &#39;ayyiN minhumA kAnat+
+            &#92;verb+&#39;aqw_A mina &#39;l-&#39;uxr_A.+
+        &#92;end{block}
 
-        \begin{block}{実験結果}
-            過去に作った\LaTeX ファイルがそのまま流用できます．
+        &#92;begin{block}{実験結果}
+            過去に作った&#92;LaTeX ファイルがそのまま流用できます．
 
-            \bigskip
-            \bigskip
+            &#92;bigskip
+            &#92;bigskip
 
-            \begin{center}
-                \begin{tabularx}{0.5\textwidth}{CC}
-                    \toprule
-                             &amp; スコア \\
-                    \midrule
-                    手法1    &amp; 0.11   \\
-                    手法2    &amp; 0.22   \\
-                    手法3    &amp; 0.33   \\
-                    手法2    &amp; 0.44   \\
-                    \bottomrule
-                \end{tabularx}
-            \end{center}
-        \end{block}
+            &#92;begin{center}
+                &#92;begin{tabularx}{0.5&#92;textwidth}{CC}
+                    &#92;toprule
+                             &amp; スコア &#92;&#92;
+                    &#92;midrule
+                    手法1    &amp; 0.11   &#92;&#92;
+                    手法2    &amp; 0.22   &#92;&#92;
+                    手法3    &amp; 0.33   &#92;&#92;
+                    手法2    &amp; 0.44   &#92;&#92;
+                    &#92;bottomrule
+                &#92;end{tabularx}
+            &#92;end{center}
+        &#92;end{block}
 
 
-        \begin{block}{参考文献}
-            \begin{enumerate}
-                \item 小谷眞一『測度と確率』, 岩波書店 (2005).
-                \item 国際音声学会編, 竹林滋・神山孝夫訳『国際音声記号ガイドブッ
+        &#92;begin{block}{参考文献}
+            &#92;begin{enumerate}
+                &#92;item 小谷眞一『測度と確率』, 岩波書店 (2005).
+                &#92;item 国際音声学会編, 竹林滋・神山孝夫訳『国際音声記号ガイドブッ
 
                     ク』, 大修館書店 (2003).
-            \end{enumerate}
-        \end{block}
+            &#92;end{enumerate}
+        &#92;end{block}
 
-        \href{https://github.com/deselaers/latex-beamerposter}{\texttt{beamerposter}パッケージ}
-        の\texttt{examples}を参考にして自分用の\texttt{.sty}ファイルを作成しましょう．
-    \end{column}
-\end{columns}
-\end{frame}
-\end{document}
+        &#92;href{https://github.com/deselaers/latex-beamerposter}{&#92;texttt{beamerposter}パッケージ}
+        の&#92;texttt{examples}を参考にして自分用の&#92;texttt{.sty}ファイルを作成しましょう．
+    &#92;end{column}
+&#92;end{columns}
+&#92;end{frame}
+&#92;end{document}
 </code></pre>
   </figure>
 </section>
 <section>
   <h2>2. 単純なポスターを作ってみる</h2>
   <p>TeX Live に収録されている<a href="https://ctan.org/pkg/beamerposter">beamerposter</a>パッケージを使います。以下のようなコードを<code>simple-poster.tex</code>のような名前で保存してください。</p>
-    <pre><code class="language-latex">\documentclass[unicode]{beamer}
-\usepackage[orientation=landscape,size=a0,scale=1.4]{beamerposter}
-\usetheme[footertext={フッター}]{SimplePoster}
-\usepackage{luatexja}
-\title{ポスターのサンプル}
-\author{著者名}
-\institute{所属機関名}
-\date{\today}
-\begin{document}
-\begin{frame}
-\begin{columns}[t]
-    \begin{column}{.32\linewidth}
-        \begin{block}{はじめに}
-            \LaTeX{}(Beamer)でポスターを作りましょう．
-        \end{block}
-    \end{column}
-\end{columns}
-\end{frame}
-\end{document}
+    <pre><code class="language-latex">&#92;documentclass[unicode]{beamer}
+&#92;usepackage[orientation=landscape,size=a0,scale=1.4]{beamerposter}
+&#92;usetheme[footertext={フッター}]{SimplePoster}
+&#92;usepackage{luatexja}
+&#92;title{ポスターのサンプル}
+&#92;author{著者名}
+&#92;institute{所属機関名}
+&#92;date{&#92;today}
+&#92;begin{document}
+&#92;begin{frame}
+&#92;begin{columns}[t]
+    &#92;begin{column}{.32&#92;linewidth}
+        &#92;begin{block}{はじめに}
+            &#92;LaTeX{}(Beamer)でポスターを作りましょう．
+        &#92;end{block}
+    &#92;end{column}
+&#92;end{columns}
+&#92;end{frame}
+&#92;end{document}
 </code></pre>
   <p>次に<code>beamerthemeSimplePoster.sty</code>という名前で以下の内容を現在作業しているディレクトリに保存してください。</p>
-    <pre><code class="language-latex">\ProvidesPackage{beamerthemeSimplePoster}
-\mode&lt;presentation&gt;
-\DeclareOptionBeamer{footertext}{\def\SimplePoster@footertext{#1}}
-\ProcessOptionsBeamer
-\selectcolormodel{RGB}
-\definecolor{royalblue}{RGB}{1,72,152}
-\definecolor{aliceblue}{RGB}{240,248,255}
-\setbeamercolor{headline}{fg=white,bg=royalblue}
-\setbeamercolor{footline}{fg=white,bg=royalblue}
-\setbeamercolor{title in headline}{fg=white}
-\setbeamercolor{author in headline}{fg=white}
-\setbeamercolor{institute in headline}{fg=white}
-\setbeamercolor{conference in headline}{fg=white}
-\setbeamercolor*{normal text}{fg=black,bg=white}
-\setbeamercolor*{block body}{fg=black,bg=aliceblue}
-\setbeamercolor*{block title}{fg=white,bg=royalblue}
-\setbeamerfont{block title}{size=\large,series=\bf}
-\setbeamercolor{structure}{fg=red}
-\setbeamertemplate{navigation symbols}{}
-\setbeamertemplate{block begin}{%
-    \vskip.5ex
-    \begin{beamercolorbox}[
+    <pre><code class="language-latex">&#92;ProvidesPackage{beamerthemeSimplePoster}
+&#92;mode&lt;presentation&gt;
+&#92;DeclareOptionBeamer{footertext}{&#92;def&#92;SimplePoster@footertext{#1}}
+&#92;ProcessOptionsBeamer
+&#92;selectcolormodel{RGB}
+&#92;definecolor{royalblue}{RGB}{1,72,152}
+&#92;definecolor{aliceblue}{RGB}{240,248,255}
+&#92;setbeamercolor{headline}{fg=white,bg=royalblue}
+&#92;setbeamercolor{footline}{fg=white,bg=royalblue}
+&#92;setbeamercolor{title in headline}{fg=white}
+&#92;setbeamercolor{author in headline}{fg=white}
+&#92;setbeamercolor{institute in headline}{fg=white}
+&#92;setbeamercolor{conference in headline}{fg=white}
+&#92;setbeamercolor*{normal text}{fg=black,bg=white}
+&#92;setbeamercolor*{block body}{fg=black,bg=aliceblue}
+&#92;setbeamercolor*{block title}{fg=white,bg=royalblue}
+&#92;setbeamerfont{block title}{size=&#92;large,series=&#92;bf}
+&#92;setbeamercolor{structure}{fg=red}
+&#92;setbeamertemplate{navigation symbols}{}
+&#92;setbeamertemplate{block begin}{%
+    &#92;vskip.5ex
+    &#92;begin{beamercolorbox}[
         rounded=true,
         shadow=true,
         leftskip=1em,
         colsep*=.75ex]{block title}%
-        \usebeamerfont*{block title}\insertblocktitle
-    \end{beamercolorbox}%
-    \usebeamerfont{block body}%
-    \begin{beamercolorbox}[
+        &#92;usebeamerfont*{block title}&#92;insertblocktitle
+    &#92;end{beamercolorbox}%
+    &#92;usebeamerfont{block body}%
+    &#92;begin{beamercolorbox}[
         rounded=true,
         shadow=true,
         leftskip=1em,
@@ -362,41 +362,41 @@ def plural(word):
         sep=1ex,
         vmode]{block body}%
 }
-\setbeamertemplate{block end}{%
-    \end{beamercolorbox}
-    \vskip1.5ex
+&#92;setbeamertemplate{block end}{%
+    &#92;end{beamercolorbox}
+    &#92;vskip1.5ex
 }
-\setbeamertemplate{headline}{%
-    \leavevmode
-    \begin{beamercolorbox}[wd=\paperwidth]{headline}
-        \centering
-        \vskip4ex
-        \usebeamercolor{title in headline}{%
-            \color{fg}\textbf{\LARGE{\inserttitle}}\\[2.5ex]
+&#92;setbeamertemplate{headline}{%
+    &#92;leavevmode
+    &#92;begin{beamercolorbox}[wd=&#92;paperwidth]{headline}
+        &#92;centering
+        &#92;vskip4ex
+        &#92;usebeamercolor{title in headline}{%
+            &#92;color{fg}&#92;textbf{&#92;LARGE{&#92;inserttitle}}&#92;&#92;[2.5ex]
         }
-        \usebeamercolor{author in headline}{%
-            \color{fg}\large{\insertauthor}\\[1.2ex]
+        &#92;usebeamercolor{author in headline}{%
+            &#92;color{fg}&#92;large{&#92;insertauthor}&#92;&#92;[1.2ex]
         }
-        \usebeamercolor{institute in headline}{%
-            \color{fg}\large{\insertinstitute}
+        &#92;usebeamercolor{institute in headline}{%
+            &#92;color{fg}&#92;large{&#92;insertinstitute}
         }
-        \vskip2ex
-    \end{beamercolorbox}
+        &#92;vskip2ex
+    &#92;end{beamercolorbox}
 }
-\setbeamertemplate{footline}{%
-    \begin{beamercolorbox}[wd=\paperwidth,ht=11ex]{footline}
-    \leavevmode%
-    \begin{columns}[T]
-        \begin{column}{0.7\paperwidth}
-        \end{column}
-        \begin{column}{0.3\paperwidth}
-            \usebeamercolor{conference in headline}{%
-                \color{fg}\large{\SimplePoster@footertext}
+&#92;setbeamertemplate{footline}{%
+    &#92;begin{beamercolorbox}[wd=&#92;paperwidth,ht=11ex]{footline}
+    &#92;leavevmode%
+    &#92;begin{columns}[T]
+        &#92;begin{column}{0.7&#92;paperwidth}
+        &#92;end{column}
+        &#92;begin{column}{0.3&#92;paperwidth}
+            &#92;usebeamercolor{conference in headline}{%
+                &#92;color{fg}&#92;large{&#92;SimplePoster@footertext}
             }
-        \end{column}
-    \end{columns}
-    \vskip3ex
-    \end{beamercolorbox}
+        &#92;end{column}
+    &#92;end{columns}
+    &#92;vskip3ex
+    &#92;end{beamercolorbox}
 }
 </code></pre>
   <p>LuaLaTeXでタイプセットしたいので上の2つと同じ場所に設定ファイル<code>latexmkrc</code>を置いておきます。</p>
@@ -428,6 +428,7 @@ $clean_ext .= &#39;%R.bbl %R.ltjruby %R.nav %R.snm %R.vrb&#39;;
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" integrity="sha512-SkmBfuA2hqjzEVpmnMt/LINrjop3GKWqsuLSSB3e7iBmYK7JuWw4ldmmxwD9mdm2IRTTi0OxSAfEGvgEi0i2Kw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://kit.fontawesome.com/30a99ec99f.js" crossorigin="anonymous"></script>
+<script src="/static/js/findAndReplaceDOMText.js"></script>
 <script src="/static/js/main.js"></script>
 
       

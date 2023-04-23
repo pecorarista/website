@@ -52,25 +52,25 @@
     <code>algpseudocode</code> というパッケージを読み込みます。
     以下のように挿入ソートのアルゴリズムを書いてみます。</p>
   <figure>
-    <pre><code class="language-latex">\documentclass{article}
-\usepackage{newtxtext,newtxmath}
-\usepackage{algpseudocode}
-\pagestyle{empty}
-\begin{document}
-    \begin{algorithmic}[1]
-        \Procedure{Insertion-Sort}{$A$}
-            \For{$j = 2 \, \ldots \, A.\mathrm{length}$}
-            \State{$k = A[j]$}
-                \State{$i = j - 1$}
-                \While{$i &gt; 0$ and $A[i] &gt; k$}
-                    \State{$A[i + 1] = A[i]$}
-                    \State{$i = i - 1$}
-                \EndWhile
-                \State{$A[i + 1] = k$}
-            \EndFor
-        \EndProcedure
-    \end{algorithmic}
-\end{document}
+    <pre><code class="language-latex">&#92;documentclass{article}
+&#92;usepackage{newtxtext,newtxmath}
+&#92;usepackage{algpseudocode}
+&#92;pagestyle{empty}
+&#92;begin{document}
+    &#92;begin{algorithmic}[1]
+        &#92;Procedure{Insertion-Sort}{$A$}
+            &#92;For{$j = 2 &#92;, &#92;ldots &#92;, A.&#92;mathrm{length}$}
+            &#92;State{$k = A[j]$}
+                &#92;State{$i = j - 1$}
+                &#92;While{$i &gt; 0$ and $A[i] &gt; k$}
+                    &#92;State{$A[i + 1] = A[i]$}
+                    &#92;State{$i = i - 1$}
+                &#92;EndWhile
+                &#92;State{$A[i + 1] = k$}
+            &#92;EndFor
+        &#92;EndProcedure
+    &#92;end{algorithmic}
+&#92;end{document}
 </code></pre>
   </figure>
   <p>表示されるのは以下のような擬似コードになります。</p>
@@ -99,31 +99,31 @@
   <p>いま
     <code>for</code> の始点と終点の間には<code>…</code> を使っていますが、もし変えたければ<code>algpseudocode.sty</code> にならい新しい制御構造<code>\ForTo</code> をプリアンブルで定義します。</p>
   <figure>
-    <pre><code class="language-latex">\documentclass{article}
-\usepackage{newtxtext,newtxmath}
-\usepackage[noend]{algpseudocode}
-\algnewcommand\algorithmicto{\textbf{to}}
-\algdef{SE}[FOR]{ForTo}{EndFor}[2]{%
-  \algorithmicfor\ #1\ \algorithmicto\ #2\ \algorithmicdo
+    <pre><code class="language-latex">&#92;documentclass{article}
+&#92;usepackage{newtxtext,newtxmath}
+&#92;usepackage[noend]{algpseudocode}
+&#92;algnewcommand&#92;algorithmicto{&#92;textbf{to}}
+&#92;algdef{SE}[FOR]{ForTo}{EndFor}[2]{%
+  &#92;algorithmicfor&#92; #1&#92; &#92;algorithmicto&#92; #2&#92; &#92;algorithmicdo
 }{%
-  \algorithmicend\ \algorithmicfor
+  &#92;algorithmicend&#92; &#92;algorithmicfor
 }
-\pagestyle{empty}
-\begin{document}
-    \begin{algorithmic}[1]
-        \Procedure{Insertion-Sort}{$A$}
-        \ForTo{$j = 2$}{$A.\mathrm{length}$}
-            \State{$k = A[j]$}
-                \State{$i = j - 1$}
-                \While{$i &gt; 0$ and $A[i] &gt; k$}
-                    \State{$A[i + 1] = A[i]$}
-                    \State{$i = i - 1$}
-                \EndWhile
-                \State{$A[i + 1] = k$}
-            \EndFor
-        \EndProcedure
-    \end{algorithmic}
-\end{document}
+&#92;pagestyle{empty}
+&#92;begin{document}
+    &#92;begin{algorithmic}[1]
+        &#92;Procedure{Insertion-Sort}{$A$}
+        &#92;ForTo{$j = 2$}{$A.&#92;mathrm{length}$}
+            &#92;State{$k = A[j]$}
+                &#92;State{$i = j - 1$}
+                &#92;While{$i &gt; 0$ and $A[i] &gt; k$}
+                    &#92;State{$A[i + 1] = A[i]$}
+                    &#92;State{$i = i - 1$}
+                &#92;EndWhile
+                &#92;State{$A[i + 1] = k$}
+            &#92;EndFor
+        &#92;EndProcedure
+    &#92;end{algorithmic}
+&#92;end{document}
 </code></pre>
   </figure>
   <p>アルゴリズム中
@@ -158,51 +158,51 @@
 \renewcommand{\Return}{\State\oldReturn}</code></pre>
   </figure>
   <p>上記の設定を使った文書の例です。</p>
-    <pre><code class="language-latex">\documentclass{article}
-\usepackage{amsmath}
-\usepackage[noend]{algpseudocode}
+    <pre><code class="language-latex">&#92;documentclass{article}
+&#92;usepackage{amsmath}
+&#92;usepackage[noend]{algpseudocode}
 %%%%% フォント関連 %%%%%
-\usepackage{unicode-math}
-\setmainfont[Ligatures=TeX]{TeX Gyre Termes}
-\setmathfont{TeX Gyre Termes Math}
-\newfontfamily\algfont{TeX Gyre Cursor}
-\makeatletter
-\renewcommand{\ALG@beginalgorithmic}{\algfont}
-\makeatother
+&#92;usepackage{unicode-math}
+&#92;setmainfont[Ligatures=TeX]{TeX Gyre Termes}
+&#92;setmathfont{TeX Gyre Termes Math}
+&#92;newfontfamily&#92;algfont{TeX Gyre Cursor}
+&#92;makeatletter
+&#92;renewcommand{&#92;ALG@beginalgorithmic}{&#92;algfont}
+&#92;makeatother
 %%%%%%%%%%%%%%%%%%%%
-\algnewcommand\algorithmicto{\textbf{to}}
-\algdef{SE}[FOR]{ForTo}{EndFor}[2]{%
-    \algorithmicfor\ #1\ \algorithmicto\ #2\ \algorithmicdo
+&#92;algnewcommand&#92;algorithmicto{&#92;textbf{to}}
+&#92;algdef{SE}[FOR]{ForTo}{EndFor}[2]{%
+    &#92;algorithmicfor&#92; #1&#92; &#92;algorithmicto&#92; #2&#92; &#92;algorithmicdo
 }{%
-    \algorithmicend\ \algorithmicfor
+    &#92;algorithmicend&#92; &#92;algorithmicfor
 }
-\algrenewcommand\algorithmicdo{}
-\let\oldReturn\Return
-\renewcommand{\Return}{\State\oldReturn}
-\algtext*{EndFor}
-\algrenewcommand\alglinenumber[1]{{\texttt{#1:}}}
-\newenvironment{broadalgo}{%
-  \setlength{\baselineskip}{17pt}
-  \begin{algorithmic}[1]
+&#92;algrenewcommand&#92;algorithmicdo{}
+&#92;let&#92;oldReturn&#92;Return
+&#92;renewcommand{&#92;Return}{&#92;State&#92;oldReturn}
+&#92;algtext*{EndFor}
+&#92;algrenewcommand&#92;alglinenumber[1]{{&#92;texttt{#1:}}}
+&#92;newenvironment{broadalgo}{%
+  &#92;setlength{&#92;baselineskip}{17pt}
+  &#92;begin{algorithmic}[1]
 }{%
-  \end{algorithmic}
+  &#92;end{algorithmic}
 }
-\pagestyle{empty}
-\begin{document}
-    \begin{broadalgo}
-        \Procedure{Insertion-Sort}{$A$}
-        \ForTo{$j = 2$}{$A.\mathrm{length}$}
-            \State{$k = A[j]$}
-                \State{$i = j - 1$}
-                \While{$i &gt; 0$ and $A[i] &gt; k$}
-                    \State{$A[i + 1] = A[i]$}
-                    \State{$i = i - 1$}
-                \EndWhile
-                \State{$A[i + 1] = k$}
-            \EndFor
-        \EndProcedure
-    \end{broadalgo}
-\end{document}
+&#92;pagestyle{empty}
+&#92;begin{document}
+    &#92;begin{broadalgo}
+        &#92;Procedure{Insertion-Sort}{$A$}
+        &#92;ForTo{$j = 2$}{$A.&#92;mathrm{length}$}
+            &#92;State{$k = A[j]$}
+                &#92;State{$i = j - 1$}
+                &#92;While{$i &gt; 0$ and $A[i] &gt; k$}
+                    &#92;State{$A[i + 1] = A[i]$}
+                    &#92;State{$i = i - 1$}
+                &#92;EndWhile
+                &#92;State{$A[i + 1] = k$}
+            &#92;EndFor
+        &#92;EndProcedure
+    &#92;end{broadalgo}
+&#92;end{document}
 </code></pre>
     <figure class="centered">
       <img
@@ -227,6 +227,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" integrity="sha512-SkmBfuA2hqjzEVpmnMt/LINrjop3GKWqsuLSSB3e7iBmYK7JuWw4ldmmxwD9mdm2IRTTi0OxSAfEGvgEi0i2Kw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://kit.fontawesome.com/30a99ec99f.js" crossorigin="anonymous"></script>
+<script src="/static/js/findAndReplaceDOMText.js"></script>
 <script src="/static/js/main.js"></script>
 
       

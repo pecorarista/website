@@ -95,49 +95,49 @@
   </figure>
   <figure>
       <figcaption>上の文書のコード</figcaption>
-      <pre><code class="language-latex">\documentclass{beamer}
-\usetheme{default}
-\usepackage{fontspec}
-\setsansfont{OpenSans}
-\setmonofont{Source Code Pro}
-\usepackage{arabluatex}
-\setmainfont[Ligatures=TeX]{Free Serif}
-\newfontfamily\arabicfont[%
+      <pre><code class="language-latex">&#92;documentclass{beamer}
+&#92;usetheme{default}
+&#92;usepackage{fontspec}
+&#92;setsansfont{OpenSans}
+&#92;setmonofont{Source Code Pro}
+&#92;usepackage{arabluatex}
+&#92;setmainfont[Ligatures=TeX]{Free Serif}
+&#92;newfontfamily&#92;arabicfont[%
     Script=Arabic,     % enable ligatures
     RawFeature={%
         +anum,         % use eastern arabic numerals
         +ss05}         % put kasrah below shadda
 ]{Amiri}
-\newfontfamily\translitfont[Ligatures=TeX]{Free Serif}
-\SetTranslitFont{\translitfont}
-\SetTranslitStyle{\itshape}  % \upshape, \itshape
-\SetTranslitConvention{arabica}  % dmg, loc, arabica
-\setbeamertemplate{navigation symbols}{}
-\begin{document}
-\begin{frame}[fragile]
+&#92;newfontfamily&#92;translitfont[Ligatures=TeX]{Free Serif}
+&#92;SetTranslitFont{&#92;translitfont}
+&#92;SetTranslitStyle{&#92;itshape}  % &#92;upshape, &#92;itshape
+&#92;SetTranslitConvention{arabica}  % dmg, loc, arabica
+&#92;setbeamertemplate{navigation symbols}{}
+&#92;begin{document}
+&#92;begin{frame}[fragile]
     Input:
-    \vspace{-1ex}
-    \begin{verbatim}kAnat rI.hu &#39;l-^samAli tatajAdalu
+    &#92;vspace{-1ex}
+    &#92;begin{verbatim}kAnat rI.hu &#39;l-^samAli tatajAdalu
 wa &#39;l-^samsa fI &#39;ayyiN minhumA kAnat
-&#39;aqw_A mina &#39;l-&#39;uxr_A.\end{verbatim}
+&#39;aqw_A mina &#39;l-&#39;uxr_A.&#92;end{verbatim}
 
     Output (Arabic):
-    \smallskip
-    \begin{arab}[fullvoc]
+    &#92;smallskip
+    &#92;begin{arab}[fullvoc]
         kAnat rI.hu &#39;l-^samAli tatajAdalu
         wa &#39;l-^samsa fI &#39;ayyiN minhumA kAnat &#39;aqw_A mina &#39;l-&#39;uxr_A.
-    \end{arab}
+    &#92;end{arab}
 
-    \bigskip
+    &#92;bigskip
 
     Output (Transcription):
-    \smallskip
-    \begin{arab}[trans]
+    &#92;smallskip
+    &#92;begin{arab}[trans]
         kAnat rI.hu &#39;l-^samAli tatajAdalu
         wa &#39;l-^samsa fI &#39;ayyiN minhumA kAnat &#39;aqw_A mina &#39;l-&#39;uxr_A.
-    \end{arab}
-\end{frame}
-\end{document}
+    &#92;end{arab}
+&#92;end{frame}
+&#92;end{document}
 </code></pre>
   </figure>
   <p>ラテン文字との対応規則は<a href="https://archive.org/details/Dict_Wehr.pdf">Hans Wehr</a>などの辞書で使われる転記法と似ているため、慣れている人はすぐに覚えられるでしょう。一方で、上記の例を見ればわかるように、ラテン文字を入力する際には<strong>母音を補って入力しなければならず、初心者にはやや厳しいです</strong>。</p>
@@ -149,33 +149,33 @@ wa &#39;l-^samsa fI &#39;ayyiN minhumA kAnat
       </figure>
       <figure>
           <figcaption>上の文書のコード</figcaption>
-          <pre><code class="language-latex">\documentclass{beamer}
-\usetheme{default}
-\usepackage[no-math]{luatexja-fontspec}
-\usefonttheme{serif}
-\setmainjfont{RyuminPro-Regular}
-\newjfontfamily\mulberry{MotoyaMaruStd-W5}
-\newjfontfamily\hakusyu{HakusyuKaisyoExtraBold_kk}
-\setbeamertemplate{navigation symbols}{}
-\setbeamertemplate{frametitle}[default][center]
-\setbeamercolor{frametitle}{fg=black}
-\begin{document}
-\begin{frame}
-    \frametitle{%
-        {\textdir TLT
-        第$6$章単　因子および{\textdir TRT ジョルダン}の{\textdir TRT 標準形}
+          <pre><code class="language-latex">&#92;documentclass{beamer}
+&#92;usetheme{default}
+&#92;usepackage[no-math]{luatexja-fontspec}
+&#92;usefonttheme{serif}
+&#92;setmainjfont{RyuminPro-Regular}
+&#92;newjfontfamily&#92;mulberry{MotoyaMaruStd-W5}
+&#92;newjfontfamily&#92;hakusyu{HakusyuKaisyoExtraBold_kk}
+&#92;setbeamertemplate{navigation symbols}{}
+&#92;setbeamertemplate{frametitle}[default][center]
+&#92;setbeamercolor{frametitle}{fg=black}
+&#92;begin{document}
+&#92;begin{frame}
+    &#92;frametitle{%
+        {&#92;textdir TLT
+        第$6$章単　因子および{&#92;textdir TRT ジョルダン}の{&#92;textdir TRT 標準形}
         }
     }
-    \begin{center}
-    \Huge\bfseries\textdir TRT\pardir TRT
-        {\hakusyu 武道館 }
+    &#92;begin{center}
+    &#92;Huge&#92;bfseries&#92;textdir TRT&#92;pardir TRT
+        {&#92;hakusyu 武道館 }
 
-        \bigskip
+        &#92;bigskip
 
-        {\color{red}\mulberry スジャータ }
-    \end{center}
-\end{frame}
-\end{document}
+        {&#92;color{red}&#92;mulberry スジャータ }
+    &#92;end{center}
+&#92;end{frame}
+&#92;end{document}
 </code></pre>
       </figure>
   <p>タイトルの元ネタは齋藤正彦「線型代数入門」にある有名な誤植です。最近の版では直っているようです。また「ターャジス」の元ネタは「スジャータ」のトラックに書かれている文字です（参照：<a href="https://nlab.itmedia.co.jp/nl/articles/1809/11/news113.html">『スジャータのトラックから「ターャジス」が廃止とのウワサ → 2018年1月の新型車両から順次「スジャータ」に』</a>）。</p>
@@ -214,6 +214,7 @@ wa &#39;l-^samsa fI &#39;ayyiN minhumA kAnat
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" integrity="sha512-SkmBfuA2hqjzEVpmnMt/LINrjop3GKWqsuLSSB3e7iBmYK7JuWw4ldmmxwD9mdm2IRTTi0OxSAfEGvgEi0i2Kw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://kit.fontawesome.com/30a99ec99f.js" crossorigin="anonymous"></script>
+<script src="/static/js/findAndReplaceDOMText.js"></script>
 <script src="/static/js/main.js"></script>
 
       
