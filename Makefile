@@ -48,7 +48,7 @@ $(DIST)/static/fonts/%: fonts/%
 	@mkdir -p $(@D)
 	@cp $< $@
 
-$(DIST)/static/js/main.js: javascripts/main.js
+$(DIST)/static/js/%: javascripts/%
 	@mkdir -p $(@D)
 	@cp $< $@
 
