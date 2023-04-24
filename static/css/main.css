@@ -7,13 +7,27 @@ html {
 }
 
 body {
-  font-family: "Roboto", "hiragino-kaku-gothic-pron", sans-serif;
+  font-family: "Roboto", "source-han-sans-japanese", sans-serif;
   font-size: 1.1rem;
   font-weight: 400;
-  font-feature-settings: "kern" 1, "palt";
-  font-feature-settings: "liga" 0;
+  font-feature-settings: "kern" 1, "liga" 0, "palt";
   font-variant-ligatures: none;
   background-color: #f5f5f5;
+}
+
+:lang(ja) p mjx-container:not([display])::before,
+:lang(ja) li mjx-container:not([display])::before {
+  display: inline;
+  font-family: "source-han-sans-japanese", monospace;
+  font-size: 50%;
+  font-weight: normal;
+  content: " ";
+}
+:lang(ja) span.before-hyphen > mjx-container:not([display])::after {
+  content: "";
+}
+:lang(ja) span.head > mjx-container:not([display])::before {
+  content: "";
 }
 
 cite,
@@ -23,7 +37,7 @@ em {
 }
 
 :lang(ar) {
-  font-family: "Amiri", "Roboto", "hiragino-kaku-gothic-pron", sans-serif;
+  font-family: "Amiri", "Roboto", "source-han-sans-japanese", sans-serif;
 }
 
 .wrapper {
@@ -137,19 +151,6 @@ ol.citation li::before {
   font-feature-settings: "palt";
 }
 
-table.math {
-  margin: 18px;
-}
-table.math tr > td {
-  padding-bottom: 12px;
-}
-table.math tr > td.mathitem {
-  text-align: center;
-}
-table.math tr > td + td {
-  padding-left: 0.5rem;
-}
-
 ol.math {
   padding-left: 1rem;
   counter-reset: m;
@@ -177,6 +178,10 @@ ol.math li.p::before {
 
 ol.math li.d::before {
   content: "(d" counter(m) ")";
+}
+
+ol.math li.alphabetical::before {
+  content: "(" counter(m, lower-latin) ")";
 }
 
 ol.math li.capc::before {
@@ -244,15 +249,22 @@ th {
 
 .quarter::after {
   display: inline;
-  font-family: "hiragino-kaku-gothic-pron", monospace;
+  font-family: "source-han-sans-japanese", monospace;
   font-size: 50%;
+  content: " ";
+}
+
+.half::after {
+  display: inline;
+  font-family: "source-han-sans-japanese", monospace;
+  font-weight: normal;
   content: " ";
 }
 
 code {
   padding: 2px 5px;
   margin: 0;
-  font-family: "Roboto Mono", "hiragino-kaku-gothic-pron", monospace;
+  font-family: "Roboto Mono", "source-han-sans-japanese", monospace;
   font-size: 85%;
   color: #f8f8f2;
   background-color: #263e52;
@@ -261,7 +273,8 @@ code {
 code[class*=language-] {
   font-family: "Roboto Mono", monospace;
 }
-code .quarter {
+code .quarter,
+code .half {
   display: none;
 }
 
@@ -273,7 +286,8 @@ pre[class*=language-] {
   font-family: "Roboto Mono", monospace;
   border-radius: 3px;
 }
-pre .quarter {
+pre .quarter,
+pre .half {
   display: none;
 }
 pre code {
@@ -290,16 +304,20 @@ kbd {
   background-color: #263e52;
   border-radius: 3px;
 }
-kbd .quarter {
+kbd .quarter,
+kbd .half {
   display: none;
 }
 
-samp .quarter {
+samp .quarter,
+samp .half {
   display: none;
 }
 
 ol > .quarter,
-ul > .quarter {
+ul > .quarter,
+ol > .half,
+ul > .half {
   display: none;
 }
 

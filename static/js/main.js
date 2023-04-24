@@ -7,8 +7,8 @@ function transform(element) {
   const kanji = '\u2E80-\u2FFF\u31C0-\u31EF\u3300-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF\uFE30-\uFE4F';
 
   const punct = '[—@&=_\,\.\?\!\$\%\^\*\-\+\/]';
-  const left = `[\\[({'"<«‘“]`;
-  const right = `[\\])}'">»’”]`;
+  const left = `[\\[({'"<«‘“⟨]`;
+  const right = `[\\])}'">»’”⟩]`;
 
   const cjk = '[' +  [hiragana, katakana, kanji].join('') + ']';
   const latin = '[A-Za-z0-9\u00C0-\u00FF\u0100-\u017F\u0180-\u024F\u1E00-\u1EFF]' + '|' + punct;
@@ -22,12 +22,11 @@ function transform(element) {
       '([：])([『])',
       '(' + cjk + ')([：])'
     ],
-    /* if proportional
+    // if proportional
     half: [
       '([、。，．）」』])(' + left + '|' + latin + '|' + cjk + ')',
       '(' + latin + '|' + cjk + ')([（「『])'
     ]
-    */
   };
 
   Object.keys(patterns).forEach(space => {
@@ -62,6 +61,7 @@ function transform(element) {
 
   });
 }
+
 
 document.addEventListener('DOMContentLoaded', event => {
 

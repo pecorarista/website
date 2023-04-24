@@ -56,25 +56,18 @@
     </div>
     
 <section>
-<p>
-Lebesgue積分を定義通りに計算することがなかったので（する必要はないが），
-一様分布の期待値と分散を題材に計算してみる．
-</p>
-<p>
-確率空間
-\(
+<p>Lebesgue積分を定義通りに計算することがなかったので（する必要はないが），一様分布の期待値と分散を題材に計算してみる．</p>
+<p>確率空間\(
   (\varOmega,\, \mathcal{F},\, P)
-\)
-で考える．
-確率変数
-\(X\colon \varOmega \to \mathbb{R}\)
-が一様分布
-\(\mathcal{U}(0,\,1)\)
-に従うとは，
-\(X\)
-の分布関数
-\(F \colon \mathbb{R} \to [0,\,1]\)
-が以下で与えられることである：
+\)で考える．確率変数\(
+  X\colon \varOmega \to \mathbb{R}
+\)が一様分布\(
+  \mathcal{U}(0,\,1)
+\)に従うとは，\(
+  X
+\)の分布関数\(
+  F \colon \mathbb{R} \to [0,\,1]
+\)が以下で与えられることである：
 \begin{align*}
   F(x) :=
   P(\{\omega \in \varOmega \mid X(\omega) \leq x\}) =
@@ -84,10 +77,7 @@ Lebesgue積分を定義通りに計算することがなかったので（する
     1 &amp; \text{if \(x \in [1,\, \infty).\)} \\
   \end{cases}
 \end{align*}
-\(F\)
-の密度関数
-\(f\)
-は
+<span class="head">\(F\)</span>の密度関数\(f\)は
 \begin{align*}
   f(x) =
   \begin{cases}
@@ -95,8 +85,7 @@ Lebesgue積分を定義通りに計算することがなかったので（する
     0 &amp; \text{otherwise.} \\
   \end{cases}
 \end{align*}
-\(X\)
-の期待値は
+<span class="head">\(X\)</span>の期待値は
 \begin{align*}
   E[X]
   &amp;= \int_{\varOmega} X(\omega) P(d\omega) \\
@@ -116,8 +105,7 @@ Lebesgue積分を定義通りに計算することがなかったので（する
   &amp;= \lim_{n \to \infty} \frac{1}{2} \cdot \parentheses{1 - \frac{1}{2^n}} \\
   &amp;= \frac{1}{2}.
 \end{align*}
-\(X\)
-の分散は
+<span class="head">\(X\)</span>の分散は
 \begin{align*}
   V[X]
   &amp;= E[X^2] - (E[X])^2 \\
@@ -142,15 +130,11 @@ Lebesgue積分を定義通りに計算することがなかったので（する
   &amp;= \frac{1}{12}.
 \end{align*}
 </p>
-<p>一般に確率変数
-\(X'\)
-が一様分布
-\(\mathcal{U}(a,\,b)\)
-にしたがうとき，
-\(X \sim \mathcal{U}(0,\, 1)\)
-を用いて
-\(X' = (b - a) X + a\)
-と表すことができるから，期待値と分散はそれぞれ
+<p>一般に確率変数\(X'\)が一様分布\(\mathcal{U}(a,\,b)\)にしたがうとき，\(
+  X \sim \mathcal{U}(0,\, 1)
+\)を用いて\(
+  X' = (b - a) X + a
+\)と表すことができるから，期待値と分散はそれぞれ
 \begin{align*}
   E[X'] &amp;= E[(b - a)X + a] \\
         &amp;= \frac{b - a}{2}\cdot E[X] + a \\

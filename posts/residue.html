@@ -56,29 +56,49 @@
 <section>
 <p>MathJaxのアップデートにともない動作を確認したかったため，典型的な複素積分の問題とその解答を載せる．</p>
 <p><strong>問</strong> 次の積分の値を求めよ．
-<ol class="parens">
-  <li>\(\displaystyle \int_{-\infty}^\infty \frac{1}{1 + x^2} dx\)</li>
-  <li>\(\displaystyle \int_{0}^\infty \frac{1}{1 + x^3} dx\)</li>
-  <li>\(\displaystyle \int_{-\infty}^\infty \frac{1}{1 + x^4} dx\)</li>
+<ol class="math">
+  <li
+    class="alphabetical"
+  ><span
+    class="head"
+  >\(\displaystyle \int_{-\infty}^\infty \frac{1}{1 + x^2} dx\)</span></li>
+  <li
+    class="alphabetical"
+  ><span class="head">\(\displaystyle \int_{0}^\infty \frac{1}{1 + x^3} dx\)</span></li>
+  <li
+    class="alphabetical"
+  ><span class="head">\(\displaystyle \int_{-\infty}^\infty \frac{1}{1 + x^4} dx\)</span></li>
 </ol>
 </p>
-<p><strong>解答</strong> (a) \(\displaystyle f(z) = \frac{1}{z^2 + 1}\) \((z \in \mathbb{C})\) とおく．
-この関数は \(z = \pm i\) を孤立特異点にもつ．
-また曲線 \(C\) を \(C\colon z = Re^{i\theta}\) \((R \gt 1,\ 0 \leq \theta \leq \pi)\) で定義する．
-このとき，留数定理により
+<p><strong>解答</strong> <span class="mathitem">(a)</span>
+<span class="head">\(
+  \displaystyle f(z) = \frac{1}{z^2 + 1}\ (z \in \mathbb{C})
+\)</span>とおく．
+この関数は\(
+  z = \pm i
+\)を孤立特異点にもつ．
+また曲線\(
+  C
+\)を\(
+  C \colon z = Re^{i\theta}
+\) \(
+  (R \gt 1,\ 0 \leq \theta \leq \pi)
+\)で定義する．このとき，留数定理により
 \begin{align}
     \int_{-R}^R f(x) dx + \int_C f(z) dz = 2 \pi i \res(f, i) \label{a}
 \end{align}
 が成り立つ．</p>
-<p>\(f\) について
+<p><span class="head">\(f\)</span>について
 \begin{align*}
     f(z) &amp;= \frac{1}{(z + i)(z - i)} \\
          &amp;= \frac{1}{z - i} \cdot \frac{1}{z - i + 2i} \\
          &amp;= \frac{1}{2i} \cdot \frac{1}{z - i} \cdot \frac{1}{\displaystyle 1 + \frac{z - i}{2i}}
 \end{align*}
-であるから， \(0 \lt \abs{z - i} \lt 1\) の範囲で
-\(\displaystyle \abs{\frac{z - i}{2i}} \leq \frac{\abs{z - i}}{\abs{2i}} \leq \frac{1}{2} \) となり，
-級数展開できて
+であるから，\(
+  0 \lt \abs{z - i} \lt 1
+\)の範囲で\(
+  \displaystyle \abs{\frac{z - i}{2i}} \leq \frac{\abs{z - i}}{\abs{2i}} \leq \frac{1}{2}
+\)となり，級数展開できて
 \begin{align*}
   f(z)
       &amp;= \frac{1}{2i} \frac{1}{z - i}
@@ -90,7 +110,9 @@
           } \\
       &amp;= - \frac{i}{2} \frac{1}{z - i} + \frac{1}{4} + \cdots
 \end{align*}
-となる．したがって \(\displaystyle \res(f, i) = - \frac{i}{2}\) である．</p>
+となる．したがって\(
+  \displaystyle \res(f, i) = - \frac{i}{2}
+\)である．</p>
 <p>したがって\eqref{a}は
 \begin{align*}
     \int_{-R}^R f(x) dx + \int_C f(z) dz = \pi
@@ -114,23 +136,25 @@
     &amp;= \pi
 \end{align*}
 を得る．</p>
-<p>(b) \(\displaystyle f(z) = \frac{1}{z^3 + 1} = \frac{1}{(z + 1)(z^2 - z + 1)}\) \((z \in \mathbb{C})\) とおく．
-この関数は
-\(\displaystyle \alpha = \frac{1}{2} + \frac{\sqrt{3}}{2}i\)
-とすると
-\(\displaystyle z = - 1, \alpha, \bar{\alpha}\)
-を孤立特異点としてもつ．
-曲線
-\(C_1, C_2\)
-を
-\(C_1\colon z = Re^{i\theta}\) \(\displaystyle \parentheses{R \gt 0, 0 \leq \theta \leq \frac{2 \pi}{3}}, C_2\colon z = r e^{2\pi i /3} \) \((0 \leq r \leq R)\)
-で定める．留数定理より
+<p><span class="mathitem">(b)</span>
+<span class="head">\(
+  \displaystyle f(z) = \frac{1}{z^3 + 1} = \frac{1}{(z + 1)(z^2 - z + 1)}\ (z \in \mathbb{C})
+\)</span>とおく．
+この関数は\(
+  \displaystyle \alpha = \frac{1}{2} + \frac{\sqrt{3}}{2}i
+\)
+とすると\(
+  \displaystyle z = - 1, \alpha, \bar{\alpha}
+\)を孤立特異点としてもつ．曲線\(
+C_1,\, C_2
+\)を\(
+C_1\colon z = Re^{i\theta}\) \(\displaystyle \parentheses{R \gt 0, 0 \leq \theta \leq \frac{2 \pi}{3}}, C_2\colon z = r e^{2\pi i /3} \) \((0 \leq r \leq R)
+\)で定める．留数定理より
 \begin{align}
     \int_{0}^R f(x) dx + \int_{C_1} f(z) dz + \int_{-C_2} f(z) dz = 2 \pi i \res(f, \alpha) \label{b}
 \end{align}
 が成り立つ．</p>
-<p>\(f\)
-について
+<p><span class="head">\(f\)</span>について
 \begin{align*}
     f(z) &amp;= \frac{1}{(z + 1)(z - \alpha)(z - \bar{\alpha})} \\
          &amp;= \frac{1}{(z - \alpha + \alpha + 1)(z - \alpha)(z - \alpha + \alpha - \bar{\alpha})} \\
@@ -140,9 +164,10 @@
          \parentheses{1 - \frac{z - \alpha}{\alpha - 1} + \parentheses{\frac{z - \alpha}{\alpha - 1}}^2 - \cdots} \\
          &amp;\quad\,\,\parentheses{1 - \frac{z - \alpha}{\alpha - \bar{\alpha}} + \parentheses{\frac{z - \alpha}{\alpha - \bar{\alpha}}}^2 - \cdots}.
 \end{align*}
-であるから
-\(\displaystyle \res (f, \alpha) = \frac{1}{(\alpha + 1)(\alpha - \bar{\alpha})} = \frac{1}{(\alpha + 1)\sqrt{3}i}\)
-を得る．
+であるから\(
+  \displaystyle \res (f, \alpha)
+  = \frac{1}{(\alpha + 1)(\alpha - \bar{\alpha})} = \frac{1}{(\alpha + 1)\sqrt{3}i}
+\)を得る．
 </p>
 <p>一方，
 \begin{align*}
@@ -164,9 +189,9 @@
     \int_{0}^R f(z) dz + \int_{C_1} f(z) dz + \int_{-C_2} f(z) dz = \frac{2 \pi i}{(\alpha + 1)\sqrt{3}i} \\
     (1 + \bar{\alpha}) \int_{0}^R \frac{dx}{x^3 + 1} + \int_{C_1} f(z) dz = \frac{2 \pi}{(\alpha + 1)\sqrt{3}}
 \end{gather*}
-となり，
-\(R \to \infty\)
-として
+となり，\(
+  R \to \infty
+\)として
 \begin{align*}
     \int_{0}^\infty \frac{dx}{x^3 + 1}
     &amp; = \frac{2 \pi}{\sqrt{3}}\cdot\frac{1}{(\alpha + 1)(\bar{\alpha} + 1)} \\
@@ -174,26 +199,29 @@
 \end{align*}
 を得る．
 </p>
-<p>(c) \(\displaystyle f(z) = \frac{1}{z^4 + 1}\) \((z \in \mathbb{C})\) とおく．
-この関数は
-\(\displaystyle \alpha = \frac{\sqrt{2}}{2} + \frac{\sqrt{2}}{2}i\)
-とすると
-\(z = \alpha, \bar{\alpha}, -\alpha, -\bar{\alpha}\)
-を孤立特異点としてもつ．
-曲線
-\(C\)
-を
-\(C\colon z = Re^{i\theta}\)
-\((R \gt 0, 0 \leq \theta \leq \pi)\)
+<p><span class="mathitem">(c)</span>
+<span class="head">\(
+  \displaystyle f(z) = \frac{1}{z^4 + 1}\) \((z \in \mathbb{C})
+\)</span>とおく．この関数は\(
+  \displaystyle \alpha = \frac{\sqrt{2}}{2} + \frac{\sqrt{2}}{2}i
+\)
+とすると\(
+  z = \alpha, \bar{\alpha}, -\alpha, -\bar{\alpha}
+\)を孤立特異点としてもつ．曲線\(
+  C
+\)を\(
+  C\colon z = Re^{i\theta}
+\) \(
+  (R \gt 0, 0 \leq \theta \leq \pi)
+\)
 で定める．留数定理より
 \begin{align}
     \int_{-R}^R f(x) dx + \int_C f(z) dz = 2 \pi i \sum_{z \in \{\alpha, -\bar{\alpha}\}} \res(f, z) \label{c}
 \end{align}
 が成り立つ．</p>
-<p>\(f\)
-について
-\(\displaystyle 0 \lt \abs{z - \alpha} \lt \frac{\sqrt{2}}{2}\)
-の範囲で
+<p><span class="head">\(f\)</span>について\(
+  \displaystyle 0 \lt \abs{z - \alpha} \lt \frac{\sqrt{2}}{2}
+\)の範囲で
 \begin{align*}
     f(z) &amp;= \frac{1}{(z - \alpha)(z + \bar{\alpha})(z + \alpha)(z - \bar{\alpha})} \\
          &amp;= \frac{1}{(z - \alpha)(z - \alpha + \alpha  + \bar{\alpha})(z - \alpha + 2 \alpha)(z - \alpha + \alpha - \bar{\alpha})} \\
@@ -216,9 +244,9 @@
          \parentheses{1 - \frac{z - \alpha}{2\alpha} + \parentheses{\frac{z - \alpha}{2\alpha}}^2 - \cdots}
          \parentheses{1 - \frac{z - \alpha}{\alpha - \bar{\alpha}} + \parentheses{\frac{z - \alpha}{\alpha - \bar{\alpha}}}^2 - \cdots}.
 \end{align*}
-また
-\(\displaystyle 0 \lt \abs{z + \bar{\alpha}} \lt \frac{\sqrt{2}}{2}\)
-の範囲で
+また\(
+  \displaystyle 0 \lt \abs{z + \bar{\alpha}} \lt \frac{\sqrt{2}}{2}
+\)の範囲で
 \begin{align*}
     f(z) &amp;= \frac{1}{(z + \bar{\alpha} - \bar{\alpha} - \alpha)(z + \bar{\alpha})(z + \bar{\alpha} - \bar{\alpha} + \alpha)(z + \bar{\alpha} - 2\bar{\alpha})} \\
          &amp;= \frac{\displaystyle
