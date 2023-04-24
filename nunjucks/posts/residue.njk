@@ -15,22 +15,36 @@
   <li>\(\displaystyle \int_{-\infty}^\infty \frac{1}{1 + x^4} dx\)</li>
 </ol>
 </p>
-<p><strong>解答</strong> (a) \(\displaystyle f(z) = \frac{1}{z^2 + 1}\) \((z \in \mathbb{C})\) とおく．
-この関数は \(z = \pm i\) を孤立特異点にもつ．
-また曲線 \(C\) を \(C\colon z = Re^{i\theta}\) \((R \gt 1,\ 0 \leq \theta \leq \pi)\) で定義する．
-このとき，留数定理により
+<p><strong>解答</strong> (a) \(
+\displaystyle f(z) = \frac{1}{z^2 + 1}\) \((z \in \mathbb{C})
+\)とおく．
+この関数は\(
+z = \pm i
+\)を孤立特異点にもつ．
+また曲線\(
+C
+\)を\(
+C \colon z = Re^{i\theta}
+\) \((
+R \gt 1,\ 0 \leq \theta \leq \pi)
+\)で定義する．このとき，留数定理により
 \begin{align}
     \int_{-R}^R f(x) dx + \int_C f(z) dz = 2 \pi i \res(f, i) \label{a}
 \end{align}
 が成り立つ．</p>
-<p>\(f\) について
+<p>\(f\)について
 \begin{align*}
     f(z) &amp;= \frac{1}{(z + i)(z - i)} \\
          &amp;= \frac{1}{z - i} \cdot \frac{1}{z - i + 2i} \\
          &amp;= \frac{1}{2i} \cdot \frac{1}{z - i} \cdot \frac{1}{\displaystyle 1 + \frac{z - i}{2i}}
 \end{align*}
-であるから， \(0 \lt \abs{z - i} \lt 1\) の範囲で
-\(\displaystyle \abs{\frac{z - i}{2i}} \leq \frac{\abs{z - i}}{\abs{2i}} \leq \frac{1}{2} \) となり，
+であるから，\(
+0 \lt \abs{z - i} \lt 1
+\) の範囲で
+\(
+\displaystyle \abs{\frac{z - i}{2i}} \leq \frac{\abs{z - i}}{\abs{2i}} \leq \frac{1}{2}
+\)
+となり，
 級数展開できて
 \begin{align*}
   f(z)

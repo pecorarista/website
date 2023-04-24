@@ -1,0 +1,57 @@
+{% extends 'nunjucks/_layout/_article.njk' %}
+{% set lang = 'ja' %}
+{% set mathematical = 'true' %}
+{% set title = '確率過程' %}
+{% set posted = '2023-04-23' %}
+
+{% block post %}
+<section>
+<strong>定義（確率過程）</strong>
+<p>\(\mathcal{T}\)を全順序集合とし，\((\varOmega,\,\mathcal{F})\)と
+\((\mathcal{Y},\,\mathcal{G})\)を可測空間とする．\(\mathcal{T}\)で添え字付けられた\((\mathcal{F},\,\mathcal{G})\)-可測な確率変数の族\((X_t)_{t \in \mathcal{T}}\)を<strong>確率過程</strong>と呼ぶ．
+</p>
+</section>
+<section>
+<strong>定義（確率変数によって生成される<span class="quarter"></span>\(\sigma\)-加法族）</strong>
+<p>集合族\(\{X^{-1} (G) \mid G \in \mathcal{G}\}\)は\(\varOmega\)の\(\sigma\)-加法族になる．これを確率変数
+\(X\)
+によって生成される<span class="quarter"></span>\(\sigma\)-加法族</strong>と呼び，
+\(\sigma(X)\)
+で表す．
+</p>
+</section>
+<section>
+<strong>定義（フィルトレーション）</strong>
+<p>全順序集合
+\(\mathcal{T}\)
+で添え字付けられた
+\(\sigma\)-加法族の族
+\((\mathcal{F_t})_{t \in \mathcal{T}}\)
+について，\(t \lt t'\)
+ならば
+\(\mathcal{F}_t \subset \mathcal{F}_{t'}\)
+が成り立つとき，\((\mathcal{F_t})_{t \in \mathcal{T}}\)
+を<strong>フィルトレーション(filtration)</strong>と呼ぶ．
+</p>
+</section>
+<section>
+<strong>定義（適合）</strong>
+<p>全順序集合
+\(\mathcal{T}\)
+で添え字付けられた
+\(\sigma\)-加法族の族
+\((\mathcal{F_t})_{t \in \mathcal{T}}\)
+について，\(t \lt t'\)
+ならば
+\(\mathcal{F}_t \subset \mathcal{F}_{t'}\)
+が成り立つとき，\((\mathcal{F_t})_{t \in \mathcal{T}}\)
+を<strong>フィルトレーション(filtration)</strong>と呼ぶ．
+</p>
+</section>
+<section id="materials">
+  <h2>参考文献</h2>
+  <ol class="citation">
+  <li><a href="https://link.springer.com/book/10.1007/978-0-387-87859-1">Erhan &Ccedil;&#x131;nlar (2011) <em>Probability and Stochastics</em>. Springer New York.</a></li>
+  </ul>
+</section>
+{% endblock %}

@@ -10,7 +10,8 @@ $code-body: #f8f8f2;
 $code-background: #263e52;
 $footer-height: 70px;
 $western-font: 'Roboto';
-$jp-font: 'hiragino-kaku-gothic-pron';
+// $jp-font: 'hiragino-kaku-gothic-pron';
+$jp-font: 'source-han-sans-japanese';
 $ipa-font: 'Judson';
 $arabic-font: 'Amiri';
 $mono-font: 'Roboto Mono';
@@ -28,10 +29,21 @@ body {
   font-family: $western-font, $jp-font, sans-serif;
   font-size: 1.1rem;
   font-weight: 400;
-  font-feature-settings: 'kern' 1, 'palt';
-  font-feature-settings: 'liga' 0;
+  font-feature-settings: 'kern' 1, 'liga' 0, 'palt';
   font-variant-ligatures: none;
   background-color: $white-smoke;
+}
+
+p,
+li {
+  mjx-container {
+    padding-right: 0.2rem;
+    padding-left: 0.2rem;
+  }
+
+  mjx-container::first-letter {
+    padding-left: 0;
+  }
 }
 
 cite,
@@ -289,6 +301,14 @@ th {
   }
 }
 
+.half {
+  &::after {
+    display: inline;
+    font-family: $jp-font, monospace;
+    content: ' ';
+  }
+}
+
 code {
   padding: 2px 5px;
   margin: 0;
@@ -302,7 +322,8 @@ code {
     font-family: $mono-font, monospace;
   }
 
-  .quarter {
+  .quarter,
+  .half {
     display: none;
   }
 }
@@ -316,7 +337,8 @@ pre {
     border-radius: 3px;
   }
 
-  .quarter {
+  .quarter,
+  .half {
     display: none;
   }
 
@@ -335,19 +357,23 @@ kbd {
   background-color: $code-background;
   border-radius: 3px;
 
-  .quarter {
+  .quarter,
+  .half {
     display: none;
   }
 }
 
 samp {
-  .quarter {
+  .quarter,
+  .half {
     display: none;
   }
 }
 
 ol > .quarter,
-ul > .quarter {
+ul > .quarter,
+ol > .half,
+ul > .half {
   display: none;
 }
 

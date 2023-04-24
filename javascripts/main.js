@@ -22,12 +22,11 @@ function transform(element) {
       '([：])([『])',
       '(' + cjk + ')([：])'
     ],
-    /* if proportional
+    // if proportional
     half: [
       '([、。，．）」』])(' + left + '|' + latin + '|' + cjk + ')',
       '(' + latin + '|' + cjk + ')([（「『])'
     ]
-    */
   };
 
   Object.keys(patterns).forEach(space => {
