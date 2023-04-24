@@ -8,14 +8,13 @@
 <section>
 <p><strong>前提</strong>
 各層の入出力の分散が一定であることが望ましい．</p>
-<p>ニューラルネットの第
-\(\ell\)
-番目の線型層について，
-入力の次元を
-\(n^\ell\)，
-出力の次元を
-\(n^{\ell + 1}\)，
-入力と重みをそれぞれ
+<p>ニューラルネットの第\(
+\ell
+\)番目の線型層について，入力の次元を\(
+  n^\ell
+\)，出力の次元を\(
+  n^{\ell + 1}
+\)，入力と重みをそれぞれ
 \begin{align*}
   x^\ell =
     \begin{pmatrix}
@@ -30,29 +29,25 @@
       w_{n^{\ell + 1} 1}^{\ell} &amp; \cdots &amp; w_{n^{\ell + 1} n^\ell}^{\ell}
     \end{pmatrix}
 \end{align*}
-とする（※
-\(\ell\)
-は上付き添え字であり，累乗の指数ではない．）．各
-\(w_{ij}^{\ell}\)
-の各成分は
-期待値
-\(0
-\)
-の同一の分布から独立に選ぶ．
-このとき任意の
-\(i,\,j,\,k\)
-について
-\(x_k\)
-と
-\(w_{ij}\)
-は独立になる．
-線型層の出力
-\(y^\ell := W^{\ell}x^\ell\)
-の第
-\(i\)
-成分の分散は，
-\(\mathcal{J}_{n^\ell} := \{1,\,\ldots,\,n^\ell\}\)
-と表すことにすると
+とする（&#x203B;\(
+  \ell
+\)は上付き添え字であり，累乗の指数ではない．）．各\(
+  w_{ij}^{\ell}
+\)の各成分は期待値\(
+  0
+\)の同一の分布から独立に選ぶ．このとき任意の\(
+  i,\,j,\,k
+\)について\(
+  x_k
+\)と\(
+  w_{ij}
+\)は独立になる．線型層の出力\(
+  y^\ell := W^{\ell}x^\ell
+\)の第\(
+  i
+\)成分の分散は，\(
+  \mathcal{J}_{n^\ell} := \{1,\,\ldots,\,n^\ell\}
+\)と表すことにすると
 \begin{align}
   V\left[y^\ell_i\right]
     &amp;= V \left[
@@ -128,9 +123,9 @@
       \sum_{j \in \mathcal{J}_{n^\ell}}
       E \left[{\left(x_j^{\ell}\right)}^2\right]. \label{w1}
 \end{align}
-ただし
-\(V_{W}^{\ell} = V\left[w_{i1}^{\ell}\right] = \cdots V\left[w_{n^\ell}^{\ell}\right]\)
-と置いた．</p>
+ただし\(
+  V_{W}^{\ell} = V\left[w_{i1}^{\ell}\right] = \cdots V\left[w_{n^\ell}^{\ell}\right]
+\)と置いた．</p>
 <p>(\ref{a})の右辺第2項について
 \begin{align}
     {\left(\sum_{j \in \mathcal{J}_{n^\ell}} E\left[w_{ij}^{\ell}\right]E\left[x_j^{\ell}\right]\right)}^2
@@ -148,12 +143,11 @@
 \end{align}
 という式を得る．</p>
 <p>
-活性化関数を
-\(g\)
-とする．このとき
-\(x_i^{\ell + 1} := g(y_i^{\ell})\)
-である．
-以下が成り立つと仮定する：
+活性化関数を\(
+  g
+\)とする．このとき\(
+  x_i^{\ell + 1} := g(y_i^{\ell})
+\)である．以下が成り立つと仮定する：
 \begin{gather}
   V\left[x_i^{\ell + 1}\right]
     \approx V\left[y_i^{\ell}\right]
@@ -163,15 +157,14 @@
     \text{ for all \(j \in \mathcal{J}_{n^\ell}\)}. \tag{H2} \label{ex0}
 \end{gather}
 </p>
-<p>(\ref{H1})について，活性化関数として用いられるものは，通常
-\(0\)
-の周りで
-\(g' \approx 1\)
-を満たす．
-すなわち
-\(g(y) \approx y + g(0)\)
-と書ける．
-したがって
+<p>(\ref{H1})について，活性化関数として用いられるものは，通常\(
+  0
+\)
+の周りで\(
+  g' \approx 1
+\)を満たす．すなわち\(
+  g(y) \approx y + g(0)
+\)と書ける．したがって
 \begin{align*}
   V\left[x_i^{\ell + 1}\right]
   = V\left[g\left(y_i^{\ell + 1}\right)\right]
@@ -180,8 +173,7 @@
   =
   V\left[y_i^{\ell}\right]
 \end{align*}
-が成り立つため，妥当な仮定である．
-(\ref{ex0})については
+が成り立つため，妥当な仮定である．(\ref{ex0})については
 \begin{align*}
   E\left[x_i^{\ell}\right]
   &amp;= E\left[g\left( y_i^{\ell - 1} \right)\right] \\
@@ -191,16 +183,13 @@
   &amp;= \sum_{j \in \mathcal{J}_{n^\ell}} 0 \cdot E \left[ x_j^{\ell - 1} \right]  + g(0)\\
   &amp;= g(0)
 \end{align*}
-となるので，
-\(0\)
-の周りで
-\(g' \approx 1\)
-かつ
-\(g(0) = 0\)
-となるような関数（
-\(\tanh\)
-など）
-を使う限り，妥当な仮定である．</p>
+となるので，\(
+  0
+\)の周りで\(
+  g' \approx 1
+\)かつ\(
+  g(0) = 0
+\)となるような関数<span class="head">（\(\tanh\)</span>など）を使う限り，妥当な仮定である．</p>
 <p>これら仮定の下で(\ref{v})より
 \begin{gather*}
   V\left[x_i^{\ell + 1}\right]
@@ -214,13 +203,11 @@
   V_{W}^{\ell}
   V\left[x_{1}^{\ell}\right]
 \end{gather*}
-したがって
-\(
+したがって\(
   V\left[x_i^{\ell + 1}\right]
   =
   V\left[x_{1}^{\ell}\right] \\
-\)
-とするためには
+\)とするためには
 \begin{gather*}
   V_{W}^{\ell} = \frac{1}{n^\ell}. \label{n}
 \end{gather*}
@@ -230,13 +217,11 @@
 \end{align}
 と定める．この初期化手法は<a href="#glorot">Glorot et al. (2010)</a>で提案されたため<em>Glorot initialization</em>と呼ばれる．</p>
 <p><strong>例</strong>
-\(W^{\ell}\)の各要素が
-\(\mathcal{U}(-a,\,a)\)
-（
-\(a\)
-は正の定数）から選ばれる場合を考える．このとき各要素の分散
-\(V^{\ell}_W\)
-は
+\(W^{\ell}\)の各要素が\(
+  \mathcal{U}(-a,\,a)
+\)<span class="head">（\(a\)</span>は正の定数）から選ばれる場合を考える．このとき各要素の分散\(
+  V^{\ell}_W
+\)は
 \begin{align}
   V^{\ell}_W = \frac{(a - (- a))^2}{12} = \frac{a^2}{3}. \label{uniform}
 \end{align}
@@ -244,14 +229,13 @@
 \begin{align*}
   \frac{a^2}{3} = \frac{2}{n^\ell + n^{\ell + 1}}.
 \end{align*}
-\(a\)
-は正だったことから
+\(a\)は正だったことから
 \begin{align*}
   a = \sqrt{\frac{6}{n^\ell + n^{\ell + 1}}}.
 \end{align*}
-したがって
-\(W^{\ell}\)
-の各要素は
+したがって\(
+  W^{\ell}
+\)の各要素は
 \begin{gather*}
   \mathcal{U}\left(
     - \sqrt{\frac{6}{n^\ell + n^{\ell + 1}}},\,
@@ -260,23 +244,23 @@
 \end{gather*}
 からサンプリングすればよい．</p>
 <p><strong>(\ref{ex0})が成り立たない場合</strong>
-例えば活性化関数が
-\(g(y) := \mathrm{ReLU}(y) = \max\{0,\,y\}\)
-のとき
-\(E\left[x_i^{\ell}\right] &gt; 0\)
-となる．
-適当な仮定をおいて，そのような場合にも(\ref{v})から
-\(V_{W}^{\ell}\)
-を求めたい．
-各
-\(x_i\)
-の確率密度関数
-\(f\)
-とし，
-\(f\)
-は
-\(y\)
-軸について対称であるとする．このとき
+例えば活性化関数が\(
+  g(y) := \mathrm{ReLU}(y) = \max\{0,\,y\}
+\)のとき\(
+  E\left[x_i^{\ell}\right] &gt; 0
+\)
+となる．適当な仮定をおいて，そのような場合にも(\ref{v})から\(
+  V_{W}^{\ell}
+\)を求めたい．各\(
+  x_i
+\)の確率密度関数\(
+  f
+\)
+とし，\(
+  f
+\)は\(
+  y
+\)軸について対称であるとする．このとき
 \begin{align*}
   E\left[{\left(x_j^{\ell}\right)}^2\right]
   &amp;= \int_{-\infty}^{\infty}
@@ -308,16 +292,16 @@
     \frac{2}{n^\ell}.
 \end{align*}
 この初期化手法は<a href="#he">He et al. (2015)</a>で提案されたため<em>He initialization</em>と呼ばれる．</p>
-<p><strong>【例】</strong>
-\(W^{\ell}\)の各要素が
-\(\mathcal{U}(-a,\,a)\)
-（
-\(a\)
-は正の定数）から選ばれる場合，(\ref{uniform})を使って
+<p><strong>【例】</strong> \(
+  W^{\ell}
+\)の各要素が\(
+  \mathcal{U}(-a,\,a)
+\)<span class="head">（\(a\)</span>は正の定数）から選ばれる場合，(\ref{uniform})を使って
 \begin{gather*}
   \frac{a^2}{3} = \frac{2}{n^\ell} \\
   a = \sqrt{\frac{6}{n^\ell}}
 \end{gather*}
+</p>
 </section>
 <section>
 <h2>参考文献</h2>

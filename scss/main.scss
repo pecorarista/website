@@ -34,15 +34,24 @@ body {
   background-color: $white-smoke;
 }
 
-p,
-li {
-  mjx-container {
-    padding-right: 0.2rem;
-    padding-left: 0.2rem;
+:lang(ja) {
+  p,
+  li {
+    mjx-container:not([display])::before {
+      display: inline;
+      font-family: $jp-font, monospace;
+      font-size: 50%;
+      font-weight: normal;
+      content: ' ';
+    }
   }
 
-  mjx-container::first-letter {
-    padding-left: 0;
+  span.before-hyphen > mjx-container:not([display])::after {
+    content: '';
+  }
+
+  span.head > mjx-container:not([display])::before {
+    content: '';
   }
 }
 
@@ -174,22 +183,6 @@ ol.citation {
   font-feature-settings: 'palt';
 }
 
-table.math {
-  margin: 18px;
-
-  tr > td {
-    padding-bottom: 12px;
-
-    &.mathitem {
-      text-align: center;
-    }
-
-    + td {
-      padding-left: 0.5rem;
-    }
-  }
-}
-
 ol.math {
   padding-left: 1rem;
   counter-reset: m;
@@ -220,6 +213,10 @@ ol.math li.p::before {
 
 ol.math li.d::before {
   content: '(d' counter(m) ')';
+}
+
+ol.math li.alphabetical::before {
+  content: '(' counter(m, lower-latin) ')';
 }
 
 ol.math li.capc::before {
@@ -305,6 +302,7 @@ th {
   &::after {
     display: inline;
     font-family: $jp-font, monospace;
+    font-weight: normal;
     content: ' ';
   }
 }

@@ -6,16 +6,12 @@
 
 {% block post %}
 <section>
-<p>基本的には
-<a href="https://github.com/microsoft/terminal/issues/14059">microsoft/terminal/issues/14059</a>
-に書いたことと同じなのですが、日本語で情報が見つからなかったので、日本語でも書いておきたいと思います。</p>
+<p>基本的には<a href="https://github.com/microsoft/terminal/issues/14059">microsoft/terminal/issues/14059</a>に書いたことと同じなのですが、日本語で情報が見つからなかったので、日本語でも書いておきたいと思います。</p>
   <figure style="text-align: center;">
     <figcaption>
-      ターミナルの背後で動画
-      <a href="https://www.youtube.com/watch?v=qZP0l-mZvqY">
+      ターミナルの背後で動画<a href="https://www.youtube.com/watch?v=qZP0l-mZvqY">
         <i class="fa-brands fa-youtube"></i>
-      </a>
-      を再生している様子。
+      </a>を再生している様子。
     </figcaption>
     <video
       src="/static/videos/windows-terminal-transparent-video.mp4"
@@ -42,14 +38,8 @@
 <section>
 <h2 id="terminal">Windows Terminal側の設定</h2>
 <p>Windows Terminal画面のタイトルバーを右クリックし
-<strong>Settings</strong>
-を選択します。
-画面左側の
-<strong>Profiles</strong>
-の一覧の中から、変更したい項目、
-例えば
-<strong><i class="fa fa-linux" aria-hidden="true"></i> Ubuntu-20.04</strong>
-を選択します。
+<strong>Settings</strong>を選択します。画面左側の<strong>Profiles</strong>の一覧の中から、変更したい項目、例えば
+<strong><i class="fa fa-linux" aria-hidden="true"></i> Ubuntu-20.04</strong>を選択します。
   <figure>
     <img
       src="/static/images/profiles.png"
@@ -57,9 +47,7 @@
       alt="Windows Terminal; Profiles"
     >
   </figure>
-画面右側に設定項目の一覧が表示されるので、その中の
-<strong>Additional settings &gt; Appearance</strong>
-を選択します。
+画面右側に設定項目の一覧が表示されるので、その中の<strong>Additional settings &gt; Appearance</strong>を選択します。
 </p>
   <figure>
     <img
@@ -68,10 +56,7 @@
       alt="Windows Terminal; Additional settings"
     >
   </figure>
-<strong>Transparency</strong>
-の
-<strong>Background opacity</strong>（不透明度）
-を80%程度に設定します。
+<strong>Transparency</strong>の<strong>Background opacity</strong>（不透明度）を80%程度に設定します。
   <figure>
     <img
       src="/static/images/transparency.png"
@@ -79,9 +64,7 @@
       alt="Windows Terminal; Transparency"
     >
   </figure>
-右下の
-<strong>Save</strong>
-を押して変更を確定します。
+右下の<strong>Save</strong>を押して変更を確定します。
 </section>
 
 <section>
@@ -90,13 +73,7 @@
 <p>上記のブラウザの挙動はごく一部の人以外には望ましい挙動であり、今後修正されることはおそらくないでしょう。したがってこの問題は自分でWebブラウザの設定を変更して解決する必要があります。以下にその手順を示します。</p>
 <section>
 <h3 id="chrome"><i class="fa-brands fa-chrome"></i> Google Chromeの場合</h3>
-<p>アドレスバーに
-<code>chrome://flags/#calculate-native-win-occlusion</code>
-と入力して、設定画面の
-<strong>Calculate window occlusion on Windows</strong>
-の項目を
-<code>Disabled</code>
-に設定します。
+<p>アドレスバーに<code>chrome://flags/#calculate-native-win-occlusion</code>と入力して、設定画面の<strong>Calculate window occlusion on Windows</strong>の項目を<code>Disabled</code>に設定します。
 </p>
   <figure>
     <img
@@ -105,15 +82,13 @@
       alt="Google Chrome; Calculate window occlusion on Windows"
     >
   </figure>
-  <p><cite>Reference: <a href="https://support.google.com/chrome/thread/77201393/videos-turn-black-when-a-full-screen-window-is-on-top-of-the-window-playing-the-video">Videos turn black when a full screen window is “on top” of the window playing the video.</a></cite></p>
+<p><cite>Reference: <a href="https://support.google.com/chrome/thread/77201393/videos-turn-black-when-a-full-screen-window-is-on-top-of-the-window-playing-the-video">Videos turn black when a full screen window is “on top” of the window playing the video.</a></cite></p>
 </section>
 <section>
 <h3 id="firefox"><i class="fa-brands fa-firefox-browser"></i> Firefoxの場合</h3>
-<p>アドレスバーに
-<code>about:config</code>
-と入力します。警告が出る場合がありますが、設定を変更したいので
-<strong>Accept the Risk and Continue</strong>
-を選択します。
+<p>アドレスバーに<code>about:config</code>と入力します。警告が出る場合がありますが、設定を変更したいので
+<strong>Accept the Risk and Continue</strong>を選択します。
+</p>
   <figure>
     <img
       src="/static/images/caution.png"
@@ -121,9 +96,7 @@
       alt="Firefox; Proceed with Caution"
     >
   </figure>
-次の画面では設定を変更したい項目の名前を検索する欄が表示されるので、そこに
-<code>widget.windows.window_occlusion_tracking.enabled</code>
-と打ち込みます。
+<p>次の画面では設定を変更したい項目の名前を検索する欄が表示されるので、そこに<code>widget.windows.window_occlusion_tracking.enabled</code>と打ち込みます。</p>
   <figure>
     <img
       src="/static/images/preference.png"
@@ -131,10 +104,7 @@
       alt="Firefox; Search preference name"
     >
   </figure>
-双方向の矢印のアイコンをクリックして値を
-<code>false</code>
-に変更します。
-</p>
+<p>双方向の矢印のアイコンをクリックして値を<code>false</code>に変更します。</p>
   <figure>
     <img
       src="/static/images/toggle.png"

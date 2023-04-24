@@ -30,8 +30,7 @@
   &amp;= 2G_\infty \norm{g_{1:T,i}}_2 - \frac{g_{T,i}^2}{\sqrt{T}} + \sqrt{\frac{g_{T,i}^2}{T}} \\
   &amp;= 2G_\infty \norm{g_{1:T,i}}_2 + \frac{\sqrt{g_{T,i}^2} - g_{T,i}^2}{\sqrt{T}}
 \end{align*}
-となるので、
-\(0 \lt \abs{g_{T,i}} \lt 1\)
+となるので、<span class="quarter"></span>\(0 \lt \abs{g_{T,i}} \lt 1\)
 のとき成り立たないような気がします。大きな誤差にはならないのでこれでもいいのかもしれませんが、せっかくなので別な方法を考えてみたいと思います。</p>
 <p>上から抑える方法として以下のCauchy&ndash;Schwarzの不等式を使う方法が考えられます。</p>
 \begin{align*}
@@ -81,8 +80,8 @@
   } \\
   &amp;= \norm{g_{1:T,i}}_2 \sqrt{T - 1 + \log T}
 \end{align*}
-<p>この変更を行っても
- \(\sqrt{T - 1 + \log T}\) が \(O(\sqrt{T})\)
-なので以降の議論に大きな影響はないはずです（あとできちんと確認します）。とりあえず自分の中ではこれで納得したいと思います。</p>
+<p>この変更を行っても\(
+  \sqrt{T - 1 + \log T}\) が \(O(\sqrt{T})
+\)なので以降の議論に大きな影響はないはずです（あとできちんと確認します）。とりあえず自分の中ではこれで納得したいと思います。</p>
 </section>
 {% endblock %}
