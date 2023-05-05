@@ -149,7 +149,7 @@ In general cases where dimensions are greater than one, the following analogous 
 where \(D_x f(x_0)(h)\) denotes the Fréchet derivative of \(f\) at a point \(x_0\) with respect to \(x\)
 along \(h\).
 
-Calculation of (\ref{chain-L}) and (\ref{chain-L-1}) is decomposed into the following calculations <span class="mathitem">(C1)</span>, <span class="mathitem">(C2)</span>, and <span class="mathitem">(C3)</span>.
+Calculation of \((\ref{chain-L}) and (\ref{chain-L-1})\) is decomposed into the following calculations <span class="mathitem">(C1)</span>, <span class="mathitem">(C2)</span>, and <span class="mathitem">(C3)</span>.
 <ol class="math">
   <li class="capc">
     Calculate \(D_{z} E(z)(h) \)
@@ -246,11 +246,11 @@ we obtain
 </section>
 <section>
 <h3>Backpropagation</h3>
-<p>Now we can calculate (\ref{chain-L}) and (\ref{chain-L-1}) by
-using (\ref{derivative-of-norm}),
-(\ref{derivative-of-activation}),
-and (\ref{derivative-of-product-right}).
-First, (\ref{chain-L}) is calculated as
+<p>Now we can calculate \((\ref{chain-L}) and (\ref{chain-L-1})\) by
+using \((\ref{derivative-of-norm})\),
+\((\ref{derivative-of-activation})\),
+and \((\ref{derivative-of-product-right})\).
+First, \((\ref{chain-L})\) is calculated as
 \begin{align*}
   &amp;D_{W^{(L)}} E\left(W^{(L)}\right)(H) \\
   &amp;=
@@ -314,7 +314,7 @@ and \(A =  J^{(L)}_{u^{(L)}} \left(z^{(L)} - y\right) z^{(L - 1)}{}^\top  \). Th
 \end{gather*}
 where \([A]_{i,\,j}\) is the \((i,\,j)\)-the component of a matrix \(A\).
 </p>
-<p>Similarly, (\ref{chain-L-1}) is calculated as
+<p>Similarly, \((\ref{chain-L-1})\) is calculated as
 \begin{align*}
   &amp;D_{W^{(L - 1)}} E\left(W^{(L - 1)}\right)(H)
   \\

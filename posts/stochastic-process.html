@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@pecorarista">
+    <meta name="twitter:title" content="確率過程 勉強ノート — pecorarista.com">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="https://pecorarista.com/static/images/avatar.png">
+    <link rel="icon" href="/favicon.ico">
+		<script>
+			(function(d) {
+				var config = {
+					kitId: 'mbi1yhb',
+					scriptTimeout: 3000,
+					async: true
+				},
+				h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+			})(document);
+		</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri&family=Judson&family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400;700&family=Roboto+Mono:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cosmo/bootstrap.min.css" integrity="sha384-5QFXyVb+lrCzdN228VS3HmzpiE7ZVwLQtkt+0d9W43LQMzz4HBnnqvVxKg6O+04d" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-lucario.min.css" integrity="sha512-Aj5jCt/M5XlTn+Y93TazO+EjpRTiUGMrMuaJOcBcu80Fopd7+LSL094m3pbVTNJxf1hOAMSYI/hONBGjvPWwGQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="/static/css/main.css"/>
+
+    <title>確率過程 勉強ノート</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <div class="navbar-header pull-left"><a class="navbar-brand" href="/">pecorarista.com</a></div>
+    <div class="navbar-header pull-right">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link active" href="/resources">Resources</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+      </header>
+      <main>
+        
+<article>
+  <div class="container">
+    <h1>確率過程 勉強ノート</h1>
+    <div class="info text-muted">
+      Posted: 2023-05-05
+      
+    </div>
+    
+<p><strong>注意：以下の内容は書きかけです。</strong></p>
+<section>
+<strong>定義（関数によって生成される\(\sigma\)-加法族）</strong>
+<p><span class="head">\((S,\,\mathcal{G})\)</span>を可測空間とする．関数\(X\colon \varOmega \to S\)
+が与えられたとき，
+\begin{align*}
+  \sigma [X] = \{X^{-1} (G) \mid G \in \mathcal{G}\}
+\end{align*}
+と定義すると，\(\sigma [X]\)は\(\sigma\)-加法族であり，また\(X\)が\((\mathcal{F},\, \mathcal{G})\)-可測になるような\(\mathcal{F}\)の中で最小の集合族である．この\(\sigma [X]\)を\(X\)で生成される\(\sigma\)-加法族と呼ぶ．</p>
+<strong>定義がwell-definedであることの確認</strong>
+<p><span class="head">\(\sigma\)</span>-加法族であることを示す．\(\varOmega \in \mathcal{G}\)</span>であることは\(
+  \varOmega = \{\omega \in \varOmega \mid X(\omega) \in S\} = X^{-1}(S) \in \mathcal{F}
+\)からわかる．\(\mathcal{G}\)が補集合について閉じていることを確認する．
+\begin{align*}
+  \varOmega \setminus X^{-1}(G)
+  &amp;= \{ \omega \in \varOmega \mid X(\omega) \not \in G \} \\
+  &amp;= \{ \omega \in \varOmega \mid X(\omega) \in S \setminus G \} \\
+  &amp;= X^{-1}(S \setminus G)
+\end{align*}
+<span class="head">\(\mathcal{G}\)</span>が\(\sigma\)-加法族なので\(S \setminus G \in \mathcal{G}\)．よって\(\varOmega \setminus f^{-1}(G) = X^{-1}(S \setminus G) \in \mathcal{F}\)．最後に和について閉じていることを確認する．各\(n\)で\(G_n \in \mathcal{G}\)であるような集合列\((G_n)_{n \in \mathbb{N}}\)をとる．このとき
+\begin{align*}
+  \bigcup_{n \in \mathbb{N}} X^{-1}(G_n)
+  &amp;= \bigcup_{n \in \mathbb{N}} \{\omega \in \varOmega \mid X(\omega) \in G_n \} \\
+  &amp;= \left\{\omega \in \varOmega \;\middle|\; X(\omega) \in \bigcup_{n \in \mathbb{N}} G_n \right\} \\
+  &amp;= X^{-1}\left(\bigcup_{n \in \mathbb{N}} G_n \right) \\
+\end{align*}
+<span class="head">\(\mathcal{G}\)</span>が\(\sigma\)-加法族なので\(\bigcup_{n \in \mathbb{N}} G_n \in \mathcal{G}\)．よって\(\varOmega \setminus X^{-1}(G) = X^{-1}(\bigcup_{n \in \mathbb{N}} G_n) \in \mathcal{F}\)．最小性については明らかである．
+</p>
+</section>
+<section>
+<strong>例（コイントス）</strong>
+<p>コインの表を\(\mathrm{H}\) (head)，コインの裏を\(\mathrm{T}\) (tail)と書くと，1回のトスの結果を表す確率変数の終域は\(S = \{\mathrm{H},\,\mathrm{T}\}\)ととるのが自然である．\(S\)の\(\sigma\)-加法族として，\(\mathcal{G} := \wp (S) = \{\emptyset,\,\{\mathrm{H}\},\, \{\mathrm{T}\},\, S\}\)をとる．
+定義域\(\varOmega\)は自由にとれる（確率変数を恒等写像として\(\varOmega = S\)とすると楽）が，今回は\(\varOmega = [0, 1)\)とする．
+\begin{align*}
+  X = \begin{cases}
+    \mathrm{H} &amp; \text{if \(\displaystyle \omega \geq \frac{1}{2}\)}, \\[3pt]
+    \mathrm{T} &amp; \text{otherwise} \\
+  \end{cases}
+\end{align*}
+とすると，\(X\)によって生成される\(\sigma\)-加法族\(\sigma [X]\)は
+\begin{align*}
+\sigma[X]
+  &amp; = \sigma \left(\{
+    X^{-1}(\emptyset),\,
+    X^{-1}(\{\mathrm{H}\}),\,
+    X^{-1}(\{\mathrm{T}\}),\,
+    X^{-1}(S)\}
+  \right) \\
+  &amp; = \left\{\emptyset, \left[0, \frac{1}{2}\right),\,\left[\frac{1}{2},\,1\right),\, \varOmega \right\}
+\end{align*}
+である．
+</p>
+</section>
+<section>
+<strong>例（有限回連続コイントス）</strong>
+<p><span class="head">\(\varLambda = \{1,\,2,\,\ldots,\,T\}\)</span>とする．\(t\)回目のトスの結果を表す確率変数を\(X_t\)と表す．上の例と同様にして各\(X_t\)の終域を\(S_t = \{\mathrm{H},\,\mathrm{T}\}\)とし，\(S_t\)の\(\sigma\)-加法族として\(\mathcal{G} := \wp (S_t) = \{\emptyset,\,\{\mathrm{H}\},\, \{\mathrm{T}\},\, S\}\)をとる．各\(X_t\)の定義域については\(\varOmega_t = [0,\,1)\)とする．各\(X_t\)によって生成される\(\sigma\)-加法族\(\mathcal{F}_t = \sigma [X_t]\)は
+\begin{align*}
+\mathcal{F}_t
+  &amp; = \sigma \left(\{
+    X_t^{-1}(\emptyset),\,
+    X_t^{-1}(\{\mathrm{H}\}),\,
+    X_t^{-1}(\{\mathrm{T}\}),\,
+    X_t^{-1}(S)\}
+  \right) \\
+  &amp; = \left\{\emptyset, \left[0, \frac{1}{2}\right),\,\left[\frac{1}{2},\,1\right),\, \varOmega \right\}
+\end{align*}
+である．
+</p>
+<p>
+まず終域は\(S^\varLambda = S_1 \times S_2 \times \cdots S_T\)である．終域の\(\sigma\)-加法族は
+\begin{align*}
+  \mathcal{G} = \sigma[\{ F_1 \times \cdots \times F_T \mid F_1 \in \mathcal{F}_1,\, \ldots,\, F_T \in \mathcal{F}_T \}]
+\end{align*}
+</p>
+</section>
+<section>
+<strong>例（加算無限回連続コイントス）</strong>
+<p><span class="head">\(\varLambda = \mathbb{Z}_+ = \{1,\,2,\,\ldots\}\)</span>の場合，無限回連続コイントスの結果を表す確率変数の終域を
+\begin{align*}
+  S^\varLambda
+  &amp;:= \prod_{\lambda \in \varLambda} S_\lambda \\
+  &amp;= \{(s_\lambda)_{\lambda \in \varLambda} \mid \text{\(s_\lambda \in S_\lambda\) for all \(\lambda \in \varLambda\)} \} \\
+  &amp;= S_1 \times S_2 \times \cdots
+\end{align*}
+とする．各\(\mu \in \varLambda\)に関する標準射影を\(\pi_\mu\)と書くことにする．すなわち各\(\mu \in \varLambda\)について
+\begin{align*}
+  \pi_\mu \colon S^\varLambda \to S_\mu,\quad
+  \pi_\mu ( (s_\lambda)_{\lambda \in \varLambda} ) = s_\mu
+\end{align*}
+である．例えば\(\pi_2 ((s_1, s_2,\,\ldots)) = s_2\)である．集合\(A \subset S_\mu\)の\(\pi_\mu\)による逆像は
+\begin{align*}
+  \pi_\mu^{-1}(A) = \{(s_\lambda)_{\lambda \in \varLambda} \mid \text{(\(s_\lambda \in S_\lambda\) for all \(\lambda \in \varLambda\)) and \(s_\mu \in A\)} \} \\
+\end{align*}
+である．例えば\(A = \{\mathrm{H}\} \subset S_2\)とすると
+\begin{align*}
+  \pi_2^{-1}(A)
+  &amp;= \{(s_\lambda)_{\lambda \in \varLambda} \mid \text{(\(s_\lambda \in S_\lambda\) for all \(\lambda \in \varLambda\)) and \(s_2 \in \{H\}\)} \} \\
+  &amp; = \{(s_1,\,\mathrm{H},\,s_3,\,\ldots) \mid \text{\(s_\lambda \in S_\lambda\) for all \(\lambda \in \varLambda\)} \}
+\end{align*}
+となる．
+\begin{align*}
+  \mathcal{F}_t = \sigma \left[ \bigcup_{\lambda \in \varLambda} \{ \pi_\mu^{-1}(G) \mid G \in \mathcal{G}_t \} \right]
+\end{align*}
+</p>
+</section>
+<section id="materials">
+  <h2>参考文献</h2>
+  <ol class="citation">
+  <li><a href="https://link.springer.com/book/10.1007/978-0-387-87859-1">Erhan &Ccedil;&#x131;nlar (2011) <em>Probability and Stochastics</em>. Springer New York.</a></li>
+  <li><a href="https://link.springer.com/book/10.1007/978-3-031-14205-5">Jean-François Le Gall (2022) <em>Measure Theory, Probability, and Stochastic Processes</em>. Springer Cham.</a></li>
+</ol>
+</section>
+
+  </div>
+</article>
+
+      </main>
+      <footer>
+        <div class="footer text-center">
+  <span>© 2015&ndash;2023 Akira Miyazawa</span>
+</div>
+
+      </footer>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap.native@2.0.15/dist/bootstrap-native-v4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" integrity="sha512-SkmBfuA2hqjzEVpmnMt/LINrjop3GKWqsuLSSB3e7iBmYK7JuWw4ldmmxwD9mdm2IRTTi0OxSAfEGvgEi0i2Kw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://kit.fontawesome.com/30a99ec99f.js" crossorigin="anonymous"></script>
+<script src="/static/js/findAndReplaceDOMText.js"></script>
+<script src="/static/js/main.js"></script>
+
+      
+        <script src="/static/js/mathjax.js"></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js?config=TeX-AMS_HTML"></script>
+        </script>
+      
+    </div>
+  </body>
+</html>

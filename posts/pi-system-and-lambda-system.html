@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@pecorarista">
-    <meta name="twitter:title" content="p-systemとd-system — pecorarista.com">
+    <meta name="twitter:title" content="π-systemとλ-system — pecorarista.com">
     <meta name="twitter:description" content="">
     <meta name="twitter:image" content="https://pecorarista.com/static/images/avatar.png">
     <link rel="icon" href="/favicon.ico">
@@ -26,7 +26,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-lucario.min.css" integrity="sha512-Aj5jCt/M5XlTn+Y93TazO+EjpRTiUGMrMuaJOcBcu80Fopd7+LSL094m3pbVTNJxf1hOAMSYI/hONBGjvPWwGQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="/static/css/main.css"/>
 
-    <title>p-systemとd-system</title>
+    <title>π-systemとλ-system</title>
   </head>
   <body>
     <div class="wrapper">
@@ -47,21 +47,21 @@
         
 <article>
   <div class="container">
-    <h1>p-systemとd-system</h1>
+    <h1>π-systemとλ-system</h1>
     <div class="info text-muted">
       Posted: 2023-04-15
       
     </div>
     
 <section>
-<h3>1. <span class="before-hypen">\(\sigma\)-</span>加法族</h3>
+<h3>1. \(\sigma\)-加法族</h3>
 <p style="text-spacing: auto;">集合\(
 E
 \)の部分集合族\(
   \mathcal{E}
   \subset
   2^E
-\)が<strong><span class="before-hyphen">\(\sigma\)</span>-加法族</strong>(\(\sigma\)-algebra)であるとは，以下の<span class="mathitem">(s1)</span>&ndash;<span class="mathitem">(s3)</span>が成り立つことである．
+\)が<strong>\(\sigma\)-加法族</strong>(\(\sigma\)-algebra)であるとは，以下の<span class="mathitem">(s1)</span>&ndash;<span class="mathitem">(s3)</span>が成り立つことである．
 <ol class="math">
   <li class="s"><span class="head">\(E \in \mathcal{E} \)</span>．</li>
   <li class="s"><span class="head">\(A \in \mathcal{E}\)</span>ならば\(E \setminus A \in \mathcal{E}\)．</li>
@@ -78,12 +78,12 @@ E
 </p>
 </section>
 <section>
-<h3>2. p-system</h3>
+<h3>2. \(\pi\)-system</h3>
 <p>集合\(
   E
 \)の部分集合族\(
   \mathcal{E} \subset 2^E
-\)が<strong>p-system</strong>であるとは，\(
+\)が<strong>\(\pi\)-system</strong>（またはp-system）であるとは，\(
   \mathcal{E}
 \)が積(product)について閉じていることをいう．すなわち以下の<span class="mathitem">(p1)</span>が成り立つことをいう．
 <ol class="math">
@@ -99,12 +99,12 @@ E
 </p>
 </section>
 <section>
-<h3>3. d-system</h3>
+<h3>3. \(\lambda\)-system</h3>
 <p>集合\(
   E
 \)の部分集合族\(
   \mathcal{E} \subset 2^E
-\)が<strong>d-system</strong>であるとは，以下の<span class="mathitem">(d1)</span>&ndash;<span class="mathitem">(d3)</span>が成り立つことである．</p>
+\)が<strong>\(\lambda\)-system</strong>（またはd-system）であるとは，以下の<span class="mathitem">(d1)</span>&ndash;<span class="mathitem">(d3)</span>が成り立つことである．</p>
 <ol class="math">
   <li class="d"><span class="head">\(
     E \in \mathcal{E}
@@ -139,16 +139,16 @@ E
   A := \bigcup_{n \in \mathbb{N}} A_n
 \)をその極限と呼ぶ．
 </p>
-<p>d-systemの&lang;d&rang;は<a href="https://en.wikipedia.org/wiki/Eugene_Dynkin">Eugene Dynkin</a>にちなむ．
+<p>\(\lambda\)-systemの&lang;d&rang;は<a href="https://en.wikipedia.org/wiki/Eugene_Dynkin">Eugene Dynkin</a>にちなむ．
 </p>
 </section>
 <section>
 <h3>命題</h3>
 <p><span class="head">\(E\)</span>が\(
   \mathcal{E}
-\)の<span class="quarter"></span>\(\sigma\)-加法族であることは，\(E\)が\(\mathcal{E}\)のp-systemかつd-systemであることと同値である．</p>
+\)の\(\sigma\)-加法族であることは，\(E\)が\(\mathcal{E}\)の\(\pi\)-systemかつ\(\lambda\)-systemであることと同値である．</p>
 <strong>証明</strong>
-<p><span class="head before-hyphen">\(\sigma\)</span>-加法族ならばp-systemであることを示す．\(
+<p><span class="head">\(\sigma\)</span>-加法族ならば\(\pi\)-systemであることを示す．\(
   A_1 \in \mathcal{E}
 \)かつ\(
   A_2 \in \mathcal{E}
@@ -164,13 +164,13 @@ E
   \AxiomC{$[\text{$\sigma$-algebra}]_1$}
   \RightLabel{ $\small \text{$\land\,$E}$}
   \UnaryInfC{$(\text{s}3) \land (\text{s}2)$}
-  \AxiomC{$((\text{s}3) \land (\text{s}2)) \Rightarrow \text{p-system}$}
+  \AxiomC{$((\text{s}3) \land (\text{s}2)) \Rightarrow \text{\(\pi\)-system}$}
   \RightLabel{ $\small \text{$\Rightarrow\,$E}$}
-  \BinaryInfC{$\text{p-system}$}
+  \BinaryInfC{$\text{\(\pi\)-system}$}
 \end{prooftree}
 </figure>
 </p>
-<p>次に<span class="head before-hyphen">\(\sigma\)</span>-加法族ならばd-systemであることを示す．<span class="mathitem">(d1)</span>と<span class="mathitem">(s1)</span>は同値である．
+<p>次に<span class="head">\(\sigma\)</span>-加法族ならば\(\lambda\)-systemであることを示す．<span class="mathitem">(d1)</span>と<span class="mathitem">(s1)</span>は同値である．
 <figure>
 証明木
 \(\Pi_2\)
@@ -185,7 +185,7 @@ E
 </figure>
 </p>
 <p><span class="head">\(A_2 \setminus A_1 = A_2 \cap (E \setminus A_1)\)</span>
-なので，<span class="mathitem">(s1)</span> とp-systemであることから<span class="mathitem">(d2)</span>の成立が確認できる．
+なので，<span class="mathitem">(s1)</span> と\(\pi\)-systemであることから<span class="mathitem">(d2)</span>の成立が確認できる．
 <figure>
 証明木
 \(\Pi_3\)
@@ -194,9 +194,9 @@ E
   \UnaryInfC{$(\text{s}2)$}
   \AxiomC{$\Pi_1$}
 	\noLine
-  \UnaryInfC{$\text{p-system}$}
-  \BinaryInfC{$(\text{s}2) \land \text{p-system}$}
-  \AxiomC{$(\text{s}) \land \text{p-system}) \Rightarrow (\text{d}2)$}
+  \UnaryInfC{$\text{\(\pi\)-system}$}
+  \BinaryInfC{$(\text{s}2) \land \text{\(\pi\)-system}$}
+  \AxiomC{$(\text{s}) \land \text{\(\pi\)-system}) \Rightarrow (\text{d}2)$}
   \RightLabel{ $\small \text{$\Rightarrow\,$E}$}
   \BinaryInfC{$(\text{d}2)$}
 \end{prooftree}
@@ -216,14 +216,14 @@ E
 \end{prooftree}
 </figure>
 </p>
-<p>以上より<span class="before-hyphen">\(\sigma\)</span>-加法族ならばp-systemかつd-systemであることが示された．
+<p>以上より\(\sigma\)-加法族ならば\(\pi\)-systemかつ\(\lambda\)-systemであることが示された．
 <figure>
 証明木
 \(\Pi_5\)
 \begin{prooftree}
   \AxiomC{$\Pi_1$}
 	\noLine
-  \UnaryInfC{$\text{p-system}$}
+  \UnaryInfC{$\text{\(\pi\)-system}$}
   \AxiomC{$\Pi_1$}
 	\noLine
   \UnaryInfC{$(\text{d}2)$}
@@ -234,10 +234,10 @@ E
 	\noLine
   \UnaryInfC{$(\text{d}1)$}
   \RightLabel{ $\small \text{$\land\,$I}$}
-	\TrinaryInfC{$\text{d-system}$}
-	\BinaryInfC{$\text{p-system} \land \text{d-system}$}
+	\TrinaryInfC{$\text{\(\lambda\)-system}$}
+	\BinaryInfC{$\text{\(\pi\)-system} \land \text{\(\lambda\)-system}$}
   \RightLabel{ $\small \text{1, $\Rightarrow\,$I}$}
-  \UnaryInfC{$\text{$\sigma$-algebra} \Rightarrow (\text{p-system} \land \text{d-system})$}
+  \UnaryInfC{$\text{$\sigma$-algebra} \Rightarrow (\text{\(\pi\)-system} \land \text{\(\lambda\)-system})$}
 \end{prooftree}
 </figure>
 </p>
@@ -245,7 +245,7 @@ E
 <figure>
 証明木 \(\Pi_5\)
 \begin{prooftree}
-  \AxiomC{$[\text{p-system} \land \text{d-system}]_2$}
+  \AxiomC{$[\text{\(\pi\)-system} \land \text{\(\lambda\)-system}]_2$}
   \RightLabel{ $\small \text{$\land\,$E}$}
   \UnaryInfC{$(\text{d}1)$}
   \AxiomC{$(\text{d}1) \Rightarrow (\text{s}1)$}
@@ -265,7 +265,7 @@ E
 <figure>
 証明木 \(\Pi_6\)
 \begin{prooftree}
-  \AxiomC{$[\text{p-system} \land \text{d-system}]_2$}
+  \AxiomC{$[\text{\(\pi\)-system} \land \text{\(\lambda\)-system}]_2$}
   \RightLabel{ $\small \text{$\land\,$E}$}
   \UnaryInfC{$(\text{d}1) \land (\text{d}2)$}
   \AxiomC{$(\text{d}1) \land (\text{d}2) \Rightarrow (\text{s}2)$}
@@ -291,7 +291,7 @@ E
   E \setminus A_0 \in \mathcal{E}
 \)かつ\(
   E \setminus A_1 \in \mathcal{E}
-\)．p-systemであることより\(
+\)．\(\pi\)-systemであることより\(
   (E \setminus A_0) \cap (E \setminus A_1) \in \mathcal{E}
 \)．再度<span class="mathitem">(d2)</span>を用いることで\(
   A_0 \cup A_1 \in \mathcal{E}
@@ -310,17 +310,17 @@ E
 証明木
 \(\Pi_7\)
 \begin{prooftree}
-  \AxiomC{$[\text{p-system} \land \text{d-system}]_2$}
+  \AxiomC{$[\text{\(\pi\)-system} \land \text{\(\lambda\)-system}]_2$}
   \RightLabel{ $\small \text{$\land\,$E}$}
-  \UnaryInfC{$\text{p-system} \land (\text{d}2) \land (\text{d}3)$}
-  \AxiomC{$(\text{p-system} \land (\text{d}2) \land (\text{d}3)) \Rightarrow (\text{s}3)$}
+  \UnaryInfC{$\text{\(\pi\)-system} \land (\text{d}2) \land (\text{d}3)$}
+  \AxiomC{$(\text{\(\pi\)-system} \land (\text{d}2) \land (\text{d}3)) \Rightarrow (\text{s}3)$}
   \RightLabel{ $\small \text{$\Rightarrow\,$E}$}
   \BinaryInfC{$(\text{s}3)$}
 \end{prooftree}
 </figure>
 </p>
 <p>
-したがってp-systemかつd-systemであるとき，\(\sigma\)-加法族であることが示された．
+したがって\(\pi\)-systemかつ\(\lambda\)-systemであるとき，\(\sigma\)-加法族であることが示された．
 <figure>
 証明木
 \(\Pi_8\)
@@ -337,24 +337,16 @@ E
   \RightLabel{ $\small \text{$\land\,$I}$}
 	\TrinaryInfC{$\text{$\sigma$-algebra}$}
   \RightLabel{ $\small \text{2, $\Rightarrow\,$I}$}
-	\UnaryInfC{$(\text{p-system} \land \text{d-system}) \Rightarrow \text{$\sigma$-algebra}$}
+	\UnaryInfC{$(\text{\(\pi\)-system} \land \text{\(\lambda\)-system}) \Rightarrow \text{$\sigma$-algebra}$}
 \end{prooftree}
 </figure>
-</p>
-<ul style="display: table; width: 100%; padding-left: 0;">
-  <li style="display: table-cell; text-align: left;">
-    以上より命題が証明された．
-  </li>
-  <li style="display: table-cell; text-align: right;">
-    <span class="mathitem">&#8718;</span>
-  </li>
-</ul>
+以上より命題が証明された．&#8718;</p>
 </section>
 <section id="materials">
   <h2>参考文献</h2>
   <ol class="citation">
-  <li><a href="https://link.springer.com/book/10.1007/978-0-387-87859-1">Erhan &Ccedil;&#x131;nlar (2011) <em>Probability and Stochastics</em>. Springer New York.</a></li>
-  </ul>
+    <li><a href="https://link.springer.com/book/10.1007/978-0-387-87859-1">Erhan &Ccedil;&#x131;nlar (2011) <em>Probability and Stochastics</em>. Springer New York.</a></li>
+  </ol>
 </section>
 
   </div>

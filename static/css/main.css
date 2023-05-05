@@ -23,9 +23,6 @@ body {
   font-weight: normal;
   content: " ";
 }
-:lang(ja) span.before-hyphen > mjx-container:not([display])::after {
-  content: "";
-}
 :lang(ja) span.head > mjx-container:not([display])::before {
   content: "";
 }

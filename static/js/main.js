@@ -12,20 +12,21 @@ function transform(element) {
 
   const cjk = '[' +  [hiragana, katakana, kanji].join('') + ']';
   const latin = '[A-Za-z0-9\u00C0-\u00FF\u0100-\u017F\u0180-\u024F\u1E00-\u1EFF]' + '|' + punct;
+  const greek = '[\u0391-\u03C0]';
 
   const patterns = {
     quarter: [
-      '(' + cjk + ')(' + latin + '|' + left + ')',
-      '(' + latin + '|' + right + ')(' + cjk + ')',
+      '(' + cjk + ')(' + latin + '|' + greek + '|' + left + ')',
+      '(' + latin + '|' + greek + '|' + right + ')(' + cjk + ')',
       '(・)(' + cjk + ')',
-      '(' + latin + '|' + cjk + ')([・])',
+      '(' + latin + '|' + greek + '|' + cjk + ')([・])',
       '([：])([『])',
       '(' + cjk + ')([：])'
     ],
     // if proportional
     half: [
       '([、。，．）」』])(' + left + '|' + latin + '|' + cjk + ')',
-      '(' + latin + '|' + cjk + ')([（「『])'
+      '(' + latin + '|' + greek + '|' + cjk + ')([（「『])'
     ]
   };
 
