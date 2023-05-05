@@ -1,0 +1,120 @@
+{% extends 'nunjucks/_layout/_article.njk' %}
+{% set lang = 'ja' %}
+{% set mathematical = 'true' %}
+{% set title = '確率過程 勉強ノート' %}
+{% set posted = '2023-05-05' %}
+
+{% block post %}
+<p><strong>注意：以下の内容は書きかけです。</strong></p>
+<section>
+<strong>定義（関数によって生成される\(\sigma\)-加法族）</strong>
+<p><span class="head">\((S,\,\mathcal{G})\)</span>を可測空間とする．関数\(X\colon \varOmega \to S\)
+が与えられたとき，
+\begin{align*}
+  \sigma [X] = \{X^{-1} (G) \mid G \in \mathcal{G}\}
+\end{align*}
+と定義すると，\(\sigma [X]\)は\(\sigma\)-加法族であり，また\(X\)が\((\mathcal{F},\, \mathcal{G})\)-可測になるような\(\mathcal{F}\)の中で最小の集合族である．この\(\sigma [X]\)を\(X\)で生成される\(\sigma\)-加法族と呼ぶ．</p>
+<strong>定義がwell-definedであることの確認</strong>
+<p><span class="head">\(\sigma\)</span>-加法族であることを示す．\(\varOmega \in \mathcal{G}\)</span>であることは\(
+  \varOmega = \{\omega \in \varOmega \mid X(\omega) \in S\} = X^{-1}(S) \in \mathcal{F}
+\)からわかる．\(\mathcal{G}\)が補集合について閉じていることを確認する．
+\begin{align*}
+  \varOmega \setminus X^{-1}(G)
+  &amp;= \{ \omega \in \varOmega \mid X(\omega) \not \in G \} \\
+  &amp;= \{ \omega \in \varOmega \mid X(\omega) \in S \setminus G \} \\
+  &amp;= X^{-1}(S \setminus G)
+\end{align*}
+<span class="head">\(\mathcal{G}\)</span>が\(\sigma\)-加法族なので\(S \setminus G \in \mathcal{G}\)．よって\(\varOmega \setminus f^{-1}(G) = X^{-1}(S \setminus G) \in \mathcal{F}\)．最後に和について閉じていることを確認する．各\(n\)で\(G_n \in \mathcal{G}\)であるような集合列\((G_n)_{n \in \mathbb{N}}\)をとる．このとき
+\begin{align*}
+  \bigcup_{n \in \mathbb{N}} X^{-1}(G_n)
+  &amp;= \bigcup_{n \in \mathbb{N}} \{\omega \in \varOmega \mid X(\omega) \in G_n \} \\
+  &amp;= \left\{\omega \in \varOmega \;\middle|\; X(\omega) \in \bigcup_{n \in \mathbb{N}} G_n \right\} \\
+  &amp;= X^{-1}\left(\bigcup_{n \in \mathbb{N}} G_n \right) \\
+\end{align*}
+<span class="head">\(\mathcal{G}\)</span>が\(\sigma\)-加法族なので\(\bigcup_{n \in \mathbb{N}} G_n \in \mathcal{G}\)．よって\(\varOmega \setminus X^{-1}(G) = X^{-1}(\bigcup_{n \in \mathbb{N}} G_n) \in \mathcal{F}\)．最小性については明らかである．
+</p>
+</section>
+<section>
+<strong>例（コイントス）</strong>
+<p>コインの表を\(\mathrm{H}\) (head)，コインの裏を\(\mathrm{T}\) (tail)と書くと，1回のトスの結果を表す確率変数の終域は\(S = \{\mathrm{H},\,\mathrm{T}\}\)ととるのが自然である．\(S\)の\(\sigma\)-加法族として，\(\mathcal{G} := \wp (S) = \{\emptyset,\,\{\mathrm{H}\},\, \{\mathrm{T}\},\, S\}\)をとる．
+定義域\(\varOmega\)は自由にとれる（確率変数を恒等写像として\(\varOmega = S\)とすると楽）が，今回は\(\varOmega = [0, 1)\)とする．
+\begin{align*}
+  X = \begin{cases}
+    \mathrm{H} &amp; \text{if \(\displaystyle \omega \geq \frac{1}{2}\)}, \\[3pt]
+    \mathrm{T} &amp; \text{otherwise} \\
+  \end{cases}
+\end{align*}
+とすると，\(X\)によって生成される\(\sigma\)-加法族\(\sigma [X]\)は
+\begin{align*}
+\sigma[X]
+  &amp; = \sigma \left(\{
+    X^{-1}(\emptyset),\,
+    X^{-1}(\{\mathrm{H}\}),\,
+    X^{-1}(\{\mathrm{T}\}),\,
+    X^{-1}(S)\}
+  \right) \\
+  &amp; = \left\{\emptyset, \left[0, \frac{1}{2}\right),\,\left[\frac{1}{2},\,1\right),\, \varOmega \right\}
+\end{align*}
+である．
+</p>
+</section>
+<section>
+<strong>例（有限回連続コイントス）</strong>
+<p><span class="head">\(\varLambda = \{1,\,2,\,\ldots,\,T\}\)</span>とする．\(t\)回目のトスの結果を表す確率変数を\(X_t\)と表す．上の例と同様にして各\(X_t\)の終域を\(S_t = \{\mathrm{H},\,\mathrm{T}\}\)とし，\(S_t\)の\(\sigma\)-加法族として\(\mathcal{G} := \wp (S_t) = \{\emptyset,\,\{\mathrm{H}\},\, \{\mathrm{T}\},\, S\}\)をとる．各\(X_t\)の定義域については\(\varOmega_t = [0,\,1)\)とする．各\(X_t\)によって生成される\(\sigma\)-加法族\(\mathcal{F}_t = \sigma [X_t]\)は
+\begin{align*}
+\mathcal{F}_t
+  &amp; = \sigma \left(\{
+    X_t^{-1}(\emptyset),\,
+    X_t^{-1}(\{\mathrm{H}\}),\,
+    X_t^{-1}(\{\mathrm{T}\}),\,
+    X_t^{-1}(S)\}
+  \right) \\
+  &amp; = \left\{\emptyset, \left[0, \frac{1}{2}\right),\,\left[\frac{1}{2},\,1\right),\, \varOmega \right\}
+\end{align*}
+である．
+</p>
+<p>
+まず終域は\(S^\varLambda = S_1 \times S_2 \times \cdots S_T\)である．終域の\(\sigma\)-加法族は
+\begin{align*}
+  \mathcal{G} = \sigma[\{ F_1 \times \cdots \times F_T \mid F_1 \in \mathcal{F}_1,\, \ldots,\, F_T \in \mathcal{F}_T \}]
+\end{align*}
+</p>
+</section>
+<section>
+<strong>例（加算無限回連続コイントス）</strong>
+<p><span class="head">\(\varLambda = \mathbb{Z}_+ = \{1,\,2,\,\ldots\}\)</span>の場合，無限回連続コイントスの結果を表す確率変数の終域を
+\begin{align*}
+  S^\varLambda
+  &amp;:= \prod_{\lambda \in \varLambda} S_\lambda \\
+  &amp;= \{(s_\lambda)_{\lambda \in \varLambda} \mid \text{\(s_\lambda \in S_\lambda\) for all \(\lambda \in \varLambda\)} \} \\
+  &amp;= S_1 \times S_2 \times \cdots
+\end{align*}
+とする．各\(\mu \in \varLambda\)に関する標準射影を\(\pi_\mu\)と書くことにする．すなわち各\(\mu \in \varLambda\)について
+\begin{align*}
+  \pi_\mu \colon S^\varLambda \to S_\mu,\quad
+  \pi_\mu ( (s_\lambda)_{\lambda \in \varLambda} ) = s_\mu
+\end{align*}
+である．例えば\(\pi_2 ((s_1, s_2,\,\ldots)) = s_2\)である．集合\(A \subset S_\mu\)の\(\pi_\mu\)による逆像は
+\begin{align*}
+  \pi_\mu^{-1}(A) = \{(s_\lambda)_{\lambda \in \varLambda} \mid \text{(\(s_\lambda \in S_\lambda\) for all \(\lambda \in \varLambda\)) and \(s_\mu \in A\)} \} \\
+\end{align*}
+である．例えば\(A = \{\mathrm{H}\} \subset S_2\)とすると
+\begin{align*}
+  \pi_2^{-1}(A)
+  &amp;= \{(s_\lambda)_{\lambda \in \varLambda} \mid \text{(\(s_\lambda \in S_\lambda\) for all \(\lambda \in \varLambda\)) and \(s_2 \in \{H\}\)} \} \\
+  &amp; = \{(s_1,\,\mathrm{H},\,s_3,\,\ldots) \mid \text{\(s_\lambda \in S_\lambda\) for all \(\lambda \in \varLambda\)} \}
+\end{align*}
+となる．
+\begin{align*}
+  \mathcal{F}_t = \sigma \left[ \bigcup_{\lambda \in \varLambda} \{ \pi_\mu^{-1}(G) \mid G \in \mathcal{G}_t \} \right]
+\end{align*}
+</p>
+</section>
+<section id="materials">
+  <h2>参考文献</h2>
+  <ol class="citation">
+  <li><a href="https://link.springer.com/book/10.1007/978-0-387-87859-1">Erhan &Ccedil;&#x131;nlar (2011) <em>Probability and Stochastics</em>. Springer New York.</a></li>
+  <li><a href="https://link.springer.com/book/10.1007/978-3-031-14205-5">Jean-François Le Gall (2022) <em>Measure Theory, Probability, and Stochastic Processes</em>. Springer Cham.</a></li>
+</ol>
+</section>
+{% endblock %}

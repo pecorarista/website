@@ -73,7 +73,7 @@
       }^2 \label{a}
 \end{align}
 となる．</p>
-<p>(\ref{a})の右辺第1項について
+<p>(\{a})の右辺第1項について
 \begin{align}
       E\left[
         {
@@ -126,13 +126,13 @@
 ただし\(
   V_{W}^{\ell} = V\left[w_{i1}^{\ell}\right] = \cdots V\left[w_{n^\ell}^{\ell}\right]
 \)と置いた．</p>
-<p>(\ref{a})の右辺第2項について
+<p>(\{a})の右辺第2項について
 \begin{align}
     {\left(\sum_{j \in \mathcal{J}_{n^\ell}} E\left[w_{ij}^{\ell}\right]E\left[x_j^{\ell}\right]\right)}^2
     =
     {\left(\sum_{j \in \mathcal{J}_{n^\ell}} 0 \cdot E\left[x_j^{\ell}\right]\right)}^2 = 0 \label{w2}
 \end{align}
-が成り立つ．(\ref{w1})と(\ref{w2})を合わせて
+が成り立つ．(\{w1})と\((\ref{w2})\)を合わせて
 \begin{align}
   V\left[y_i^{\ell}\right]
   =
@@ -157,7 +157,7 @@
     \text{ for all \(j \in \mathcal{J}_{n^\ell}\)}. \tag{H2} \label{ex0}
 \end{gather}
 </p>
-<p>(\ref{H1})について，活性化関数として用いられるものは，通常\(
+<p>(\{H1})について，活性化関数として用いられるものは，通常\(
   0
 \)
 の周りで\(
@@ -173,7 +173,7 @@
   =
   V\left[y_i^{\ell}\right]
 \end{align*}
-が成り立つため，妥当な仮定である．(\ref{ex0})については
+が成り立つため，妥当な仮定である．(\{ex0})については
 \begin{align*}
   E\left[x_i^{\ell}\right]
   &amp;= E\left[g\left( y_i^{\ell - 1} \right)\right] \\
@@ -190,7 +190,7 @@
 \)かつ\(
   g(0) = 0
 \)となるような関数<span class="head">（\(\tanh\)</span>など）を使う限り，妥当な仮定である．</p>
-<p>これら仮定の下で(\ref{v})より
+<p>これら仮定の下で(\{v})より
 \begin{gather*}
   V\left[x_i^{\ell + 1}\right]
   =
@@ -215,7 +215,7 @@
 \begin{align}
   V_W^{\ell} = \frac{2}{n^\ell + n^{\ell + 1}} \label{result}
 \end{align}
-と定める．この初期化手法は<a href="#glorot">Glorot et al. (2010)</a>で提案されたため<em>Glorot initialization</em>と呼ばれる．</p>
+と定める．この初期化手法は<a h="#glorot">Glorot et al. (2010)</a>で提案されたため<em>Glorot initialization</em>と呼ばれる．</p>
 <p><strong>例</strong>
 \(W^{\ell}\)の各要素が\(
   \mathcal{U}(-a,\,a)
@@ -225,7 +225,7 @@
 \begin{align}
   V^{\ell}_W = \frac{(a - (- a))^2}{12} = \frac{a^2}{3}. \label{uniform}
 \end{align}
-で与えられる．(\ref{result})を利用すると
+で与えられる．(\{result})を利用すると
 \begin{align*}
   \frac{a^2}{3} = \frac{2}{n^\ell + n^{\ell + 1}}.
 \end{align*}
@@ -243,13 +243,13 @@
   \right)
 \end{gather*}
 からサンプリングすればよい．</p>
-<p><strong>(\ref{ex0})が成り立たない場合</strong>
+<p><strong>(\{ex0})が成り立たない場合</strong>
 例えば活性化関数が\(
   g(y) := \mathrm{ReLU}(y) = \max\{0,\,y\}
 \)のとき\(
   E\left[x_i^{\ell}\right] &gt; 0
 \)
-となる．適当な仮定をおいて，そのような場合にも(\ref{v})から\(
+となる．適当な仮定をおいて，そのような場合にも(\{v})から\(
   V_{W}^{\ell}
 \)を求めたい．各\(
   x_i
@@ -276,7 +276,7 @@
     f\left(y_j^{\ell - 1}\right) dy_j^{\ell - 1} \\
   &amp;= \frac{1}{2} V\left[y_j^{\ell - 1}\right].
 \end{align*}
-したがって(\ref{v})に代入して
+したがって(\{v})に代入して
 \begin{align*}
   V\left[y_i^{\ell}\right]
   =
@@ -291,12 +291,12 @@
     =
     \frac{2}{n^\ell}.
 \end{align*}
-この初期化手法は<a href="#he">He et al. (2015)</a>で提案されたため<em>He initialization</em>と呼ばれる．</p>
+この初期化手法は<a h="#he">He et al. (2015)</a>で提案されたため<em>He initialization</em>と呼ばれる．</p>
 <p><strong>【例】</strong> \(
   W^{\ell}
 \)の各要素が\(
   \mathcal{U}(-a,\,a)
-\)<span class="head">（\(a\)</span>は正の定数）から選ばれる場合，(\ref{uniform})を使って
+\)<span class="head">（\(a\)</span>は正の定数）から選ばれる場合，(\{uniform})を使って
 \begin{gather*}
   \frac{a^2}{3} = \frac{2}{n^\ell} \\
   a = \sqrt{\frac{6}{n^\ell}}
@@ -307,7 +307,7 @@
 <h2>参考文献</h2>
   <ol class="citation">
     <li id="glorot">Glorot, X., &amp; Bengio, Y. (2010). Understanding the difficulty of training deep feedforward neural networks. In <em>Proceedings of the thirteenth international conference on artificial intelligence and statistics</em> (pp. 249–256). JMLR Workshop and Conference Proceedings.</li>
-    <li id="he">He, K., Zhang, X., Ren, S., &amp; Sun, J. (2015). <a href="https://ieeexplore.ieee.org/document/7410480">Delving deep into rectifiers: Surpassing human-level performance on imagenet classification</a>. In <em>Proceedings of the IEEE international conference on computer vision</em> (pp. 1026–1034).</li>
+    <li id="he">He, K., Zhang, X., Ren, S., &amp; Sun, J. (2015). <a h="https://ieeexplore.ieee.org/document/7410480">Delving deep into rectifiers: Surpassing human-level performance on imagenet classification</a>. In <em>Proceedings of the IEEE international conference on computer vision</em> (pp. 1026–1034).</li>
     <li id="okatani">岡谷貴之(2022)．『深層学習 改訂第2版（機械学習プロフェッショナルシリーズ）』．講談社．</li>
   </ol>
 </section>

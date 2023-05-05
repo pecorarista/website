@@ -46,10 +46,6 @@ body {
     }
   }
 
-  span.before-hyphen > mjx-container:not([display])::after {
-    content: '';
-  }
-
   span.head > mjx-container:not([display])::before {
     content: '';
   }
