@@ -63,16 +63,16 @@
 \end{align*}
 と定義すると，\(\sigma [X]\)は\(\sigma\)-加法族であり，また\(X\)が\((\mathcal{F},\, \mathcal{G})\)-可測になるような\(\mathcal{F}\)の中で最小の集合族である．この\(\sigma [X]\)を\(X\)で生成される\(\sigma\)-加法族と呼ぶ．</p>
 <strong>定義がwell-definedであることの確認</strong>
-<p><span class="head">\(\sigma\)</span>-加法族であることを示す．\(\varOmega \in \mathcal{G}\)</span>であることは\(
+<p><span class="head">\(\mathcal{F} := \{X^{-1} (G) \mid G \in \mathcal{G}\}\)</span>が\(\sigma\)-加法族であることを示す．\(\varOmega \in \mathcal{F}\)</span>であることは\(
   \varOmega = \{\omega \in \varOmega \mid X(\omega) \in S\} = X^{-1}(S) \in \mathcal{F}
-\)からわかる．\(\mathcal{G}\)が補集合について閉じていることを確認する．
+\)からわかる．\(\mathcal{F}\)が補集合について閉じていることを確認する．
 \begin{align*}
   \varOmega \setminus X^{-1}(G)
   &amp;= \{ \omega \in \varOmega \mid X(\omega) \not \in G \} \\
   &amp;= \{ \omega \in \varOmega \mid X(\omega) \in S \setminus G \} \\
   &amp;= X^{-1}(S \setminus G)
 \end{align*}
-<span class="head">\(\mathcal{G}\)</span>が\(\sigma\)-加法族なので\(S \setminus G \in \mathcal{G}\)．よって\(\varOmega \setminus f^{-1}(G) = X^{-1}(S \setminus G) \in \mathcal{F}\)．最後に和について閉じていることを確認する．各\(n\)で\(G_n \in \mathcal{G}\)であるような集合列\((G_n)_{n \in \mathbb{N}}\)をとる．このとき
+<span class="head">\(\mathcal{G}\)</span>が\(\sigma\)-加法族なので\(S \setminus G \in \mathcal{G}\)．よって\(\varOmega \setminus f^{-1}(G) = X^{-1}(S \setminus G) \in \mathcal{F}\)．最後に和について閉じていることを確認する．各\(n \in \mathbb{N}\)で\(G_n \in \mathcal{G}\)であるような集合列\((G_n)_{n \in \mathbb{N}}\)をとる．このとき
 \begin{align*}
   \bigcup_{n \in \mathbb{N}} X^{-1}(G_n)
   &amp;= \bigcup_{n \in \mathbb{N}} \{\omega \in \varOmega \mid X(\omega) \in G_n \} \\
@@ -84,31 +84,33 @@
 </section>
 <section>
 <strong>例（コイントス）</strong>
-<p>コインの表を\(\mathrm{H}\) (head)，コインの裏を\(\mathrm{T}\) (tail)と書くと，1回のトスの結果を表す確率変数の終域は\(S = \{\mathrm{H},\,\mathrm{T}\}\)ととるのが自然である．\(S\)の\(\sigma\)-加法族として，\(\mathcal{G} := \wp (S) = \{\emptyset,\,\{\mathrm{H}\},\, \{\mathrm{T}\},\, S\}\)をとる．
-定義域\(\varOmega\)は自由にとれる（確率変数を恒等写像として\(\varOmega = S\)とすると楽）が，今回は\(\varOmega = [0, 1)\)とする．
+<p>コインの表を\(\mathrm{H}\) (head)，コインの裏を\(\mathrm{T}\) (tail)と書くと，1回のトスの結果を表す確率変数\(X\)の終域は\(S = \{\mathrm{H},\,\mathrm{T}\}\)ととるのが自然である．\(S\)の\(\sigma\)-加法族として，\(\mathcal{G} := \wp (S) = \{\emptyset,\,\{\mathrm{H}\},\, \{\mathrm{T}\},\, S\}\)をとる．
+定義域\(\varOmega\)は好きなように決めてよい．今回は\(\varOmega = [0, 1)\)とする．
+確率変数\(X\colon \varOmega \to S\)を以下で定義する：
 \begin{align*}
   X = \begin{cases}
     \mathrm{H} &amp; \text{if \(\displaystyle \omega \geq \frac{1}{2}\)}, \\[3pt]
-    \mathrm{T} &amp; \text{otherwise} \\
+    \mathrm{T} &amp; \text{otherwise}. \\
   \end{cases}
 \end{align*}
-とすると，\(X\)によって生成される\(\sigma\)-加法族\(\sigma [X]\)は
+<span class="head">\(\varOmega\)</span>の\(\sigma\)-加法族として\(\mathcal{F} = \sigma [X]\)をとる：
 \begin{align*}
-\sigma[X]
-  &amp; = \sigma \left(\{
+\mathcal{F}
+  &amp;= \sigma [X] \\
+  &amp;= \sigma \left(\{
     X^{-1}(\emptyset),\,
     X^{-1}(\{\mathrm{H}\}),\,
     X^{-1}(\{\mathrm{T}\}),\,
     X^{-1}(S)\}
   \right) \\
-  &amp; = \left\{\emptyset, \left[0, \frac{1}{2}\right),\,\left[\frac{1}{2},\,1\right),\, \varOmega \right\}
+  &amp; = \left\{\emptyset, \left[0, \frac{1}{2}\right),\,\left[\frac{1}{2},\,1\right),\, \varOmega \right\}.
 \end{align*}
-である．
+確率測度は\(P([a,\,b)) = b - a\)と定めるのが自然である．
 </p>
 </section>
 <section>
 <strong>例（有限回連続コイントス）</strong>
-<p><span class="head">\(\varLambda = \{1,\,2,\,\ldots,\,T\}\)</span>とする．\(t\)回目のトスの結果を表す確率変数を\(X_t\)と表す．上の例と同様にして各\(X_t\)の終域を\(S_t = \{\mathrm{H},\,\mathrm{T}\}\)とし，\(S_t\)の\(\sigma\)-加法族として\(\mathcal{G} := \wp (S_t) = \{\emptyset,\,\{\mathrm{H}\},\, \{\mathrm{T}\},\, S\}\)をとる．各\(X_t\)の定義域については\(\varOmega_t = [0,\,1)\)とする．各\(X_t\)によって生成される\(\sigma\)-加法族\(\mathcal{F}_t = \sigma [X_t]\)は
+<p><span class="head">\(\mathbb{T} = \{1,\,2,\,\ldots,\,T\}\)</span>とする．\(t\)回目のトスの結果を表す確率変数を\(X_t\)と表す．上の例と同様にして各\(X_t\)の終域を\(S_t = \{\mathrm{H},\,\mathrm{T}\}\)とし，\(S_t\)の\(\sigma\)-加法族として\(\mathcal{G} := \wp (S_t) = \{\emptyset,\,\{\mathrm{H}\},\, \{\mathrm{T}\},\, S\}\)をとる．各\(X_t\)の定義域については\(\varOmega_t = [0,\,1)\)とする．各\(X_t\)によって生成される\(\sigma\)-加法族\(\mathcal{F}_t = \sigma [X_t]\)は
 \begin{align*}
 \mathcal{F}_t
   &amp; = \sigma \left(\{
@@ -122,40 +124,51 @@
 である．
 </p>
 <p>
-まず終域は\(S^\varLambda = S_1 \times S_2 \times \cdots S_T\)である．終域の\(\sigma\)-加法族は
+まず終域は\(S^N = S_1 \times S_2 \times \cdots S_T\)である．終域の\(\sigma\)-加法族は
 \begin{align*}
-  \mathcal{G} = \sigma[\{ F_1 \times \cdots \times F_T \mid F_1 \in \mathcal{F}_1,\, \ldots,\, F_T \in \mathcal{F}_T \}]
+  \mathcal{G} = \sigma[\{ F_1 \times \cdots \times F_T \mid F_1 \in \mathcal{F}_1,\, \ldots,\, F_T\in \mathcal{F}_T \}]
 \end{align*}
 </p>
 </section>
 <section>
 <strong>例（加算無限回連続コイントス）</strong>
-<p><span class="head">\(\varLambda = \mathbb{Z}_+ = \{1,\,2,\,\ldots\}\)</span>の場合，無限回連続コイントスの結果を表す確率変数の終域を
+<p>添え字集合を\(\mathbb{Z}_+ = \{1,\,2,\,\ldots\}\)とする．無限回連続コイントスの結果を表す確率変数の終域を
 \begin{align*}
-  S^\varLambda
-  &amp;:= \prod_{\lambda \in \varLambda} S_\lambda \\
-  &amp;= \{(s_\lambda)_{\lambda \in \varLambda} \mid \text{\(s_\lambda \in S_\lambda\) for all \(\lambda \in \varLambda\)} \} \\
+  S^{\mathbb{Z}_+}
+  &amp;:= \prod_{n \in {\mathbb{Z}_+}} S_n \\
+  &amp;= \{(s_n)_{n \in {\mathbb{Z}_+}} \mid \text{\(s_n \in S_n\) for all \(n \in {\mathbb{Z}_+}\)} \} \\
   &amp;= S_1 \times S_2 \times \cdots
 \end{align*}
-とする．各\(\mu \in \varLambda\)に関する標準射影を\(\pi_\mu\)と書くことにする．すなわち各\(\mu \in \varLambda\)について
+とする．各\(S_i\)の\(\sigma\)-加法族としては\(\mathcal{G}_i := \wp (S_2) = \{\emptyset,\,\{\mathrm{H}\},\, \{\mathrm{T}\},\, S\}\)をとる．
+各\(i \in {\mathbb{Z}_+}\)に関する標準射影を\(\pi_i\)と書くことにする．すなわち各\(i \in {\mathbb{Z}_+}\)について
 \begin{align*}
-  \pi_\mu \colon S^\varLambda \to S_\mu,\quad
-  \pi_\mu ( (s_\lambda)_{\lambda \in \varLambda} ) = s_\mu
+  \pi_i \colon S^{\mathbb{Z}_+} \to S_i,\quad
+  \pi_i ( (s_n)_{n \in {\mathbb{Z}_+}} ) = s_i
 \end{align*}
-である．例えば\(\pi_2 ((s_1, s_2,\,\ldots)) = s_2\)である．集合\(A \subset S_\mu\)の\(\pi_\mu\)による逆像は
+である．例えば\(\pi_2 ((s_1, s_2,\,\ldots)) = s_2\)である．集合\(A \subseteq S_i\)の\(\pi_i\)による逆像は
 \begin{align*}
-  \pi_\mu^{-1}(A) = \{(s_\lambda)_{\lambda \in \varLambda} \mid \text{(\(s_\lambda \in S_\lambda\) for all \(\lambda \in \varLambda\)) and \(s_\mu \in A\)} \} \\
+\pi_i^{-1}(A) = \{(s_n)_{n \in {\mathbb{Z}_+}} \mid \text{(\(s_n \in S_n\) for all \(n \in {\mathbb{Z}_+} \setminus \{i\}\)) and \(s_i \in A\)} \} \\
 \end{align*}
-である．例えば\(A = \{\mathrm{H}\} \subset S_2\)とすると
+である．例えば\(\{\mathrm{H}\} \subseteq S_2\)について
 \begin{align*}
-  \pi_2^{-1}(A)
-  &amp;= \{(s_\lambda)_{\lambda \in \varLambda} \mid \text{(\(s_\lambda \in S_\lambda\) for all \(\lambda \in \varLambda\)) and \(s_2 \in \{H\}\)} \} \\
-  &amp; = \{(s_1,\,\mathrm{H},\,s_3,\,\ldots) \mid \text{\(s_\lambda \in S_\lambda\) for all \(\lambda \in \varLambda\)} \}
+  \pi_2^{-1}(\{H\})
+  &amp;= \{(s_n)_{n \in {\mathbb{Z}_+}} \mid \text{(\(s_n \in S_n\) for all \(n \in {\mathbb{Z}_+} \setminus \{2\}\)) and \(s_2 \in \{H\}\)} \} \\
+  &amp; = \{(s_1,\,\mathrm{H},\,s_3,\,\ldots) \mid \text{\(s_n \in S_n\) for all \(n \in {\mathbb{Z}_+} \setminus \{2\}\)} \}
 \end{align*}
-となる．
+となる．各\(S_i\)の任意の\(\sigma\)-加法族\(\mathcal{A}\)について
 \begin{align*}
-  \mathcal{F}_t = \sigma \left[ \bigcup_{\lambda \in \varLambda} \{ \pi_\mu^{-1}(G) \mid G \in \mathcal{G}_t \} \right]
+  \pi_i^{-1}(\mathcal{A}) = \{\pi_i^{-1}(A) \mid A \in \mathcal{A}\}
 \end{align*}
+のように表す．例えば
+\begin{align}
+  \pi_2^{-1}(\mathcal{G}_2) = \{
+    \emptyset,\,
+    \pi_2^{-1}(\{\mathrm{H}\}),\,
+    \pi_2^{-1}(\{\mathrm{T}\}),\,
+    S^{\mathbb{Z}_+}
+  \}
+\end{align}
+である．
 </p>
 </section>
 <section id="materials">
