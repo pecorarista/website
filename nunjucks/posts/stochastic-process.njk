@@ -7,15 +7,15 @@
 {% block post %}
 <p><strong>注意：以下の内容は書きかけです。</strong></p>
 <section>
-<strong>定義（関数によって生成される\(\sigma\)-加法族）</strong>
+<strong>定義（関数によって生成される\(\sigma\)-<ruby>代数<rt>アルジェブラ</rt></ruby>）</strong>
 <p><span class="head">\((S,\,\mathcal{G})\)</span>を可測空間とする．関数\(X\colon \varOmega \to S\)
 が与えられたとき，
 \begin{align*}
   \sigma [X] = \{X^{-1} (G) \mid G \in \mathcal{G}\}
 \end{align*}
-と定義すると，\(\sigma [X]\)は\(\sigma\)-加法族であり，また\(X\)が\((\mathcal{F},\, \mathcal{G})\)-可測になるような\(\mathcal{F}\)の中で最小の集合族である．この\(\sigma [X]\)を\(X\)で生成される\(\sigma\)-加法族と呼ぶ．</p>
+と定義すると，\(\sigma [X]\)は\(\sigma\)-<ruby>代数<rt>アルジェブラ</rt></ruby>であり，また\(X\)が\((\mathcal{F},\, \mathcal{G})\)-可測になるような\(\mathcal{F}\)の中で最小の集合族である．この\(\sigma [X]\)を\(X\)で生成される\(\sigma\)-<ruby>代数<rt>アルジェブラ</rt></ruby>と呼ぶ．</p>
 <strong>定義がwell-definedであることの確認</strong>
-<p><span class="head">\(\mathcal{F} := \{X^{-1} (G) \mid G \in \mathcal{G}\}\)</span>が\(\sigma\)-加法族であることを示す．\(\varOmega \in \mathcal{F}\)</span>であることは\(
+<p><span class="head">\(\mathcal{F} := \{X^{-1} (G) \mid G \in \mathcal{G}\}\)</span>が\(\sigma\)-<ruby>代数<rt>アルジェブラ</rt></ruby>であることを示す．\(\varOmega \in \mathcal{F}\)</span>であることは\(
   \varOmega = \{\omega \in \varOmega \mid X(\omega) \in S\} = X^{-1}(S) \in \mathcal{F}
 \)からわかる．\(\mathcal{F}\)が補集合について閉じていることを確認する．
 \begin{align*}
@@ -24,110 +24,76 @@
   &amp;= \{ \omega \in \varOmega \mid X(\omega) \in S \setminus G \} \\
   &amp;= X^{-1}(S \setminus G)
 \end{align*}
-<span class="head">\(\mathcal{G}\)</span>が\(\sigma\)-加法族なので\(S \setminus G \in \mathcal{G}\)．よって\(\varOmega \setminus f^{-1}(G) = X^{-1}(S \setminus G) \in \mathcal{F}\)．最後に和について閉じていることを確認する．各\(n \in \mathbb{N}\)で\(G_n \in \mathcal{G}\)であるような集合列\((G_n)_{n \in \mathbb{N}}\)をとる．このとき
+<span class="head">\(\mathcal{G}\)</span>が\(\sigma\)-<ruby>代数<rt>アルジェブラ</rt></ruby>なので\(S \setminus G \in \mathcal{G}\)．よって\(\varOmega \setminus f^{-1}(G) = X^{-1}(S \setminus G) \in \mathcal{F}\)．最後に和について閉じていることを確認する．各\(n \in \mathbb{N}\)で\(G_n \in \mathcal{G}\)であるような集合列\((G_n)_{n \in \mathbb{N}}\)をとる．このとき
 \begin{align*}
   \bigcup_{n \in \mathbb{N}} X^{-1}(G_n)
   &amp;= \bigcup_{n \in \mathbb{N}} \{\omega \in \varOmega \mid X(\omega) \in G_n \} \\
   &amp;= \left\{\omega \in \varOmega \;\middle|\; X(\omega) \in \bigcup_{n \in \mathbb{N}} G_n \right\} \\
   &amp;= X^{-1}\left(\bigcup_{n \in \mathbb{N}} G_n \right) \\
 \end{align*}
-<span class="head">\(\mathcal{G}\)</span>が\(\sigma\)-加法族なので\(\bigcup_{n \in \mathbb{N}} G_n \in \mathcal{G}\)．よって\(\varOmega \setminus X^{-1}(G) = X^{-1}(\bigcup_{n \in \mathbb{N}} G_n) \in \mathcal{F}\)．最小性については明らかである．
+<span class="head">\(\mathcal{G}\)</span>が\(\sigma\)-<ruby>代数<rt>アルジェブラ</rt></ruby>なので\(\bigcup_{n \in \mathbb{N}} G_n \in \mathcal{G}\)．よって\(\varOmega \setminus X^{-1}(G) = X^{-1}(\bigcup_{n \in \mathbb{N}} G_n) \in \mathcal{F}\)．最小性については明らかである．
 </p>
 </section>
 <section>
 <strong>例（コイントス）</strong>
-<p>コインの表を\(\mathrm{H}\) (head)，コインの裏を\(\mathrm{T}\) (tail)と書くと，1回のトスの結果を表す確率変数\(X\)の終域は\(S = \{\mathrm{H},\,\mathrm{T}\}\)ととるのが自然である．\(S\)の\(\sigma\)-加法族として，\(\mathcal{G} := \wp (S) = \{\emptyset,\,\{\mathrm{H}\},\, \{\mathrm{T}\},\, S\}\)をとる．
-定義域\(\varOmega\)は好きなように決めてよい．今回は\(\varOmega = [0, 1)\)とする．
-確率変数\(X\colon \varOmega \to S\)を以下で定義する：
-\begin{align*}
-  X = \begin{cases}
-    \mathrm{H} &amp; \text{if \(\displaystyle \omega \geq \frac{1}{2}\)}, \\[3pt]
-    \mathrm{T} &amp; \text{otherwise}. \\
-  \end{cases}
-\end{align*}
-<span class="head">\(\varOmega\)</span>の\(\sigma\)-加法族として\(\mathcal{F} = \sigma [X]\)をとる：
-\begin{align*}
-\mathcal{F}
-  &amp;= \sigma [X] \\
-  &amp;= \sigma \left(\{
-    X^{-1}(\emptyset),\,
-    X^{-1}(\{\mathrm{H}\}),\,
-    X^{-1}(\{\mathrm{T}\}),\,
-    X^{-1}(S)\}
-  \right) \\
-  &amp; = \left\{\emptyset, \left[0, \frac{1}{2}\right),\,\left[\frac{1}{2},\,1\right),\, \varOmega \right\}.
-\end{align*}
-確率測度は\(P([a,\,b)) = b - a\)と定めるのが自然である．
+<p>コインを1度だけ投げる試行において，表が出る根源事象を\(\mathrm{H}\) (head)，コインの裏が出る根源事象を\(\mathrm{T}\) (tail)で表す．このとき標本空間は\(\varOmega = \{\mathrm{H},\,\mathrm{T}\}\)である．標本空間の\(\sigma\)-加法族として\(\mathcal{F} := \wp(\varOmega) = \{\emptyset, \{\mathrm{H}\}, \{\mathrm{T}\}, \{\mathrm{H},\, \mathrm{T}\}\}\)をとる．状態空間は\((S,\, \mathcal{G}) = (\varOmega,\, \mathcal{F})\)とする．確率変数\(X\colon \varOmega \to S\)は恒等関数とする．確率測度は\(P = P(\{\mathrm{H}\}) = P(\{\mathrm{T}\}) = 1 / 2\)とする．以上はコインを1度だけ投げる試行のモデルになっている．
 </p>
 </section>
 <section>
 <strong>例（有限回連続コイントス）</strong>
-<p><span class="head">\(\mathbb{T} = \{1,\,2,\,\ldots,\,T\}\)</span>とする．\(t\)回目のトスの結果を表す確率変数を\(X_t\)と表す．上の例と同様にして各\(X_t\)の終域を\(S_t = \{\mathrm{H},\,\mathrm{T}\}\)とし，\(S_t\)の\(\sigma\)-加法族として\(\mathcal{G} := \wp (S_t) = \{\emptyset,\,\{\mathrm{H}\},\, \{\mathrm{T}\},\, S\}\)をとる．各\(X_t\)の定義域については\(\varOmega_t = [0,\,1)\)とする．各\(X_t\)によって生成される\(\sigma\)-加法族\(\mathcal{F}_t = \sigma [X_t]\)は
+<p><span class="head">\(\mathbb{T} = \{1,\,2,\,\ldots,\,n\}\)</span>とする．\(i\)回目の試行の標本空間を\(\varOmega_t = \{\mathrm{H},\,\mathrm{T}\}\)とし，\(\varOmega_t\)の\(\sigma\)-<ruby>代数<rt>アルジェブラ</rt></ruby>として\(\mathcal{F}_t := \wp (\varOmega_t) = \{\emptyset,\,\{\mathrm{H}\},\, \{\mathrm{T}\},\, \{\mathrm{H},\, \mathrm{T}\}\}\)をとる．このとき\(T\)回目までの試行全体の標本集合は
 \begin{align*}
-\mathcal{F}_t
-  &amp; = \sigma \left(\{
-    X_t^{-1}(\emptyset),\,
-    X_t^{-1}(\{\mathrm{H}\}),\,
-    X_t^{-1}(\{\mathrm{T}\}),\,
-    X_t^{-1}(S)\}
-  \right) \\
-  &amp; = \left\{\emptyset, \left[0, \frac{1}{2}\right),\,\left[\frac{1}{2},\,1\right),\, \varOmega \right\}
+  \varOmega^{\mathbb{T}}
+  &amp;:= \prod_{i \in \mathbb{T}} \varOmega_i \\
+  &amp;= \varOmega_1 \times \cdots \times \varOmega_n \\
+  &amp;= \{(\omega_1,\,\ldots,\,\omega_n) \mid \text{\(\omega_i \in \varOmega_i\) for all \(i \in {\mathbb{T}}\)} \}
 \end{align*}
-である．
-</p>
-<p>
-まず終域は\(S^N = S_1 \times S_2 \times \cdots S_T\)である．終域の\(\sigma\)-加法族は
+となる．その\(\sigma\)-加法族としては
 \begin{align*}
-  \mathcal{G} = \sigma[\{ F_1 \times \cdots \times F_T \mid F_1 \in \mathcal{F}_1,\, \ldots,\, F_T\in \mathcal{F}_T \}]
+\mathcal{F}_t = \sigma [\{F_1 \times \cdots F_T \mid \text{\(F_i \in \mathcal{F}_i\) for all \(i \in \mathbb{T}\)}\}]
 \end{align*}
+をとればよい．
 </p>
 </section>
 <section>
 <strong>例（加算無限回連続コイントス）</strong>
-<p>添え字集合を\(\mathbb{Z}_+ = \{1,\,2,\,\ldots\}\)とする．無限回連続コイントスの結果を表す確率変数の終域を
+<p>添え字集合を\(\mathbb{Z}_+ = \{1,\,2,\,\ldots\}\)とする．無限回連続コイントスの標本空間は
 \begin{align*}
-  S^{\mathbb{Z}_+}
-  &amp;:= \prod_{n \in {\mathbb{Z}_+}} S_n \\
-  &amp;= \{(s_n)_{n \in {\mathbb{Z}_+}} \mid \text{\(s_n \in S_n\) for all \(n \in {\mathbb{Z}_+}\)} \} \\
-  &amp;= S_1 \times S_2 \times \cdots
+  \varOmega^{\mathbb{Z}_+}
+  &amp;:= \prod_{i \in {\mathbb{Z}_+}} \varOmega_i \\
+  &amp;= \varOmega_1 \times \varOmega_2 \times \cdots \\
+  &amp;= \{(\omega_n)_{n \in {\mathbb{Z}_+}} \mid \text{\(\omega_i \in \varOmega_i\) for all \(i \in {\mathbb{Z}_+}\)} \}
 \end{align*}
-とする．各\(S_i\)の\(\sigma\)-加法族としては\(\mathcal{G}_i := \wp (S_2) = \{\emptyset,\,\{\mathrm{H}\},\, \{\mathrm{T}\},\, S\}\)をとる．
-各\(i \in {\mathbb{Z}_+}\)に関する標準射影を\(\pi_i\)と書くことにする．すなわち各\(i \in {\mathbb{Z}_+}\)について
+とする．各\(\varOmega_t\)の\(\sigma\)-<ruby>代数<rt>アルジェブラ</rt></ruby>としては\(\mathcal{F}_t := \wp (\varOmega_t) = \{\emptyset,\,\{\mathrm{H}\},\, \{\mathrm{T}\},\, S\}\)をとる．
+各\(i \in \mathbb{Z}_+\)に関する標準射影を\(\pi_i\)と書くことにする．すなわち各\(i \in \mathbb{Z}_+\)について
 \begin{align*}
-  \pi_i \colon S^{\mathbb{Z}_+} \to S_i,\quad
-  \pi_i ( (s_n)_{n \in {\mathbb{Z}_+}} ) = s_i
+  \pi_i \colon \varOmega^{\mathbb{Z}_+} \to \varOmega_i,\quad
+  \pi_i ( (\omega_n)_{n \in {\mathbb{Z}_+}} ) = \omega_i
 \end{align*}
-である．例えば\(\pi_2 ((s_1, s_2,\,\ldots)) = s_2\)である．集合\(A \subseteq S_i\)の\(\pi_i\)による逆像は
+とする．このとき，例えば\(\pi_2 ((\omega_1, \omega_2,\,\ldots)) = \omega_2\)となる．集合\(A \subseteq \varOmega_i\)の\(\pi_i\)による逆像は
 \begin{align*}
-\pi_i^{-1}(A) = \{(s_n)_{n \in {\mathbb{Z}_+}} \mid \text{(\(s_n \in S_n\) for all \(n \in {\mathbb{Z}_+} \setminus \{i\}\)) and \(s_i \in A\)} \} \\
+\pi_i^{-1}(A) = \{(\omega_n)_{n \in {\mathbb{Z}_+}} \mid \text{(\(\omega_n \in \varOmega_n\) for all \(n \in {\mathbb{Z}_+} \setminus \{i\}\)) and \(\omega_i \in A\)} \} \\
 \end{align*}
-である．例えば\(\{\mathrm{H}\} \subseteq S_2\)について
+である．例えば\(\{\mathrm{H}\} \subseteq \varOmega_2\)について
 \begin{align*}
   \pi_2^{-1}(\{H\})
-  &amp;= \{(s_n)_{n \in {\mathbb{Z}_+}} \mid \text{(\(s_n \in S_n\) for all \(n \in {\mathbb{Z}_+} \setminus \{2\}\)) and \(s_2 \in \{H\}\)} \} \\
-  &amp; = \{(s_1,\,\mathrm{H},\,s_3,\,\ldots) \mid \text{\(s_n \in S_n\) for all \(n \in {\mathbb{Z}_+} \setminus \{2\}\)} \}
+  &amp;= \{(\omega_n)_{n \in {\mathbb{Z}_+}} \mid \text{(\(\omega_n \in \varOmega_n\) for all \(n \in {\mathbb{Z}_+} \setminus \{2\}\)) and \(\omega_2 \in \{H\}\)} \} \\
+  &amp; = \{(\omega_1,\,\mathrm{H},\,\omega_3,\,\ldots) \mid \text{\(\omega_n \in \varOmega_n\) for all \(n \in {\mathbb{Z}_+} \setminus \{2\}\)} \}
 \end{align*}
-となる．各\(S_i\)の任意の\(\sigma\)-加法族\(\mathcal{A}\)について
+となる．各\(\varOmega_i\)の任意の\(\sigma\)-<ruby>代数<rt>アルジェブラ</rt></ruby>\(\mathcal{A}\)について
 \begin{align*}
   \pi_i^{-1}(\mathcal{A}) = \{\pi_i^{-1}(A) \mid A \in \mathcal{A}\}
 \end{align*}
 のように表す．例えば
 \begin{align}
-  \pi_2^{-1}(\mathcal{G}_2) = \{
+  \pi_2^{-1}(\mathcal{F}_2) = \{
     \emptyset,\,
     \pi_2^{-1}(\{\mathrm{H}\}),\,
     \pi_2^{-1}(\{\mathrm{T}\}),\,
-    S^{\mathbb{Z}_+}
+    \varOmega^{\mathbb{Z}_+}
   \}
 \end{align}
 である．
 </p>
-</section>
-<section id="materials">
-  <h2>参考文献</h2>
-  <ol class="citation">
-  <li><a href="https://link.springer.com/book/10.1007/978-0-387-87859-1">Erhan &Ccedil;&#x131;nlar (2011) <em>Probability and Stochastics</em>. Springer New York.</a></li>
-  <li><a href="https://link.springer.com/book/10.1007/978-3-031-14205-5">Jean-François Le Gall (2022) <em>Measure Theory, Probability, and Stochastic Processes</em>. Springer Cham.</a></li>
-</ol>
 </section>
 {% endblock %}
