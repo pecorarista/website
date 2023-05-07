@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@pecorarista">
-    <meta name="twitter:title" content="確率過程 勉強ノート — pecorarista.com">
+    <meta name="twitter:title" content="確率過程 勉強ノート（書きかけ） — pecorarista.com">
     <meta name="twitter:description" content="">
     <meta name="twitter:image" content="https://pecorarista.com/static/images/avatar.png">
     <link rel="icon" href="/favicon.ico">
@@ -26,7 +26,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-lucario.min.css" integrity="sha512-Aj5jCt/M5XlTn+Y93TazO+EjpRTiUGMrMuaJOcBcu80Fopd7+LSL094m3pbVTNJxf1hOAMSYI/hONBGjvPWwGQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="/static/css/main.css"/>
 
-    <title>確率過程 勉強ノート</title>
+    <title>確率過程 勉強ノート（書きかけ）</title>
   </head>
   <body>
     <div class="wrapper">
@@ -47,13 +47,12 @@
         
 <article>
   <div class="container">
-    <h1>確率過程 勉強ノート</h1>
+    <h1>確率過程 勉強ノート（書きかけ）</h1>
     <div class="info text-muted">
       Posted: 2023-05-05
       
     </div>
     
-<p><strong>注意：以下の内容は書きかけです。</strong></p>
 <section>
 <strong>定義（関数によって生成される\(\sigma\)-<ruby>代数<rt>アルジェブラ</rt></ruby>）</strong>
 <p><span class="head">\((S,\,\mathcal{G})\)</span>を可測空間とする．関数\(X\colon \varOmega \to S\)
@@ -89,16 +88,16 @@
 </section>
 <section>
 <strong>例（有限回連続コイントス）</strong>
-<p><span class="head">\(\mathbb{T} = \{1,\,2,\,\ldots,\,n\}\)</span>とする．\(i\)回目の試行の標本空間を\(\varOmega_t = \{\mathrm{H},\,\mathrm{T}\}\)とし，\(\varOmega_t\)の\(\sigma\)-<ruby>代数<rt>アルジェブラ</rt></ruby>として\(\mathcal{F}_t := \wp (\varOmega_t) = \{\emptyset,\,\{\mathrm{H}\},\, \{\mathrm{T}\},\, \{\mathrm{H},\, \mathrm{T}\}\}\)をとる．このとき\(T\)回目までの試行全体の標本集合は
+<p><span class="head">\(T = \{1,\,2,\,\ldots,\,n\}\)</span>とする．\(i\)回目の試行の標本空間を\(\varOmega_t = \{\mathrm{H},\,\mathrm{T}\}\)とし，\(\varOmega_t\)の\(\sigma\)-<ruby>代数<rt>アルジェブラ</rt></ruby>として\(\mathcal{F}_t := \wp (\varOmega_t) = \{\emptyset,\,\{\mathrm{H}\},\, \{\mathrm{T}\},\, \{\mathrm{H},\, \mathrm{T}\}\}\)をとる．このとき\(n\)回目までの試行全体の標本集合は
 \begin{align*}
-  \varOmega^{\mathbb{T}}
-  &amp;:= \prod_{i \in \mathbb{T}} \varOmega_i \\
+  \varOmega^T
+  &amp;:= \prod_{i \in T} \varOmega_i \\
   &amp;= \varOmega_1 \times \cdots \times \varOmega_n \\
-  &amp;= \{(\omega_1,\,\ldots,\,\omega_n) \mid \text{\(\omega_i \in \varOmega_i\) for all \(i \in {\mathbb{T}}\)} \}
+  &amp;= \{(\omega_1,\,\ldots,\,\omega_n) \mid \text{\(\omega_i \in \varOmega_i\) for all \(i \in T\)} \}
 \end{align*}
 となる．その\(\sigma\)-加法族としては
 \begin{align*}
-\mathcal{F}_t = \sigma [\{F_1 \times \cdots F_T \mid \text{\(F_i \in \mathcal{F}_i\) for all \(i \in \mathbb{T}\)}\}]
+\mathcal{F}_t = \sigma [\{F_1 \times \cdots F_T \mid \text{\(F_i \in \mathcal{F}_i\) for all \(i \in T\)}\}]
 \end{align*}
 をとればよい．
 </p>
@@ -113,36 +112,90 @@
   &amp;= \{(\omega_n)_{n \in {\mathbb{Z}_+}} \mid \text{\(\omega_i \in \varOmega_i\) for all \(i \in {\mathbb{Z}_+}\)} \}
 \end{align*}
 とする．各\(\varOmega_t\)の\(\sigma\)-<ruby>代数<rt>アルジェブラ</rt></ruby>としては\(\mathcal{F}_t := \wp (\varOmega_t) = \{\emptyset,\,\{\mathrm{H}\},\, \{\mathrm{T}\},\, S\}\)をとる．
-各\(i \in \mathbb{Z}_+\)に関する標準射影を\(\pi_i\)と書くことにする．すなわち各\(i \in \mathbb{Z}_+\)について
+各\(i \in \mathbb{Z}_+\)に関する標準射影を\(\mathrm{proj}_i\)と書くことにする．すなわち各\(i \in \mathbb{Z}_+\)について
 \begin{align*}
-  \pi_i \colon \varOmega^{\mathbb{Z}_+} \to \varOmega_i,\quad
-  \pi_i ( (\omega_n)_{n \in {\mathbb{Z}_+}} ) = \omega_i
+  \mathrm{proj}_i \colon \varOmega^{\mathbb{Z}_+} \to \varOmega_i,\quad
+  \mathrm{proj}_i ( (\omega_n)_{n \in {\mathbb{Z}_+}} ) = \omega_i
 \end{align*}
-とする．このとき，例えば\(\pi_2 ((\omega_1, \omega_2,\,\ldots)) = \omega_2\)となる．集合\(A \subseteq \varOmega_i\)の\(\pi_i\)による逆像は
+とする．このとき，例えば\(\mathrm{proj}_2 ((\omega_1, \omega_2,\,\ldots)) = \omega_2\)となる．集合\(A \subseteq \varOmega_i\)の\(\mathrm{proj}\)による逆像は
 \begin{align*}
-\pi_i^{-1}(A) = \{(\omega_n)_{n \in {\mathbb{Z}_+}} \mid \text{(\(\omega_n \in \varOmega_n\) for all \(n \in {\mathbb{Z}_+} \setminus \{i\}\)) and \(\omega_i \in A\)} \} \\
+\mathrm{proj}_i^{-1}(A) = \{(\omega_n)_{n \in {\mathbb{Z}_+}} \mid \text{(\(\omega_n \in \varOmega_n\) for all \(n \in {\mathbb{Z}_+} \setminus \{i\}\)) and \(\omega_i \in A\)} \} \\
 \end{align*}
 である．例えば\(\{\mathrm{H}\} \subseteq \varOmega_2\)について
 \begin{align*}
-  \pi_2^{-1}(\{H\})
+  \mathrm{proj}_2^{-1}(\{\mathrm{H}\})
   &amp;= \{(\omega_n)_{n \in {\mathbb{Z}_+}} \mid \text{(\(\omega_n \in \varOmega_n\) for all \(n \in {\mathbb{Z}_+} \setminus \{2\}\)) and \(\omega_2 \in \{H\}\)} \} \\
   &amp; = \{(\omega_1,\,\mathrm{H},\,\omega_3,\,\ldots) \mid \text{\(\omega_n \in \varOmega_n\) for all \(n \in {\mathbb{Z}_+} \setminus \{2\}\)} \}
 \end{align*}
 となる．各\(\varOmega_i\)の任意の\(\sigma\)-<ruby>代数<rt>アルジェブラ</rt></ruby>\(\mathcal{A}\)について
 \begin{align*}
-  \pi_i^{-1}(\mathcal{A}) = \{\pi_i^{-1}(A) \mid A \in \mathcal{A}\}
+  \mathrm{proj}_i^{-1}(\mathcal{A}) = \{\mathrm{proj}^{-1}(A) \mid A \in \mathcal{A}\}
 \end{align*}
 のように表す．例えば
 \begin{align}
-  \pi_2^{-1}(\mathcal{F}_2) = \{
+  \mathrm{proj}_2^{-1}(\mathcal{F}_2) = \{
     \emptyset,\,
-    \pi_2^{-1}(\{\mathrm{H}\}),\,
-    \pi_2^{-1}(\{\mathrm{T}\}),\,
+    \mathrm{proj}_2^{-1}(\{\mathrm{H}\}),\,
+    \mathrm{proj}_2^{-1}(\{\mathrm{T}\}),\,
     \varOmega^{\mathbb{Z}_+}
   \}
 \end{align}
 である．
 </p>
+</section>
+<section>
+<strong>Transition Kernel</strong> <span class="bib">See Sec. 4 of &Ccedil;&#x131;nlar (2011)</span>
+<p>2つの可測空間\((\varOmega,\,\mathcal{F})\)と\((S,\,\mathcal{G})\)を考える．写像\(K\colon \varOmega \times \mathcal{G} \to [0,\,\infty] \)が以下の性質を満たすとき，\(K\)は\((\varOmega,\,\mathcal{F})\)から\((S,\,\mathcal{G})\)への<strong>transition kernel</strong>であるという．
+</p>
+<ol class="math">
+  <li class="roman">任意の\(G \in \mathcal{G}\)について，\(\omega \mapsto K(\omega,\,G)\)が\((\mathcal{F},\,\mathcal{B}([0,\,\infty]))\)-可測である．</li>
+  <li class="roman">任意の\(\omega \in \varOmega\)について，\(G \mapsto K(\omega,\,G)\)が\((S,\,\mathcal{G})\)の測度である．</li>
+</ol>
+<p>例えば\(\varOmega = \{1,\,2,\,3,\,4,\,5,\,6\},\,\mathcal{F} = \wp(\varOmega),\)
+\(S = \{\mathrm{H},\,\mathrm{T}\},\,\mathcal{G} = \wp(S)\)とする． \(K(\omega,\,\{s\}) = a_{\omega,\,s}\)（各\((\omega,\,s) \in \varOmega \times S\)について\(a_{\omega,\,s}\)は正の定数）とすれば，これはtransition kernelである．</p>
+</section>
+<section>
+<p>測度空間\((\varOmega_0,\, \mathcal{F}_0)\)に測度\(\mu\)が定義されているとする．各\(n \in \mathbb{N}\)について\((\prod_{i = 0}^n \varOmega_n,\, \bigotimes_{i = 0}^n \mathcal{F}_n)\)から\((\varOmega_{n + 1},\,\mathcal{F}_{n + 1})\)へのtransition kernel \(K_{n + 1}\colon \prod_{i = 0}^n \varOmega_{i} \times \mathcal{F}_{n + 1} \to [0,\,\infty]\)をとる．
+\begin{align*}
+  \pi_n(F_0,\,\ldots,\,F_n)
+  = \mu(F_0)K_1(\omega_0,\,F_1)K_2((\omega_0,\,\omega_1),\,F_2)\cdots K_n((\omega_0,\,\ldots,\,\omega_{n - 1}),\,F_n)
+\end{align*}
+\begin{align*}
+  \mathcal{F}_n
+  &amp;= \mathrm{proj}_{0,\,\ldots,\,n}^{-1}\left(\bigotimes_{i = 0}^n \mathcal{F}_i\right) \\
+  &amp;= \left\{\mathrm{proj}_{0,\,\ldots,\,n}^{-1}(F) \;\middle|\; F \in \bigotimes_{i = 0}^n \mathcal{F}\right\} \\
+  &amp;=
+  \left\{
+    \left\{ (\omega_i)_{i \in \mathbb{N}} \;\middle|\;
+      \text{
+        \((\omega_i \in \varOmega_i\) for all \(i \in \mathbb{N})\)
+        and \((\omega_0,\,\ldots,\, \omega_n) \in F\)
+      }
+    \right\}
+    \;\middle|\;
+    F \in \bigotimes_{i = 0}^n \mathcal{F}_i
+  \right\}
+\end{align*}
+</p>
+</section>
+<section>
+<p>\(\mathcal{J} = \{1,\,2,\,\ldots\}\) \(J = \{t_0,\,t_1,\,\ldots\}\)
+\begin{align}
+  \mathrm{proj}_{J \to K}^{-1}()
+\end{align}
+\begin{align}
+P_K = P_J \circ \mathrm{proj}_{J \to K}^{-1}
+\end{align}
+\begin{align}
+\pi f  = \int_{\varOmega_1} \cdots \int_{\varOmega_n} f(\omega_1,\,\ldots,\,\omega_n) d\mu_1 (\omega_1) \cdots d\mu_{n}(\omega_n)
+\end{align}
+</p>
+</section>
+<section id="materials">
+  <h2>参考文献</h2>
+  <ol class="citation">
+  <li><a href="https://link.springer.com/book/10.1007/978-0-387-87859-1">Erhan &Ccedil;&#x131;nlar (2011) <em>Probability and Stochastics</em>. Springer New York.</a></li>
+</ol>
 </section>
 
   </div>

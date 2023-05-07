@@ -185,6 +185,10 @@ ol.math li.capc::before {
   content: "(C" counter(m) ")";
 }
 
+ol.math li.roman::before {
+  content: "(" counter(m, lower-roman) ")";
+}
+
 figure.blockquote {
   padding: 3px 15px;
   margin: 40px 2px;
@@ -371,6 +375,12 @@ ul > .half {
 
 .me {
   text-decoration: underline;
+}
+
+.bib {
+  margin-left: 0.5rem;
+  font-family: serif;
+  font-size: 80%;
 }
 
 /*# sourceMappingURL=main.css.map */
