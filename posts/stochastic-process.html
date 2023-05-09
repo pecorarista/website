@@ -54,159 +54,104 @@
     </div>
     
 <section>
-<strong>定義（関数によって生成される\(\sigma\)-<ruby>代数<rt>アルジェブラ</rt></ruby>）</strong>
-<p><span class="head">\((S,\,\mathcal{G})\)</span>を可測空間とする．関数\(X\colon \varOmega \to S\)
-が与えられたとき，
-\begin{align*}
-  \sigma [X] = \{X^{-1} (G) \mid G \in \mathcal{G}\}
-\end{align*}
-と定義すると，\(\sigma [X]\)は\(\sigma\)-<ruby>代数<rt>アルジェブラ</rt></ruby>であり，また\(X\)が\((\mathcal{F},\, \mathcal{G})\)-可測になるような\(\mathcal{F}\)の中で最小の集合族である．この\(\sigma [X]\)を\(X\)で生成される\(\sigma\)-<ruby>代数<rt>アルジェブラ</rt></ruby>と呼ぶ．</p>
-<strong>定義がwell-definedであることの確認</strong>
-<p><span class="head">\(\mathcal{F} := \{X^{-1} (G) \mid G \in \mathcal{G}\}\)</span>が\(\sigma\)-<ruby>代数<rt>アルジェブラ</rt></ruby>であることを示す．\(\varOmega \in \mathcal{F}\)</span>であることは\(
-  \varOmega = \{\omega \in \varOmega \mid X(\omega) \in S\} = X^{-1}(S) \in \mathcal{F}
-\)からわかる．\(\mathcal{F}\)が補集合について閉じていることを確認する．
-\begin{align*}
-  \varOmega \setminus X^{-1}(G)
-  &amp;= \{ \omega \in \varOmega \mid X(\omega) \not \in G \} \\
-  &amp;= \{ \omega \in \varOmega \mid X(\omega) \in S \setminus G \} \\
-  &amp;= X^{-1}(S \setminus G)
-\end{align*}
-<span class="head">\(\mathcal{G}\)</span>が\(\sigma\)-<ruby>代数<rt>アルジェブラ</rt></ruby>なので\(S \setminus G \in \mathcal{G}\)．よって\(\varOmega \setminus f^{-1}(G) = X^{-1}(S \setminus G) \in \mathcal{F}\)．最後に和について閉じていることを確認する．各\(n \in \mathbb{N}\)で\(G_n \in \mathcal{G}\)であるような集合列\((G_n)_{n \in \mathbb{N}}\)をとる．このとき
-\begin{align*}
-  \bigcup_{n \in \mathbb{N}} X^{-1}(G_n)
-  &amp;= \bigcup_{n \in \mathbb{N}} \{\omega \in \varOmega \mid X(\omega) \in G_n \} \\
-  &amp;= \left\{\omega \in \varOmega \;\middle|\; X(\omega) \in \bigcup_{n \in \mathbb{N}} G_n \right\} \\
-  &amp;= X^{-1}\left(\bigcup_{n \in \mathbb{N}} G_n \right) \\
-\end{align*}
-<span class="head">\(\mathcal{G}\)</span>が\(\sigma\)-<ruby>代数<rt>アルジェブラ</rt></ruby>なので\(\bigcup_{n \in \mathbb{N}} G_n \in \mathcal{G}\)．よって\(\varOmega \setminus X^{-1}(G) = X^{-1}(\bigcup_{n \in \mathbb{N}} G_n) \in \mathcal{F}\)．最小性については明らかである．
-</p>
-</section>
 <section>
-<strong>例（コイントス）</strong>
+<h5 style="font-weight: bold;">例（コイントス）</h5>
 <p>コインを1度だけ投げる試行において，表が出る根源事象を\(\mathrm{H}\) (head)，コインの裏が出る根源事象を\(\mathrm{T}\) (tail)で表す．このとき標本空間は\(\varOmega = \{\mathrm{H},\,\mathrm{T}\}\)である．標本空間の\(\sigma\)-加法族として\(\mathcal{F} := \wp(\varOmega) = \{\emptyset, \{\mathrm{H}\}, \{\mathrm{T}\}, \{\mathrm{H},\, \mathrm{T}\}\}\)をとる．状態空間は\((S,\, \mathcal{G}) = (\varOmega,\, \mathcal{F})\)とする．確率変数\(X\colon \varOmega \to S\)は恒等関数とする．確率測度は\(P = P(\{\mathrm{H}\}) = P(\{\mathrm{T}\}) = 1 / 2\)とする．以上はコインを1度だけ投げる試行のモデルになっている．
 </p>
 </section>
 <section>
-<strong>例（有限回連続コイントス）</strong>
-<p><span class="head">\(T = \{1,\,2,\,\ldots,\,n\}\)</span>とする．\(i\)回目の試行の標本空間を\(\varOmega_t = \{\mathrm{H},\,\mathrm{T}\}\)とし，\(\varOmega_t\)の\(\sigma\)-<ruby>代数<rt>アルジェブラ</rt></ruby>として\(\mathcal{F}_t := \wp (\varOmega_t) = \{\emptyset,\,\{\mathrm{H}\},\, \{\mathrm{T}\},\, \{\mathrm{H},\, \mathrm{T}\}\}\)をとる．このとき\(n\)回目までの試行全体の標本集合は
+<h5 style="font-weight: bold;">例（有限回連続コイントス）</h5>
+<p><span class="head">\(I = \{1,\,2,\,\ldots,\,n\}\)</span>とする．\(i \in I\)回目の試行の標本空間を\(\varOmega_i = \{\mathrm{H},\,\mathrm{T}\}\)とする．
 \begin{align*}
   \varOmega^T
-  &amp;:= \prod_{i \in T} \varOmega_i \\
+  &amp;:= \prod_{i \in I} \varOmega_i \\
   &amp;= \varOmega_1 \times \cdots \times \varOmega_n \\
-  &amp;= \{(\omega_1,\,\ldots,\,\omega_n) \mid \text{\(\omega_i \in \varOmega_i\) for all \(i \in T\)} \}
+  &amp;= \{(\omega_1,\,\ldots,\,\omega_n) \mid \text{\(\omega_i \in \varOmega_i\) for all \(i \in I\)} \}
 \end{align*}
-となる．その\(\sigma\)-加法族としては
+となる．各\(\varOmega_i\)の\(\sigma\)-<ruby>代数<rt>アルジェブラ</rt></ruby>として\(\mathcal{F}_i := \wp (\varOmega_i) = \{\emptyset,\,\{\mathrm{H}\},\, \{\mathrm{T}\},\, \{\mathrm{H},\, \mathrm{T}\}\}\)をとるのが自然である．このとき\(n\)回の試行全体の\(\sigma\)-<ruby>代数<rt>アルジェブラ</rt></ruby>は
 \begin{align*}
-\mathcal{F}_t = \sigma [\{F_1 \times \cdots \times F_T \mid \text{\(F_i \in \mathcal{F}_i\) for all \(i \in T\)}\}]
+\mathcal{F}_i = \sigma [\{F_1 \times \cdots \times F_n \mid \text{\(F_i \in \mathcal{F}_i\) for all \(i \in T\)}\}]
 \end{align*}
-をとればよい．
+をとることができる．
 </p>
 </section>
 <section>
-<strong>射影</strong>
-<p>
-各\(j \in \prod_{i = 1}^n \mathbb{Z}_+\)に関する射影を\(\mathrm{proj}_i\)と書くことにする．すなわち各\(i \in \mathbb{Z}_+\)について
+<h5 style="font-weight: bold;">直積</h5>
+<p>任意の集合\(I\)で添え字付けられた測度空間の族\((\varOmega,\,\mathcal{F}_i)_{i \in I}\)を考える．\((\varOmega_i)_{i \in I}\)の直積は
 \begin{align*}
-  \mathrm{proj}_i \colon \varOmega^{\mathbb{Z}_+} \to \varOmega_i,\quad
-  \mathrm{proj}_i ( (\omega_n)_{n \in {\mathbb{Z}_+}} ) = \omega_i
+  \varOmega^I
+  = \prod_{i \in I} \varOmega_i
+  = \{(\omega_i)_{i \in I} \mid \text{\(\omega_i \in \varOmega_i\) for all \(i \in I\)} \}
 \end{align*}
-とする．このとき，例えば\(\mathrm{proj}_2 ((\omega_1, \omega_2,\,\ldots)) = \omega_2\)となる．集合\(A \subseteq \varOmega_i\)の\(\mathrm{proj}\)による逆像は
+である．\(\varOmega^I\)の\(\sigma\)-加法族としては
 \begin{align*}
-\mathrm{proj}_i^{-1}(A) = \{(\omega_n)_{n \in {\mathbb{Z}_+}} \mid \text{(\(\omega_n \in \varOmega_n\) for all \(n \in {\mathbb{Z}_+} \setminus \{i\}\)) and \(\omega_i \in A\)} \} \\
+  \sigma [\{F_1 \times F_2 \times \cdots \mid F_1 \in \mathcal{F}_1,\,F_2 \in \mathcal{F}_2,\,\ldots\}]
 \end{align*}
-である．例えば\(\{\mathrm{H}\} \subseteq \varOmega_2\)について
+のようなものを考えればよさそうである．これをもう少し正確に記述する．任意の\(n \in \mathbb{Z}_+ = \{1,\,2,\,\ldots\}\)に対し
 \begin{align*}
-  \mathrm{proj}_2^{-1}(\{\mathrm{H}\})
-  &amp;= \{(\omega_n)_{n \in {\mathbb{Z}_+}} \mid \text{(\(\omega_n \in \varOmega_n\) for all \(n \in {\mathbb{Z}_+} \setminus \{2\}\)) and \(\omega_2 \in \{H\}\)} \} \\
-  &amp; = \{(\omega_1,\,\mathrm{H},\,\omega_3,\,\ldots) \mid \text{\(\omega_n \in \varOmega_n\) for all \(n \in {\mathbb{Z}_+} \setminus \{2\}\)} \}
+  J_n = \{(t_1,\,\ldots,\,t_n) \mid t_i\in I\text{ for } i \in \{1,\,\ldots,\,n\},\,t_i \neq t_j\text{ if }i\neq j \}
 \end{align*}
-となる．各\(\varOmega_i\)の任意の\(\sigma\)-<ruby>代数<rt>アルジェブラ</rt></ruby>\(\mathcal{A}\)について
+と定義し，\((t_1,\,\ldots,\,t_n) \in J_n\)をとる．このとき任意の\(F_{t_1} \times \cdots \times F_{t_n} \in \mathcal{F}_{t_1} \otimes \cdots \otimes \mathcal{F}_{t_n}\)について，\(F_{t_1} \times \cdots \times F_{t_n}\)を底とする<h5 style="font-weight: bold;">シリンダー集合</h5>\(\mathrm{Cyl}\,(F_{t_1} \times \cdots F_{t_n})\)を
+\begin{align*}
+  \mathrm{Cyl}\,(F_{t_1} \times \cdots \times F_{t_n}) &amp;:= \{
+    (\omega_i)_{i \in I} \mid
+    \omega_i \in \varOmega_i\text{ for all }i \in I,\,
+    \omega_{t_1} \in F_{t_1},\,\ldots,\,\omega_{t_n} \in F_{t_n}
+  \}
+\end{align*}
+と定義する．また\(\mathcal{F}_{t_1} \otimes \cdots \otimes \mathcal{F}_{t_n}\)に対して
+\begin{align*}
+  \mathrm{Cyl}\,(\mathcal{F}_{t_1} \otimes \cdots \otimes \mathcal{F}_{t_n}) =
+  \bigcup_{F_{t_1} \times \cdots \times F_{t_n} \in \mathcal{F}_{t_1} \otimes \cdots \otimes \mathcal{F}_{t_n}}
+  \mathrm{Cyl}\,(F_{t_1} \times \cdots \times F_{t_n})
+\end{align*}
+と定義する．このとき
+\begin{align*}
+\bigotimes_{i \in I} \mathcal{F}_i := \sigma
+  \left[
+  \bigcup_{n \in \mathbb{Z}_+}
+  \bigcup_{(t_1,\,\ldots,\,t_n) \in J_n}
+    \mathrm{Cyl}\,(\mathcal{F}_{t_1} \otimes \cdots \otimes \mathcal{F}_{t_n})
+  \right]
+\end{align*}
+は\(\varOmega^I\)の\(\sigma\)-加法族である．
 </p>
 </section>
 <section>
-<strong>例（加算無限回連続コイントス）</strong>
-<p>添え字集合を\(\mathbb{Z}_+ = \{1,\,2,\,\ldots\}\)とする．無限回連続コイントスの標本空間は
+<h5 style="font-weight: bold;">例（加算無限回連続コイントス）</h5>
+<p>加算無限回のコイントスにおいて，\(i\,(\in \mathbb{Z}_+)\)回目のコイントスの標本空間を\(\varOmega_i = \wp(\varOmega_i) = \{\emptyset,\, \{\mathrm{H}\},\, \{\mathrm{T}\},\,\{\mathrm{H},\,\mathrm{T}\}\}\)とする．このとき試行全体の標本空間は
 \begin{align*}
   \varOmega^{\mathbb{Z}_+}
-  &amp;:= \prod_{i \in {\mathbb{Z}_+}} \varOmega_i \\
+  &amp;= \prod_{i \in \mathbb{Z}_+} \varOmega_i \\
   &amp;= \varOmega_1 \times \varOmega_2 \times \cdots \\
-  &amp;= \{(\omega_n)_{n \in {\mathbb{Z}_+}} \mid \text{\(\omega_i \in \varOmega_i\) for all \(i \in {\mathbb{Z}_+}\)} \}
+  &amp;= \{(\omega_i)_{i \in I} \mid \text{\(\omega_i \in \varOmega_i\) for all \(i \in I\)} \}
 \end{align*}
-とする．各\(\varOmega_t\)の\(\sigma\)-<ruby>代数<rt>アルジェブラ</rt></ruby>としては\(\mathcal{F}_t := \wp (\varOmega_t) = \{\emptyset,\,\{\mathrm{H}\},\, \{\mathrm{T}\},\, S\}\)をとる．
+となる．各\(\varOmega_i\)の\(\sigma\)-<ruby>代数<rt>アルジェブラ</rt></ruby>としては\(\mathcal{F}_i := \wp (\varOmega_i) = \{\emptyset,\,\{\mathrm{H}\},\, \{\mathrm{T}\},\, \{\mathrm{H},\, \mathrm{T}\}\}\)をとる．例えば
 \begin{align*}
-  \mathrm{proj}_i^{-1}(\mathcal{A}) = \{\mathrm{proj}^{-1}(A) \mid A \in \mathcal{A}\}
+  F_1 \times F_2 = \{\mathrm{\omega_1 \in \varOmega_1 \mid \omega_1 = H}\} \times \{\omega_2 \in \varOmega_2 \mid \omega_2 = \mathrm{T}\} \in \mathcal{F}_1 \otimes \mathcal{F}_2
 \end{align*}
-のように表す．例えば
-\begin{align}
-  \mathrm{proj}_2^{-1}(\mathcal{F}_2) = \{
-    \emptyset,\,
-    \mathrm{proj}_2^{-1}(\{\mathrm{H}\}),\,
-    \mathrm{proj}_2^{-1}(\{\mathrm{T}\}),\,
-    \varOmega^{\mathbb{Z}_+}
-  \}
-\end{align}
-である．
-</p>
+を底とするシリンダー集合は
+\begin{align*}
+  \mathrm{Cyl}\,(F_1 \times F_2)
+  &amp;= \{ (\omega_1,\,\omega_2,\, \ldots) \mid \omega_1 \in F_1,\, \omega_2 \in F_2,\,\omega_i \in \varOmega_i \text{ for all }i \geq 3 \} \\
+  &amp;= F_1 \times F_2 \times \varOmega_3 \times \varOmega_4 \times \cdots \\
+  &amp;= \{ (\mathrm{H},\,\mathrm{T},\,\ldots),\,(\mathrm{H},\,\mathrm{T},\,\ldots),\,\ldots \}
+\end{align*}
+となる．</p>
 </section>
 <section>
-<strong>Transition Kernel</strong> <span class="bib">See Sec. 4 of &Ccedil;&#x131;nlar (2011)</span>
-<p>2つの可測空間\((\varOmega,\,\mathcal{F})\)と\((S,\,\mathcal{G})\)を考える．写像\(K\colon \varOmega \times \mathcal{G} \to [0,\,\infty] \)が以下の性質を満たすとき，\(K\)は\((\varOmega,\,\mathcal{F})\)から\((S,\,\mathcal{G})\)への<strong>transition kernel</strong>であるという．
-</p>
-<ol class="math">
-  <li class="roman">任意の\(G \in \mathcal{G}\)について，\(\omega \mapsto K(\omega,\,G)\)が\((\mathcal{F},\,\mathcal{B}([0,\,\infty]))\)-可測である．</li>
-  <li class="roman">任意の\(\omega \in \varOmega\)について，\(G \mapsto K(\omega,\,G)\)が\((S,\,\mathcal{G})\)の測度である．</li>
+<h5 style="font-weight: bold;">Kolmogorovの拡張定理</h5>
+<p class="bib">See Chapter 4 in <a href="#erhan">Erhan (2011)</a> and Chapter 10 in <a href="bhattacharya">Bhattacharya and Waymire (2016)</a></p>
+<p></p>
+<ol>
+  <li class="c"></li>
 </ol>
-<p>例えば\(\varOmega = \{1,\,2,\,3,\,4,\,5,\,6\},\,\mathcal{F} = \wp(\varOmega),\)
-\(S = \{\mathrm{H},\,\mathrm{T}\},\,\mathcal{G} = \wp(S)\)とする． \(K(\omega,\,\{s\}) = a_{\omega,\,s}\)（各\((\omega,\,s) \in \varOmega \times S\)について\(a_{\omega,\,s}\)は正の定数）とすれば，これはtransition kernelである．</p>
-</section>
-<section>
-<p>測度空間\((\varOmega_0,\, \mathcal{F}_0)\)に測度\(\mu\)が定義されているとする．各\(n \in \mathbb{N}\)について\((\prod_{i = 0}^n \varOmega_n,\, \bigotimes_{i = 0}^n \mathcal{F}_n)\)から\((\varOmega_{n + 1},\,\mathcal{F}_{n + 1})\)へのtransition kernel \(K_{n + 1}\colon \prod_{i = 0}^n \varOmega_{i} \times \mathcal{F}_{n + 1} \to [0,\,\infty]\)をとる．
-\begin{align*}
-  \pi_n(F_0,\,\ldots,\,F_n)
-  = \mu(F_0)K_1(\omega_0,\,F_1)K_2((\omega_0,\,\omega_1),\,F_2)\cdots K_n((\omega_0,\,\ldots,\,\omega_{n - 1}),\,F_n)
-\end{align*}
-任意の集合\(F \in \bigotimes_{i = 0}^n F_i\)について，\(H\)を以下のように定義する．
-\begin{align*}
-  H =
-    \left\{ (\omega_i)_{i \in \mathbb{N}} \;\middle|\;
-      \text{
-        \((\omega_i \in \varOmega_i\) for all \(i \in \mathbb{N})\)
-        and \((\omega_0,\,\ldots,\, \omega_n) \in F\)
-      }
-    \right\}
-\end{align*}
-このとき\(H\)は\(F \in \bigotimes_{i = 0}^n F_i\)<strong>を底とするシリンダー</strong>と呼ばれる．
-\begin{align}
-  P(H) = \pi_n(F) \label{ionescu}
-\end{align}
-となるような確率測度をとりたい．
-</p>
-</section>
-<section>
-<strong>Ionescu-Tulceaの定理</strong>
-<p><span class="head">\((\ref{ionescu})\)</span>を満たす\((\prod_{n \in \mathbb{Z}_+} \varOmega,\,\bigotimes_{n \in \mathbb{Z}_+} \mathcal{F}_n)\)上の確率測度\(P\)は一意に存在する．
-\begin{align*}
-  P_{\mathcal{F}_m}(\{(\omega_0,\,\ldots,\,\omega_{m + 1}) \mid X_{m + 1}(\omega_{m + 1}) \in F_{m + 1}\})
-\end{align*}
-</p>
-</section>
-<section>
-<p>\(\mathcal{J} = \{1,\,2,\,\ldots\}\) \(J = \{t_0,\,t_1,\,\ldots\}\)
-\begin{align}
-  \mathrm{proj}_{J \to K}^{-1}()
-\end{align}
-\begin{align}
-P_K = P_J \circ \mathrm{proj}_{J \to K}^{-1}
-\end{align}
-\begin{align}
-\pi f  = \int_{\varOmega_1} \cdots \int_{\varOmega_n} f(\omega_1,\,\ldots,\,\omega_n) d\mu_1 (\omega_1) \cdots d\mu_{n}(\omega_n)
-\end{align}
-</p>
 </section>
 <section id="materials">
   <h2>参考文献</h2>
   <ol class="citation">
-  <li><a href="https://link.springer.com/book/10.1007/978-0-387-87859-1">Erhan &Ccedil;&#x131;nlar (2011) <em>Probability and Stochastics</em>. Springer New York.</a></li>
+  <li id="erhan"><a href="https://link.springer.com/book/10.1007/978-0-387-87859-1">Erhan &Ccedil;&#x131;nlar (2011) <em>Probability and Stochastics</em>. Springer New York.</a></li>
+  <li id="bhattacharya"><a href="https://link.springer.com/book/10.1007/978-3-319-47974-3">Rabi Bhattacharya and Edward C. Waymire (2016)<em>A Basic Course in Probability Theory</em>. Springer New York.</a></li>
 </ol>
 </section>
 
