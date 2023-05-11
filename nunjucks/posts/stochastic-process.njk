@@ -3,6 +3,7 @@
 {% set mathematical = 'true' %}
 {% set title = '確率過程 勉強ノート（書きかけ）' %}
 {% set posted = '2023-05-05' %}
+{% set updated = '2023-05-09' %}
 
 {% block post %}
 <section>
@@ -13,61 +14,58 @@
 </section>
 <section>
 <h5 style="font-weight: bold;">例（有限回連続コイントス）</h5>
-<p><span class="head">\(I = \{1,\,2,\,\ldots,\,n\}\)</span>とする．\(i \in I\)回目の試行の標本空間を\(\varOmega_i = \{\mathrm{H},\,\mathrm{T}\}\)とする．
+<p>\(T = \{1,\,2,\,\ldots,\,n\}\)</span>とする．\(t \in T\)回目の試行の標本空間を\(\varOmega_t = \{\mathrm{H},\,\mathrm{T}\}\)とする．
 \begin{align*}
   \varOmega^T
-  &amp;:= \prod_{i \in I} \varOmega_i \\
+  &amp;:= \prod_{t \in T} \varOmega_t \\
   &amp;= \varOmega_1 \times \cdots \times \varOmega_n \\
-  &amp;= \{(\omega_1,\,\ldots,\,\omega_n) \mid \text{\(\omega_i \in \varOmega_i\) for all \(i \in I\)} \}
+  &amp;= \{(\omega_1,\,\ldots,\,\omega_n) \mid \text{\(\omega_t \in \varOmega_t\) for all \(t \in T\)} \}
 \end{align*}
-となる．各\(\varOmega_i\)の\(\sigma\)-<ruby>代数<rt>アルジェブラ</rt></ruby>として\(\mathcal{F}_i := \wp (\varOmega_i) = \{\emptyset,\,\{\mathrm{H}\},\, \{\mathrm{T}\},\, \{\mathrm{H},\, \mathrm{T}\}\}\)をとるのが自然である．このとき\(n\)回の試行全体の\(\sigma\)-<ruby>代数<rt>アルジェブラ</rt></ruby>は
+となる．各\(\varOmega_t\)の\(\sigma\)-<ruby>代数<rt>アルジェブラ</rt></ruby>として\(\mathcal{F}_t := \wp (\varOmega_t) = \{\emptyset,\,\{\mathrm{H}\},\, \{\mathrm{T}\},\, \{\mathrm{H},\, \mathrm{T}\}\}\)をとるのが自然である．このとき\(n\)回の試行全体の\(\sigma\)-<ruby>代数<rt>アルジェブラ</rt></ruby>は
 \begin{align*}
-\mathcal{F}_i = \sigma [\{F_1 \times \cdots \times F_n \mid \text{\(F_i \in \mathcal{F}_i\) for all \(i \in T\)}\}]
+\mathcal{F}_t = \sigma [\{F_1 \times \cdots \times F_n \mid \text{\(F_t \in \mathcal{F}_t\) for all \(t \in T\)}\}]
 \end{align*}
 をとることができる．
 </p>
 </section>
 <section>
-<h5 style="font-weight: bold;">直積</h5>
-<p>任意の集合\(I\)で添え字付けられた測度空間の族\((\varOmega,\,\mathcal{F}_i)_{i \in I}\)を考える．\((\varOmega_i)_{i \in I}\)の直積は
+<h5 style="font-weight: bold;">シリンダー集合</h5>
+<p>直積\(\prod_{\lambda \in \varLambda} \varOmega_\lambda\)の第\(\alpha\)成分への射影を
 \begin{align*}
-  \varOmega^I
-  = \prod_{i \in I} \varOmega_i
-  = \{(\omega_i)_{i \in I} \mid \text{\(\omega_i \in \varOmega_i\) for all \(i \in I\)} \}
+  \pi_\alpha\colon \prod_{\lambda \in \varLambda} \varOmega_\lambda \to \varOmega_\alpha,\quad
+  \pi_\alpha((\omega_\lambda)_{\lambda \in \varLambda}) = \omega_\alpha
 \end{align*}
-である．\(\varOmega^I\)の\(\sigma\)-加法族としては
+と書くことにする．\(U \subset \varOmega_\alpha\)の逆像は
 \begin{align*}
-  \sigma [\{F_1 \times F_2 \times \cdots \mid F_1 \in \mathcal{F}_1,\,F_2 \in \mathcal{F}_2,\,\ldots\}]
+  {\pi_\alpha}^{-1}(U)
+  &amp; = \{ (\omega_\lambda)_{\lambda \in \varLambda} \mid (\omega_\lambda \in \varOmega_\lambda\text{ for all }\lambda \in \varLambda),\,\omega_\alpha \in U\}
 \end{align*}
-のようなものを考えればよさそうである．これをもう少し正確に記述する．任意の\(n \in \mathbb{Z}_+ = \{1,\,2,\,\ldots\}\)に対し
+である．例えば\(\varLambda = \mathbb{Z}_+,\) \(U \in \varOmega_1\)のとき
 \begin{align*}
-  J_n = \{(t_1,\,\ldots,\,t_n) \mid t_i\in I\text{ for } i \in \{1,\,\ldots,\,n\},\,t_i \neq t_j\text{ if }i\neq j \}
+  \pi_1^{-1}(U)
+  &amp; = \{ (\omega_1,\,\omega_2,\,\ldots) \mid (\omega_n \in \varOmega_n\text{ for all }n \in \varLambda),\,\omega_1 \in U\}
 \end{align*}
-と定義し，\((t_1,\,\ldots,\,t_n) \in J_n\)をとる．このとき任意の\(F_{t_1} \times \cdots \times F_{t_n} \in \mathcal{F}_{t_1} \otimes \cdots \otimes \mathcal{F}_{t_n}\)について，\(F_{t_1} \times \cdots \times F_{t_n}\)を底とする<h5 style="font-weight: bold;">シリンダー集合</h5>\(\mathrm{Cyl}\,(F_{t_1} \times \cdots F_{t_n})\)を
+である．添え字集合\(\varLambda\)から有限個の異なる要素をとって作った組\(\alpha_{t_1},\,\ldots,\,\alpha_{t_n}\)については\(U = \prod_{i = 1}^n U_{\alpha_{t_i}} \subset \prod_{i = 1}^n \varOmega_i\)として
 \begin{align*}
-  \mathrm{Cyl}\,(F_{t_1} \times \cdots \times F_{t_n}) &amp;:= \{
-    (\omega_i)_{i \in I} \mid
-    \omega_i \in \varOmega_i\text{ for all }i \in I,\,
-    \omega_{t_1} \in F_{t_1},\,\ldots,\,\omega_{t_n} \in F_{t_n}
-  \}
+  \pi_{\alpha_1,\,\ldots,\,\alpha_n}^{-1}(U)
+  &amp;:= \bigcap_{i = 1}^n \pi_{\alpha_{t_i}}^{-1}(U_{\alpha_{t_i}}) \\
+  &amp;= \pi_{\alpha_1}^{-1}(U_{\alpha_1}) \cap \cdots \cap \pi_{\alpha_{t_n}}^{-1}(U_{\alpha_{t_n}}) \\
+  &amp;= \{ (\omega_\lambda)_{\lambda \in \varLambda} \mid (\omega_\lambda \in \varOmega_\lambda\text{ for all }\lambda \in \varLambda),\,(\omega_{\alpha_i} \in U_{\alpha_i}\text{ for all }i \in \{1,\,\ldots,\,n\})\}
 \end{align*}
-と定義する．また\(\mathcal{F}_{t_1} \otimes \cdots \otimes \mathcal{F}_{t_n}\)に対して
+と書くことにする．可測空間の族\((\varOmega_\lambda,\,\mathcal{F}_\lambda)_{\lambda \in \varLambda}\)が与えられたとき
 \begin{align*}
-  \mathrm{Cyl}\,(\mathcal{F}_{t_1} \otimes \cdots \otimes \mathcal{F}_{t_n}) =
-  \bigcup_{F_{t_1} \times \cdots \times F_{t_n} \in \mathcal{F}_{t_1} \otimes \cdots \otimes \mathcal{F}_{t_n}}
-  \mathrm{Cyl}\,(F_{t_1} \times \cdots \times F_{t_n})
+  \pi_{\alpha_{t_1},\,\ldots,\,\alpha_{t_n}}^{-1}(\mathcal{F}_{t_1} \otimes \cdots \otimes \mathcal{F}_{t_n})
+  &amp; = \{ (\omega_\lambda)_{\lambda \in \varLambda} \mid (\omega_\lambda \in \varOmega_\lambda\text{ for all }\lambda \in \varLambda),\,\omega_\alpha \in U\}
 \end{align*}
 と定義する．このとき
 \begin{align*}
-\bigotimes_{i \in I} \mathcal{F}_i := \sigma
+\bigotimes_{t \in \varLambda} \mathcal{F}_t := \sigma
   \left[
-  \bigcup_{n \in \mathbb{Z}_+}
-  \bigcup_{(t_1,\,\ldots,\,t_n) \in J_n}
-    \mathrm{Cyl}\,(\mathcal{F}_{t_1} \otimes \cdots \otimes \mathcal{F}_{t_n})
+  \bigcup_{(\alpha_1,\,\ldots,\,\alpha_n)}
+    \pi^{-1}(\mathcal{F}_{t_1} \otimes \cdots \otimes \mathcal{F}_{t_n})
   \right]
 \end{align*}
-は\(\varOmega^I\)の\(\sigma\)-加法族である．
-</p>
+は\(\varOmega^\varLambda\)の\(\sigma\)-加法族である．この\(\bigotimes_{t \in \varLambda}\mathcal{F}_t\)を\((\mathcal{F}_t)_{t \in \varLambda}\)のproduct \(\sigma\)-algebraと呼ぶ．</p>
 </section>
 <section>
 <h5 style="font-weight: bold;">例（加算無限回連続コイントス）</h5>
@@ -76,7 +74,7 @@
   \varOmega^{\mathbb{Z}_+}
   &amp;= \prod_{i \in \mathbb{Z}_+} \varOmega_i \\
   &amp;= \varOmega_1 \times \varOmega_2 \times \cdots \\
-  &amp;= \{(\omega_i)_{i \in I} \mid \text{\(\omega_i \in \varOmega_i\) for all \(i \in I\)} \}
+  &amp;= \{(\omega_i)_{i \in \varLambda} \mid \text{\(\omega_i \in \varOmega_i\) for all \(i \in \varLambda\)} \}
 \end{align*}
 となる．各\(\varOmega_i\)の\(\sigma\)-<ruby>代数<rt>アルジェブラ</rt></ruby>としては\(\mathcal{F}_i := \wp (\varOmega_i) = \{\emptyset,\,\{\mathrm{H}\},\, \{\mathrm{T}\},\, \{\mathrm{H},\, \mathrm{T}\}\}\)をとる．例えば
 \begin{align*}
@@ -94,16 +92,42 @@
 <section>
 <h5 style="font-weight: bold;">Kolmogorovの拡張定理</h5>
 <p class="bib">See Chapter 4 in <a href="#erhan">Erhan (2011)</a> and Chapter 10 in <a href="bhattacharya">Bhattacharya and Waymire (2016)</a></p>
-<p></p>
+<p>\(\varLambda\)を集合とし，各\(t \in \varLambda\)について\((\varOmega_t,\,\mathcal{O})\)がポーランド空間であるとする．すなわち
 <ol>
-  <li class="c"></li>
+  <li>\(\mathcal{O}\)</li>
 </ol>
+\((\ref{jn})\)で定義される\(J_n\)に
+可測空間\(\varOmega,\, \mathcal{B}),\,\mathcal{B} = \sigma[\mathcal{O}(\varOmega)]\) \(\mu_{t_1,\,\ldots,\,t_n}\)を\((F_{t_1},\,\ldots,\,F_{t_n},\,\mathcal{F}_{t_1}\otimes\cdots\otimes\mathcal{F}_{t_n})\)の測度とする．
+\begin{align}
+\bigcup_{n \in \mathbb{Z}_+} \{\mu_{t_1,\, \ldots,\, t_n} \mid (t_1,\,\ldots,\,t_n) \in J_n \}
+\end{align}
+可測空間の族\((\varOmega_t,\,\mathcal{B}(\varOmega)_t)_{t \in \varLambda}\)について，確率測度の族\(P\)
+また各\(n \in \mathbb{Z}_+\)について，順序対の集合\(J_n\)を\((\ref{jn})\)で定義する．</p>
+<p><strong>条件1</strong> \(\mathfrak{S}_n\)を\(\{1,\,\ldots,\,n\}\)から\(\{1,\,\ldots,\,n\}\)への全単射（置換）全体の集合とする．任意の\(\tau \in \mathfrak{S}_n\)について写像\(\pi_\tau\)を
+\begin{align*}
+  \pi_\tau\colon F_{t_1} \times \cdots \times F_{t_n} \to F_{t_{\tau(1)}} \times \cdots \times F_{t_{\tau(n)}},\quad
+  \pi_{\tau} (\omega_{t_1},\,\ldots,\,\omega_{t_n})
+  = (\omega_{t_{\tau(1)}},\,\ldots,\,\omega_{t_{\tau(n)}})
+\end{align*}
+と定義する．\((F_{t_1} \times \cdots F_{t_n},\,\mathcal{F}_{t_1}  \otimes \cdots \otimes \mathcal{F}_{t_n})\)上の測度を\(\mu_{t_1,\,\ldots,\,t_n}\)とすると
+\begin{align*}
+\mu_{t_{\tau(1)},\,\ldots,\,\tau(n)}(F_{t_{\tau(1)}} \times \cdots \times F_{t_{\tau(n)}})
+&amp;= \mu_{t_1,\,\ldots,\,t_n} \circ \pi_\tau^{-1} (F_{t_{\tau(1)}} \times \cdots \times F_{t_{\tau(n)}}) \\
+&amp;= \mu_{t_1,\,\ldots,\,t_n} (F_{t_1} \times \cdots \times F_{t_n})
+\end{align*}
+が成り立つ．</p>
+<p><strong>条件2</strong> 順序対\((t_1,\,\ldots,\,t_n,\,t_{n + 1}) \in J_{n + 1}\)について
+\begin{align*}
+  \mu_{t_1,\,\ldots,\,t_n}(F_1 \times \cdots \times F_n)
+  &amp;= \mu_{t_1,\,\ldots,\,t_{n + 1}} (F_1 \times \cdots \times F_n \times \varOmega_{n + 1})
+\end{align*}
+が成り立つ．</p>
 </section>
 <section id="materials">
   <h2>参考文献</h2>
   <ol class="citation">
   <li id="erhan"><a href="https://link.springer.com/book/10.1007/978-0-387-87859-1">Erhan &Ccedil;&#x131;nlar (2011) <em>Probability and Stochastics</em>. Springer New York.</a></li>
-  <li id="bhattacharya"><a href="https://link.springer.com/book/10.1007/978-3-319-47974-3">Rabi Bhattacharya and Edward C. Waymire (2016)<em>A Basic Course in Probability Theory</em>. Springer New York.</a></li>
+  <li id="bhattacharya"><a href="https://link.springer.com/book/10.1007/978-3-319-47974-3">Rabi Bhattacharya and Edward C. Waymire (2016) <em>A Basic Course in Probability Theory</em>. Springer New York.</a></li>
 </ol>
 </section>
 {% endblock %}
