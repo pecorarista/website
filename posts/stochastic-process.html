@@ -58,9 +58,10 @@
 <section>
 <h5 style="font-weight: bold;">記法</h5>
 <ul>
-<li>\(\mathbb{Z}_+ = \{1,\,2,\,\ldots\}\)</li>
-<li>\(\wp(\varOmega)\)は\(\varOmega\)の冪集合を表す</li>
-<li>位相空間\((\varOmega,\,\mathcal{O})\)のボレル集合族を\(\mathcal{B}(\mathcal{O})\)と書く．</li>
+  <li><span class="head">\(\mathbb{Z}_+ = \{1,\,2,\,\ldots\}.\)</span></li>
+  <li><span class="head">\(\wp(\varOmega)\)</span>は\(\varOmega\)の冪集合を表す</li>
+  <li>位相空間\((\varOmega,\,\mathcal{O})\)のボレル集合族を\(\mathcal{B}(\mathcal{O})\)と書く．</li>
+  <li><span class="head">\(\varLambda\)</span>で添え字付けられた集合族\((A_\lambda)_{\lambda \in \varLambda}\)と，\(\varLambda\)の異なる\(n\)個の要素の組\(\boldsymbol{\alpha} = (\alpha_1,\,\ldots,\,\alpha_n)\)について\(U_{\boldsymbol{\alpha}} = U_{\alpha_1} \times \cdots \times U_{\alpha_n}\)と定める．また\(\sigma\)-加法族の族\((\mathcal{F}_\lambda)_{\lambda \in \varLambda}\)については\(\mathcal{F}_{\boldsymbol{\alpha}} = \mathcal{F}_{\alpha_1} \otimes \cdots \otimes \mathcal{F}_{\alpha_n}\)とする．</li>
 </ul>
 </section>
 <section>
@@ -70,31 +71,30 @@
 </section>
 <section>
 <h5 style="font-weight: bold;">例（有限回連続コイントス）</h5>
-<p>\(I = \{1,\,2,\,\ldots,\,n\}\)</span>とする．\(t \in I\)回目の試行の標本空間を\(\varOmega_t = \{\mathrm{H},\,\mathrm{T}\}\)とする．
+<p><span class="head">\(I = \{1,\,2,\,\ldots,\,n\}\)</span>とする．\(i\)回目の試行の標本空間を\(\varOmega_i = \{\mathrm{H},\,\mathrm{T}\}\)とする．
 \begin{align*}
   \varOmega^I
-  &amp;:= \prod_{t \in I} \varOmega_t \\
+  &amp;:= \prod_{i \in I} \varOmega_i \\
   &amp;= \varOmega_1 \times \cdots \times \varOmega_n \\
-  &amp;= \{(\omega_1,\,\ldots,\,\omega_n) \mid \text{\(\omega_t \in \varOmega_t\) for all \(t \in I\)} \}
+  &amp;= \{(\omega_1,\,\ldots,\,\omega_n) \mid \text{\(\omega_i \in \varOmega_i\) for all \(i \in I\)} \}
 \end{align*}
-となる．各\(\varOmega_t\)の\(\sigma\)-<ruby>代数<rt>アルジェブラ</rt></ruby>として\(\mathcal{F}_t := \wp (\varOmega_t) = \{\emptyset,\,\{\mathrm{H}\},\, \{\mathrm{T}\},\, \{\mathrm{H},\, \mathrm{T}\}\}\)をとるのが自然である．このとき\(n\)回の試行全体の\(\sigma\)-<ruby>代数<rt>アルジェブラ</rt></ruby>は
+となる．各\(\varOmega_t\)の\(\sigma\)-<ruby>代数<rt>アルジェブラ</rt></ruby>として離散\(\sigma\)-<ruby>代数<rt>アルジェブラ</rt></ruby>\(\mathcal{F}_i := \wp (\varOmega_t) = \{\emptyset,\,\{\mathrm{H}\},\, \{\mathrm{T}\},\, \{\mathrm{H},\, \mathrm{T}\}\}\)をとる．このとき\(n\)回の試行全体の\(\sigma\)-<ruby>代数<rt>アルジェブラ</rt></ruby>は
 \begin{align*}
-\mathcal{F} = \sigma [\{F_1 \times \cdots \times F_n \mid \text{\(F_t \in \mathcal{F}_t\) for all \(t \in I\)}\}]
+  \mathcal{F} = \sigma [\{F_1 \times \cdots \times F_n \mid \text{\(F_t \in \mathcal{F}_t\) for all \(t \in I\)}\}]
 \end{align*}
-をとることができる．
-</p>
+となる．</p>
 </section>
 <section>
 <h5 style="font-weight: bold;">シリンダー集合</h5>
-<p>可算集合\(I\)で添字付けられた集合族\((\varOmega_t)_{t \in I}\)について，直積\(\prod_{t \in I} \varOmega_t\)の\(t_{i} \in I\)に関する射影を
+<p>集合\(\varLambda\)で添字付けられた集合族\((\varOmega_\lambda)_{\lambda \in \varLambda}\)について，直積\(\prod_{\lambda \in \varLambda} \varOmega_\lambda\)の任意の要素\(\alpha \in \varLambda\)に関する射影を
 \begin{align*}
-  \pi_{t_i} \colon \prod_{t \in I} \varOmega_t \to \varOmega_{t_i},\quad
-  \pi_{t_i} ((\omega_t)_{t \in I}) = \omega_{t_i}
+\pi_\alpha \colon \prod_{\lambda \in \varLambda} \varOmega_\lambda \to \varOmega_\alpha,\quad
+  \pi_\alpha ((\omega_t)_{\lambda \in \varLambda}) = \omega_\alpha
 \end{align*}
-で表す．このとき\(U \subset \varOmega_{t_i} \)の逆像は
+で表す．このとき\(U_{\boldsymbol{\alpha}} \subset \varOmega_{\boldsymbol{\alpha}}\)の逆像は
 \begin{align*}
-  \pi_{t_i}^{-1}(U)
-  &amp; = \{ (\omega_t)_{t \in I} \mid (\omega_t \in \varOmega_t \text{ for all }t \in I),\,\omega_{t_i} \in U\}
+  \pi_\alpha^{-1}(U)
+  &amp; = \{ (\omega_t)_{\lambda \in \varLambda} \mid (\omega_\lambda \in \varOmega_\lambda \text{ for all }\lambda \in \varLambda),\,\omega_\alpha \in U_\alpha\}
 \end{align*}
 と表すことができる．例えば\(I = \mathbb{Z}_+,\) \(U_1 \in \varOmega_1\)のとき
 \begin{align*}
@@ -102,38 +102,39 @@
   &amp; = \{ (\omega_1,\,\omega_2,\,\omega_3,\,\ldots) \mid \omega_1 \in U_1,\,\omega_2 \in \varOmega_2,\,\omega_3 \in \varOmega_3,\,\ldots\} \\
   &amp; = U_1 \times \varOmega_2 \times \varOmega_3 \times \cdots
 \end{align*}
-である．添字集合\(I\)の\(n\)個の異なる要素をとる，すなわち
+である．添字集合\(\varLambda\)の\(n\)個の異なる要素をとる，すなわち
 \begin{align*}
-  I_{n} = \{(t_1,\,\ldots,\,t_n) \mid
-  t_1,\ldots,\,t_n \in I,\,
-  t_i \neq t_j \text{ if }i \neq j
+  \varLambda^n_\neq := \{(\alpha_1,\,\ldots,\,\alpha_n) \mid
+    \alpha_1,\ldots,\,\alpha_n \in \varLambda,\,
+    \alpha_i \neq \alpha_j \text{ if }i \neq j
   \}
+  \label{in}
 \end{align*}
-から\((t_1,\,\ldots,\,t_n)\)をとる場合は
+から\(\alpha = (\alpha_1,\,\ldots,\,\alpha_n)\)をとる場合は
 \begin{align*}
-\pi_{t_1,\,\ldots,\,t_n}\colon \prod_{t \in I} \varOmega_t \to \varOmega_{t_1} \times \cdots \times \varOmega_{t_n},\quad \pi_{t_1,\,\ldots,\,t_n}((\omega_t)_{t \in I}) = (\omega_{t_1},\,\ldots,\,\omega_{t_n})
+\pi_\alpha\colon \prod_{\lambda \in \varLambda} \varOmega_t \to \varOmega_\alpha,\quad \pi_\alpha((\omega_\lambda)_{\lambda \in \varLambda}) = (\omega_{\alpha_1},\,\ldots,\,\omega_{\alpha_n})
 \end{align*}
-と定義する．\(U = U_{t_1} \times \cdots \times U_{t_n} \subset \varOmega_{t_1} \times \cdots \times \varOmega_{t_n}\)の逆像は
-\begin{align}
-  \pi_{t_1,\,\ldots,\,t_n}^{-1}(U)
-  &amp;= \{ (\omega_t)_{t \in I} \mid \omega_t \in \varOmega_t\text{ for all }t \in I,\,\omega_{t_i} \in U_{t_i}\text{ for all }t \in \{1,\,\ldots,\,n\}\} \\
-  &amp;= \pi_{t_1}^{-1}(U_{t_1}) \cap \cdots \cap \pi_{t_n}^{-1}(U_{t_n}) \label{cylinder}
-\end{align}
-である．\((\ref{cylinder})\)を\(U\)を底とする<strong>シリンダー集合</strong>と呼ぶ．可測空間の族\(((\varOmega_t,\,\mathcal{F}_t))_{t \in I}\)が与えられたとき，\(\mathcal{F}_{t_1} \otimes \cdots \otimes \mathcal{F}_{t_n}\)について
+と定義する．ここでページ上方で述べた表記\(\varOmega_\alpha = \varOmega_{\alpha_1} \times \cdots \times \varOmega_{\alpha_n}\)を使っている．\(U_\alpha\)の逆像は
 \begin{align*}
-  \pi_{t_1,\,\ldots,\,t_n}^{-1}(\mathcal{F}_{t_1} \otimes \cdots \otimes \mathcal{F}_{t_n})
-  &amp; = \{\pi_{t_1,\,\ldots,\,t_n}^{-1}(F) \mid F \in \mathcal{F}_{t_1} \otimes \cdots \otimes \mathcal{F}_{t_n}\} \\
-  &amp; = \left\{ \pi_{t_1}^{-1}(F_{t_1}) \cap \cdots \cap \pi_{t_n}^{-1} (F_{t_n}) \mid F_{t_1} \in \mathcal{F}_{t_1},\,\ldots,\,F_{t_n} \in \mathcal{F}_{t_n} \right\}
+  \pi_\alpha^{-1}(U_\alpha)
+  &amp;= \{ (\omega_t)_{\lambda \in \varLambda} \mid \omega_\lambda \in \varOmega_t\text{ for all }\lambda \in \varLambda,\,\omega_{\alpha_i} \in U_{\alpha_i}\text{ for all }\lambda \in \{1,\,\ldots,\,n\}\} \\
+  &amp;= \pi_{\alpha_1}^{-1}(U_{\alpha_1}) \cap \cdots \cap \pi_{\alpha_n}^{-1}(U_{\alpha_n}) \label{cylinder}
 \end{align*}
-と表記する．以下で定義される\(\bigotimes_{t \in I}\mathcal{F}_i\)を\((\mathcal{F}_i)_{t \in I}\)の積\(\sigma\)-<ruby>代数<rt>アルジェブラ</rt></ruby> (product \(\sigma\)-algebra)と呼ぶ．
-\begin{gather*}
-\bigotimes_{t \in I} \mathcal{F}_i := \sigma
+である．\((\ref{cylinder})\)を\(U_\alpha\)を底とする<strong>シリンダー集合</strong>と呼ぶ．可測空間の族\(((\varOmega_t,\,\mathcal{F}_t))_{\lambda \in \varLambda}\)が与えられたとき，\(\mathcal{F}_\alpha\)について
+\begin{align*}
+  \pi_\alpha^{-1}(\mathcal{F}_{\alpha})
+  &amp; = \{\pi_\alpha^{-1}(F) \mid F \in \mathcal{F}_\alpha\} \\
+  &amp; = \left\{ \pi_{\alpha_1}^{-1}(F_{\alpha_1}) \cap \cdots \cap \pi_{\alpha_n}^{-1} (F_{\alpha_n}) \mid F_{\alpha_1} \in \mathcal{F}_{\alpha_1},\,\ldots,\,F_{\alpha_n} \in \mathcal{F}_{\alpha_n} \right\}
+\end{align*}
+と表記する．添字集合が有限でない場合の\((\mathcal{F}_\lambda)_{\lambda \in \varLambda}\)の積\(\sigma\)-<ruby>代数<rt>アルジェブラ</rt></ruby> (product \(\sigma\)-algebra)を以下で定義する：
+\begin{align*}
+\bigotimes_{i \in \varLambda} \mathcal{F}_i := \sigma
   \left[
-  \bigcup_{n \in \mathbb{Z}_+}
-  \bigcup_{(t_1,\,\ldots,\,t_n) \in I_n}
-  \pi_{t_1,\,\ldots,\,t_n}^{-1}(\mathcal{F}_{t_1} \otimes \cdots \otimes \mathcal{F}_{t_n})
-  \right]
-\end{gather*}</p>
+    \bigcup_{n \in \mathbb{Z}_+}
+    \bigcup_{\alpha \in \varLambda^n_\neq}
+    \pi_\alpha^{-1}(\mathcal{F}_\alpha)
+  \right].
+\end{align*}</p>
 </section>
 <section>
 <h5 style="font-weight: bold;">例（可算無限回連続コイントス）</h5>
@@ -142,7 +143,7 @@
   \varOmega^{\mathbb{Z}_+}
   &amp;= \prod_{t \in \mathbb{Z}_+} \varOmega_i \\
   &amp;= \varOmega_1 \times \varOmega_2 \times \cdots \\
-  &amp;= \{(\omega_i)_{t \in \mathbb{Z}_+} \mid \text{\(\omega_t \in \varOmega_i\) for all \(t \in \mathbb{Z}_+\)} \}
+  &amp;= \{(\omega_i)_{t \in \mathbb{Z}_+} \mid \text{\(\omega_i \in \varOmega_i\) for all \(t \in \mathbb{Z}_+\)} \}
 \end{align*}
 となる．各\(\varOmega_t\)の\(\sigma\)-<ruby>代数<rt>アルジェブラ</rt></ruby>としては有限回の場合と同様に離散\(\sigma\)-<ruby>代数<rt>アルジェブラ</rt></ruby>をとる．例えば\(F_3 = \{\omega_3 \in \varOmega_3 \mid \omega_3 = \mathrm{H}\}\)と\(F_1 = \{\omega_1 \in \varOmega_1 \mid \omega_1 = \mathrm{T}\}\)について\(F_3 \times F_1\)を底とするシリンダー集合は
 \begin{align*}
@@ -153,46 +154,57 @@
 となる．</p>
 </section>
 <section>
-<h5 style="font-weight: bold;">ポーランド空間</h5>
-<p>距離空間\((\varOmega,\,d)\)が可分 (seperable)であるとは，\(\varOmega\)が可算かつ稠密な部分集合をもつことをいう．また距離空間が完備 (complete)であるとは\(\varOmega\)上の任意のCauchy列が\(\varOmega\)に極限をもつことをいう．可分かつ完備な距離空間を<strong>ポーランド空間</strong>と呼ぶ．</p>
-<p>集合\(\varOmega = \{\mathrm{H},\,\mathrm{T}\}\)に距離
-\begin{align}
-  d(\omega,\,\omega') = \begin{cases}
-  0 &amp; \text{if }\omega = \omega', \\
-  1 &amp; \text{otherwise}.
-  \end{cases}
-  \label{discrete-distance}
-\end{align}
-を入れて作られる距離空間\((\varOmega,\,d)\)はポーランド空間である．先に完備であることを示そう．任意に\(\varOmega\)上のCauchy列\((\omega_n)_{n \in \mathbb{Z}_+}\)をとる．このとき
-\begin{align}
-\exists N \in \mathbb{Z}_+,\,\forall m,\,n \geq N,\,d(\omega_m,\,\omega_n) \lt \frac{1}{2} \label{convergence}
-\end{align}
-が成り立つ．距離を\((\ref{discrete-distance})\)で定めたから，\((\ref{convergence})\)は\(m,\,n\geq N\)ならば\(\omega_m = \omega_n\)ということを意味する．\(\omega_N = \mathrm{H}\)ならば\((\omega_n)_{n \in \mathbb{Z}_+}\)は\(\mathrm{H}\)に収束し，そうでなければ\(\mathrm{T}\)に収束する．任意のCauchy列が極限を\(\varOmega\)にもつので\((\varOmega,\,d)\)は完備である．
-</p>
-<p>\(\varOmega\)は明らかに可算である．最後に\(\varOmega\)が稠密であることを確認する．\(\varOmega\)上の任意の収束列の極限は\(\mathrm{H}\)または\(\mathrm{T}\)のいずれかである．なぜならば一般に収束列はCauchy列であり，\(\varOmega\)上のCauchy列は\(\mathrm{H}\)または\(\mathrm{T}\)のいずれかに収束することを既に確認したからである．よって\(\overline{\varOmega} = \{\mathrm{H},\,\mathrm{T}\} = \varOmega\)となり，\(\varOmega\)自身が\(\varOmega\)の稠密な部分集合になっている．
-</p>
-</section>
-<section>
 <h5 style="font-weight: bold;">Kolmogorovの拡張定理</h5>
-<p class="bib">See Chapter 4 in <a href="#erhan">Erhan (2011)</a> and Chapter 10 in <a href="bhattacharya">Bhattacharya and Waymire (2016)</a></p>
-<p>\(I\)を可算（？）集合とし，各\(i \in I\)について\((\varOmega_i,\,d_i)\)をポーランド空間する．距離\(d_i\)で定まる位相\(\mathcal{O}_i\)について\(\varOmega\)の\(\sigma\)-<ruby>代数<rt>アルジェブラ</rt></ruby>\(\mathcal{F}_i = \mathcal{B}(\mathcal{O}_i)\)をとる．\(I\)の有限個の異なる要素\(t_1,\,\ldots,\,t_n\)について，測度空間\((\varOmega_{t_1} \times \cdots \times \varOmega_{t_n},\,\mathcal{F}_1,\,\ldots,\,\mathcal{F}_{t_n})\)の測度
+<p><strong>表記</strong>
+任意に順序対\(\boldsymbol{\alpha} = (\alpha_1,\,\ldots,\,\alpha_m) \in \varLambda^m_\neq\)と\(\boldsymbol{\beta} = (\beta_1,\,\ldots,\,\beta_n) \in \varLambda^n_\neq\)をとる．以降\(\boldsymbol{\beta} \subseteq \boldsymbol{\alpha}\)や\(\alpha_1 \in \boldsymbol{\alpha}\)などと書いたときは\(\boldsymbol{\alpha}\)や\(\boldsymbol{\beta}\)を集合\(\{\alpha_1,\,\ldots,\,\alpha_m\}\)や\(\{\beta_1,\,\ldots,\,\beta_n\}\)と同一視しているものとする．</p>
+<p>\(\boldsymbol{\beta} \subseteq \boldsymbol{\alpha}\)のとき
 \begin{align}
-  \bigcup_{n \in \mathbb{Z}_+} \{\mu_{t_1,\, \ldots,\, t_n} \mid (t_1,\,\ldots,\,t_n) \in I_n \}
+\pi_{\boldsymbol{\beta} \leftarrow \boldsymbol{\alpha}}\colon U_\boldsymbol{\beta} \to U_\boldsymbol{\alpha},\quad
+  \pi_{\boldsymbol{\beta} \leftarrow \boldsymbol{\alpha}}(\omega_{\alpha_1},\,\ldots,\,\omega_{\alpha_m}) = (\omega_{\beta_1},\,\ldots,\,\omega_{\beta_n})
 \end{align}
+と定める．push-forward measure
+\begin{align*}
+  \mu_\boldsymbol{\beta} = (\pi_{\boldsymbol{\beta} \leftarrow \boldsymbol{\alpha}})_* \mu_\boldsymbol{\alpha}
+\end{align*}
+すなわち\(F_\beta \in \mathcal{F}_\beta\)
+\begin{align*}
+  \nu_\alpha(F)
+  &amp;= (\pi_{\alpha \leftarrow \lambda})_* \mu_\lambda(F_\alpha) \\
+  &amp;= \mu_\alpha (\pi_{\beta \leftarrow \alpha}^{-1}(F_\beta)) \\
+\end{align*}
+\begin{align*}
+I  = \{i \mid i \in \{1,\,\ldots,\,m\},\,\text{there exists }j \text{ such that }\alpha_i = \beta_j \}
+\end{align*}
+と定める．\(E_\alpha \in \pi_\alpha^{-1}(\mathcal{F}_\alpha)\)について
+\begin{align*}
+  \nu_0(E) := \mu_{\boldsymbol{\alpha}}(E_\boldsymbol{\alpha})
+\end{align*}
+とする．
+有限加法性
+\begin{align*}
+  \nu_0 (E_{\boldsymbol{\alpha}} \cup E_{\boldsymbol{\alpha}}')
+  &amp;= \mu_{\boldsymbol{\alpha}}(E_{\boldsymbol{\alpha}} \cup E_{\boldsymbol{\alpha}}') \\
+  &amp;= \mu_{\boldsymbol{\alpha}}\left(\prod_{i = 1}^m (E_{\alpha_i} \cup E_{\alpha_i}')\right) \\
+  &amp;= \prod_{i = 1}^m \mu_{\alpha_i}(E_{\alpha_i} \cup E_{\alpha_i}') \\
+  &amp;= \prod_{i = 1}^m (\mu_{\alpha_i}(E_{\alpha_i}) + \mu_{\alpha_i}(E_{\alpha_i}')) \\
+  &amp;= \prod_{i = 1}^m \mu_{\alpha_i}(E_{\alpha_i}) + \prod_{i = 1}^m \mu_{\alpha_i}(E_{\alpha_i}') \\
+  &amp;= \mu_{\boldsymbol{\alpha}}(E_\boldsymbol{\alpha}) + \mu_{\boldsymbol{\alpha}}(E_\boldsymbol{\alpha}') \\
+  &amp;= \nu_0(E_\boldsymbol{\alpha}) + \nu_0(E_\boldsymbol{\alpha}') \\
+\end{align*}
+\((E_i)_{i \in \mathbb{N}},\,E_i \in \pi_{\boldsymbol{\alpha}}^{-1}(\mathcal{F_\alpha})\)<br>
+\(E_\infty = \bigcup_{i = 1}^\infty E_n\)<br>
+\(F_k = E_\infty \setminus \left(\bigcup_{i = 1}^k E_i \right) \)<br>
+\(F_k \in \pi_{\boldsymbol{\alpha}}^{-1}\)<br>
+\(\bigcup_{k = 1}^\infty F_k = \emptyset\)
 </p>
-<p><strong>条件1</strong> \(\mathfrak{S}_n\)を\(\{1,\,\ldots,\,n\}\)から\(\{1,\,\ldots,\,n\}\)への全単射（置換）全体の集合とする．任意の\(\tau \in \mathfrak{S}_n\)について写像\(\pi_\tau\)を
-\begin{align*}
-  \pi_\tau\colon F_{j_1} \times \cdots \times F_{j_n} \to F_{t_{\tau(1)}} \times \cdots \times F_{t_{\tau(n)}},\quad
-  \pi_{\tau} (\omega_{t_1},\,\ldots,\,\omega_{t_n})
-  = (\omega_{t_{\tau(1)}},\,\ldots,\,\omega_{t_{\tau(n)}})
-\end{align*}
-と定義する．\((F_{t_1} \times \cdots F_{t_n},\,\mathcal{F}_{t_1}  \otimes \cdots \otimes \mathcal{F}_{t_n})\)上の測度を\(\mu_{t_1,\,\ldots,\,t_n}\)とすると
-\begin{align*}
-\mu_{t_{\tau(1)},\,\ldots,\,\tau(n)}(F_{t_{\tau(1)}} \times \cdots \times F_{t_{\tau(n)}})
-&amp;= \mu_{t_1,\,\ldots,\,t_n} \circ \pi_\tau^{-1} (F_{t_{\tau(1)}} \times \cdots \times F_{t_{\tau(n)}}) \\
-&amp;= \mu_{t_1,\,\ldots,\,t_n} (F_{t_1} \times \cdots \times F_{t_n})
-\end{align*}
-が成り立つ．</p>
+<p>\(\lim_{k \to \infty}\nu_0(F_k) = 0\)?
+\begin{align}
+\forall \varepsilon \gt 0,\,\exists K \in \mathbb{Z}_+,\, \forall k \geq K\, [ \nu_0(F_k) \leq \varepsilon ]
+\end{align}
+もしそうでなければ，ある\(\varepsilon \gt 0\)が存在して，\
+ある\(\boldsymbol{\beta} \)
+</p>
+<!--
 <p><strong>条件2</strong> 順序対\((t_1,\,\ldots,\,t_n,\,t_{n + 1}) \in J_{n + 1}\)について
 \begin{align*}
   \mu_{t_1,\,\ldots,\,t_n}(F_1 \times \cdots \times F_n)
@@ -200,11 +212,18 @@
 \end{align*}
 が成り立つ．</p>
 </section>
+-->
+<section>
+<p>\((\varOmega_\lambda,\,\mathcal{F}_\lambda),\,\mathcal{O}_\lambda)_{\lambda \in \varLambda}\)を可測空間\(\varOmega_\lambda,\,\mathcal{F}_\lambda\)と位相\(\mathcal{F}_\lambda\)の組からなる族とする．任意の\(\alpha \in \varLambda^n_\neq\)から測度
+空間\((\prod_{i = 1}^n \varOmega_{t_i},\, \bigotimes_{i = 1}^n \mathcal{F}_{t_i})\)の測度\(\mu_{t_1,\,\ldots,\,t_n}\)がcompatibility condition</p>
+</section>
 <section id="materials">
   <h2>参考文献</h2>
   <ol class="citation">
-  <li id="erhan"><a href="https://link.springer.com/book/10.1007/978-0-387-87859-1">Erhan &Ccedil;&#x131;nlar (2011) <em>Probability and Stochastics</em>. Springer New York.</a></li>
+  <!-- <li id="erhan"><a href="https://link.springer.com/book/10.1007/978-0-387-87859-1">Erhan &Ccedil;&#x131;nlar (2011) <em>Probability and Stochastics</em>. Springer New York.</a></li>
   <li id="bhattacharya"><a href="https://link.springer.com/book/10.1007/978-3-319-47974-3">Rabi Bhattacharya and Edward C. Waymire (2016) <em>A Basic Course in Probability Theory</em>. Springer New York.</a></li>
+  -->
+  <li>Terence Tao () <em>An Introduction to Measure Theory</em>. AMS.</li>
 </ol>
 </section>
 
