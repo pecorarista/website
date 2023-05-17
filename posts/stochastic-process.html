@@ -110,7 +110,7 @@
 \end{align*}
 から\((\alpha_1,\,\ldots,\,\alpha_n)\)をとる場合は
 \begin{gather*}
-\pi_{\alpha_1,\,\ldots,\,\alpha_n}\colon \prod_{\lambda \in \varLambda} \varOmega_\lambda \to varOmega_{\alpha_1} \times \cdots \times \varOmega_{\alpha_n},\\
+\pi_{\alpha_1,\,\ldots,\,\alpha_n}\colon \prod_{\lambda \in \varLambda} \varOmega_\lambda \to \varOmega_{\alpha_1} \times \cdots \times \varOmega_{\alpha_n},\\
   \pi_{\alpha_1,\,\ldots,\,\alpha_n}((\omega_\lambda)_{\lambda \in \varLambda}) = (\omega_{\alpha_1},\,\ldots,\,\omega_{\alpha_n})
 \end{gather*}
 と定義する．\(U_{\alpha_1} \times \cdots \times U_{\alpha_n} \subset \varOmega_{\alpha_1} \times \cdots \times \varOmega_{\alpha_n}\)の逆像は
@@ -173,11 +173,26 @@
 </p>
 </section>
 <section>
-<h5 style="font-weight: bold;">Tykhonovの定理</h5>
-<p>コンパクト集合の族\((\varOmega_\lambda)_{\lambda \in \varLambda}\)について，直積\(\prod_{\lambda \in \varLambda} \varOmega_\lambda\)もまたコンパクトである．</p>
+<h5 style="font-weight: bold;">直積位相</h5>
+\((\varOmega_\lambda,\,\mathcal{O}_\lambda)\)
+\begin{align}
+  \{\pi^{-1}(U) \mid U \in \mathcal{O}_\lambda\}
+\end{align}
 </section>
 <section>
-<h5 style="font-weight: bold;">Kolmogorovの拡張定理</h5>
+<h5 style="font-weight: bold;">Tychonoff (&#1058;&#1080;&#1093;&#1086;&#1085;&#1086;&#1074;, &#1040;&#1085;&#1076;&#1088;&#1077;&#1081; &#1053;&#1080;&#1082;&#1086;&#1083;&#1072;&#1077;&#1074;&#1080;&#1095;)の定理</h5>
+<p>位相空間の族\(((\varOmega_\lambda,\,\mathcal{O}_\lambda))_{\lambda \in \varLambda}\)について，各\(\varOmega_\lambda\)がコンパクトならば，直積空間\(\prod_{\lambda \in \varLambda} \varOmega_\lambda\)もまたコンパクトである．</p>
+</section>
+<section>
+<h5 style="font-weight: bold;">Rieszの表現定理</h5>
+<p>\(H\)をHilbert空間とする．任意の\(\varphi \in H^*\)について，任意の\(x \in H\)で
+\begin{align*}
+  \forall x \in H,\,\varphi(x) = \langle x,\,y \rangle
+\end{align*}
+となるような\(y \in H\)が一意に存在する．</p>
+</section>
+<section>
+<h5 style="font-weight: bold;">Kolmogorov (&#1050;&#1086;&#1083;&#1084;&#1086;&#1075;&#1086;&#1088;&#1086;&#1074;, &#1040;&#1085;&#1076;&#1088;&#1077;&#1081; &#1053;&#1080;&#1082;&#1086;&#1083;&#1072;&#1077;&#1074;&#1080;&#1095;)の拡張定理</h5>
 <p><strong>条件1</strong>
 \(\{1,\,\ldots,\,n\}\)から\(\{1,\,\ldots,\,n\}\)への全単射（置換）全体を\(\mathfrak{S}_n\)と書く．任意の順序対\((\alpha_1,\,\ldots,\,\alpha_n) \in \varLambda^n_\neq\)，集合\(F_{\alpha_1} \in \mathcal{F}_{\alpha_1},\,\ldots,\,F_{\alpha_n} \in \mathcal{F}_{\alpha_i}\)，置換\(\tau \in \mathfrak{S}_n\)について
 \begin{align}
@@ -188,13 +203,30 @@
 が成り立つ．
 </p>
 <strong>定理</strong>
-ポーランド空間の族\(((\varOmega_\lambda,\,\mathcal{O}_\lambda))_{\lambda \in \varLambda}\)と各\(\lambda \in \varLambda\)について\(\mathcal{F}_\lambda = \mathcal{B}(\mathcal{O}_\lambda)\)で定まる\((\mathcal{F}_\lambda)_{\lambda \in \varLambda}\)が与えられたとする．
+<p>
+位相空間の族\(((\varOmega_\lambda,\,\mathcal{O}_\lambda))_{\lambda \in \varLambda}\)が各\(\lambda \in \varLambda\)で\(\varOmega_\lambda\)がポーランド空間であるとする．各\(\lambda \in \varLambda\)について\(\mathcal{F}_\lambda = \mathcal{B}(\mathcal{O}_\lambda)\)で定まる\((\mathcal{F}_\lambda)_{\lambda \in \varLambda}\)が与えられたとする．
 空間\((\varOmega_{\alpha_1} \times \cdots \varOmega_{\alpha_n},\,\mathcal{F}_{\alpha_1} \otimes \cdots \otimes \mathcal{F}_{\alpha_n})\}\)上の確率測度全体の集合を\(M_{\alpha_1,\,\ldots,\,\alpha_n}\)と表すことにする．
 有限個の直積空間における確率測度の族
 \begin{gather}
   M_\text{finite} = \bigcup_{n \in \mathbb{Z}_+}\bigcup_{(\alpha_1,\,\ldots,\,\alpha_n) \in \varLambda_\neq^n} M_{\alpha_1,\,\ldots,\,\alpha_n}
 \end{gather}
 
+\(\lambda \in \varLambda\)で\(\varOmega_\lambda\)がコンパクトなとき，Tychonoffの定理より\(\varOmega := \prod_{\lambda \in \varLambda} \varOmega_\lambda\)もまたコンパクトである．\(\varOmega\)上の\(F\)（\(F\)は\(\mathbb{R}\)または\(\mathbb{C}\)）値連続関数全体の集合を\(C(\varOmega)\)と表すことにする．\(C(\varOmega)\)に一様ノルムを入れる，すなわち，任意の\(f \in C(\varOmega)\)に対して
+\begin{align*}
+  \|f\|_\infty := \sup_{x \in \varOmega} |f(x)|
+\end{align*}
+と定める．このとき\((C(\varOmega),\,\|\cdot\|_\infty)\)はBanach空間になる．
+\(f \in C(\varOmega)\)が，\((\omega_\lambda)_{\lambda \in \varLambda}\)の有限個の成分のみに依存する，すなわち任意の\(n \in \mathbb{Z}_+\)と任意の\((\alpha_1,\,\ldots,\,\alpha_n) \in \varLambda_\neq^n\)について
+\begin{align}
+  f((\omega_\lambda)_{\lambda \in \varLambda}) = \overline{f}(\omega_{\alpha_1},\,\ldots,\,\omega_{\alpha_n})
+\end{align}
+と書けるとき，有界線型汎関数\(\varphi \colon C(\varOmega) \to F\)を
+\begin{align}
+  \varphi(f) = \int_{S_{\alpha_1} \times \cdots \times S_{\alpha_n}} \overline{f} d\mu_{\alpha_1,\,\ldots,\,\alpha_n}
+\end{align}
+で定義する．
+Stone&ndash;Weierstra&szlig;の定理
+Rieszの表現定理
 \begin{align*}
   \nu_0 (E_{\boldsymbol{\alpha}} \cup E_{\boldsymbol{\alpha}}')
   &amp;= \mu_{\boldsymbol{\alpha}}(E_{\boldsymbol{\alpha}} \cup E_{\boldsymbol{\alpha}}') \\
