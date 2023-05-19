@@ -173,6 +173,10 @@ ol.citation {
   }
 }
 
+strong.with-space {
+  margin-right: 0.5rem;
+}
+
 .mathitem {
   font-family: 'mathematical', serif;
   font-size: 119.5%;
@@ -199,6 +203,13 @@ ol.math {
   }
 }
 
+ol.narrow {
+  li {
+    margin-top: 0.5ex;
+    margin-bottom: 0.5ex;
+  }
+}
+
 ol.math li.s::before {
   content: '(s' counter(m) ')';
 }
@@ -217,6 +228,26 @@ ol.math li.alphabetical::before {
 
 ol.math li.capc::before {
   content: '(C' counter(m) ')';
+}
+
+ol.math li.capc3::before {
+  content: '(C3)';
+}
+
+ol.math li.capa::before {
+  content: '(A' counter(m) ')';
+}
+
+ol.math li.capa4::before {
+  content: '(A4)';
+}
+
+ol.math li.capa5::before {
+  content: '(A5)';
+}
+
+ol.math li.capn::before {
+  content: '(N' counter(m) ')';
 }
 
 ol.math li.roman::before {
@@ -414,12 +445,30 @@ ul > .half {
   border-radius: 5px;
 
   ol {
-    padding-right: 2em;
-    padding-left: 3em;
-  }
+    padding-right: 2rem;
+    padding-left: 1.5rem;
+    counter-reset: item;
 
-  li ol {
-    padding-left: 2em;
+    li {
+      list-style: none;
+      counter-increment: item;
+
+      &::before {
+        padding-right: 10px;
+        content: counter(item);
+      }
+
+      ol {
+        padding-left: 1.5rem;
+
+        li {
+          &::before {
+            padding-right: 10px;
+            content: counters(item, '.') ' ';
+          }
+        }
+      }
+    }
   }
 }
 
