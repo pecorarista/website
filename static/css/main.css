@@ -178,6 +178,10 @@ ol.math li.s::before {
   content: "(s" counter(m) ")";
 }
 
+ol.math li.capsw::before {
+  content: "(SW" counter(m) ")";
+}
+
 ol.math li.p::before {
   content: "(p" counter(m) ")";
 }
@@ -212,6 +216,14 @@ ol.math li.capa5::before {
 
 ol.math li.capn::before {
   content: "(N" counter(m) ")";
+}
+
+ol.math li.capn4::before {
+  content: "(N4)";
+}
+
+ol.math li.capn5::before {
+  content: "(N5)";
 }
 
 ol.math li.roman::before {
@@ -376,6 +388,12 @@ ul > .half {
 
 .serif {
   font-family: "Times New Roman", "Times", serif;
+}
+
+h3.math,
+h4.math,
+h5.math {
+  font-weight: bold;
 }
 
 .toc-container {

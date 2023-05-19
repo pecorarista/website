@@ -4,6 +4,7 @@ MathJax = {
       '[tex]/cases',
       '[tex]/empheq',
       '[tex]/upgreek',
+      '[tex]/mathtools',
       '[tex]/bussproofs',
     ]
   },
@@ -13,6 +14,7 @@ MathJax = {
         'empheq',
         'cases',
         'upgreek',
+        'mathtools',
         'bussproofs',
       ]
     },
