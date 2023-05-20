@@ -3,39 +3,41 @@
 <h3 id="algebra" class="math">{{ section }}. 代数</h3>
 <section>
 <h4 id="algebra" class="math">{{ section }}.1 代数</h4>
-<p>体\(K\)上のベクトル空間\(V\)において，以下の性質を満たす乗法と呼ばれる二項演算\(*\colon W \times W \to W\)が定義されているとき，\(W\)を\(K\)上の代数(algebra)と呼ぶ．この節以降では\(*\)を省略し，\(u * v\)を\(uv\)のように書く．</p>
-<p><strong>性質</strong> \(\forall u,\,v,\,w \in W,\,\forall \alpha \in K\)</p>
+<div class="math-book">
+<i class="fa-solid fa-bookmark"></i> <a href="#dudley"><cite lang="en">Dudley and Norvai&scaron;a</cite></a>Definition 4.1
+</div>
+<p>体\(K\)上のベクトル空間\(X\)において，以下を満たす二項演算\(V \times V \ni (x,\,y)\mapsto xy \in V\)が定義されているとき，この演算を乗法といい，\(V\)は体\(K\)上の代数(algebra)であるという．</p>
+<p>任意の\(x,\,y,\,z \in V\)と任意の\(\alpha \in K\)について以下が成り立つ．</p>
   <ol class="math narrow">
-    <li class="capa">\(x * (y * z) = (x * y) * z\)</li>
-    <li class="capa">\((x + y) * z = x * z + y *z,\,x * (y + z) = x * y + x * z\)</li>
-    <li class="capa">\(\alpha (x * y) = (\alpha x) * y = x * (\alpha y)\)</li>
+    <li class="capa">\(x (yz) = (xy) z.\)</li>
+    <li class="capa">\((x + y) z = xz + yz,\,x (y + z) = xz + xz .\)</li>
+    <li class="capa">\(\alpha (xy) = (\alpha x) y = x (\alpha y).\)</li>
   </ol>
-<p>任意の\(x,\,y\in W\)が次を満たすとき代数\(W\)は可換であるという．</p>
+<p>さらに任意の\(x,\,y\in V\)が次を満たすとき代数\(V\)は可換であるという．</p>
   <ol class="math">
-    <li class="capa4">\(u * v  = v * u\)</li>
+    <li class="capa4">\(x y  = y z\)</li>
   </ol>
-<p>（乗法）単位元と呼ばれる元\(1_W \in W \setminus \{0\}\)が存在して，任意の\(v \in V\)に対して</p>
+<p>（乗法）単位元と呼ばれる元\(1_X \in X \setminus \{0\}\)が存在して，任意の\(x \in X\)に対して</p>
   <ol class="math">
-    <li class="capa5" style="margin-bottom: 0.5ex;">\(1_W * v  = v * 1_W = v\)</li>
+    <li class="capa5" style="margin-bottom: 0.5ex;">\(1_X x  = x 1_X = x\)</li>
   </ol>
-  <p>を満たすとき，\(W\)は単位元をもつ，またはunital /<span class="grammar">en</span> <span class="ipa">ju&#720;n&#618;tl&#809;</span>/であるという．</p>
+<p>を満たすとき，\(X\)は単位元をもつ(with unit)またはunital /<span class="grammar">en</span> <span class="ipa">ju&#720;n&#618;tl&#809;</span>/であるという．以下では単に代数といった場合，unitalで可換であるものとする．</p>
 </section>
 
-<h4 class="math">3.2.2 ノルム</h4>
+<h4 class="math">{{ section }}.2 Banach代数</h4>
 <div class="math-book">
-<i class="fa-solid fa-bookmark"></i> <a href="#miyajima"><cite lang="ja">宮島</cite></a> 定義2.1
+<i class="fa-solid fa-bookmark"></i> <a href="#miyajima"><cite lang="ja">宮島</cite></a>定義2.1; <a href="#miyajima"><cite lang="en">Dudley and Norvai&scaron;a</cite></a>Def 4.6, Thm 4.8, and Def 4.9
 </div>
-<strong>定義</strong>
-ノルムが満たすべき性質
+<p>体\(K\)上のベクトル空間\(X\)において，単項演算\(\|\cdot\|\colon X \to \mathbb{R}_+\)が以下の性質（ノルムの公理）を満たすとき，\(\|\cdot\|\)を\(X\)上のノルムと呼ぶ．</p>
 <ol class="math narrow">
-  <li class="capn">\(\|v\| = 0\;\Leftrightarrow\;v = 0\)</li>
-  <li class="capn">\(\|\alpha v\| = |\alpha|\|v\|\)</li>
-  <li class="capn">（三角不等式，劣加法性） \(\|u + v\| \leq \|u\| + \|v\|\)</li>
+  <li class="capn">\(\|v\| = 0\;\Leftrightarrow\;v = 0.\)</li>
+  <li class="capn">\(\|\alpha v\| = |\alpha|\|v\|.\)</li>
+  <li class="capn">（三角不等式，劣加法性） \(\|u + v\| \leq \|u\| + \|v\|.\)</li>
 </ol>
-これらに加えて
+<p>体\(K\)上の代数\(B\)に以下を満たすノルムが定義されているとき，\((B,\,\| \cdot \|)\)をノルム付き代数(normed algebra)という．</p>
 <ol class="math narrow">
   <li class="capn4">（劣乗法性）\(\|uv\| \leq \|u\|\|v\|\)</li>
   <li class="capn5">\(\|1_X \| = 1\)</li>
 </ol>
-を満たす．
+<p>体\(K\)上のノルム付き代数\((B,\,\|\cdot\|)\)がノルム\(\|\cdot\|\)について完備であるとき，\(B,\,\|\cdot\|\)を<strong>Banach代数</strong>と呼ぶ．</p>
 </section>
