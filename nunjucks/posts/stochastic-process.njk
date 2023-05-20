@@ -28,13 +28,13 @@
         <li>直積位相</li>
       </ol>
     </li>
-    <li>Stone&ndash;Weierstra&szlig;の定理
+    <li><a href="#stone">Stone&ndash;Weierstra&szlig;の定理</a>
       <ol>
         <li><a href="algebra">代数</a></li>
-        <li>部分代数</li>
-        <li>ノルム付き代数</li>
-        <li>Banach代数</li>
-        <li>コンパクトHausdorff空間上の実数値連続関数全体の集合\(C(X)\)</li>
+        <li><a href="subalgebra">部分代数</a></li>
+        <li><a href="normed-algebra">ノルム付き代数</a></li>
+        <li><a href="banach-algebra">Banach代数</a></li>
+        <li><a href="cx">コンパクトHausdorff空間上の実数値連続関数全体の集合\(C(X)\)</a></li>
       </ol>
     </li>
     <li>Rieszの表現定理</li>
@@ -153,27 +153,7 @@
 のように\(F_1 \times F_3\)を底とするシリンダー集合で表すことができる．<span style="text-decoration: underline;">さて確率測度はどのように決めればよいだろうか？この質問に答えるのがKolmogorovの拡張定理である．</span></p>
 </section>
 
-<section>
-<h3 id="algebra" class="math">3. 代数</h3>
-<section>
-<h4 class="math">3.1 代数の定義</h4>
-<p>体\(K\)上のベクトル空間\(V\)において，以下の性質を満たす乗法と呼ばれる二項演算\(*\colon W \times W \to W\)が定義されているとき，\(W\)を\(K\)上の代数(algebra)と呼ぶ．この節以降では\(*\)を省略し，\(u * v\)を\(uv\)のように書く．</p>
-<p><strong>性質</strong> \(\forall u,\,v,\,w \in W,\,\forall \alpha \in K\)</p>
-  <ol class="math narrow">
-    <li class="capa">\(x * (y * z) = (x * y) * z\)</li>
-    <li class="capa">\((x + y) * z = x * z + y *z,\,x * (y + z) = x * y + x * z\)</li>
-    <li class="capa">\(\alpha (x * y) = (\alpha x) * y = x * (\alpha y)\)</li>
-  </ol>
-<p>任意の\(x,\,y\in W\)が次を満たすとき代数\(W\)は可換であるという．</p>
-  <ol class="math">
-    <li class="capa4">\(u * v  = v * u\)</li>
-  </ol>
-<p>（乗法）単位元と呼ばれる元\(1_W \in W \setminus \{0\}\)が存在して，任意の\(v \in V\)に対して</p>
-  <ol class="math">
-    <li class="capa5" style="margin-bottom: 0.5ex;">\(1_W * v  = v * 1_W = v\)</li>
-  </ol>
-  <p>を満たすとき，\(W\)は単位元をもつ，またはunital /<span class="grammar">en</span> <span class="ipa">ju&#720;n&#618;tl&#809;</span>/であるという．</p>
-</section>
+{% include 'nunjucks/posts/_algebra.njk' %}
 <section>
 <h4 class="math">3.2 \(C(X)\)</h4>
 <p>\(X\)をコンパクトHausdorff空間とし，\(X\)上の実数値連続関数全体の集合を\(C(X)\)と書くことにする．<p>
@@ -257,28 +237,41 @@
 <p><strong class="with-space">可換であること</strong> 実数の乗法が可換なので成り立つ．<p/>
 </section>
 <section>
-<h4 class="math">3.2.2 ノルム付き代数</h4>
+<strong>ノルム付き代数</strong>(normed algebra)と呼ぶ．
 <section>
 <h5 class="math">3.2.2 \(C(X)\)のノルム</h5>
+
 任意の\(f \in C(X)\)についてノルムを
 \begin{align}
   \| f \| = \sup_{x \in X} |f(x)|
 \end{align}
 <p>※ \(X\)がコンパクトかつ\(f \in C(X)\)が連続なので，Weirestra&szlig;の最大値定理によって\(f\)は\(X\)に最大値をもつ．したがって\(\| f \| = \max_{x \in X} |f(x)|\)と書いてもよい．</p>
-ノルムが満たすべき性質
-<ol class="math narrow">
-  <li class="capn">\(\|v\| = 0\;\Leftrightarrow\;v = 0\)</li>
-  <li class="capn">\(\|\alpha v\| = |\alpha|\|v\|\)</li>
-  <li class="capn">（三角不等式，劣加法性） \(\|u + v\| \leq \|u\| + \|v\|\)</li>
-</ol>
-これらに加えて
-<ol class="math narrow">
-  <li class="capn4">（劣乗法性）\(\|uv\| \leq \|u\|\|v\|\)</li>
-  <li class="capn5">\(\|1_X \| = 1\)</li>
-</ol>
+
+
+<strong>補題</strong>
+\(B\)が部分代数ならば\(\overline{B}\)も部分代数である．
+<p>
+積について閉じていることを示す．
+任意の\(f \in \overline{B}\)をとる．\(f\)が\(B\)の集積点なので，\(f_n \to f\)となるような\(\overline{B}\)上の列\((f_n)_{n \in \mathbb{Z}_+}\)をとることができる．すなわち，ある\(N \in \mathbb{Z}_+\)が存在して，
+\begin{align}
+  \|f_n(x) \|
+\end{align}
+同様に\(g \in \overline{B}\)をとると，\(g_n \to g\)となるような\(\overline{B}\)上の列\((g_n)_{n \in \mathbb{Z}_+}\)をとることができる．
+
+このとき列\((f_n g_n)_{n \in \mathbb{Z}_+}\)は
+\begin{align*}
+  |f_n(x)g_n(x) - f(x)g(x)|
+  &amp;= |f_n(x)g_n(x) - f_n(x)g(x) + f_n(x)g(x) - f(x)g(x) | \\
+  &amp;\leq |f_n(x) | | g_n(x) - g(x) | + | f_n(x) - f(x) | | g(x) | \\
+  &amp;\lt (|f(x)| + 1) \frac{\varepsilon}{2(|f(x)| + 1)} + \frac{\varepsilon}{2(|g(x)| + 1)} | g(x) | \\
+  &amp;\leq \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
+\end{align*}
+したがって任意の\(\varepsilon \gt 0\)で\(\{h \in C(X) \mid \|h - fg\|_\infty \lt \varepsilon\} \cap B \neq \emptyset\)となり，\(fg \in \overline{B}\)がわかる．
+</p>
 </section>
+
 <section>
-<h5 class="math">Stone&ndash;Weierstra&szlig;の定理</h5>
+<h3 id="stone" class="math">Stone&ndash;Weierstra&szlig;の定理</h3>
 \(X\)をコンパクトHausdorff空間とする．\(C(X)\)の部分集合\(A\)が以下の<span class="mathitem">(S1), (S2)</span>を満たすならば，\(A\)の生成する\(C(X)\)の部分代数は\(C(X)\)で稠密になる．
 <ol class="math narrow">
   <li class="capsw">\(1_{C(X)} \in A.\)</li>
@@ -287,7 +280,7 @@
 </section>
 
 <section>
-<h4 id="polish" class="math">8.1 ポーランド空間</h4>
+<h3 id="polish" class="math">8.1 ポーランド空間</h3>
 <p>距離空間\((\varOmega,\,d)\)が可分 (seperable)であるとは，\(\varOmega\)が可算かつ稠密な部分集合をもつことをいう．また距離空間が完備 (complete)であるとは\(\varOmega\)上の任意のCauchy列が\(\varOmega\)に極限をもつことをいう．可分かつ完備な距離空間を<strong>ポーランド空間</strong>と呼ぶ．</p>
 <h4 id="polish-check" class="math">8.1 ポーランド空間であることの確認</h4>
 <p>集合\(\varOmega = \{\mathrm{H},\,\mathrm{T}\}\)に離散距離
@@ -307,8 +300,9 @@
 <p>\(\varOmega\)は明らかに可算である．最後に\(\varOmega\)が稠密であることを確認する．\(\varOmega\)上の任意の収束列の極限は\(\mathrm{H}\)または\(\mathrm{T}\)のいずれかである．なぜならば一般に収束列はCauchy列であり，\(\varOmega\)上のCauchy列は\(\mathrm{H}\)または\(\mathrm{T}\)のいずれかに収束することを既に確認したからである．よって\(\overline{\varOmega} = \{\mathrm{H},\,\mathrm{T}\} = \varOmega\)となり，\(\varOmega\)自身が\(\varOmega\)の稠密な部分集合になっている．
 </p>
 </section>
+
 <section>
-<h5 class="math">直積位相</h5>
+<h3 class="math">直積位相</h3>
 \((\varOmega_\lambda,\,\mathcal{O}_\lambda)\)
 \begin{align}
   \{\pi^{-1}(U) \mid U \in \mathcal{O}_\lambda\}
@@ -320,16 +314,21 @@
 <p>※ Tikhonov (<span class="grammar">ru</span> &#1058;&#1080;&#1093;&#1086;&#1085;&#1086;&#1074;)はTychonoffと転写されることも多い．
 </p>
 </section>
+
 <section>
-<h5 class="math">Rieszの表現定理</h5>
+<h3 class="math">Rieszの表現定理</h3>
 <p>\(H\)をHilbert空間とする．任意の\(\varphi \in H^*\)について，任意の\(x \in H\)で
 \begin{align*}
   \forall x \in H,\,\varphi(x) = \langle x,\,y \rangle
 \end{align*}
 となるような\(y \in H\)が一意に存在する．</p>
 </section>
+
 <section>
-<h5 class="math">Kolmogorovの拡張定理</h5>
+<h3 class="math">Kolmogorovの拡張定理</h3>
+<div class="math-book">
+<i class="fa-solid fa-bookmark"></i> <a href="#miyajima"><cite lang="en">Bhattacharya and Waymire</cite></a> Chap. X
+</div>
 <p><strong>条件1</strong>
 \(\{1,\,\ldots,\,n\}\)から\(\{1,\,\ldots,\,n\}\)への全単射（置換）全体を\(\mathfrak{S}_n\)と書く．任意の順序対\((\alpha_1,\,\ldots,\,\alpha_n) \in \varLambda^n_\neq\)，集合\(F_{\alpha_1} \in \mathcal{F}_{\alpha_1},\,\ldots,\,F_{\alpha_n} \in \mathcal{F}_{\alpha_i}\)，置換\(\tau \in \mathfrak{S}_n\)について
 \begin{align}

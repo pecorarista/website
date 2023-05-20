@@ -51,10 +51,31 @@ body {
   }
 }
 
-cite,
 em {
   font-family: $western-font, sans-serif;
   font-style: oblique;
+}
+
+div.math-book {
+  a {
+    color: $black;
+  }
+
+  cite {
+    &:lang(en) {
+      font-family: $western-font, sans-serif;
+      font-style: oblique;
+    }
+
+    &:lang(ja) {
+      font-style: normal;
+    }
+  }
+
+  i.fa-bookmark {
+    margin-right: 0.5rem;
+    color: $denim;
+  }
 }
 
 :lang(ar) {

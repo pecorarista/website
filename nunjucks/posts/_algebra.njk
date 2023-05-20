@@ -1,0 +1,41 @@
+{% set section = '10' %}
+<section>
+<h3 id="algebra" class="math">{{ section }}. 代数</h3>
+<section>
+<h4 id="algebra" class="math">{{ section }}.1 代数</h4>
+<p>体\(K\)上のベクトル空間\(V\)において，以下の性質を満たす乗法と呼ばれる二項演算\(*\colon W \times W \to W\)が定義されているとき，\(W\)を\(K\)上の代数(algebra)と呼ぶ．この節以降では\(*\)を省略し，\(u * v\)を\(uv\)のように書く．</p>
+<p><strong>性質</strong> \(\forall u,\,v,\,w \in W,\,\forall \alpha \in K\)</p>
+  <ol class="math narrow">
+    <li class="capa">\(x * (y * z) = (x * y) * z\)</li>
+    <li class="capa">\((x + y) * z = x * z + y *z,\,x * (y + z) = x * y + x * z\)</li>
+    <li class="capa">\(\alpha (x * y) = (\alpha x) * y = x * (\alpha y)\)</li>
+  </ol>
+<p>任意の\(x,\,y\in W\)が次を満たすとき代数\(W\)は可換であるという．</p>
+  <ol class="math">
+    <li class="capa4">\(u * v  = v * u\)</li>
+  </ol>
+<p>（乗法）単位元と呼ばれる元\(1_W \in W \setminus \{0\}\)が存在して，任意の\(v \in V\)に対して</p>
+  <ol class="math">
+    <li class="capa5" style="margin-bottom: 0.5ex;">\(1_W * v  = v * 1_W = v\)</li>
+  </ol>
+  <p>を満たすとき，\(W\)は単位元をもつ，またはunital /<span class="grammar">en</span> <span class="ipa">ju&#720;n&#618;tl&#809;</span>/であるという．</p>
+</section>
+
+<h4 class="math">3.2.2 ノルム</h4>
+<div class="math-book">
+<i class="fa-solid fa-bookmark"></i> <a href="#miyajima"><cite lang="ja">宮島</cite></a> 定義2.1
+</div>
+<strong>定義</strong>
+ノルムが満たすべき性質
+<ol class="math narrow">
+  <li class="capn">\(\|v\| = 0\;\Leftrightarrow\;v = 0\)</li>
+  <li class="capn">\(\|\alpha v\| = |\alpha|\|v\|\)</li>
+  <li class="capn">（三角不等式，劣加法性） \(\|u + v\| \leq \|u\| + \|v\|\)</li>
+</ol>
+これらに加えて
+<ol class="math narrow">
+  <li class="capn4">（劣乗法性）\(\|uv\| \leq \|u\|\|v\|\)</li>
+  <li class="capn5">\(\|1_X \| = 1\)</li>
+</ol>
+を満たす．
+</section>
