@@ -35,6 +35,9 @@ em {
 div.math-book a {
   color: #373a3c;
 }
+div.math-book cite {
+  margin-right: 0.5rem;
+}
 div.math-book cite:lang(en) {
   font-family: "Roboto", sans-serif;
   font-style: oblique;
@@ -408,6 +411,15 @@ h3.math,
 h4.math,
 h5.math {
   font-weight: bold;
+}
+
+.statement {
+  width: 100%;
+  padding: 18px;
+  margin-top: 25px;
+  margin-bottom: 30px;
+  border: 1px solid #aaa;
+  border-radius: 5px;
 }
 
 .toc-container {
