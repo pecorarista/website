@@ -27,10 +27,24 @@ body {
   content: "";
 }
 
-cite,
 em {
   font-family: "Roboto", sans-serif;
   font-style: oblique;
+}
+
+div.math-book a {
+  color: #373a3c;
+}
+div.math-book cite:lang(en) {
+  font-family: "Roboto", sans-serif;
+  font-style: oblique;
+}
+div.math-book cite:lang(ja) {
+  font-style: normal;
+}
+div.math-book i.fa-bookmark {
+  margin-right: 0.5rem;
+  color: #1560bd;
 }
 
 :lang(ar) {
