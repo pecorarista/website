@@ -102,13 +102,13 @@
 <ul>
   <li>\(\mathbb{Z}_+\)は正整数全体の集合\(\{1,\,2,\,\ldots\}\)を表す．</li>
   <li>\(\mathbb{R}_+\)は非負実数全体の集合\(\{x \in \mathbb{R} \mid x \geq 0\}\)を表す．</li>
-  <li>\(\wp(\varOmega)\)は\(\varOmega\)の冪集合を表す．</li>
+  <li>\(\mathfrak{P}(\varOmega)\)は\(\varOmega\)の冪集合を表す．</li>
 </ul>
 </section>
 
 <section>
 <h3 id="coin-toss" class="math">2. コイントスのモデル</h3>
-<p>コインを1度だけ投げる試行において，表が出る根源事象を\(\mathrm{H}\) (head)，コインの裏が出る根源事象を\(\mathrm{T}\) (tail)で表す．このとき標本空間は\(\varOmega = \{\mathrm{H},\,\mathrm{T}\}\)である．事象空間として離散\(\sigma\)-代数，すなわち\(\mathcal{F} := \wp(\varOmega) = \{\emptyset, \{\mathrm{H}\}, \{\mathrm{T}\}, \{\mathrm{H},\, \mathrm{T}\}\}\)をとる．状態空間は\((S,\, \mathcal{G}) = (\varOmega,\, \mathcal{F})\)とする．確率変数\(Y\colon \varOmega \to S\)は恒等関数\(Y:\omega \mapsto \omega\)とする．確率測度\(P\)は\(P(\{\omega \in \varOmega \mid \omega = \mathrm{H}\}) = P(\{\omega \in \varOmega \mid \omega = \mathrm{T}\}) = 1 / 2\)とする．以上はコインを1度だけ投げる試行のモデルになっている．
+<p>コインを1度だけ投げる試行において，表が出る根源事象を\(\mathrm{H}\) (head)，コインの裏が出る根源事象を\(\mathrm{T}\) (tail)で表す．このとき標本空間は\(\varOmega = \{\mathrm{H},\,\mathrm{T}\}\)である．事象空間として離散\(\sigma\)-代数，すなわち\(\mathcal{F} := \mathfrak{P}(\varOmega) = \{\emptyset, \{\mathrm{H}\}, \{\mathrm{T}\}, \{\mathrm{H},\, \mathrm{T}\}\}\)をとる．状態空間は\((S,\, \mathcal{G}) = (\varOmega,\, \mathcal{F})\)とする．確率変数\(X\colon \varOmega \to S\)は恒等関数\(X(\omega) = \omega\)とする．確率測度\(P\)は\(P(\{\omega \in \varOmega \mid \omega = \mathrm{H}\}) = P(\{\omega \in \varOmega \mid \omega = \mathrm{T}\}) = 1 / 2\)とする．以上はコインを1度だけ投げる試行のモデルになっている．
 </p>
 </section>
 
@@ -122,11 +122,11 @@
   &amp;= \varOmega_1 \times \cdots \times \varOmega_n \\
   &amp;= \{(\omega_1,\,\ldots,\,\omega_n) \mid \text{\(\omega_i \in \varOmega_i\) for all \(i \in I\)} \}
 \end{align*}
-となる．各\(\varOmega_i\)の事象空間として離散\(\sigma\)-代数\(\mathcal{F}_i := \wp (\varOmega_i) = \{\emptyset,\,\{\mathrm{H}\},\, \{\mathrm{T}\},\, \{\mathrm{H},\, \mathrm{T}\}\}\)をとる．このとき\(n\)回の試行全体の事象空間は
+となる．各\(\varOmega_i\)の事象空間として離散\(\sigma\)-代数\(\mathcal{F}_i := \mathfrak{P} (\varOmega_i) = \{\emptyset,\,\{\mathrm{H}\},\, \{\mathrm{T}\},\, \{\mathrm{H},\, \mathrm{T}\}\}\)をとる．このとき\(n\)回の試行全体の事象空間は
 \begin{align*}
-  F := \{F_1 \times \cdots \times F_n \mid \text{\(F_i \in \mathcal{F}_i\) for all \(i \in I\)}\}
+\mathcal{F} = \sigma(\{F_1 \times \cdots \times F_n \mid \text{\(F_i \in \mathcal{F}_i\) for all \(i \in I\)}\})
 \end{align*}
-として，\(F\)で生成される\(\sigma\)-代数\(\sigma(F)\)をとればよい．</p>
+をとればよい．</p>
 </section>
 
 <section>
@@ -185,14 +185,14 @@
 
 <section>
 <h3 id="infinite" class="math">5. 可算無限回連続コイントス</h3>
-<p>可算無限回のコイントスにおいて，\(i\,(\in \mathbb{Z}_+)\)回目のコイントスの標本空間を\(\varOmega_i = \wp(\varOmega_i) = \{\emptyset,\, \{\mathrm{H}\},\, \{\mathrm{T}\},\,\{\mathrm{H},\,\mathrm{T}\}\}\)とする．このとき試行全体の標本空間は
+<p>可算無限回のコイントスにおいて，\(i\,(\in \mathbb{Z}_+)\)回目のコイントスの標本空間を\(\varOmega_i = \mathfrak{P}(\varOmega_i) = \{\emptyset,\, \{\mathrm{H}\},\, \{\mathrm{T}\},\,\{\mathrm{H},\,\mathrm{T}\}\}\)とする．このとき試行全体の標本空間は
 \begin{align*}
   \varOmega^{\mathbb{Z}_+}
   &amp;= \prod_{i \in \mathbb{Z}_+} \varOmega_i \\
   &amp;= \varOmega_1 \times \varOmega_2 \times \cdots \\
   &amp;= \{(\omega_i)_{i \in \mathbb{Z}_+} \mid \text{\(\omega_i \in \varOmega_i\) for all \(i \in \mathbb{Z}_+\)} \}
 \end{align*}
-となる．\(i\)回目の試行の事象空間\(\mathcal{F}_i\)は，有限回の場合と同様，離散\(\sigma\)-代数\(\wp(\varOmega_i)\)とする．このとき試行全体の事象空間は\(\bigotimes_{i \in \mathbb{Z}_+} \mathcal{F}_i\)となる．この空間には「1回目に表が出て，3回目に裏が出る」といった事象が含まれる．実際この事象は，
+となる．\(i\)回目の試行の事象空間\(\mathcal{F}_i\)は，有限回の場合と同様，離散\(\sigma\)-代数\(\mathfrak{P}(\varOmega_i)\)とする．このとき試行全体の事象空間は\(\bigotimes_{i \in \mathbb{Z}_+} \mathcal{F}_i\)となる．この空間には「1回目に表が出て，3回目に裏が出る」といった事象が含まれる．実際この事象は，
 \(F_1 = \{\omega_1 \in \varOmega_1 \mid \omega_1 = \mathrm{H}\}\)と
 \(F_3 = \{\omega_3 \in \varOmega_3 \mid \omega_3 = \mathrm{T}\}\)とすると
 \begin{align*}
@@ -205,9 +205,35 @@
 
 
 <section>
-<h3 id="algebra" class="math">10. 代数</h3>
+
+<h3 id="algebra" class="math">10. Banach代数</h3>
+
 <section>
-<h4 id="algebra" class="math">10.1 代数</h4>
+<h4 id="algebra" class="math">10.1 ベクトル空間</h4>
+<p>集合\(X\)が以下の性質（ベクトル空間の公理）を満たすとき，\(X\)は体\(K\)上のベクトル空間であるという．</p>
+<ol class="math narrow">
+  <li class="capv1">以下を満たす二項演算\(V \times V \ni (x,\,y)\mapsto x + y \in V\)が定義されているとき，この演算を加法という．
+  <ol class="math narrow">
+    <li class="capv1child">\((x + y) + z = x + (y + z).\)</li>
+    <li class="capv1child">\(x + y = y + x.\)</li>
+    <li class="capv1child">ゼロベクトルと呼ばれる\(0_X \in X\)が存在して，任意の\(x + 0_X = x\)が成り立つ．</li>
+    </li>
+    <li class="capv1child">逆ベクトル</li>
+  </ol>
+  <li class="capv2">\(K\)を体とする．以下を満たす演算\(K \times V \ni (\alpha,\,x) \mapsto \alpha x \in V\)が定義されているとき，この演算をスカラー倍という．
+    <ol class="math narrow">
+      <li class="capv2child">\((\alpha + \beta) x = \alpha x + \beta x\)</li>
+      <li class="capv2child">\(\alpha (x + y) = \alpha x + \alpha y\)</li>
+      <li class="capv2child">\((\alpha \beta) x  = \alpha (\beta x) \)</li>
+      <li class="capv2child">\(1 x = x\)</li>
+      </li>
+    </ol>
+  </li>
+</ol>
+</section>
+
+<section>
+<h4 id="algebra" class="math">10.2 代数</h4>
 <div class="math-book">
 <i class="fa-solid fa-bookmark"></i> <a href="#dudley"><cite lang="en">Dudley and Norvai&scaron;a</cite></a>Definition 4.1
 </div>
@@ -226,10 +252,11 @@
   <ol class="math">
     <li class="capa5" style="margin-bottom: 0.5ex;">\(1_X x  = x 1_X = x\)</li>
   </ol>
-<p>を満たすとき，\(X\)は単位元をもつ(with unit)またはunital /<span class="grammar">en</span> <span class="ipa">ju&#720;n&#618;tl&#809;</span>/であるという．以下では単に代数といった場合，unitalで可換であるものとする．</p>
+<p>を満たすとき，\(X\)は単位元をもつ(with unit)またはunital /<span class="grammar">en</span> <span class="ipa">ju&#720;n&#618;tl&#809;</span>/であるという．以下で代数といった場合，unitalで可換な代数を指すものとする．</p>
 </section>
 
-<h4 class="math">10.2 Banach代数</h4>
+<section>
+<h4 class="math">10.3 Banach代数</h4>
 <div class="math-book">
 <i class="fa-solid fa-bookmark"></i> <a href="#miyajima"><cite lang="ja">宮島</cite></a>定義2.1; <a href="#miyajima"><cite lang="en">Dudley and Norvai&scaron;a</cite></a>Def 4.6, Thm 4.8, and Def 4.9
 </div>
@@ -239,7 +266,7 @@
   <li class="capn">\(\|\alpha v\| = |\alpha|\|v\|.\)</li>
   <li class="capn">（三角不等式，劣加法性） \(\|u + v\| \leq \|u\| + \|v\|.\)</li>
 </ol>
-<p>体\(K\)上の代数\(B\)に以下を満たすノルムが定義されているとき，\((B,\,\| \cdot \|)\)をノルム付き代数(normed algebra)という．</p>
+<p>体\(K\)上の代数\(B\)に<span class="mathitem">(N1)&ndash;(N3)</span>に加えて以下の<span class="mathitem">(N4), (N5)</span>を満たすノルムが定義されているとき，\((B,\,\| \cdot \|)\)を<strong>ノルム付き代数</strong>(normed algebra)という．</p>
 <ol class="math narrow">
   <li class="capn4">（劣乗法性）\(\|uv\| \leq \|u\|\|v\|\)</li>
   <li class="capn5">\(\|1_X \| = 1\)</li>
@@ -248,11 +275,12 @@
 </section>
 
 <section>
-<h4 class="math">3.2 \(C(X)\)</h4>
-<p>\(X\)をコンパクトHausdorff空間とし，\(X\)上の実数値連続関数全体の集合を\(C(X)\)と書くことにする．<p>
-<section>
-<h5 class="math">3.2.1 \(C(X)\)の演算</h5>
-<p>任意の\(x \in X\)において\(f,\,g \in C(X)\)の加法と乗法を以下で定義する．</p>
+<h4 class="math">10.4 \(C(X)\)</h4>
+
+</section>
+<p>\(X\)をコンパクトHausdorff空間とし，\(X\)上の実数値連続関数全体の集合を\(C(X)\)と書くことにする．
+ベクトル空間になる．
+任意の\(x \in X\)において\(f,\,g \in C(X)\)の加法と乗法を以下で定義する．</p>
   <ol class="math narrow">
     <li class="capc">\((f + g)(x) := f(x) + g(x)\)</li>
     <li class="capc">\((fg)(x) := f(x)g(x)\)</li>
@@ -261,8 +289,20 @@
   <ol class="math">
     <li class="capc3" style="margin-top: 0.5ex;">\((\alpha f)(x) := \alpha f(x)\)</li>
   </ol>
-<p>このとき\(C(X)\)はunitalで可換な代数である．そのことを以下で確認する．</p>
-<p><strong class="with-space">加法について閉じていること</strong> 任意の\(f,\,g \in X\)について，\(f + g \in X\)を示す．\(f\)が連続なので，任意の\(x_0 \in X\)について，任意の\(\varepsilon \gt 0\)をとったとき，\(x_0\)の近傍\(V_1\)が存在して，\(x \in V_1\)ならば
+<p>このとき\(C(X)\)は代数になる．また\(C(X)\)に一様ノルムを入れる，すなわち任意の\(f \in C(X)\)について，ノルムを
+\begin{align*}
+  \|f\|_\infty = \sup_{x \in X} |f(x)|
+\end{align*}
+で定義する．\(X\)がコンパクトなのでWeierstra&szlig;の最大値定理により\(f\)は\(X\)で最大値をもつので\(\|f\| = \max_{x \in X} |f(x)|\)と書いてもよい．このノルムは代数のノルムの性質を満たす．さらに以下で確認するように\(C(X)\)はこのノルムについて完備である．よって\((C(X),\,\|\cdot\|_\infty)\)はBanach代数である．</p>
+<p>確認すべき点は以下である．</p>
+<ol>
+  <li>\(C(X)\)がベクトル空間であること．すなわち\(C(X)\)が加法とスカラー倍について閉じていて，<span class="mathitem">(V1), (V2)</span>を満たすこと．</li>
+  <li>\(C(X)\)が代数であること．すなわち乗法について閉じていて，代数の満たすべき性質<span class="mathitem">(A1)&ndash;(A5)</span>を満たしていること．</li>
+  <li>\(\|\cdot\|_\infty\)がノルムの公理<span class="mathitem">(N1)&ndash;(N3)</span>を満たし，代数のノルムの性質<span class="mathitem">(N4), (N5)</span>をもっていること（省略）．</li>
+  <li>\(C(X)\)が\(\|\cdot\|_\infty\)について完備であること．</li>
+</ol>
+
+<p><span>【加法について閉じていること】</span> 任意の\(f,\,g \in X\)について，\(f + g \in X\)を示す．\(f\)が連続なので，任意の\(x_0 \in X\)について，任意の\(\varepsilon \gt 0\)をとったとき，\(x_0\)の近傍\(V_1\)が存在して，\(x \in V_1\)ならば
 \begin{align*}
   |f(x) - f(x_0)| \leq \frac{\varepsilon}{2}
 \end{align*}
@@ -279,7 +319,8 @@
   &amp;\leq \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
 \end{align*}
 となり，\(f + g\)も\(x_0 \in X\)で連続である．したがって\(f + g \in C(X)\)である．</p>
-<p><strong class="with-space">スカラー倍について閉じていること</strong> \(\alpha\)を任意の実数とする．任意の\(f \ \in C(X)\)について\(\alpha f \in C(X)\)となることを示す．\(f\)が任意の\(x_0 \in X\)で連続なので，任意の\(\varepsilon \gt 0\)に対して，\(x_0\)の近傍\(V\)が存在して，\(x \in V\)ならば
+
+<p><span>【スカラー倍について閉じていること】</span> \(\alpha\)を任意の実数とする．任意の\(f \ \in C(X)\)について\(\alpha f \in C(X)\)となることを示す．\(f\)が任意の\(x_0 \in X\)で連続なので，任意の\(\varepsilon \gt 0\)に対して，\(x_0\)の近傍\(V\)が存在して，\(x \in V\)ならば
 \begin{align*}
   |f(x) - f(x_0)| \leq \frac{\varepsilon}{|\alpha| + 1}
 \end{align*}
@@ -292,12 +333,14 @@
   &amp; \leq \varepsilon
 \end{align*}
 となり\(\alpha f \in C(X)\)である</p>
-<p><strong>ベクトル空間の公理を満たすこと</strong> ゼロベクトル（加法単位元）は定数関数
+
+<p><span>【ベクトル空間の公理を満たすこと】</span> ゼロベクトル（加法単位元）は定数関数
 \begin{align*}
   0_X\colon X \to \mathbb{R},\quad 0_X(x) = 0
 \end{align*}
 である．また加法逆元\(-f\)は\((-1) f\)である．その他の公理が満たされていることは明らかである．
-<p><strong>乗法について閉じていること</strong> 任意の\(f,\,g \in X\)について\(fg \in C(X)\)を示す．任意の\(x_0 \in X\)をとる．\(f\)が\(x_0\)で連続なので，\(x_0\)の近傍\(V_1\)が存在して，\(x \in V_1\)ならば
+
+<p><span>【乗法について閉じていること】</span> 任意の\(f,\,g \in X\)について\(fg \in C(X)\)を示す．任意の\(x_0 \in X\)をとる．\(f\)が\(x_0\)で連続なので，\(x_0\)の近傍\(V_1\)が存在して，\(x \in V_1\)ならば
 \begin{gather*}
   |f(x) - f(x_0)| \leq 1 \\
   |f(x) | \leq | f(x_0)| + 1
@@ -322,26 +365,22 @@
 \end{align*}
 が成り立つ．よって\(fg \in C(X)\)である．
 </p>
-<p><strong class="with-space">Unitalであること</strong> 定数関数
+
+<p><span>【代数であること】</span> 定数関数
 \begin{align*}
   1_X: X \to \mathbb{R},\quad 1_X(x) = 1
 \end{align*}
-は乗法単位元である．<p/>
-<p><strong class="with-space">可換であること</strong> 実数の乗法が可換なので成り立つ．<p/>
+は乗法単位元である．その他の代数の性質が成り立つことは明らかである．<p/>
+
+<p><span>【完備であること】</span> \(C(X)\)上の任意のCauchy列\((f_n)_{n \in \mathbb{Z}_+}\)をとる．このとき，任意の\(\varepsilon \lt 0\)に対して，ある\(N \in \mathbb{Z}_+\)が存在して，\(m,\,n \geq N\)ならば
+\begin{align*}
+  \|f_m(x) - f_n(x)\| \leq \varepsilon
+\end{align*}
+となる．<p/>
 </section>
+
 <section>
-<strong>ノルム付き代数</strong>(normed algebra)と呼ぶ．
-<section>
-<h5 class="math">3.2.2 \(C(X)\)のノルム</h5>
-
-任意の\(f \in C(X)\)についてノルムを
-\begin{align}
-  \| f \| = \sup_{x \in X} |f(x)|
-\end{align}
-<p>※ \(X\)がコンパクトかつ\(f \in C(X)\)が連続なので，Weirestra&szlig;の最大値定理によって\(f\)は\(X\)に最大値をもつ．したがって\(\| f \| = \max_{x \in X} |f(x)|\)と書いてもよい．</p>
-
-
-<strong>補題</strong>
+<h4 id="algebra" class="math">10.5 部分代数</h4>
 \(B\)が部分代数ならば\(\overline{B}\)も部分代数である．
 <p>
 積について閉じていることを示す．
@@ -362,6 +401,9 @@
 したがって任意の\(\varepsilon \gt 0\)で\(\{h \in C(X) \mid \|h - fg\|_\infty \lt \varepsilon\} \cap B \neq \emptyset\)となり，\(fg \in \overline{B}\)がわかる．
 </p>
 </section>
+
+</section>
+
 
 <section>
 <h3 id="stone" class="math">Stone&ndash;Weierstra&szlig;の定理</h3>

@@ -32,6 +32,9 @@ em {
   font-style: oblique;
 }
 
+div.math-book {
+  padding-bottom: 5px;
+}
 div.math-book a {
   color: #373a3c;
 }
@@ -46,7 +49,7 @@ div.math-book cite:lang(ja) {
   font-style: normal;
 }
 div.math-book i.fa-bookmark {
-  margin-right: 0.5rem;
+  margin-right: 0.25rem;
   color: #1560bd;
 }
 
@@ -159,10 +162,6 @@ ol.citation li::before {
   counter-increment: n;
 }
 
-strong.with-space {
-  margin-right: 0.5rem;
-}
-
 .mathitem {
   font-family: "mathematical", serif;
   font-size: 119.5%;
@@ -245,6 +244,22 @@ ol.math li.capn5::before {
 
 ol.math li.roman::before {
   content: "(" counter(m, lower-roman) ")";
+}
+
+ol.math li.capv1::before {
+  content: "(V1)";
+}
+
+ol.math li.capv1child::before {
+  content: "(V1." counter(m) ")";
+}
+
+ol.math li.capv2::before {
+  content: "(V2)";
+}
+
+ol.math li.capv2child::before {
+  content: "(V2." counter(m) ")";
 }
 
 figure.blockquote {
