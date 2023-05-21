@@ -1,10 +1,10 @@
 {% set section = '10' %}
 <section>
 
-<h3 id="algebra" class="math">{{ section }}. Banach代数</h3>
+<h3 id="stone-weierstrass" class="math">{{ section }}. Stone&ndash;Weierstrassの定理</h3>
 
 <section>
-<h4 id="algebra" class="math">{{ section }}.1 ベクトル空間</h4>
+<h4 id="vector-space" class="math">{{ section }}.1 ベクトル空間</h4>
 <p>集合\(X\)が以下の性質（ベクトル空間の公理）を満たすとき，\(X\)は体\(K\)上のベクトル空間であるという．</p>
 <ol class="math narrow">
   <li class="capv1">以下を満たす二項演算\(V \times V \ni (x,\,y)\mapsto x + y \in V\)が定義されているとき，この演算を加法という．
@@ -51,7 +51,31 @@
 </section>
 
 <section>
-<h4 class="math">{{ section }}.3 Banach代数</h4>
+<h4 id="algebra" class="math">{{ section }}.3 部分代数</h4>
+\(B\)が部分代数ならば\(\overline{B}\)も部分代数である．
+<p>
+積について閉じていることを示す．
+任意の\(f \in \overline{B}\)をとる．\(f\)が\(B\)の集積点なので，\(f_n \to f\)となるような\(\overline{B}\)上の列\((f_n)_{n \in \mathbb{Z}_+}\)をとることができる．すなわち，ある\(N \in \mathbb{Z}_+\)が存在して，
+\begin{align}
+  \|f_n(x) \|
+\end{align}
+同様に\(g \in \overline{B}\)をとると，\(g_n \to g\)となるような\(\overline{B}\)上の列\((g_n)_{n \in \mathbb{Z}_+}\)をとることができる．
+
+このとき列\((f_n g_n)_{n \in \mathbb{Z}_+}\)は
+\begin{align*}
+  |f_n(x)g_n(x) - f(x)g(x)|
+  &amp;= |f_n(x)g_n(x) - f_n(x)g(x) + f_n(x)g(x) - f(x)g(x) | \\
+  &amp;\leq |f_n(x) | | g_n(x) - g(x) | + | f_n(x) - f(x) | | g(x) | \\
+  &amp;\lt (|f(x)| + 1) \frac{\varepsilon}{2(|f(x)| + 1)} + \frac{\varepsilon}{2(|g(x)| + 1)} | g(x) | \\
+  &amp;\leq \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
+\end{align*}
+したがって任意の\(\varepsilon \gt 0\)で\(\{h \in C(X) \mid \|h - fg\|_\infty \lt \varepsilon\} \cap B \neq \emptyset\)となり，\(fg \in \overline{B}\)がわかる．
+</p>
+</section>
+
+
+<section>
+<h4 id="banach-algebra" class="math">{{ section }}.4 Banach代数</h4>
 <div class="math-book">
 <i class="fa-solid fa-bookmark"></i> <a href="#miyajima"><cite lang="ja">宮島</cite></a>定義2.1; <a href="#miyajima"><cite lang="en">Dudley and Norvai&scaron;a</cite></a>Def 4.6, Thm 4.8, and Def 4.9
 </div>
@@ -70,7 +94,7 @@
 </section>
 
 <section>
-<h4 class="math">{{ section}}.4 \(C(X)\)</h4>
+<h4 class="math">{{ section}}.5 \(C(X)\)</h4>
 
 </section>
 <p>\(X\)をコンパクトHausdorff空間とし，\(X\)上の実数値連続関数全体の集合を\(C(X)\)と書くことにする．
@@ -175,26 +199,12 @@
 </section>
 
 <section>
-<h4 id="algebra" class="math">{{ section }}.5 部分代数</h4>
-\(B\)が部分代数ならば\(\overline{B}\)も部分代数である．
-<p>
-積について閉じていることを示す．
-任意の\(f \in \overline{B}\)をとる．\(f\)が\(B\)の集積点なので，\(f_n \to f\)となるような\(\overline{B}\)上の列\((f_n)_{n \in \mathbb{Z}_+}\)をとることができる．すなわち，ある\(N \in \mathbb{Z}_+\)が存在して，
-\begin{align}
-  \|f_n(x) \|
-\end{align}
-同様に\(g \in \overline{B}\)をとると，\(g_n \to g\)となるような\(\overline{B}\)上の列\((g_n)_{n \in \mathbb{Z}_+}\)をとることができる．
-
-このとき列\((f_n g_n)_{n \in \mathbb{Z}_+}\)は
-\begin{align*}
-  |f_n(x)g_n(x) - f(x)g(x)|
-  &amp;= |f_n(x)g_n(x) - f_n(x)g(x) + f_n(x)g(x) - f(x)g(x) | \\
-  &amp;\leq |f_n(x) | | g_n(x) - g(x) | + | f_n(x) - f(x) | | g(x) | \\
-  &amp;\lt (|f(x)| + 1) \frac{\varepsilon}{2(|f(x)| + 1)} + \frac{\varepsilon}{2(|g(x)| + 1)} | g(x) | \\
-  &amp;\leq \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
-\end{align*}
-したがって任意の\(\varepsilon \gt 0\)で\(\{h \in C(X) \mid \|h - fg\|_\infty \lt \varepsilon\} \cap B \neq \emptyset\)となり，\(fg \in \overline{B}\)がわかる．
-</p>
+<h3 id="stone-weierstrass-statement" class="math">{{ section }}.6 Stone&ndash;Weierstra&szlig;の定理</h3>
+\(X\)をコンパクトHausdorff空間とする．\(C(X)\)の部分集合\(A\)が以下の<span class="mathitem">(S1), (S2)</span>を満たすならば，\(A\)の生成する\(C(X)\)の部分代数は\(C(X)\)で稠密になる．
+<ol class="math narrow">
+  <li class="capsw">\(1_{C(X)} \in A.\)</li>
+  <li class="capsw">任意の異なる2点\(x,\,x' \in X\)に対して，\(f \in A\)で\(f(x) \neq f(x')\)となるものが存在する．</li>
+</ol>
 </section>
 
 </section>
