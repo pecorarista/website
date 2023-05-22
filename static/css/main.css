@@ -198,6 +198,10 @@ ol.math li.capsw::before {
   content: "(SW" counter(m) ")";
 }
 
+ol.math li.capsa::before {
+  content: "(SA" counter(m) ")";
+}
+
 ol.math li.p::before {
   content: "(p" counter(m) ")";
 }
@@ -214,8 +218,12 @@ ol.math li.capc::before {
   content: "(C" counter(m) ")";
 }
 
-ol.math li.capc3::before {
-  content: "(C3)";
+ol.math li.capc4::before {
+  content: "(C4)";
+}
+
+ol.math li.capc5::before {
+  content: "(C5)";
 }
 
 ol.math li.capa::before {
