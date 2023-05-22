@@ -11,11 +11,11 @@
   <ol class="math narrow">
     <li class="capv1child">\((x + y) + z = x + (y + z).\)</li>
     <li class="capv1child">\(x + y = y + x.\)</li>
-    <li class="capv1child">ゼロベクトルと呼ばれる\(0_X \in X\)が存在して，任意の\(x + 0_X = x\)が成り立つ．</li>
+    <li class="capv1child">ある元\(0_X \in X\)が存在して，任意の\(x\)について\(x + 0_X = x\)が成り立つ．これをゼロベクトル（加法単位元）と呼ぶ．</li>
     </li>
-    <li class="capv1child">逆ベクトル</li>
+    <li class="capv1child">任意の\(x\)に対して，ある元\(x'\)が存在して\(x + x' = 0\)が成り立つ．これを逆ベクトル（加法逆元）と呼び，\(-x\)で表す．</li>
   </ol>
-  <li class="capv2">\(K\)を体とする．以下を満たす演算\(K \times V \ni (\alpha,\,x) \mapsto \alpha x \in V\)が定義されているとき，この演算をスカラー倍という．
+  <li class="capv2">以下を満たす演算\(K \times V \ni (\alpha,\,x) \mapsto \alpha x \in V\)が定義されているとき，この演算をスカラー倍という．
     <ol class="math narrow">
       <li class="capv2child">\((\alpha + \beta) x = \alpha x + \beta x\)</li>
       <li class="capv2child">\(\alpha (x + y) = \alpha x + \alpha y\)</li>
@@ -32,36 +32,49 @@
 <div class="math-book">
 <i class="fa-solid fa-bookmark"></i> <a href="#dudley"><cite lang="en">Dudley and Norvai&scaron;a</cite></a>Definition 4.1
 </div>
-<p>体\(K\)上のベクトル空間\(X\)において，以下を満たす二項演算\(V \times V \ni (x,\,y)\mapsto xy \in V\)が定義されているとき，この演算を乗法といい，\(V\)は体\(K\)上の代数(algebra)であるという．</p>
-<p>任意の\(x,\,y,\,z \in V\)と任意の\(\alpha \in K\)について以下が成り立つ．</p>
+<p>体\(K\)上のベクトル空間\(X\)において，以下を満たす二項演算\(X \times V \ni (x,\,y)\mapsto xy \in V\)が定義されているとき，この演算を乗法といい，\(X\)は体\(K\)上の代数(algebra)であるという．</p>
   <ol class="math narrow">
-    <li class="capa">\(x (yz) = (xy) z.\)</li>
-    <li class="capa">\((x + y) z = xz + yz,\,x (y + z) = xz + xz .\)</li>
-    <li class="capa">\(\alpha (xy) = (\alpha x) y = x (\alpha y).\)</li>
+    <li class="capa">任意の\(x,\,y,\,z \in V\)について\(x (yz) = (xy) z\)．</li>
+    <li class="capa">任意の\(x,\,y,\,z \in V\)について\((x + y) z = xz + yz,\,x (y + z) = xz + xz\)．</li>
+    <li class="capa">任意の\(\alpha \in K\)と任意の\(x,\,y \in V\)について\(\alpha (xy) = (\alpha x) y = x (\alpha y)\)．</li>
   </ol>
-<p>さらに任意の\(x,\,y\in V\)が次を満たすとき代数\(V\)は可換であるという．</p>
+<p><span class="mathitem">(A1)&ndash;(A3)</span>に加えて次を満たすとき，代数\(X\)は可換であるという．</p>
   <ol class="math">
-    <li class="capa4">\(x y  = y z\)</li>
+    <li class="capa4">任意の\(x,\,y\in V\)について\(x y  = y x\)．</li>
   </ol>
-<p>（乗法）単位元と呼ばれる元\(1_X \in X \setminus \{0\}\)が存在して，任意の\(x \in X\)に対して</p>
+<p>また<span class="mathitem">(A1)&ndash;(A3)</span>に加えて次を満たすとき，代数\(X\)は単位元をもつ(with unit)または単位的(unital) /<span class="grammar">en</span> <span class="ipa">ju&#720;n&#618;tl&#809;</span>/であるという．</p>
   <ol class="math">
-    <li class="capa5" style="margin-bottom: 0.5ex;">\(1_X x  = x 1_X = x\)</li>
+    <li class="capa5" style="margin-bottom: 0.5ex;">ある元\(1_X \in X \setminus \{0\}\)が存在して，任意の\(x \in X\)に対して\(1_X x  = x 1_X = x\)が成り立つ．これを乗法単位元と呼ぶ．</li>
   </ol>
-<p>を満たすとき，\(X\)は単位元をもつ(with unit)またはunital /<span class="grammar">en</span> <span class="ipa">ju&#720;n&#618;tl&#809;</span>/であるという．以下で代数といった場合，unitalで可換な代数を指すものとする．</p>
+<p>以下で代数といった場合，単位的で可換な代数を指すものとする．</p>
 </section>
 
 <section>
 <h4 id="algebra" class="math">{{ section }}.3 部分代数</h4>
-\(B\)が部分代数ならば\(\overline{B}\)も部分代数である．
-<p>
-積について閉じていることを示す．
-任意の\(f \in \overline{B}\)をとる．\(f\)が\(B\)の集積点なので，\(f_n \to f\)となるような\(\overline{B}\)上の列\((f_n)_{n \in \mathbb{Z}_+}\)をとることができる．すなわち，ある\(N \in \mathbb{Z}_+\)が存在して，
-\begin{align}
-  \|f_n(x) \|
-\end{align}
-同様に\(g \in \overline{B}\)をとると，\(g_n \to g\)となるような\(\overline{B}\)上の列\((g_n)_{n \in \mathbb{Z}_+}\)をとることができる．
+<p>体\(K\)上の代数\(X\)の部分集合\(A\)が\(X\)における加法，スカラー倍，乗法について閉じているとき，\(A\)は\(X\)の<strong>部分代数</strong>(subalgebra)であるという．</p>
+<ol class="math">
+  <li class="capsa">任意の\(x,\,y \in A\)で\(x + y \in A\)．</li>
+  <li class="capsa">任意の\(\alpha \in K\)と任意の\(x \in A\)について\(\alpha x \in A\)．</li>
+  <li class="capsa">任意の\(x,\,y \in A\)で\(xy \in A\)．</li>
+</ol>
+<p>\(A\)を\(X\)の任意の部分集合とすると，\(A\)を含むような最小の部分代数が存在する．これは\(A\)を含む部分代数の共通部分として得られる．そのような部分代数を，\(A\)によって生成される部分代数という．</p>
 
-このとき列\((f_n g_n)_{n \in \mathbb{Z}_+}\)は
+<h5 id="algebra" class="math">命題 {{ section }}.3.1</h5>
+<p>\(B\)が部分代数ならば\(\overline{B}\)も部分代数である．</p>
+<p><strong>証明</strong>【積について閉じていること】
+任意の\(f \in \overline{B}\)をとる．\(f\)が\(B\)の集積点なので，\(B\)上の列\((f_n)_{n \in \mathbb{Z}_+}\)で，\(f_n \to f\)となるようなものが存在する．この\((f_n)_{n \in \mathbb{Z}_+}\)について，ある\(N_1 \in \mathbb{Z}_+\)が存在して，\(n \geq N_1\)ならば
+\begin{align*}
+  |f_n(x)| - |f(x)| \leq |f_n(x) - f(x)| \lt 1 \\
+\end{align*}
+が成り立つ．また任意の\(\varepsilon \gt 0\)に対し，ある\(N_2 \in \mathbb{Z}_+\)が存在して，\(n \geq N_2\)ならば
+\begin{align*}
+  |f_n(x) - f(x)| \lt \frac{\varepsilon}{2(|g(x)| + 1)}
+\end{align*}
+が成り立つ．\(g \in \overline{B}\)についても同様に\(g\)が\(B\)の集積点なので，\(B\)上の列\((g_n)_{n \in \mathbb{Z}_+}\)で，\(g_n \to g\)，すなわち任意の\(x \in X\)において，ある\(N_3 \in \mathbb{Z}_+\)が存在して，\(n \geq N_3\)ならば
+\begin{align*}
+  |g_n(x) - g(x)| \lt \frac{\varepsilon}{2(|f(x)| + 1)}
+\end{align*}
+が成り立つ．これらの乗法で定まる新しい列\((f_n g_n)_{n \in \mathbb{Z}_+}\)は，\(n \geq \max\{N_1,\,N_2,\,N_3\}\)において
 \begin{align*}
   |f_n(x)g_n(x) - f(x)g(x)|
   &amp;= |f_n(x)g_n(x) - f_n(x)g(x) + f_n(x)g(x) - f(x)g(x) | \\
@@ -69,7 +82,7 @@
   &amp;\lt (|f(x)| + 1) \frac{\varepsilon}{2(|f(x)| + 1)} + \frac{\varepsilon}{2(|g(x)| + 1)} | g(x) | \\
   &amp;\leq \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
 \end{align*}
-したがって任意の\(\varepsilon \gt 0\)で\(\{h \in C(X) \mid \|h - fg\|_\infty \lt \varepsilon\} \cap B \neq \emptyset\)となり，\(fg \in \overline{B}\)がわかる．
+を満たす．したがって任意の\(\varepsilon \gt 0\)で\(\{h \in C(X) \mid \|h - fg\|_\infty \lt \varepsilon\} \cap B \neq \emptyset\)となり，\(fg \in \overline{B}\)がわかる．
 </p>
 </section>
 
@@ -81,53 +94,55 @@
 </div>
 <p>体\(K\)上のベクトル空間\(X\)において，単項演算\(\|\cdot\|\colon X \to \mathbb{R}_+\)が以下の性質（ノルムの公理）を満たすとき，\(\|\cdot\|\)を\(X\)上のノルムと呼ぶ．</p>
 <ol class="math narrow">
-  <li class="capn">\(\|v\| = 0\;\Leftrightarrow\;v = 0.\)</li>
-  <li class="capn">\(\|\alpha v\| = |\alpha|\|v\|.\)</li>
-  <li class="capn">（三角不等式，劣加法性） \(\|u + v\| \leq \|u\| + \|v\|.\)</li>
+  <li class="capn">任意の\(x \in X\)で\(\|x\| = 0\;\Leftrightarrow\;v = 0.\)</li>
+  <li class="capn">任意の\(x \in X\)と\(\alpha \in K\)について\(\|\alpha x\| = |\alpha|\|x\|.\)</li>
+  <li class="capn">（三角不等式，劣加法性）任意の\(x,\,y \in X\)について\(\|x + y\| \leq \|x\| + \|y\|.\)</li>
 </ol>
 <p>体\(K\)上の代数\(B\)に<span class="mathitem">(N1)&ndash;(N3)</span>に加えて以下の<span class="mathitem">(N4), (N5)</span>を満たすノルムが定義されているとき，\((B,\,\| \cdot \|)\)を<strong>ノルム付き代数</strong>(normed algebra)という．</p>
 <ol class="math narrow">
-  <li class="capn4">（劣乗法性）\(\|uv\| \leq \|u\|\|v\|\)</li>
-  <li class="capn5">\(\|1_X \| = 1\)</li>
+  <li class="capn4">（劣乗法性）任意の\(x,\,y \in X\)について\(\|xy\| \leq \|x\|\|y\|.\)</li>
+  <li class="capn5">\(\|1_X \| = 1.\)</li>
 </ol>
 <p>体\(K\)上のノルム付き代数\((B,\,\|\cdot\|)\)がノルム\(\|\cdot\|\)について完備であるとき，\(B,\,\|\cdot\|\)を<strong>Banach代数</strong>と呼ぶ．</p>
 </section>
 
 <section>
-<h4 class="math">{{ section}}.5 \(C(X)\)</h4>
+<h4 id="cx" class="math">{{ section}}.5 \(C(X,\,K)\)</h4>
 
 </section>
-<p>\(X\)をコンパクトHausdorff空間とし，\(X\)上の実数値連続関数全体の集合を\(C(X)\)と書くことにする．
-ベクトル空間になる．
-任意の\(x \in X\)において\(f,\,g \in C(X)\)の加法と乗法を以下で定義する．</p>
+<p>\(X\)をコンパクトHausdorff空間とし，\(X\)から\(K\)への連続関数全体の集合を\(C(X,\,K)\)と書く．\(C(X,\,K)\)における加法，スカラー倍，ゼロベクトル（加法単位元）を以下で定義する．このとき\(C(X,\,K)\)は\(K\)上のベクトル空間になる．</p>
+<p>\(\forall x \in X,\,\forall f,\,g \in C(X,\,K),\,\forall \alpha \in K\)</p>
   <ol class="math narrow">
-    <li class="capc">\((f + g)(x) := f(x) + g(x)\)</li>
-    <li class="capc">\((fg)(x) := f(x)g(x)\)</li>
+    <li class="capc">\((f + g)(x) := f(x) + g(x).\)</li>
+    <li class="capc">\((\alpha f)(x) := \alpha f(x).\)</li>
+    <li class="capc">\(0_{C(X,\,K)}\colon X \to K,\, 0_{C(X,\,K)}(x) := 0.\)</li>
   </ol>
-<p>\(f \in C(X)\)の\(\alpha \in \mathbb{R}\)によるスカラー倍を以下で定義する．</p>
+<p>任意の\(f,\,g \in C(X,\,K)\)について乗法と乗法単位元を以下で定義する．このとき\(C(X,\,K)\)は\(K\)上の代数になる．</p>
   <ol class="math">
-    <li class="capc3" style="margin-top: 0.5ex;">\((\alpha f)(x) := \alpha f(x)\)</li>
+    <li class="capc4">\((fg)(x) := f(x)g(x).\)</li>
+    <li class="capc5">\(1_{C(X,\,K)} \colon X \to K,\, 1_{C(X,\,K)}(x) := 1.\)</li>
   </ol>
-<p>このとき\(C(X)\)は代数になる．また\(C(X)\)に一様ノルムを入れる，すなわち任意の\(f \in C(X)\)について，ノルムを
+<p>\(C(X,\,K)\)に一様ノルムを入れる，すなわち任意の\(f \in C(X,\,K)\)について，ノルムを
 \begin{align*}
   \|f\|_\infty = \sup_{x \in X} |f(x)|
 \end{align*}
-で定義する．\(X\)がコンパクトなのでWeierstra&szlig;の最大値定理により\(f\)は\(X\)で最大値をもつので\(\|f\| = \max_{x \in X} |f(x)|\)と書いてもよい．このノルムは代数のノルムの性質を満たす．さらに以下で確認するように\(C(X)\)はこのノルムについて完備である．よって\((C(X),\,\|\cdot\|_\infty)\)はBanach代数である．</p>
-<p>確認すべき点は以下である．</p>
+で定義する．\(X\)がコンパクトなのでWeierstra&szlig;の最大値定理により\(f\)は\(X\)で最大値をもつので\(\|f\| = \max_{x \in X} |f(x)|\)と書いてもよい．このノルムは代数のノルムの性質を満たす．さらに以下で確認するように\(C(X,\,K)\)はこのノルムについて完備である．よって\((C(X,\,K),\,\|\cdot\|_\infty)\)はBanach代数である．</p>
+<p>確認すべき点は以下である．<p>
 <ol>
-  <li>\(C(X)\)がベクトル空間であること．すなわち\(C(X)\)が加法とスカラー倍について閉じていて，<span class="mathitem">(V1), (V2)</span>を満たすこと．</li>
-  <li>\(C(X)\)が代数であること．すなわち乗法について閉じていて，代数の満たすべき性質<span class="mathitem">(A1)&ndash;(A5)</span>を満たしていること．</li>
-  <li>\(\|\cdot\|_\infty\)がノルムの公理<span class="mathitem">(N1)&ndash;(N3)</span>を満たし，代数のノルムの性質<span class="mathitem">(N4), (N5)</span>をもっていること（省略）．</li>
-  <li>\(C(X)\)が\(\|\cdot\|_\infty\)について完備であること．</li>
+  <li>\(C(X,\,K)\)がベクトル空間であること．すなわち\(C(X,\,K)\)が加法とスカラー倍について閉じていて，<span class="mathitem">(V1), (V2)</span>を満たすこと．</li>
+  <li>\(C(X,\,K)\)が代数であること．すなわち乗法について閉じていて，代数の満たすべき性質<span class="mathitem">(A1)&ndash;(A5)</span>を満たしていること．</li>
+  <li>\(\|\cdot\|_\infty\)がノルムの公理<span class="mathitem">(N1)&ndash;(N3)</span>を満たし，代数のノルムの性質<span class="mathitem">(N4), (N5)</span>をもっていること．</li>
+  <li>\(C(X,\,K)\)が\(\|\cdot\|_\infty\)について完備であること．</li>
 </ol>
+<p>自明でないもののみを示す．</p>
 
-<p><span>【加法について閉じていること】</span> 任意の\(f,\,g \in X\)について，\(f + g \in X\)を示す．\(f\)が連続なので，任意の\(x_0 \in X\)について，任意の\(\varepsilon \gt 0\)をとったとき，\(x_0\)の近傍\(V_1\)が存在して，\(x \in V_1\)ならば
+<p><span>【加法について閉じていること】</span> 任意の\(f,\,g \in C(X,\,K)\)について，\(f + g \in C(X,\,K)\)を示す．\(f\)が連続なので，任意の\(x_0 \in X\)について，任意の\(\varepsilon \gt 0\)をとったとき，\(x_0\)の近傍\(V_1\)が存在して，\(x \in V_1\)ならば
 \begin{align*}
-  |f(x) - f(x_0)| \leq \frac{\varepsilon}{2}
+  |f(x) - f(x_0)| \lt \frac{\varepsilon}{2}
 \end{align*}
 が成り立つ．\(g\)についても同様に，\(x_0\)の近傍\(V_2\)が存在して，\(x \in V_2\)ならば
 \begin{align*}
-  |g(x) - g(x_0)| \leq \frac{\varepsilon}{2}
+  |g(x) - g(x_0)| \lt \frac{\varepsilon}{2}
 \end{align*}
 が成り立つ．よって\(x \in V_1 \cap V_2\)ならば
 \begin{align*}
@@ -135,29 +150,9 @@
   &amp;= |f(x) + g(x) - (f(x_0) + g(x_0))| \\
   &amp;= |f(x) - f(x_0) + g(x) - g(x_0)| \\
   &amp;\leq |f(x) - f(x_0) | + | g(x) - g(x_0)| \\
-  &amp;\leq \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
+  &amp;\lt \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
 \end{align*}
-となり，\(f + g\)も\(x_0 \in X\)で連続である．したがって\(f + g \in C(X)\)である．</p>
-
-<p><span>【スカラー倍について閉じていること】</span> \(\alpha\)を任意の実数とする．任意の\(f \ \in C(X)\)について\(\alpha f \in C(X)\)となることを示す．\(f\)が任意の\(x_0 \in X\)で連続なので，任意の\(\varepsilon \gt 0\)に対して，\(x_0\)の近傍\(V\)が存在して，\(x \in V\)ならば
-\begin{align*}
-  |f(x) - f(x_0)| \leq \frac{\varepsilon}{|\alpha| + 1}
-\end{align*}
-が成り立つ．したがって
-\begin{align*}
-  |(\alpha f)(x) - (\alpha f)(x_0)|
-  &amp; = |\alpha f(x) - \alpha f(x_0)| \\
-  &amp; \leq |\alpha | |f(x) - f(x_0)| \\
-  &amp; \leq |\alpha | \frac{\varepsilon}{|\alpha| + 1} \\
-  &amp; \leq \varepsilon
-\end{align*}
-となり\(\alpha f \in C(X)\)である</p>
-
-<p><span>【ベクトル空間の公理を満たすこと】</span> ゼロベクトル（加法単位元）は定数関数
-\begin{align*}
-  0_X\colon X \to \mathbb{R},\quad 0_X(x) = 0
-\end{align*}
-である．また加法逆元\(-f\)は\((-1) f\)である．その他の公理が満たされていることは明らかである．
+となり，\(f + g\)も\(x_0 \in X\)で連続である．したがって\(f + g \in C(X,\,K)\)である．</p>
 
 <p><span>【乗法について閉じていること】</span> 任意の\(f,\,g \in X\)について\(fg \in C(X)\)を示す．任意の\(x_0 \in X\)をとる．\(f\)が\(x_0\)で連続なので，\(x_0\)の近傍\(V_1\)が存在して，\(x \in V_1\)ならば
 \begin{gather*}
@@ -166,11 +161,11 @@
 \end{gather*}
 が成り立つ．同じく連続であることから，任意の\(\varepsilon \gt 0\)に対し，\(x_0\)の近傍\(V_2\)が存在して，\(x \in V_2\)ならば
 \begin{align*}
-  |f(x) - f(x_0)| \leq \frac{\varepsilon}{2(|g(x_0) + 1|)}
+  |f(x) - f(x_0)| \lt \frac{\varepsilon}{2(|g(x_0) + 1|)}
 \end{align*}
 が成り立つ．同様に\(g\)が連続なことから，\(x_0\)の近傍\(V_3\)が存在して，\(x \in V_3\)ならば
 \begin{align*}
-  |g(x) - g(x_0)| \leq \frac{\varepsilon}{2(|f(x_0)| + 1)}
+  |g(x) - g(x_0)| \lt \frac{\varepsilon}{2(|f(x_0)| + 1)}
 \end{align*}
 となる．したがって任意の\(x \in V_1 \cap V_2 \cap V_3\)について
 \begin{align*}
@@ -179,23 +174,52 @@
   &amp;= |f(x)g(x) - f(x)g(x_0) + f(x)g(x_0) - f(x_0)g(x_0)| \\
   &amp;= |f(x)(g(x) - g(x_0)) + (f(x) - f(x_0))g(x_0)| \\
   &amp;\leq |f(x)| |g(x) - g(x_0)| + |f(x) - f(x_0)| | g(x_0)| \\
-  &amp;\leq (|f(x_0)| + 1) \frac{\varepsilon}{2(|f(x_0)| + 1)} + \frac{\varepsilon}{2(|g(x_0)| + 1)} |g(x_0)| \\
+  &amp;\lt (|f(x_0)| + 1) \frac{\varepsilon}{2(|f(x_0)| + 1)} + \frac{\varepsilon}{2(|g(x_0)| + 1)} |g(x_0)| \\
   &amp;\leq \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
 \end{align*}
-が成り立つ．よって\(fg \in C(X)\)である．
-</p>
+が成り立つ．よって\(fg \in C(X)\)である．</p>
 
-<p><span>【代数であること】</span> 定数関数
+<p><span>【スカラー倍について閉じていること】</span> \(\alpha\)を任意の実数とする．任意の\(f \ \in C(X,\,K)\)について\(\alpha f \in C(X,\,K)\)となることを示す．\(f\)が任意の\(x_0 \in X\)で連続なので，任意の\(\varepsilon \gt 0\)に対して，\(x_0\)の近傍\(V\)が存在して，\(x \in V\)ならば
 \begin{align*}
-  1_X: X \to \mathbb{R},\quad 1_X(x) = 1
+  |f(x) - f(x_0)| \lt \frac{\varepsilon}{|\alpha| + 1}
 \end{align*}
-は乗法単位元である．その他の代数の性質が成り立つことは明らかである．<p/>
+が成り立つ．したがって
+\begin{align*}
+  |(\alpha f)(x) - (\alpha f)(x_0)|
+  &amp; = |\alpha f(x) - \alpha f(x_0)| \\
+  &amp; \leq |\alpha | |f(x) - f(x_0)| \\
+  &amp; \lt |\alpha | \frac{\varepsilon}{|\alpha| + 1} \\
+  &amp; \leq \varepsilon
+\end{align*}
+となり，\(\alpha f \in C(X,\,K)\)である．</p>
 
-<p><span>【完備であること】</span> \(C(X)\)上の任意のCauchy列\((f_n)_{n \in \mathbb{Z}_+}\)をとる．このとき，任意の\(\varepsilon \lt 0\)に対して，ある\(N \in \mathbb{Z}_+\)が存在して，\(m,\,n \geq N\)ならば
+
+<p><span>【完備であること】</span> \(C(X,\,K)\)上の任意のCauchy列\((f_n)_{n \in \mathbb{Z}_+}\)をとる．このとき，任意の\(\varepsilon \gt 0\)に対して，ある\(N_1 \in \mathbb{Z}_+\)が存在して，\(m,\,n \geq N_0\)ならば
 \begin{align*}
-  \|f_m(x) - f_n(x)\| \leq \varepsilon
+  \|f_m - f_n\| \lt \varepsilon,
 \end{align*}
-となる．<p/>
+すなわち，任意の\(x \in X\)で
+\begin{align*}
+  |f_m(x) - f_n(x)| \lt \varepsilon
+\end{align*}
+が成り立つ．\(K\)の完備性により\((f_n(x))_{n \in \mathbb{Z}_+}\)はある\(\alpha_x \in K\)に収束する．すなわち\(f(x) := \alpha_x\)とすると，\(f\colon X \to K\)であり，ある\(N \in \mathbb{Z}_+\)が存在して
+\begin{align}
+  |f_N(x) - f(x)| \lt \frac{\varepsilon}{3}
+  \label{complete}
+\end{align}
+を満たす．\(x \in X\)は任意だったので\((f_n)_{n \in \mathbb{Z}_+}\)は\(f\)に一様収束する．この\(f\)が連続であることを示す．\(f_N\)は連続なので，\(x\)の近傍\(V_x\)が存在し，\(y \in V_x\)ならば
+\begin{align}
+  |f_N(y) - f_N(x)| \lt \frac{\varepsilon}{3}
+  \label{continuous-fn}
+\end{align}
+が成り立つ．\((\ref{complete})\)と\((\ref{continuous-fn})\)より
+\begin{align*}
+  |f(y) - f(x)|
+  &amp;= |f(y) - f_N(y) + f_N(y) - f_N(x) + f_N(x) - f(x)| \\
+  &amp;\leq |f(y) - f_N(y)| + |f_N(y) - f_N(x)| + |f_N(x) - f(x)| \\
+  &amp;\lt \frac{\varepsilon}{3} + \frac{\varepsilon}{3} + \frac{\varepsilon}{3} = \varepsilon.
+\end{align*}
+よって\(f\)は\(x\)で連続であり，\(x\)は任意だったので，\(f \in C(X,\,K)\)が示せた．<p/>
 </section>
 
 <section>
