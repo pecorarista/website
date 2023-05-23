@@ -239,6 +239,14 @@ ol.math li.capsw::before {
   content: '(SW' counter(m) ')';
 }
 
+ol.math li.capr::before {
+  content: '(R' counter(m) ')';
+}
+
+ol.math li.capm::before {
+  content: '(M' counter(m) ')';
+}
+
 ol.math li.capsa::before {
   content: '(SA' counter(m) ')';
 }

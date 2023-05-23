@@ -6,10 +6,30 @@
 <section>
 <h3 id="borel-measure" class="math">{{ section }}.1 Borel測度</h3>
 <div class="math-book">
-<i class="fa-solid fa-bookmark"></i> <a href="#miyajima"><cite lang="ja">宮島</cite></a> 定義7.54&ndash;定義7.55
+<i class="fa-solid fa-bookmark"></i> <a href="#miyajima"><cite lang="ja">宮島</cite></a> 定義7.53&ndash;定義7.55
 </div>
-<p>
-</p>
+<p>\(\varOmega\)を位相空間とする．\(\varOmega\)の開集合全体\(\mathcal{O}\)によって生成される\(\sigma\)-加法族\(\sigma(\mathcal{O})\)を\(\varOmega\)の<strong>Borel集合族</strong>という．開集合全体を明示せずに\(\mathcal{B}(\varOmega)\)とも書く．</p>
+<p>測度空間\((\varOmega,\,\mathcal{B}(\varOmega))\)の測度\(\mu\)を<strong>Borel測度</strong>という．Borel測度\(\mu\)が任意の\(S \in \mathcal{B}(\varOmega)\)について
+<ol class="math narrow">
+  <li class="capr">\(\mu(S) = \sup \{\mu(K) \mid K \subseteq S,\,K \text{ compact}\}\)</li>
+  <li class="capr">\(\mu(S) = \inf \{\mu(O) \mid S \subseteq O,\,O \text{ open}\}\)</li>
+</ol>
+を満たすとき，\(\mu\)は<strong>正則</strong>(regular)であるという．</p>
+<p>関数\(\nu\colon \mathcal{B}(\varOmega) \to \mathbb{R}\)が以下の
+を満たすとき，\(\nu\)を<strong>符号付きBorel測度</strong> (signed Borel measure)という．</p>
+<ol class="math narrow">
+  <li class="capm">\(\nu(\emptyset) = 0\)</li>
+  <li class="capm">集合族\((S_n)_{n \in \mathbb{Z}_+}\)は各\(n \in \mathbb{Z}_+\)で\(S_n \in \mathcal{B}(\varOmega)\)かつ\(i \neq j\)ならば\(A_i \cap A_j = \emptyset\)を満たすものとする．このとき
+  \begin{align*}
+  \nu\left(\bigcup_{n = 1}^\infty S_n \right) = \sum_{n = 1}^\infty \nu (S_n)
+  \end{align*}
+  が成り立つ．</li>
+</ol>
+<p>符号付きBorel測度が正則なBorel測度\(\nu_1,\,\nu_2\)の差で表されるとき，正則な符号付きBorel測度という．</p>
+</section>
+
+<section>
+<h3 id="borel-measure" class="math">{{ section }}.2 Hahn分解</h3>
 </section>
 
 <section>
