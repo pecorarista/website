@@ -51,7 +51,7 @@
     <div class="info text-muted">
       Posted: 2023-05-05
       
-        (Updated: 2023-05-09)
+        (Updated: 2023-05-23)
       
     </div>
     
@@ -82,15 +82,16 @@
       <ol>
         <li><a href="#vector-space">ベクトル空間</a></li>
         <li><a href="#algebra">代数</a></li>
-        <li><a href="#subalgebra">部分代数</a></li>
         <li><a href="#banach-algebra">Banach代数</a></li>
-        <li><a href="#cx">\(C(X,\,K)\)</a></li>
+        <li><a href="#cx">\(C(X)\)</a></li>
+        <li><a href="#subalgebra">部分代数</a></li>
         <li><a href="#stone-weierstrass-statement">Stone&ndash;Weierstra&szlig;の定理</a></li>
       </ol>
     </li>
     <li><a href="riesz">Riesz&ndash;Markov&ndash;角谷の表現定理</a>
       <ol>
-        <li><a href="riesz">Borel測度</li>
+        <li><a href="borel-measure">Borel測度</li>
+        <li><a href="hahn">Hahn分解</li>
         <li><a href="riesz">Riesz&ndash;Markov&ndash;角谷の表現定理</a></li>
       </ol>
     </li>
@@ -110,8 +111,7 @@
   <li>\(\mathbb{Z}_+\)は正整数全体の集合\(\{1,\,2,\,\ldots\}\)を表す．</li>
   <li>\(\mathbb{R}_+\)は非負実数全体の集合\(\{x \in \mathbb{R} \mid x \geq 0\}\)を表す．</li>
   <li>\(\mathfrak{P}(\varOmega)\)は\(\varOmega\)の冪集合を表す．</li>
-  <li>\(\mathfrak{P}(\varOmega)\)は\(\varOmega\)の冪集合を表す．</li>
-  <li>体\(K\)といった場合，\(K\)は\(\mathbb{R})または\(\mathbb{C}\)のいずれかである．</li>
+  <li>体\(K\)といった場合，\(K = \mathbb{R}\)または\(K = \mathbb{C}\)である．</li>
   <li>\(a := b\)は\(a\)を\(b\)で定義することを表す．</li>
 </ul>
 </section>
@@ -265,45 +265,7 @@
 </section>
 
 <section>
-<h4 id="algebra" class="math">10.3 部分代数</h4>
-<p>体\(K\)上の代数\(X\)の部分集合\(A\)が\(X\)における加法，スカラー倍，乗法について閉じているとき，\(A\)は\(X\)の<strong>部分代数</strong>(subalgebra)であるという．</p>
-<ol class="math">
-  <li class="capsa">任意の\(x,\,y \in A\)で\(x + y \in A\)．</li>
-  <li class="capsa">任意の\(\alpha \in K\)と任意の\(x \in A\)について\(\alpha x \in A\)．</li>
-  <li class="capsa">任意の\(x,\,y \in A\)で\(xy \in A\)．</li>
-</ol>
-<p>\(A\)を\(X\)の任意の部分集合とすると，\(A\)を含むような最小の部分代数が存在する．これは\(A\)を含む部分代数の共通部分として得られる．そのような部分代数を，\(A\)によって生成される部分代数という．</p>
-
-<h5 id="algebra" class="math">命題 10.3.1</h5>
-<p>\(B\)が部分代数ならば\(\overline{B}\)も部分代数である．</p>
-<p><strong>証明</strong>【積について閉じていること】
-任意の\(f \in \overline{B}\)をとる．\(f\)が\(B\)の集積点なので，\(B\)上の列\((f_n)_{n \in \mathbb{Z}_+}\)で，\(f_n \to f\)となるようなものが存在する．この\((f_n)_{n \in \mathbb{Z}_+}\)について，ある\(N_1 \in \mathbb{Z}_+\)が存在して，\(n \geq N_1\)ならば
-\begin{align*}
-  |f_n(x)| - |f(x)| \leq |f_n(x) - f(x)| \lt 1 \\
-\end{align*}
-が成り立つ．また任意の\(\varepsilon \gt 0\)に対し，ある\(N_2 \in \mathbb{Z}_+\)が存在して，\(n \geq N_2\)ならば
-\begin{align*}
-  |f_n(x) - f(x)| \lt \frac{\varepsilon}{2(|g(x)| + 1)}
-\end{align*}
-が成り立つ．\(g \in \overline{B}\)についても同様に\(g\)が\(B\)の集積点なので，\(B\)上の列\((g_n)_{n \in \mathbb{Z}_+}\)で，\(g_n \to g\)，すなわち任意の\(x \in X\)において，ある\(N_3 \in \mathbb{Z}_+\)が存在して，\(n \geq N_3\)ならば
-\begin{align*}
-  |g_n(x) - g(x)| \lt \frac{\varepsilon}{2(|f(x)| + 1)}
-\end{align*}
-が成り立つ．これらの乗法で定まる新しい列\((f_n g_n)_{n \in \mathbb{Z}_+}\)は，\(n \geq \max\{N_1,\,N_2,\,N_3\}\)において
-\begin{align*}
-  |f_n(x)g_n(x) - f(x)g(x)|
-  &amp;= |f_n(x)g_n(x) - f_n(x)g(x) + f_n(x)g(x) - f(x)g(x) | \\
-  &amp;\leq |f_n(x) | | g_n(x) - g(x) | + | f_n(x) - f(x) | | g(x) | \\
-  &amp;\lt (|f(x)| + 1) \frac{\varepsilon}{2(|f(x)| + 1)} + \frac{\varepsilon}{2(|g(x)| + 1)} | g(x) | \\
-  &amp;\leq \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
-\end{align*}
-を満たす．したがって任意の\(\varepsilon \gt 0\)で\(\{h \in C(X) \mid \|h - fg\|_\infty \lt \varepsilon\} \cap B \neq \emptyset\)となり，\(fg \in \overline{B}\)がわかる．
-</p>
-</section>
-
-
-<section>
-<h4 id="banach-algebra" class="math">10.4 Banach代数</h4>
+<h4 id="banach-algebra" class="math">10.3 Banach代数</h4>
 <div class="math-book">
 <i class="fa-solid fa-bookmark"></i> <a href="#miyajima"><cite lang="ja">宮島</cite></a>定義2.1; <a href="#miyajima"><cite lang="en">Dudley and Norvai&scaron;a</cite></a>Def 4.6, Thm 4.8, and Def 4.9
 </div>
@@ -322,36 +284,34 @@
 </section>
 
 <section>
-<h4 id="cx" class="math">10.5 \(C(X,\,K)\)</h4>
-
-</section>
-<p>\(X\)をコンパクトHausdorff空間とし，\(X\)から\(K\)への連続関数全体の集合を\(C(X,\,K)\)と書く．\(C(X,\,K)\)における加法，スカラー倍，ゼロベクトル（加法単位元）を以下で定義する．このとき\(C(X,\,K)\)は\(K\)上のベクトル空間になる．</p>
-<p>\(\forall x \in X,\,\forall f,\,g \in C(X,\,K),\,\forall \alpha \in K\)</p>
+<h4 id="cx" class="math">10.4 \(C(X)\)</h4>
+<p>\(X\)をコンパクトHausdorff空間とし，\(X\)から\(K\)への連続関数全体の集合を\(C(X,\,K)\)または単に\(C(X)\)と書く．\(C(X)\)における加法，スカラー倍，ゼロベクトル（加法単位元）を以下で定義する．このとき\(C(X)\)は\(K\)上のベクトル空間になる．</p>
+<p>\(\forall x \in X,\,\forall f,\,g \in C(X),\,\forall \alpha \in K\)</p>
   <ol class="math narrow">
     <li class="capc">\((f + g)(x) := f(x) + g(x).\)</li>
     <li class="capc">\((\alpha f)(x) := \alpha f(x).\)</li>
-    <li class="capc">\(0_{C(X,\,K)}\colon X \to K,\, 0_{C(X,\,K)}(x) := 0.\)</li>
+    <li class="capc">\(0_{C(X)}\colon X \to K,\, 0_{C(X)}(x) := 0.\)</li>
   </ol>
-<p>任意の\(f,\,g \in C(X,\,K)\)について乗法と乗法単位元を以下で定義する．このとき\(C(X,\,K)\)は\(K\)上の代数になる．</p>
+<p>任意の\(f,\,g \in C(X)\)について乗法と乗法単位元を以下で定義する．このとき\(C(X)\)は\(K\)上の代数になる．</p>
   <ol class="math">
     <li class="capc4">\((fg)(x) := f(x)g(x).\)</li>
-    <li class="capc5">\(1_{C(X,\,K)} \colon X \to K,\, 1_{C(X,\,K)}(x) := 1.\)</li>
+    <li class="capc5">\(1_{C(X)} \colon X \to K,\, 1_{C(X)}(x) := 1.\)</li>
   </ol>
-<p>\(C(X,\,K)\)に一様ノルムを入れる，すなわち任意の\(f \in C(X,\,K)\)について，ノルムを
+<p>\(C(X)\)に一様ノルムを入れる，すなわち任意の\(f \in C(X)\)について，ノルムを
 \begin{align*}
   \|f\|_\infty = \sup_{x \in X} |f(x)|
 \end{align*}
-で定義する．\(X\)がコンパクトなのでWeierstra&szlig;の最大値定理により\(f\)は\(X\)で最大値をもつので\(\|f\| = \max_{x \in X} |f(x)|\)と書いてもよい．このノルムは代数のノルムの性質を満たす．さらに以下で確認するように\(C(X,\,K)\)はこのノルムについて完備である．よって\((C(X,\,K),\,\|\cdot\|_\infty)\)はBanach代数である．</p>
+で定義する．\(X\)がコンパクトなのでWeierstra&szlig;の最大値定理により\(f\)は\(X\)で最大値をもつので\(\|f\|_\infty = \max_{x \in X} |f(x)|\)と書いてもよい．このノルムは代数のノルムの性質<span class="mathitem">(N4), (N5)</span>を満たす．さらに以下で確認するように\(C(X)\)はこのノルムについて完備である，すなわちノルム付き代数\((C(X),\,\|\cdot\|_\infty)\)はBanach代数となる．以降\(C(X)\)のノルムについて単に\(\|\cdot\|\)と書いた場合もそれは一様ノルムを表すものとする．</p>
 <p>確認すべき点は以下である．<p>
 <ol>
-  <li>\(C(X,\,K)\)がベクトル空間であること．すなわち\(C(X,\,K)\)が加法とスカラー倍について閉じていて，<span class="mathitem">(V1), (V2)</span>を満たすこと．</li>
-  <li>\(C(X,\,K)\)が代数であること．すなわち乗法について閉じていて，代数の満たすべき性質<span class="mathitem">(A1)&ndash;(A5)</span>を満たしていること．</li>
-  <li>\(\|\cdot\|_\infty\)がノルムの公理<span class="mathitem">(N1)&ndash;(N3)</span>を満たし，代数のノルムの性質<span class="mathitem">(N4), (N5)</span>をもっていること．</li>
-  <li>\(C(X,\,K)\)が\(\|\cdot\|_\infty\)について完備であること．</li>
+  <li>\(C(X)\)がベクトル空間であること．すなわち\(C(X)\)が加法とスカラー倍について閉じていて，<span class="mathitem">(V1), (V2)</span>を満たすこと．</li>
+  <li>\(C(X)\)が代数であること．すなわち乗法について閉じていて，代数の満たすべき性質<span class="mathitem">(A1)&ndash;(A5)</span>を満たしていること．</li>
+  <li>\(C(X)\)において\(\|\cdot\|_\infty\)がノルムの公理<span class="mathitem">(N1)&ndash;(N3)</span>を満たし，代数のノルムの性質<span class="mathitem">(N4), (N5)</span>を満たすこと．</li>
+  <li>\(C(X)\)が\(\|\cdot\|_\infty\)について完備であること．</li>
 </ol>
 <p>自明でないもののみを示す．</p>
 
-<p><span>【加法について閉じていること】</span> 任意の\(f,\,g \in C(X,\,K)\)について，\(f + g \in C(X,\,K)\)を示す．\(f\)が連続なので，任意の\(x_0 \in X\)について，任意の\(\varepsilon \gt 0\)をとったとき，\(x_0\)の近傍\(V_1\)が存在して，\(x \in V_1\)ならば
+<p><span>【加法について閉じていること】</span> 任意の\(f,\,g \in C(X)\)について，\(f + g \in C(X)\)を示す．\(f\)が連続なので，任意の\(x_0 \in X\)について，任意の\(\varepsilon \gt 0\)をとったとき，\(x_0\)の近傍\(V_1\)が存在して，\(x \in V_1\)ならば
 \begin{align*}
   |f(x) - f(x_0)| \lt \frac{\varepsilon}{2}
 \end{align*}
@@ -367,7 +327,7 @@
   &amp;\leq |f(x) - f(x_0) | + | g(x) - g(x_0)| \\
   &amp;\lt \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
 \end{align*}
-となり，\(f + g\)も\(x_0 \in X\)で連続である．したがって\(f + g \in C(X,\,K)\)である．</p>
+となり，\(f + g\)も\(x_0 \in X\)で連続である．したがって\(f + g \in C(X)\)である．</p>
 
 <p><span>【乗法について閉じていること】</span> 任意の\(f,\,g \in X\)について\(fg \in C(X)\)を示す．任意の\(x_0 \in X\)をとる．\(f\)が\(x_0\)で連続なので，\(x_0\)の近傍\(V_1\)が存在して，\(x \in V_1\)ならば
 \begin{gather*}
@@ -394,7 +354,7 @@
 \end{align*}
 が成り立つ．よって\(fg \in C(X)\)である．</p>
 
-<p><span>【スカラー倍について閉じていること】</span> \(\alpha\)を任意の実数とする．任意の\(f \ \in C(X,\,K)\)について\(\alpha f \in C(X,\,K)\)となることを示す．\(f\)が任意の\(x_0 \in X\)で連続なので，任意の\(\varepsilon \gt 0\)に対して，\(x_0\)の近傍\(V\)が存在して，\(x \in V\)ならば
+<p><span>【スカラー倍について閉じていること】</span> \(\alpha\)を任意の実数とする．任意の\(f \ \in C(X)\)について\(\alpha f \in C(X)\)となることを示す．\(f\)が任意の\(x_0 \in X\)で連続なので，任意の\(\varepsilon \gt 0\)に対して，\(x_0\)の近傍\(V\)が存在して，\(x \in V\)ならば
 \begin{align*}
   |f(x) - f(x_0)| \lt \frac{\varepsilon}{|\alpha| + 1}
 \end{align*}
@@ -406,10 +366,9 @@
   &amp; \lt |\alpha | \frac{\varepsilon}{|\alpha| + 1} \\
   &amp; \leq \varepsilon
 \end{align*}
-となり，\(\alpha f \in C(X,\,K)\)である．</p>
+となり，\(\alpha f \in C(X)\)である．</p>
 
-
-<p><span>【完備であること】</span> \(C(X,\,K)\)上の任意のCauchy列\((f_n)_{n \in \mathbb{Z}_+}\)をとる．このとき，任意の\(\varepsilon \gt 0\)に対して，ある\(N_1 \in \mathbb{Z}_+\)が存在して，\(m,\,n \geq N_0\)ならば
+<p><span>【完備であること】</span> \(C(X)\)上の任意のCauchy列\((f_n)_{n \in \mathbb{Z}_+}\)をとる．このとき，任意の\(\varepsilon \gt 0\)に対して，ある\(N_1 \in \mathbb{Z}_+\)が存在して，\(m,\,n \geq N_0\)ならば
 \begin{align*}
   \|f_m - f_n\| \lt \varepsilon,
 \end{align*}
@@ -434,17 +393,55 @@
   &amp;\leq |f(y) - f_N(y)| + |f_N(y) - f_N(x)| + |f_N(x) - f(x)| \\
   &amp;\lt \frac{\varepsilon}{3} + \frac{\varepsilon}{3} + \frac{\varepsilon}{3} = \varepsilon.
 \end{align*}
-よって\(f\)は\(x\)で連続であり，\(x\)は任意だったので，\(f \in C(X,\,K)\)が示せた．<p/>
-</section>
+よって\(f\)は\(x\)で連続であり，\(x\)は任意だったので，\(f \in C(X)\)が示せた．<p/>
+</section> <!-- C(X, K) -->
+
+<section>
+<h4 id="algebra" class="math">10.5 部分代数</h4>
+<p>体\(K\)上の代数\(X\)の部分集合\(A\)が\(X\)における加法，スカラー倍，乗法について閉じているとき，\(A\)は\(X\)の<strong>部分代数</strong>(subalgebra)であるという．</p>
+<ol class="math">
+  <li class="capsa">任意の\(x,\,y \in A\)で\(x + y \in A\)．</li>
+  <li class="capsa">任意の\(\alpha \in K\)と任意の\(x \in A\)について\(\alpha x \in A\)．</li>
+  <li class="capsa">任意の\(x,\,y \in A\)で\(xy \in A\)．</li>
+</ol>
+<p>\(A\)を\(X\)の任意の部分集合とすると，\(A\)を含むような最小の部分代数が存在する．これは\(A\)を含む部分代数の共通部分として得られる．そのような部分代数を，\(A\)によって生成される部分代数という．</p>
+
+<section>
+<h5 id="algebra" class="math">命題 10.5.1</h5>
+<p>\(B\)が\(C(X)\)部分代数ならば\(\overline{B}\)も部分代数である．</p>
+<p><strong>証明</strong> 【積について閉じていること】 任意の\(f \in \overline{B}\)をとる．\(f\)が\(B\)の集積点なので，\(B\)上の列\((f_n)_{n \in \mathbb{Z}_+}\)で，\(f_n \to f\)となるようなものが存在する．この\((f_n)_{n \in \mathbb{Z}_+}\)について，ある\(N_1 \in \mathbb{Z}_+\)が存在して，\(n \geq N_1\)ならば
+\begin{align*}
+  \|f_n\| - \|f\| \leq \|f_n - f\| \lt 1 \\
+\end{align*}
+が成り立つ．また任意の\(\varepsilon \gt 0\)に対し，ある\(N_2 \in \mathbb{Z}_+\)が存在して，\(n \geq N_2\)ならば
+\begin{align*}
+  \|f_n - f\| \lt \frac{\varepsilon}{2(\|g\| + 1)}
+\end{align*}
+が成り立つ．\(g \in \overline{B}\)についても同様に\(g\)が\(B\)の集積点なので，\(B\)上の列\((g_n)_{n \in \mathbb{Z}_+}\)で\(g_n \to g\)，すなわち，ある\(N_3 \in \mathbb{Z}_+\)が存在して，\(n \geq N_3\)ならば
+\begin{align*}
+  \|g_n - g\| \lt \frac{\varepsilon}{2(\|f\| + 1)}
+\end{align*}
+が成り立つ．これらの乗法で定まる新しい列\((f_n g_n)_{n \in \mathbb{Z}_+}\)と\(fg \in C(X)\)について，\(n \geq \max\{N_1,\,N_2,\,N_3\}\)となるようにとれば
+\begin{align*}
+  \|f_n g_n - fg\|
+  &amp;= \|f_n g_n - f_n g  + f_n g - f g \| \\
+  &amp;\leq \|f_n \| \| g_n - g \| + \| f_n - f \| \| g \| \\
+  &amp;\lt (\|f\| + 1) \frac{\varepsilon}{2(\|f\| + 1)} + \frac{\varepsilon}{2(\|g\| + 1)} \| g \| \\
+  &amp;\leq \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
+\end{align*}
+が成り立つ．したがって任意の\(\varepsilon \gt 0\)で\(\{h \in C(X) \mid \|h - fg\| \lt \varepsilon\} \cap B \neq \emptyset\)となり，\(fg \in \overline{B}\)がわかる．</p>
+</section><!-- closure -->
+</section><!-- subalgebra -->
 
 <section>
 <h3 id="stone-weierstrass-statement" class="math">10.6 Stone&ndash;Weierstra&szlig;の定理</h3>
-\(X\)をコンパクトHausdorff空間とする．\(C(X)\)の部分集合\(A\)が以下の<span class="mathitem">(S1), (S2)</span>を満たすならば，\(A\)の生成する\(C(X)\)の部分代数は\(C(X)\)で稠密になる．
+<p>\(X\)をコンパクトHausdorff空間とする．\(C(X)\)の部分集合\(A\)が以下の<span class="mathitem">(S1), (S2)</span>を満たすならば，\(A\)の生成する\(C(X)\)の部分代数は\(C(X)\)で稠密になる．</p>
 <ol class="math narrow">
   <li class="capsw">\(1_{C(X)} \in A.\)</li>
-  <li class="capsw">任意の異なる2点\(x,\,x' \in X\)に対して，\(f \in A\)で\(f(x) \neq f(x')\)となるものが存在する．</li>
+  <li class="capsw">任意の異なる2点\(x,\,y \in X\)に対して，\(f \in A\)で\(f(x) \neq f(y)\)となるものが存在する．</li>
 </ol>
 </section>
+
 
 </section>
 
@@ -507,10 +504,30 @@
 <section>
 <h3 id="borel-measure" class="math">11.1 Borel測度</h3>
 <div class="math-book">
-<i class="fa-solid fa-bookmark"></i> <a href="#miyajima"><cite lang="ja">宮島</cite></a> 定義7.54&ndash;定義7.55
+<i class="fa-solid fa-bookmark"></i> <a href="#miyajima"><cite lang="ja">宮島</cite></a> 定義7.53&ndash;定義7.55
 </div>
-<p>
-</p>
+<p>\(\varOmega\)を位相空間とする．\(\varOmega\)の開集合全体\(\mathcal{O}\)によって生成される\(\sigma\)-加法族\(\sigma(\mathcal{O})\)を\(\varOmega\)の<strong>Borel集合族</strong>という．開集合全体を明示せずに\(\mathcal{B}(\varOmega)\)とも書く．</p>
+<p>測度空間\((\varOmega,\,\mathcal{B}(\varOmega))\)の測度\(\mu\)を<strong>Borel測度</strong>という．Borel測度\(\mu\)が任意の\(S \in \mathcal{B}(\varOmega)\)について
+<ol class="math narrow">
+  <li class="capr">\(\mu(S) = \sup \{\mu(K) \mid K \subseteq S,\,K \text{ compact}\}\)</li>
+  <li class="capr">\(\mu(S) = \inf \{\mu(O) \mid S \subseteq O,\,O \text{ open}\}\)</li>
+</ol>
+を満たすとき，\(\mu\)は<strong>正則</strong>(regular)であるという．</p>
+<p>関数\(\nu\colon \mathcal{B}(\varOmega) \to \mathbb{R}\)が以下の
+を満たすとき，\(\nu\)を<strong>符号付きBorel測度</strong> (signed Borel measure)という．</p>
+<ol class="math narrow">
+  <li class="capm">\(\nu(\emptyset) = 0\)</li>
+  <li class="capm">集合族\((S_n)_{n \in \mathbb{Z}_+}\)は各\(n \in \mathbb{Z}_+\)で\(S_n \in \mathcal{B}(\varOmega)\)かつ\(i \neq j\)ならば\(A_i \cap A_j = \emptyset\)を満たすものとする．このとき
+  \begin{align*}
+  \nu\left(\bigcup_{n = 1}^\infty S_n \right) = \sum_{n = 1}^\infty \nu (S_n)
+  \end{align*}
+  が成り立つ．</li>
+</ol>
+<p>符号付きBorel測度が正則なBorel測度\(\nu_1,\,\nu_2\)の差で表されるとき，正則な符号付きBorel測度という．</p>
+</section>
+
+<section>
+<h3 id="borel-measure" class="math">11.2 Hahn分解</h3>
 </section>
 
 <section>
