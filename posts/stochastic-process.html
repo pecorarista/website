@@ -113,6 +113,8 @@
   <li>\(\mathfrak{P}(\varOmega)\)は\(\varOmega\)の冪集合を表す．</li>
   <li>体\(K\)といった場合，\(K = \mathbb{R}\)または\(K = \mathbb{C}\)である．</li>
   <li>\(a := b\)は\(a\)を\(b\)で定義することを表す．</li>
+  <li>互いに素な\(\mathcal{F}\)の族\((F_n)_{n \in \mathbb{Z}_+}\)とは，\(\mathcal{F}\)の要素からなる族\((F_n)_{n \in \mathbb{Z}_+}\)で\(i \neq j\)ならば\(F_i \cap F_j = \emptyset\)を満たすものを指す．</li>
+  <li>任意の\(n \in \mathbb{Z}_+\)で\(P_n \subset P_{n + 1}\)が成り立つとき，\(P_n\searrow\)と書く．同様に任意の\(n \in \mathbb{Z}_+\)で\(P_n \supset P_{n + 1}\)が成り立つとき，\(P_n\nearrow\)と書く．</li>
 </ul>
 </section>
 
@@ -506,22 +508,77 @@
 <div class="math-book">
 <i class="fa-solid fa-bookmark"></i> <a href="#miyajima"><cite lang="ja">谷島</cite></a> Sec. 8.2
 </div>
-<p>\((\varOmega,\,\mathcal{F})\)を可測空間とする．\(\mathcal{F}\)の要素からなる族\((F_n)_{n \in \mathbb{Z}_+}\)で\(i \neq j\)ならば\(F_i \cap F_j = \emptyset\)を満たすようなものを任意にとる．関数\(\nu\colon \mathcal{F} \to \mathbb{R}\)が次の\(\sigma\)-加法性と呼ばれる性質
-\begin{align}
-  \nu \left(\bigcup_{n = 1}^\infty F_n \right) = \sum_{n = 1}^\infty \nu (F_n) \label{signed-measure-sigma}
-\end{align}
+<p>\((\varOmega,\,\mathcal{F})\)を可測空間とする．任意の互いに素な\(\mathcal{F}\)の族\((F_n)_{n \in \mathbb{Z}_+}\)に対して，関数\(\nu\colon \mathcal{F} \to \mathbb{R}\)が
+\begin{align*}
+  \sum_{n = 1}^\infty \nu(F_n)
+\end{align*}
+が絶対収束し，\(\sigma\)-加法性と呼ばれる次の性質
+\begin{align*}
+  \nu \left(\bigcup_{n = 1}^\infty F_n \right) = \sum_{n = 1}^\infty \nu (F_n)
+\end{align*}
 を満たすとき，\(\nu\)を<span class="math-keyword">有限符号付き測度</span>と呼ぶ．</p>
 
-<p>任意の有限符号付き測度は\(\nu(\emptyset) = 0\)を満たす．これは以下のように確認できる．\((\ref{signed-measure-sigma})\)より
+<p>任意の有限符号付き測度は\(\nu(\emptyset) = 0\)を満たす．これは以下のように確認できる．\(\sigma\)-加法性より
 \begin{align*}
-	\nu(\emptyset) &amp;= \lim_{n \to \infty} \sum_{k = 1}^n \nu(\emptyset) \\
-								 &amp;= \lim_{n \to \infty} n\nu(\emptyset)
+\nu(\emptyset)
+  = \lim_{n \to \infty} \sum_{k = 1}^n \nu(\emptyset)
+  = \lim_{n \to \infty} n\nu(\emptyset)
 \end{align*}
 が成り立つ．\(\nu(\emptyset) \neq 0\)と仮定すると\(\lim_{n \to \infty} n\nu(\emptyset) = \pm \infty\)となり\(\nu(\emptyset) \in \mathbb{R}\)に矛盾する．よって\(\nu(\emptyset) = 0\)である．</p>
 
 <p>集合\(P \in \mathcal{F}\)が，\(A \subseteq E\)を満たす任意の\(A \in \mathcal{F}\)について\(A \subseteq P\)ならば\(\nu(A) \geq 0\)を満たすとき，\(P\)は<span class="math-keyword">\(\nu\)-positive</span>であるという．同様に集合\(N \in \mathcal{F}\)が，任意の\(A \in \mathcal{F}\)について\(A \subseteq N\)ならば\(\nu(N) \leq 0\)を満たすとき，\(N\)は<span class="math-keyword">\(\nu\)-negative</span>であるという．</p>
 
+<p><strong>命題</strong>\(A \subseteq B\)ならば\(\nu(B \setminus A) = \nu(B) - \nu(A)\)が成り立つ．</p>
+<p>\(A\)と\(B \setminus A\)は互いに素で
+\begin{gather*}
+  \nu(B) = \nu(A) + \nu(B \setminus A) \\
+  \nu(B \setminus A) = \nu(B) - \nu(A)
+\end{gather*}
+</p>
+
+<p><strong>命題</strong>\((A_n)_{n \in \mathbb{Z}_+}\)が\(A_n \uparrow\)ならば
+\begin{align*}
+  \nu\left(\bigcup_{n = 1}^\infty A_n \right) = \lim_{n \to \infty} \nu\left(A_n\right)
+\end{align*}
+が成り立ち，\(A_n \downarrow\)ならば
+\begin{align*}
+  \nu\left(\bigcap_{n = 1}^\infty A_n \right) = \lim_{n \to \infty} \nu\left(A_n\right)
+\end{align*}
+が成り立つ．
+</p>
+<p><strong>証明</strong>\(A_0 = \emptyset\)とする．\(A_n\uparrow\)のとき，\(A_1 \setminus A_0 = A_1,\,A_2 \setminus A_1,\,\ldots\)は互いに素なので
+\begin{align*}
+  \nu\left(\bigcup_{n = 1}^\infty A_n \right)
+  &amp; = \nu\left(\bigcup_{n = 1}^\infty A_n \setminus A_{n - 1} \right) \\
+  &amp; = \lim_{n \to \infty} \sum_{k = 1}^n \nu(A_k \setminus A_{k - 1}) \\
+  &amp; = \lim_{n \to \infty} ((\nu(A_1) - \nu(A_0)) + (\nu(A_2) - \nu(A_1)) + \cdots + (\nu(A_n) - \nu(A_{n - 1}))) \\
+  &amp; = \lim_{n \to \infty} \nu(A_n)
+\end{align*}
+が成り立つ．</p>
+<p>
+\begin{align*}
+  A_1 \setminus \bigcup_{n = 1}^\infty E_n
+  &amp;= A_1 \cap \left( X \setminus \left( \bigcup_{n = 1}^\infty E_n \right) \right) \\
+  &amp;= A_1 \cap \bigcup_{n = 1}^\infty (X \setminus A_n)  \\
+  &amp;= A_1 \cap \bigcup_{n = 1}^\infty (X \setminus (A_1 \setminus A_n) )  \\
+  &amp;= A_1 \cap \bigcup_{n = 1}^\infty (X \setminus A_n)  \\
+  &amp;= A_1 \cap \left(X \setminus \bigcap_{n = 1}^\infty A_n\right)  \\
+  &amp;= \left(A_1 \setminus \bigcap_{n = 1}^\infty A_n\right)  \\
+\end{align*}
+\(A_n\downarrow\)のとき，\(A_1 \setminus A_n \uparrow\)なので
+\begin{align*}
+  \nu\left(A_1 \setminus \bigcap_{n = 1}^\infty A_n \right)
+  &amp;= \nu(A_1) - \nu\left(\bigcup_{n = 1}^\infty A_n \right) \\
+  &amp;= \nu(A_1) - \lim_{n \to \infty} \nu(E_n) \\
+  &amp;= \nu(A_1)  \\
+  &amp;= \lim_{n \to \infty}(\nu(A_1) - (\nu(A_1) - \nu(A_n)))  \\
+  &amp;= \lim_{n \to \infty} \nu(A_n)
+\end{align*}
+</p>
+
 <p><strong>Hahnの分解定理</strong> \(\nu\)を測度空間\((X,\,\mathcal{F})\)の有限符号付き測度とする．このときそれぞれ\(\nu\)-postiveな\(X^+\)と\(\nu\)-negativeな\(X^-\)で\(X = X^+ \cup X^-\)かつ\(X^+ \cap X^- = \emptyset\)を満たすものが存在する．
+
+
 
 <p><strong>補題</strong>
 <div class="math-book">
@@ -561,20 +618,24 @@ B_n \subset A \setminus (B_1 \cup \cdots B_{n - 1}) \land \nu(B_1) \leq -\vareps
 </p>
 
 
-<p> \(A := \{\nu(E) \mid E \in \mathcal{F},\,E\text{ \(\nu\)-positive}\}\)とおく．\(\nu(\emptyset) = 0 \in A \)が成り立つので\(A \neq \emptyset\)である．よって上限\(\alpha := \sup A\)が存在する．上限の性質により，任意の\(n \in \mathbb{Z}_+\)に対して，\(\nu\)-positiveな\(E_n \in \mathcal{F}\)で
+<p> \(S := \{\nu(E) \mid E \in \mathcal{F}\}\)とおく．\(\nu(\emptyset) = 0 \in A \)が成り立つので\(A \neq \emptyset\)である．よって上限\(s := \sup S\)が存在する．上限の性質により，任意の\(n \in \mathbb{Z}_+\)に対して，\(\nu\)-positiveな\(A_n \in \mathcal{F}\)で
 \begin{align*}
-  \alpha - \frac{1}{n} \leq \nu(E_n) \leq \alpha
+  s - \frac{1}{n} \leq \nu(A_n) \leq s
 \end{align*}
-が成り立つようなものをとることができる．\(X^+=\bigcup_{n = 1}^\infty E_n\)と定義する．\(\mathcal{F}\)の\(\sigma\)-加法性により\(X^+ \in \mathcal{F}\)である．集合族\((A_n)_{n \in \mathbb{Z}_+}\)を
+が成り立つようなものをとることができる．補題により\(P_n \subset A_n\)で\(\nu(A_n) \leq \nu(P_n)\)となるようなものがとれる．上限の性質より\(\nu(P_n) \leq s\)であるから
 \begin{align*}
-  A_n = \begin{cases}
-    E_1 &amp; \text{if \(n = 1\)}, \\
-    E_n \setminus (E_1 \cup E_2 \cup \cdots E_{n - 1}) &amp; \text{otherwise}
+  s - \frac{1}{n} \leq \nu(P_n) \leq s
+\end{align*}
+\(X^+=\bigcup_{n = 1}^\infty P_n\)と定義する．\(\mathcal{F}\)の\(\sigma\)-加法性により\(X^+ \in \mathcal{F}\)である．集合族\((E_n)_{n \in \mathbb{Z}_+}\)を
+\begin{align*}
+  E_n = \begin{cases}
+    P_1 &amp; \text{if \(n = 1\)}, \\
+    P_n \setminus (P_1 \cup P_2 \cup \cdots P_{n - 1}) &amp; \text{otherwise}
   \end{cases}
 \end{align*}
-と定義する．このとき各\(n \in \mathbb{Z}_+\)で\(A_n \in \mathcal{F}\)であり，\(i \neq j\)ならば\(A_i \cap A_j = \emptyset\)が成り立つ．また各\(n \in \mathbb{Z}_+\)で\(A_n\subseteq E_n\)であり，\(E_n\)が\(\nu\)-positiveなので\(\nu(A_n) \geq 0\)が成り立つ．したがって
+と定義する．このとき各\(n \in \mathbb{Z}_+\)で\(E_n \in \mathcal{F}\)であり，\(i \neq j\)ならば\(E_i \cap E_j = \emptyset\)が成り立つ．また各\(n \in \mathbb{Z}_+\)で\(A_n\subseteq E_n\)であり，\(E_n\)が\(\nu\)-positiveなので\(\nu(A_n) \geq 0\)が成り立つ．したがって
 \begin{align*}
-  \nu(X^+)  = \nu\left(\bigcup_{n = 1}^\infty A_n \right) = \sum_{n = 1}^\infty \nu(A_n) \geq 0
+  \nu(X^+)  = \nu\left(\bigcup_{n = 1}^\infty E_n \right) = \sum_{n = 1}^\infty \nu(E_n) \geq 0
 \end{align*}
 であることがわかる．任意の\(E \in X^+\)で
 \begin{gather*}
@@ -699,7 +760,7 @@ Rieszの表現定理
     <li id="dudley"><a href="https://link.springer.com/book/10.1007/978-1-4419-6950-7">R. M. Dudley and R. Norvai&scaron;a (2010) <em>Concrete Functional Calculus.</em> Springer New York.</a></li>
     <li id="bhattacharya"><a href="https://link.springer.com/book/10.1007/978-3-319-47974-3">Rabi Bhattacharya and Edward C. Waymire (2016) <em>A Basic Course in Probability Theory.</em> Springer New York.</a></li>
     <li>宮島 静雄(2005)<span class="half"></span>「関数解析」横浜図書．</li>
-    <li>Doss, Raouf (1980) <em>The Hahn decomposition theorem.</em> In Proceedings of the American Mathematical Society, Volume 80, Number 2, p. 377.</li>
+    <li>Doss, Raouf (1980) <a href="https://www.ams.org/journals/proc/1980-080-02/S0002-9939-1980-0577778-7/?active=current"><em>The Hahn decomposition theorem.</em></a> In Proceedings of the American Mathematical Society, Volume 80, Number 2, p. 377.</li>
 </ol>
 </section>
 

@@ -168,6 +168,10 @@ ol.citation li::before {
   font-feature-settings: "palt";
 }
 
+.math-keyword {
+  font-weight: bold;
+}
+
 ol.math {
   padding-left: 1rem;
   counter-reset: m;
@@ -196,6 +200,14 @@ ol.math li.s::before {
 
 ol.math li.capsw::before {
   content: "(SW" counter(m) ")";
+}
+
+ol.math li.capsm::before {
+  content: "(SM" counter(m) ")";
+}
+
+ol.math li.capd::before {
+  content: "(D" counter(m) ")";
 }
 
 ol.math li.capr::before {
