@@ -465,6 +465,28 @@ h5.math {
   border-radius: 5px;
 }
 
+.marker {
+  width: 300px;
+  background: linear-gradient(transparent 50%, yellow);
+}
+
+.card {
+  margin: 20px 0;
+  background-color: inherit;
+  border: 2px solid #1560bd;
+  border-radius: 5px;
+}
+.card h5 {
+  padding: 4px 12px;
+  margin: 0;
+  font-weight: bold;
+  color: #fff;
+  background-color: #1560bd;
+}
+.card p {
+  padding: 12px 12px 0;
+}
+
 .toc-container {
   display: table;
   width: auto;
