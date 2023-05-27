@@ -4,21 +4,19 @@
 <h3 id="riesz" class="math">{{ section }} Riesz&ndash;Markov&ndash;角谷の表現定理</h3>
 
 <section>
-<h3 id="hahn" class="math">{{ section }}.2 Hahn分解</h3>
-<div class="math-book">
-<i class="fa-solid fa-bookmark"></i> <a href="#miyajima"><cite lang="ja">谷島</cite></a> Sec. 8.2
-</div>
-<p>\((\varOmega,\,\mathcal{F})\)を可測空間とする．任意の互いに素な\(\mathcal{F}\)の族\((F_n)_{n \in \mathbb{Z}_+}\)に対して，関数\(\nu\colon \mathcal{F} \to \mathbb{R}\)が
-\begin{align*}
-  \sum_{n = 1}^\infty \nu(F_n)
-\end{align*}
-が絶対収束し，\(\sigma\)-加法性と呼ばれる次の性質
+<h3 id="hahn" class="math">{{ section }}.2 有限符号付き測度</h3>
+<div class="card">
+<h5>定義（有限符号付き測度）</h5>
+<p>\((\varOmega,\,\mathcal{F})\)を可測空間とする．関数\(\nu\colon \mathcal{F} \to \mathbb{R}\)が，任意の互いに素な\(\mathcal{F}\)の族\((F_n)_{n \in \mathbb{Z}_+}\)に対して，\(\sigma\)-加法性と呼ばれる次の性質
 \begin{align*}
   \nu \left(\bigcup_{n = 1}^\infty F_n \right) = \sum_{n = 1}^\infty \nu (F_n)
 \end{align*}
-を満たすとき，\(\nu\)を<span class="math-keyword">有限符号付き測度</span>と呼ぶ．</p>
+を満たすとき，\(\nu\)を\((\varOmega,\,\mathcal{F})\)上の<span class="math-keyword">有限符号付き測度</span>と呼ぶ．</p>
+</div>
 
-<p>任意の有限符号付き測度は\(\nu(\emptyset) = 0\)を満たす．これは以下のように確認できる．\(\sigma\)-加法性より
+<p>\(\nu\left(\bigcup_{n = 1}^\infty F_n\right)\)は\((F_n)_{n \in \mathbb{Z}_+}\)の順番に依らないので，上の定義がwell-definedであるためには\(\sum_{n = 1}^\infty \nu(F_n)\)も\((F_n)_{n \in \mathbb{Z}_+}\)の順番に依らず同じ値でなければならない．「絶対収束\(\Rightarrow\)任意の交替級数が収束」が成り立つことはよく知られている（よく使われる）が、実は逆「任意の交替級数が収束\(\Rightarrow\)絶対収束」も成り立つ．したがって上の定義は暗に\(\sum_{n = 1}^\infty \nu(F_n)\)は絶対収束するというを要請している．「任意の交替級数が収束\(\Rightarrow\)絶対収束」が成り立つことは<a href="https://en.wikipedia.org/wiki/Riemann_series_theorem">Riemannの再配列定理</a>などと呼ばれる定理の対偶からわかる．</p>
+
+<p>任意の<span class="marker">有限</span>符号付き測度は\(\nu(\emptyset) = 0\)を満たす．これは以下のように確認できる．\(\sigma\)-加法性より
 \begin{align*}
 \nu(\emptyset)
   = \lim_{n \to \infty} \sum_{k = 1}^n \nu(\emptyset)
@@ -26,67 +24,70 @@
 \end{align*}
 が成り立つ．\(\nu(\emptyset) \neq 0\)と仮定すると\(\lim_{n \to \infty} n\nu(\emptyset) = \pm \infty\)となり\(\nu(\emptyset) \in \mathbb{R}\)に矛盾する．よって\(\nu(\emptyset) = 0\)である．</p>
 
-<p>集合\(P \in \mathcal{F}\)が，\(A \subseteq E\)を満たす任意の\(A \in \mathcal{F}\)について\(A \subseteq P\)ならば\(\nu(A) \geq 0\)を満たすとき，\(P\)は<span class="math-keyword">\(\nu\)-positive</span>であるという．同様に集合\(N \in \mathcal{F}\)が，任意の\(A \in \mathcal{F}\)について\(A \subseteq N\)ならば\(\nu(N) \leq 0\)を満たすとき，\(N\)は<span class="math-keyword">\(\nu\)-negative</span>であるという．</p>
+<div class="card">
+<h5>命題</h5>
+<p>\(A \subseteq B\)ならば\(\nu(B \setminus A) = \nu(B) - \nu(A)\)が成り立つ．</p>
+</div>
+<p><strong>証明</strong>\(A\)と\(B \setminus A\)は互いに素なので\(\sigma\)-加法性（から導かれる有限加法性）より\(\nu(B) = \nu(A) + \nu(B \setminus A)\)が成り立ち，したがって\(\nu(B \setminus A) = \nu(B) - \nu(A)\)が成り立つ．&#8718;</p>
 
-<p><strong>命題</strong>\(A \subseteq B\)ならば\(\nu(B \setminus A) = \nu(B) - \nu(A)\)が成り立つ．</p>
-<p>\(A\)と\(B \setminus A\)は互いに素で
-\begin{gather*}
-  \nu(B) = \nu(A) + \nu(B \setminus A) \\
-  \nu(B \setminus A) = \nu(B) - \nu(A)
-\end{gather*}
-</p>
+<p>符号付きでない一般的な測度は，定義に非負性\(\nu\colon \mathcal{F} \to [0,\,\infty]\)が含まれているので，上の証明において\(\nu(B \setminus A) \geq 0\)であることから単調性\(\nu(A) \leq \nu(B)\)がわかる．一方，符号付き測度では一般に単調性は成り立たない．以下の単調収束性は証明に非負性を利用しないため，普通の測度と同様に成り立つ．</p>
 
-<p><strong>命題</strong>\((A_n)_{n \in \mathbb{Z}_+}\)が\(A_n \uparrow\)ならば
-\begin{align*}
+<div class="card">
+<h5>命題（単調収束性）</h5>
+<p>\((A_n)_{n \in \mathbb{Z}_+}\)が\(A_n \uparrow\)のとき
+\begin{align}
   \nu\left(\bigcup_{n = 1}^\infty A_n \right) = \lim_{n \to \infty} \nu\left(A_n\right)
-\end{align*}
-が成り立ち，\(A_n \downarrow\)ならば
-\begin{align*}
+  \label{monotone1}
+\end{align}
+が成り立ち，\(A_n \downarrow\)のとき
+\begin{align}
   \nu\left(\bigcap_{n = 1}^\infty A_n \right) = \lim_{n \to \infty} \nu\left(A_n\right)
-\end{align*}
-が成り立つ．
-</p>
-<p><strong>証明</strong>\(A_0 = \emptyset\)とする．\(A_n\uparrow\)のとき，\(A_1 \setminus A_0 = A_1,\,A_2 \setminus A_1,\,\ldots\)は互いに素なので
+  \label{monotone2}
+\end{align}
+が成り立つ．</p>
+</div>
+
+<p><strong>証明</strong> \((\ref{monotone1})\)を示す．\(A_0 = \emptyset\)とする．\(A_n\uparrow\)のとき，\(A_1 \setminus A_0 = A_1,\,A_2 \setminus A_1,\,\ldots\)は互いに素なので
 \begin{align*}
   \nu\left(\bigcup_{n = 1}^\infty A_n \right)
-  &amp; = \nu\left(\bigcup_{n = 1}^\infty A_n \setminus A_{n - 1} \right) \\
+  &amp; = \nu\left(\bigcup_{n = 1}^\infty (A_n \setminus A_{n - 1}) \right) \\
   &amp; = \lim_{n \to \infty} \sum_{k = 1}^n \nu(A_k \setminus A_{k - 1}) \\
   &amp; = \lim_{n \to \infty} ((\nu(A_1) - \nu(A_0)) + (\nu(A_2) - \nu(A_1)) + \cdots + (\nu(A_n) - \nu(A_{n - 1}))) \\
   &amp; = \lim_{n \to \infty} \nu(A_n)
 \end{align*}
 が成り立つ．</p>
-<p>
+<p>\((\ref{monotone2})\)を示す．一般に次が成り立つ：
 \begin{align*}
-  A_1 \setminus \bigcup_{n = 1}^\infty E_n
-  &amp;= A_1 \cap \left( X \setminus \left( \bigcup_{n = 1}^\infty E_n \right) \right) \\
-  &amp;= A_1 \cap \bigcup_{n = 1}^\infty (X \setminus A_n)  \\
-  &amp;= A_1 \cap \bigcup_{n = 1}^\infty (X \setminus (A_1 \setminus A_n) )  \\
-  &amp;= A_1 \cap \bigcup_{n = 1}^\infty (X \setminus A_n)  \\
-  &amp;= A_1 \cap \left(X \setminus \bigcap_{n = 1}^\infty A_n\right)  \\
-  &amp;= \left(A_1 \setminus \bigcap_{n = 1}^\infty A_n\right)  \\
+  A_1 \setminus \bigcup_{n = 1}^\infty A_n
+  &amp;= A_1 \cap \left(\bigcap_{n = 1}^\infty A_n \right)^c \\
+  &amp;= A_1 \cap \bigcup_{n = 1}^\infty A_n^c  \\
+  &amp;= \bigcup_{n = 1}^\infty (A_1 \cap A_n^c)  \\
+  &amp;= \bigcup_{n = 1}^\infty (A_1 \setminus A_n).
 \end{align*}
-\(A_n\downarrow\)のとき，\(A_1 \setminus A_n \uparrow\)なので
+\(A_n\downarrow\)のとき，\(A_1 \setminus A_n \uparrow\)に上の結果を用いて
 \begin{align*}
-  \nu\left(A_1 \setminus \bigcap_{n = 1}^\infty A_n \right)
-  &amp;= \nu(A_1) - \nu\left(\bigcup_{n = 1}^\infty A_n \right) \\
-  &amp;= \nu(A_1) - \lim_{n \to \infty} \nu(E_n) \\
-  &amp;= \nu(A_1)  \\
-  &amp;= \lim_{n \to \infty}(\nu(A_1) - (\nu(A_1) - \nu(A_n)))  \\
-  &amp;= \lim_{n \to \infty} \nu(A_n)
+  \nu(A_1) - \nu\left(\bigcap_{n = 1}^\infty A_n \right)
+  &amp;= \nu\left(A_1 \setminus \bigcap_{n = 1}^\infty A_n \right) \\
+  &amp;= \nu\left(\bigcup_{n = 1}^\infty (A_1 \setminus A_n) \right) \\
+  &amp;= \lim_{n \to \infty} \nu(A_1 \setminus A_n) \\
+  &amp;= \lim_{n \to \infty} (\nu(A_1) - \nu(A_n)) \\
+  &amp;= \nu(A_1) - \lim_{n \to \infty} \nu(A_n)
 \end{align*}
-</p>
+となるので\((\ref{monotone2})\)が成り立つ．&#8718;</p>
 
-<p><strong>Hahnの分解定理</strong> \(\nu\)を測度空間\((X,\,\mathcal{F})\)の有限符号付き測度とする．このときそれぞれ\(\nu\)-postiveな\(X^+\)と\(\nu\)-negativeな\(X^-\)で\(X = X^+ \cup X^-\)かつ\(X^+ \cap X^- = \emptyset\)を満たすものが存在する．
-
-
-
-<p><strong>補題</strong>
-<div class="math-book">
-<i class="fa-solid fa-bookmark"></i> <a href="#miyajima"><cite lang="ja">Doss (1980)</cite></a> L<span style="font-variant: small-caps">emma</span>
+<div class="card">
+<h5>定義（正集合と負集合）</h5>
+<p>集合\(P \in \mathcal{F}\)が，\(A \subseteq E\)を満たす任意の\(A \in \mathcal{F}\)について\(A \subseteq P\)ならば\(\nu(A) \geq 0\)を満たすとき，\(P\)は\(\nu\)の正集合(positive set)や<span class="math-keyword">\(\nu\)-positive</span>な集合であるという．同様に集合\(N \in \mathcal{F}\)が，任意の\(A \in \mathcal{F}\)について\(A \subseteq N\)ならば\(\nu(N) \leq 0\)を満たすとき，\(N\)は\(\nu\)の負集合(negative set)や<span class="math-keyword">\(\nu\)-negative</span>な集合であるという．</p>
 </div>
-任意の\(A \in \mathcal{F}\)に対して，ある\(\nu\)-positiveな集合\(P\)が存在して\(\nu(E) \leq \nu(P)\)が成り立つ．</p>
 
-<p>
+<p>もちろん非負や非正といったほうが正確だが，正・負(positive/negative)のほうがよく使われているため，そちらに合わせる．</p>
+
+<div class="card">
+<h5>補題</h5>
+<p>任意の\(A \in \mathcal{F}\)に対して，ある\(\nu\)-positiveな部分集合\(P \subseteq A\)が存在して\(\nu(A) \leq \nu(P)\)が成り立つ．</p>
+</div>
+
+<p><strong>証明</strong>
 複雑なので論理式で書くと以下のようになる．
 \begin{align}
 \forall \varepsilon \gt 0\,\exists E \subseteq A\,[\nu(A) \leq \nu(E) \land (\forall B \in \mathcal{F}\, [B \subseteq E \to \nu(B) \gt - \varepsilon])]
@@ -110,12 +111,19 @@ B_n \subset A \setminus (B_1 \cup \cdots B_{n - 1}) \land \nu(B_1) \leq -\vareps
 \begin{align*}
   \nu(A) \leq \nu(E_n) \land \forall B \in \mathcal{F}\,\left[B \subseteq E_n \to \nu(B) \gt - \frac{1}{n}\right]
 \end{align*}
-となるようなものがとれる．\(E_n \searrow \)なので\(P := \bigcap_{n = 1}^\infty E_n\)とすると
+となるようなものがとれる．\(E_n \downarrow \)なので\(P := \bigcap_{n = 1}^\infty E_n\)とすると
 \begin{align*}
-  \nu(P) = 
+  \nu(P) = \lim_{n \to \infty} \nu(E_n) \geq \nu(A)
 \end{align*}
 となる．
 </p>
+
+<div class="card">
+<h5>Hahnの分解定理</h5>
+<p>\(\nu\)を測度空間\((X,\,\mathcal{F})\)の有限符号付き測度とする．このとき\(\nu\)-postiveな\(X^+\)と\(\nu\)-negativeな\(X^-\)で\(X = X^+ \cup X^-\)かつ\(X^+ \cap X^- = \emptyset\)を満たすものが存在する．</p>
+</div>
+
+
 
 
 <p> \(S := \{\nu(E) \mid E \in \mathcal{F}\}\)とおく．\(\nu(\emptyset) = 0 \in A \)が成り立つので\(A \neq \emptyset\)である．よって上限\(s := \sup S\)が存在する．上限の性質により，任意の\(n \in \mathbb{Z}_+\)に対して，\(\nu\)-positiveな\(A_n \in \mathcal{F}\)で
