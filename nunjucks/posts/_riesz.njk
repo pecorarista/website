@@ -1,14 +1,11 @@
-{% set section = '11' %}
+{% set section = 11 %}
 
-<section>
 <h3 id="riesz" class="math">{{ section }} Riesz&ndash;Markov&ndash;角谷の表現定理</h3>
 
-{% set subsection = '2' %}
-
-<section>
+{% set thm = 1 %}
 <h3 id="hahn" class="math">{{ section }}.2 有限符号付き測度</h3>
 <div class="card">
-<h5>定義 {{ section }}.{{ subsection }} （有限符号付き測度）</h5>
+<h5>定義 {{ section }}.{{ thm }} （有限符号付き測度）</h5>
 <p>\((X,\,\mathcal{E})\)を可測空間とする．関数\(\mu\colon \mathcal{E} \to \mathbb{R}\)が，任意の互いに素な\(\mathcal{E}\)の族\((E_n)_{n \in \mathbb{Z}_+}\)に対して，\(\sigma\)-加法性と呼ばれる次の性質
 \begin{align*}
   \mu \left(\bigcup_{n = 1}^\infty E_n \right) = \sum_{n = 1}^\infty \mu (E_n)
@@ -26,16 +23,18 @@
 \end{align*}
 が成り立つ．\(\mu(\emptyset) \neq 0\)と仮定すると\(\lim_{n \to \infty} n\mu(\emptyset) = \pm \infty\)となり\(\mu(\emptyset) \in \mathbb{R}\)に矛盾する．よって\(\mu(\emptyset) = 0\)である．</p>
 
+{% set thm = thm + 1 %}
 <div class="card">
-<h5>命題 {{ section }}</h5>
+<h5>命題 {{ section }}.{{ thm }}</h5>
 <p>\(A \subseteq B\)ならば\(\mu(B \setminus A) = \mu(B) - \mu(A)\)が成り立つ．</p>
 </div>
 <p><strong>証明</strong>\(A\)と\(B \setminus A\)は互いに素なので\(\sigma\)-加法性（から導かれる有限加法性）より\(\mu(B) = \mu(A) + \mu(B \setminus A)\)が成り立ち，したがって\(\mu(B \setminus A) = \mu(B) - \mu(A)\)が成り立つ．&#8718;</p>
 
 <p>符号付きでない一般的な測度は，定義に非負性\(\mu\colon \mathcal{E} \to [0,\,\infty]\)が含まれているので，上の証明において\(\mu(B \setminus A) \geq 0\)であることから単調性\(\mu(A) \leq \mu(B)\)がわかる．一方，符号付き測度では一般に単調性は成り立たない．以下の単調収束性は証明に非負性を利用しないため，普通の測度と同様に成り立つ．</p>
 
+{% set thm = thm + 1 %}
 <div class="card">
-<h5>命題 {{ section }} （単調収束性）</h5>
+<h5>命題 {{ section }}.{{ thm }}（単調収束性）</h5>
 <p>\((A_n)_{n \in \mathbb{Z}_+}\)が\(A_n \uparrow\)のとき
 \begin{align}
   \mu\left(\bigcup_{n = 1}^\infty A_n \right) = \lim_{n \to \infty} \mu\left(A_n\right)
@@ -77,18 +76,18 @@
 \end{align*}
 となるので\((\ref{monotone2})\)が成り立つ．&#8718;</p>
 
+{% set thm = thm + 1 %}
 <div class="card">
-<h5>定義（正集合と負集合）</h5>
+<h5>定義 {{ section }}.{{ thm }}（正集合と負集合）</h5>
 <p>集合\(P \in \mathcal{E}\)が，\(A \subseteq E\)を満たす任意の\(A \in \mathcal{E}\)について\(A \subseteq P\)ならば\(\mu(A) \geq 0\)を満たすとき，\(P\)は\(\mu\)の<strong>正集合</strong>(positive set for \(\mu\))であるという．同様に集合\(N \in \mathcal{E}\)が，任意の\(A \in \mathcal{E}\)について\(A \subseteq N\)ならば\(\mu(N) \leq 0\)を満たすとき，\(N\)は\(\mu\)の<strong>負集合</strong>(negative set for \(\mu\))であるという．</p>
 </div>
 
 <p>もちろん非負や非正といったほうが正確だが，正・負(positive/negative)のほうがよく使われているため，そちらに合わせる．</p>
 
 
-{% set subsection = '3' %}
-
+{% set thm = thm + 1 %}
 <div class="card">
-<h5>補題 {{ section }}.{{ subsection }}</h5>
+<h5>補題 {{ section }}.{{ thm }}</h5>
 <p>\(P_1,\,P_2,\,\ldots\)が\(\mu\)の正集合ならば\(\bigcup_{n = 1}^\infty P_n\)もまた\(\mu\)の正集合である．</p>
 </div>
 
@@ -112,13 +111,15 @@
 \end{align*}
 が成り立つ．ゆえに\(\bigcup_{n = 1}^\infty P_n\)もまた正集合である．&#8718;</p>
 
+{% set thm = thm + 1 %}
 <div class="card">
-<h5>補題</h5>
+<h5>補題 {{ section }}.{{ thm }}</h5>
 <p>有限符号付き測度\(\mu\)について，\(\mu(A) \gt 0\)なる任意の\(A\)に対して，ある正集合\(P \subseteq A\)で\(\mu(P) \gt 0\)となるようなものが存在する．</p>
 </div>
 
+{% set thm = thm + 1 %}
 <div class="card">
-<h5>Hahnの分解定理</h5>
+<h5 id="thm-hahn">定理 {{ section }}.{{ thm }}（Hahnの分解定理）</h5>
 <p>\(\mu\)を測度空間\((X,\,\mathcal{E})\)の有限符号付き測度とする．このとき\(\mu\)の正集合\(X^+\)と\(\mu\)の負集合\(X^-\)で\(X = X^+ \cup X^-\)かつ\(X^+ \cap X^- = \emptyset\)を満たすものが存在する．</p>
 </div>
 
@@ -149,10 +150,35 @@
 となる．しかしこれは\(\mu(X^+)\)が\(S\)の上限であったことと矛盾する．ゆえに\(X^-\)は負集合である．&#8718;</p>
 </section>
 
+{% set thm = thm + 1 %}
 <div class="card">
-<h5>Jordanの分解定理</h5>
+<h5>定義 {{ section }}.{{ thm }}（互いに特異な測度）</h5>
+<p>可測空間\((X,\,\mathcal{E})\)の<span class="marker">（符号付きではない普通の）</span>測度\(\mu_1,\,\mu_2\)について，互いに素な\(A,\,B \in \mathcal{F}\)が存在して\(X = A \cup B\)かつ，任意の\(E \in \mathcal{E}\)で
+\begin{align*}
+  \mu_1(E) = \mu_1(E \cap A),\quad \mu_2(E) = \mu_2(E \cap B)
+\end{align*}
+となるとき，\(\mu_1\)と\(\mu_2\)は<strong class="math-keyword">互いに特異</strong>であるという．
 </div>
 
+{% set thm = thm + 1 %}
+<div class="card">
+<h5>定理 {{ section }}.{{ thm }}（Jordan分解）</h5>
+<p>\(\mu\)を可測空間\((X,\,\mathcal{E})\)の有限符号付き測度とする．このとき任意の\(E \in \mathcal{E}\)について
+\begin{align*}
+  \mu(E) = \mu^+(E) - \mu^-(E)
+\end{align*}
+を満たす互いに特異な測度\(\mu^+,\,\mu^-\)が一意に存在する．これを<strong class="math-keyword">Jordan分解</strong>(Jordan decomposition)という．</p>
+</div>
+
+<p><strong>証明</strong> <a href="#thm-hahn">定理 {{ section }}.{{ thm - 2}}（Hahn分解）</a>によって，ある正集合\(X^+\)と負集合\(X^-\)が存在して\(X = X^+ \cup X^-\)かつ\(X^+ \cap X^- = \emptyset\)が成り立つ．このとき\(\mu^+,\,\mu^-\)を
+\begin{align*}
+  \mu^+(E) := \mu(E \cap X^+),\quad \mu^-(E) := - \mu(E \cap X^-)\quad\text{for all }E \in \mathcal{E}
+\end{align*}
+と定めると\(\mu^+\)と\(\mu^-\)は互いに特異な測度（\(\mu^+(E) \geq 0\)，\(\mu^-(E) \geq 0\)，\(\sigma\)-加法性，\(\mu^+(\emptyset) = \mu^-(\emptyset) = 0\)を満たす）になっている．また\(\mu\)の有限加法性から
+\begin{align*}
+  \mu(E) = \mu(E \cap X^+) + \mu(E \cap X^-) = \mu^+(E) - \mu^-(E)
+\end{align*}
+が成り立つ．</p>
 
 <h3 id="borel-measure" class="math">{{ section }}.1 Borel測度</h3>
 <div class="math-book">
@@ -173,7 +199,6 @@
 </p>
 </div>
 
-<section>
 <h3 id="riesz" class="math">{{ section }}.3 Riesz&ndash;Markov&ndash;角谷の表現定理</h3>
 <div class="math-book">
 <i class="fa-solid fa-bookmark"></i> <a href="#miyajima"><cite lang="ja">宮島</cite></a> 定理7.56
@@ -184,10 +209,3 @@
 \end{align}
 が成り立つようなものが一意に存在する．
 </p>
-</section>
-
-<section>
-
-</section>
-
-</section>
