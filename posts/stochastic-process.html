@@ -115,6 +115,7 @@
   <li>体\(K\)といった場合，\(K = \mathbb{R}\)または\(K = \mathbb{C}\)である．</li>
   <li>互いに素な\(\mathcal{F}\)の族\((F_n)_{n \in \mathbb{Z}_+}\)とは，\(\mathcal{F}\)の要素からなる族\((F_n)_{n \in \mathbb{Z}_+}\)で\(i \neq j\)ならば\(F_i \cap F_j = \emptyset\)を満たすものを指す．</li>
   <li>任意の\(n \in \mathbb{Z}_+\)で\(P_n \subset P_{n + 1}\)が成り立つとき，\(P_n\uparrow\)と書く．同様に任意の\(n \in \mathbb{Z}_+\)で\(P_n \supset P_{n + 1}\)が成り立つとき，\(P_n\downarrow\)と書く．</li>
+  <li>実数値関数\(f,\,g\)について，\(f \land g\)を\((f \land g)(x) = \min\{f(x),\,g(x)\}\)と定義する．また\(f\lor g\)を\((f \lor g)(x) = \min \{f(x),\,g(x)\}\)と定義する．</li>
 </ul>
 </section>
 
@@ -216,12 +217,19 @@
 </section>
 
 
-<section>
 
 <h3 id="stone-weierstrass" class="math">10. Stone&ndash;Weierstrassの定理</h3>
 
-<section>
-<h4 id="vector-space" class="math">10.1 ベクトル空間</h4>
+<h4>準備</h4>
+<p>後に参照したいので，ベクトル空間の公理を載せておく．</p>
+
+
+
+<div class="math-book">
+<i class="fa-solid fa-bookmark"></i> 線型代数の本
+</div>
+<div class="card">
+<h5>定義 10.1（ベクトル空間）</h5>
 <p>集合\(X\)が以下の性質（ベクトル空間の公理）を満たすとき，\(X\)は体\(K\)上のベクトル空間であるという．</p>
 <ol class="math narrow">
   <li class="capv1">以下を満たす二項演算\(V \times V \ni (x,\,y)\mapsto x + y \in V\)が定義されているとき，この演算を加法という．
@@ -242,35 +250,39 @@
     </ol>
   </li>
 </ol>
-</section>
+</div>
 
-<section>
-<h4 id="algebra" class="math">10.2 代数</h4>
+<p>ベクトル空間に乗法を入れたのが代数である．</p>
+
+
 <div class="math-book">
 <i class="fa-solid fa-bookmark"></i> <a href="#dudley"><cite lang="en">Dudley and Norvai&scaron;a</cite></a>Definition 4.1
 </div>
-<p>体\(K\)上のベクトル空間\(X\)において，以下を満たす二項演算\(X \times V \ni (x,\,y)\mapsto xy \in V\)が定義されているとき，この演算を乗法といい，\(X\)は体\(K\)上の代数(algebra)であるという．</p>
+<div class="card">
+<h5>定義 10.2 （代数）</h5>
+<p>体\(K\)上のベクトル空間\(X\)において，以下を満たす二項演算\(X \times V \ni (x,\,y)\mapsto xy \in V\)が定義されているとき，この演算を乗法といい，\(X\)は体\(K\)上の<strong class="math-keyword">代数</strong>(algebra)であるという．</p>
   <ol class="math narrow">
     <li class="capa">任意の\(x,\,y,\,z \in V\)について\(x (yz) = (xy) z\)．</li>
     <li class="capa">任意の\(x,\,y,\,z \in V\)について\((x + y) z = xz + yz,\,x (y + z) = xz + xz\)．</li>
     <li class="capa">任意の\(\alpha \in K\)と任意の\(x,\,y \in V\)について\(\alpha (xy) = (\alpha x) y = x (\alpha y)\)．</li>
   </ol>
 <p><span class="mathitem">(A1)&ndash;(A3)</span>に加えて次を満たすとき，代数\(X\)は可換であるという．</p>
-  <ol class="math">
+  <ol class="math narrow">
     <li class="capa4">任意の\(x,\,y\in V\)について\(x y  = y x\)．</li>
   </ol>
 <p>また<span class="mathitem">(A1)&ndash;(A3)</span>に加えて次を満たすとき，代数\(X\)は単位元をもつ(with unit)または単位的(unital) /<span class="grammar">en</span> <span class="ipa">ju&#720;n&#618;tl&#809;</span>/であるという．</p>
-  <ol class="math">
-    <li class="capa5" style="margin-bottom: 0.5ex;">ある元\(1_X \in X \setminus \{0\}\)が存在して，任意の\(x \in X\)に対して\(1_X x  = x 1_X = x\)が成り立つ．これを乗法単位元と呼ぶ．</li>
+  <ol class="math narrow">
+    <li class="capa5">ある元\(1_X \in X \setminus \{0\}\)が存在して，任意の\(x \in X\)に対して\(1_X x  = x 1_X = x\)が成り立つ．これを乗法単位元と呼ぶ．</li>
   </ol>
-<p>以下で代数といった場合，単位的で可換な代数を指すものとする．</p>
-</section>
+</div>
+<p>以下で代数といった場合，単位的で可換な代数を指すものとする．代数におけるノルムは以下のように定義される．</p>
 
-<section>
-<h4 id="banach-algebra" class="math">10.3 Banach代数</h4>
+
 <div class="math-book">
 <i class="fa-solid fa-bookmark"></i> <a href="#miyajima"><cite lang="ja">宮島</cite></a>定義2.1; <a href="#miyajima"><cite lang="en">Dudley and Norvai&scaron;a</cite></a>Def 4.6, Thm 4.8, and Def 4.9
 </div>
+<div class="card">
+<h5>定義 10（Banach代数）</h5>
 <p>体\(K\)上のベクトル空間\(X\)において，単項演算\(\|\cdot\|\colon X \to \mathbb{R}_+\)が以下の性質（ノルムの公理）を満たすとき，\(\|\cdot\|\)を\(X\)上のノルムと呼ぶ．</p>
 <ol class="math narrow">
   <li class="capn">任意の\(x \in X\)で\(\|x\| = 0\;\Leftrightarrow\;v = 0.\)</li>
@@ -283,10 +295,11 @@
   <li class="capn5">\(\|1_X \| = 1.\)</li>
 </ol>
 <p>体\(K\)上のノルム付き代数\((B,\,\|\cdot\|)\)がノルム\(\|\cdot\|\)について完備であるとき，\(B,\,\|\cdot\|\)を<strong>Banach代数</strong>と呼ぶ．</p>
-</section>
+</div>
 
-<section>
-<h4 id="cx" class="math">10.4 \(C(X)\)</h4>
+
+<div class="card">
+<h5>定義 10.4（コンパクトHausdorff空間上の連続関数全体の集合から作られる代数）</h5>
 <p>\(X\)をコンパクトHausdorff空間とし，\(X\)から\(K\)への連続関数全体の集合を\(C(X,\,K)\)または単に\(C(X)\)と書く．\(C(X)\)における加法，スカラー倍，ゼロベクトル（加法単位元）を以下で定義する．このとき\(C(X)\)は\(K\)上のベクトル空間になる．</p>
 <p>\(\forall x \in X,\,\forall f,\,g \in C(X),\,\forall \alpha \in K\)</p>
   <ol class="math narrow">
@@ -295,7 +308,7 @@
     <li class="capc">\(0_{C(X)}\colon X \to K,\, 0_{C(X)}(x) := 0.\)</li>
   </ol>
 <p>任意の\(f,\,g \in C(X)\)について乗法と乗法単位元を以下で定義する．このとき\(C(X)\)は\(K\)上の代数になる．</p>
-  <ol class="math">
+  <ol class="math narrow">
     <li class="capc4">\((fg)(x) := f(x)g(x).\)</li>
     <li class="capc5">\(1_{C(X)} \colon X \to K,\, 1_{C(X)}(x) := 1.\)</li>
   </ol>
@@ -303,7 +316,9 @@
 \begin{align*}
   \|f\|_\infty = \sup_{x \in X} |f(x)|
 \end{align*}
-で定義する．\(X\)がコンパクトなのでWeierstra&szlig;の最大値定理により\(f\)は\(X\)で最大値をもつので\(\|f\|_\infty = \max_{x \in X} |f(x)|\)と書いてもよい．このノルムは代数のノルムの性質<span class="mathitem">(N4), (N5)</span>を満たす．さらに以下で確認するように\(C(X)\)はこのノルムについて完備である，すなわちノルム付き代数\((C(X),\,\|\cdot\|_\infty)\)はBanach代数となる．以降\(C(X)\)のノルムについて単に\(\|\cdot\|\)と書いた場合もそれは一様ノルムを表すものとする．</p>
+で定義する．</p>
+</div>
+<p>\(X\)がコンパクトなのでWeierstra&szlig;の最大値定理により\(f\)は\(X\)で最大値をもつので\(\|f\|_\infty = \max_{x \in X} |f(x)|\)と書いてもよい．このノルムは代数のノルムの性質<span class="mathitem">(N4), (N5)</span>を満たす．さらに以下で確認するように\(C(X)\)はこのノルムについて完備である，すなわちノルム付き代数\((C(X),\,\|\cdot\|_\infty)\)はBanach代数となる．以降\(C(X)\)のノルムについて単に\(\|\cdot\|\)と書いた場合もそれは一様ノルムを表すものとする．</p>
 <p>確認すべき点は以下である．<p>
 <ol>
   <li>\(C(X)\)がベクトル空間であること．すなわち\(C(X)\)が加法とスカラー倍について閉じていて，<span class="mathitem">(V1), (V2)</span>を満たすこと．</li>
@@ -396,21 +411,54 @@
   &amp;\lt \frac{\varepsilon}{3} + \frac{\varepsilon}{3} + \frac{\varepsilon}{3} = \varepsilon.
 \end{align*}
 よって\(f\)は\(x\)で連続であり，\(x\)は任意だったので，\(f \in C(X)\)が示せた．<p/>
-</section> <!-- C(X, K) -->
 
-<section>
-<h4 id="algebra" class="math">10.5 部分代数</h4>
-<p>体\(K\)上の代数\(X\)の部分集合\(A\)が\(X\)における加法，スカラー倍，乗法について閉じているとき，\(A\)は\(X\)の<strong>部分代数</strong>(subalgebra)であるという．</p>
-<ol class="math">
+
+<div class="card">
+<h5>定義 10.5（部分代数）</h5>
+<p>体\(K\)上の代数\(X\)の部分集合\(A\)が\(X\)における加法，スカラー倍，乗法について閉じているとき，すなわち以下の<span class="mathitem">(SA1)&ndash;(SA3)</span>が成り立つとき，<strong class="math-keyword">部分代数</strong>(subalgebra)であるという．</p>
+<ol class="math narrow">
   <li class="capsa">任意の\(x,\,y \in A\)で\(x + y \in A\)．</li>
   <li class="capsa">任意の\(\alpha \in K\)と任意の\(x \in A\)について\(\alpha x \in A\)．</li>
   <li class="capsa">任意の\(x,\,y \in A\)で\(xy \in A\)．</li>
 </ol>
 <p>\(A\)を\(X\)の任意の部分集合とすると，\(A\)を含むような最小の部分代数が存在する．これは\(A\)を含む部分代数の共通部分として得られる．そのような部分代数を，\(A\)によって生成される部分代数という．</p>
+</div>
 
-<section>
-<h5 id="algebra" class="math">命題 10.5.1</h5>
-<p>\(B\)が\(C(X)\)部分代数ならば\(\overline{B}\)も部分代数である．</p>
+
+<div class="card">
+<h5>命題 10.6</h5>
+<p>\(f \in C(X,\,K)\)ならば\(|f| \in C(X,\,K)\)が成り立つ．</p>
+</div>
+
+<p><strong>証明</strong> \(f\)が連続なので，任意の\(x_0 \in X\)において，どのような\(\varepsilon \gt 0\)に対しても，\(x_0\)の近傍\(V\)で，\(x \in V\)ならば
+\begin{align*}
+  |f(x) - f(x_0)| \lt \varepsilon
+\end{align*}
+となるようなものが存在する．三角不等式の性質\(| |a| - |b| | \leq |a - b|\)より
+\begin{align*}
+  ||f(x)| - |f(x_0)|| \leq |f(x) - f(x_0)| \lt \varepsilon
+\end{align*}
+が成り立つので\(f\)は\(x_0\)で連続である．\(x_0\)は任意だったので\(f\)は\(X\)で連続であり，ゆえに\(f \in C(X,\,K)\)が示せた．</p>
+
+
+<div class="card">
+<h5>命題 10.7</h5>
+<p>\(f,\,g \in C(X,\,\mathbb{R})\)ならば\(f \lor g,\,f \land g \in C(X,\,\mathbb{R})\)が成り立つ．</p>
+</div>
+
+<p><strong>証明</strong> \(f \lor g,\,f \land g\)はそれぞれ
+\begin{align*}
+  f \lor g = \frac{1}{2}(f + g + | f - g|),\quad
+  f \land g = \frac{1}{2}(f + g - | f - g|),\quad
+\end{align*}
+と表される．加法とスカラー倍について閉じていること（命題10.?）から\(f - g \in\)であり，命題10.6より\(|f -g| \in C(X)\)である．再び命題10.?を用いて\(f \lor g,\,f \land g \in C(X,\,\mathbb{R})\)がわかる．</p>
+
+
+<div class="card">
+<h5>命題 10.8</h5>
+<p>\(B\)が\(C(X)\)部分代数ならばその閉包\(\overline{B}\)も部分代数である．</p>
+</div>
+
 <p><strong>証明</strong> 【積について閉じていること】 任意の\(f \in \overline{B}\)をとる．\(f\)が\(B\)の集積点なので，\(B\)上の列\((f_n)_{n \in \mathbb{Z}_+}\)で，\(f_n \to f\)となるようなものが存在する．この\((f_n)_{n \in \mathbb{Z}_+}\)について，ある\(N_1 \in \mathbb{Z}_+\)が存在して，\(n \geq N_1\)ならば
 \begin{align*}
   \|f_n\| - \|f\| \leq \|f_n - f\| \lt 1 \\
@@ -432,20 +480,22 @@
   &amp;\leq \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
 \end{align*}
 が成り立つ．したがって任意の\(\varepsilon \gt 0\)で\(\{h \in C(X) \mid \|h - fg\| \lt \varepsilon\} \cap B \neq \emptyset\)となり，\(fg \in \overline{B}\)がわかる．</p>
-</section><!-- closure -->
-</section><!-- subalgebra -->
 
-<section>
+
+<div class="math-book">
+<i class="fa-solid fa-bookmark"></i> <a href="#miyajima"><cite lang="ja">宮島</cite></a>補題 7.62
+</div>
+<div class="card">
+<h5>命題 10.9</h5>
+<p>\(X\)をコンパクトHausdorff空間，\(B\)を\(C(X,\,\mathbb{R})\)の閉部分代数とする．このとき\(f,\,g \in C(X,\,\mathbb{R})\)ならば\(f \land g,\,f \lor g \in B\)が成り立つ．</p>
+</div>
+
 <h3 id="stone-weierstrass-statement" class="math">10.6 Stone&ndash;Weierstra&szlig;の定理</h3>
 <p>\(X\)をコンパクトHausdorff空間とする．\(C(X)\)の部分集合\(A\)が以下の<span class="mathitem">(S1), (S2)</span>を満たすならば，\(A\)の生成する\(C(X)\)の部分代数は\(C(X)\)で稠密になる．</p>
 <ol class="math narrow">
   <li class="capsw">\(1_{C(X)} \in A.\)</li>
   <li class="capsw">任意の異なる2点\(x,\,y \in X\)に対して，\(f \in A\)で\(f(x) \neq f(y)\)となるものが存在する．</li>
 </ol>
-</section>
-
-
-</section>
 
 
 
@@ -671,15 +721,6 @@
 <h5>定義（正線型汎関数）</h5>
 <p>
 </p>
-</div>
-
-<div class="card">
-<h5>命題</h5> <p>\(f,\,g \in C(X,\,K))\)とする．関数\(f \lor g\)と\(f \land g\)を
-\begin{align*}
-  (f \lor g)(x) = \max \{f(x),\,g(x)\},\quad
-  (f \land g)(x) = \min \{f(x),\,g(x)\}
-\end{align*}
-で定義する．このとき\(f \lor g,\, f \land g \in C(X,\,K)\)が成り立つ．</p>
 </div>
 
 <section>

@@ -32,27 +32,6 @@ em {
   font-style: oblique;
 }
 
-div.math-book {
-  padding-bottom: 5px;
-}
-div.math-book a {
-  color: #373a3c;
-}
-div.math-book cite {
-  margin-right: 0.5rem;
-}
-div.math-book cite:lang(en) {
-  font-family: "Roboto", sans-serif;
-  font-style: oblique;
-}
-div.math-book cite:lang(ja) {
-  font-style: normal;
-}
-div.math-book i.fa-bookmark {
-  margin-right: 0.25rem;
-  color: #1560bd;
-}
-
 :lang(ar) {
   font-family: "Amiri", "Roboto", "source-han-sans-japanese", sans-serif;
 }
@@ -174,6 +153,7 @@ ol.citation li::before {
 
 ol.math {
   padding-left: 1rem;
+  margin-bottom: 0;
   counter-reset: m;
 }
 ol.math li {
@@ -187,6 +167,47 @@ ol.math li::before {
   font-family: "mathematical", serif;
   font-size: 119.5%;
   counter-increment: m;
+}
+
+.math-book {
+  padding-bottom: 0;
+}
+.math-book a {
+  color: #373a3c;
+}
+.math-book cite {
+  margin-right: 0.5rem;
+}
+.math-book cite:lang(en) {
+  font-family: "Roboto", sans-serif;
+  font-style: oblique;
+}
+.math-book cite:lang(ja) {
+  font-style: normal;
+}
+.math-book i.fa-bookmark {
+  margin-right: 0.25rem;
+  color: #1560bd;
+}
+
+.card {
+  margin: 20px 0;
+  background-color: inherit;
+  border: 2px solid #1560bd;
+  border-radius: 5px;
+}
+.math-book + .card {
+  margin-top: 0.5rem;
+}
+.card h5 {
+  padding: 4px 12px;
+  margin: 0;
+  font-weight: bold;
+  color: #fff;
+  background-color: #1560bd;
+}
+.card p {
+  padding: 12px 12px 0;
 }
 
 ol.narrow li {
@@ -468,23 +489,6 @@ h5.math {
 .marker {
   width: 300px;
   background: linear-gradient(transparent 50%, yellow);
-}
-
-.card {
-  margin: 20px 0;
-  background-color: inherit;
-  border: 2px solid #1560bd;
-  border-radius: 5px;
-}
-.card h5 {
-  padding: 4px 12px;
-  margin: 0;
-  font-weight: bold;
-  color: #fff;
-  background-color: #1560bd;
-}
-.card p {
-  padding: 12px 12px 0;
 }
 
 .toc-container {
