@@ -57,32 +57,6 @@ em {
   font-style: oblique;
 }
 
-div.math-book {
-  padding-bottom: 5px;
-
-  a {
-    color: $black;
-  }
-
-  cite {
-    margin-right: 0.5rem;
-
-    &:lang(en) {
-      font-family: $western-font, sans-serif;
-      font-style: oblique;
-    }
-
-    &:lang(ja) {
-      font-style: normal;
-    }
-  }
-
-  i.fa-bookmark {
-    margin-right: 0.25rem;
-    color: $denim;
-  }
-}
-
 :lang(ar) {
   font-family: $arabic-font, $western-font, $jp-font, sans-serif;
 }
@@ -211,6 +185,7 @@ ol.citation {
 
 ol.math {
   padding-left: 1rem;
+  margin-bottom: 0;
   counter-reset: m;
 
   li {
@@ -226,6 +201,55 @@ ol.math {
       // content: '(' counter(m) ')';
       counter-increment: m;
     }
+  }
+}
+
+.math-book {
+  padding-bottom: 0;
+
+  a {
+    color: $black;
+  }
+
+  cite {
+    margin-right: 0.5rem;
+
+    &:lang(en) {
+      font-family: $western-font, sans-serif;
+      font-style: oblique;
+    }
+
+    &:lang(ja) {
+      font-style: normal;
+    }
+  }
+
+  i.fa-bookmark {
+    margin-right: 0.25rem;
+    color: $denim;
+  }
+}
+
+.card {
+  margin: 20px 0;
+  background-color: inherit;
+  border: 2px solid $denim;
+  border-radius: 5px;
+
+  .math-book + & {
+    margin-top: 0.5rem;
+  }
+
+  h5 {
+    padding: 4px 12px;
+    margin: 0;
+    font-weight: bold;
+    color: $white;
+    background-color: $denim;
+  }
+
+  p {
+    padding: 12px 12px 0;
   }
 }
 
@@ -529,25 +553,6 @@ h5.math {
 .marker {
   width: 300px;
   background: linear-gradient(transparent 50%, yellow);
-}
-
-.card {
-  margin: 20px 0;
-  background-color: inherit;
-  border: 2px solid $denim;
-  border-radius: 5px;
-
-  h5 {
-    padding: 4px 12px;
-    margin: 0;
-    font-weight: bold;
-    color: $white;
-    background-color: $denim;
-  }
-
-  p {
-    padding: 12px 12px 0;
-  }
 }
 
 .toc-container {
