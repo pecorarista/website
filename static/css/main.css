@@ -219,6 +219,10 @@ ol.math li.s::before {
   content: "(s" counter(m) ")";
 }
 
+ol.math li.parentheses::before {
+  content: "(" counter(m) ")";
+}
+
 ol.math li.capsw::before {
   content: "(SW" counter(m) ")";
 }
