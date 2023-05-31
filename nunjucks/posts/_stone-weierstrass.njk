@@ -285,41 +285,74 @@
 {% set thm = thm + 1 %}
 <div class="card">
 <h5>命題 {{ section }}.{{ thm }}</h5>
-<p>冪級数
-\begin{align*}
-  1 - \frac{t}{2} -\sum_{n = 2}^\infty \frac{(2n - 3)!!}{n!2^n} t^n
-\end{align*}
-は\([0,\,1]\)において\(f(t) = \sqrt{1 - t}\)に一様収束する．
+<p>
+a
 </p>
 </div>
 
-<p><strong>証明</strong> 区間\((-\infty,\,1)\)において\(f(t)\)は微分可能で
+<p><strong>証明</strong> 関数\(f\)を
+\begin{align*}
+  f\colon(-\infty,\,1] \to \mathbb{R},\quad (f(t) = \sqrt{1 - t}
+\end{align*}
+と定義する．この関数は\((-\infty,\,1)\)で微分可能で，各次の導関数は以下のようになる：
 \begin{gather*}
   f'(t) = \frac{1}{2} (1 - t)^{-1/2} \cdot (-1) = -\frac{1}{2}(1 - t)^{-1/2}, \\
   f''(t) = -\frac{1}{2}\cdot \left(-\frac{1}{2}\right) \cdot (1 - t)^{-3/2} \cdot (-1) = - \frac{1}{4}(1 - t)^{-3/2}, \\
   f'''(t) = -\frac{1}{4} \cdot \left(-\frac{3}{2}\right) \cdot (1 - t)^{-5/2} \cdot (-1) = - \frac{3}{8} (1 - t)^{-5/2}, \\
   \vdots \\
-  f^{(n)}(t) = - \frac{(2 n - 3) !! }{2^n} (1 - t)^{- (2 n - 1)/2} \ (n \geq 2)
+  f^{(n)}(t) = - \frac{(2 n - 3) !! }{2^n} (1 - t)^{- (2 n - 1)/2} \ (n \geq 2).
 \end{gather*}
-が成り立つ．ここで\((2n - 3)!! = (2n - 3)\cdot(2n - 5) \cdot \cdots \cdot 5 \cdot 3 \cdot 1\)を表す．\((-\infty,\,1)\)の範囲で無限回微分可能なので，\(t = 0\)におけるTaylor級数
+ここで\((2n - 3)!!\)は二重階乗\((2n - 3)\cdot(2n - 5) \cdot \cdots \cdot 5 \cdot 3 \cdot 1\)である．</p>
+<p>Taylorの定理により任意の\(-1 \lt h \lt 1\)について\(|\theta| \lt h\)が存在して
 \begin{align}
-  &amp;f(0) + f'(0) s + \frac{1}{2} f''(0) s^2 + \frac{1}{3!}f'''(0) s^3 + \cdots + \frac{1}{n!} f^{(n)} s^n + \cdots \notag \\
-  &amp;= 1 - \frac{s}{2} -\sum_{n = 2}^\infty \frac{(2n - 3)!!}{n!2^n} s^n \label{taylor}
+  \sqrt{1 - h}
+  &amp;= f(0) + f'(0) h + \frac{1}{2} f''(0) h^2 + \frac{1}{3!}f'''(0) h^3 + \cdots + \frac{1}{(n - 1)!} f^{(n - 1)} h^{n - 1} + \frac{1}{n!}f^{(n)}(\theta) t^n \notag \\
+  &amp;= 1 - \frac{h}{2} -\sum_{k = 2}^{n - 1} \frac{(2k - 5)!!}{(k - 1)!2^{k - 1}} h^{k - 1} -
+  \frac{(2n - 3)!!}{n!2^n} \theta^n \notag \\
+  &amp;= 1 - \sum_{k = 1}^{n - 1} a_k h^k - a_n \theta^n
+  \label{taylor}
 \end{align}
-を定義することができる（注：Taylorの定理により～）．\((\ref{taylor})\)は数列\((a_n)_{n \in \mathbb{N}}\)
+が成り立つ．ここで
 \begin{align*}
-  a_0 = 1,\,a_1 = -\frac{1}{2},\,a_n = \frac{(2n - 3)!!}{n!2^n} \ (n \geq 2)
+  a_1 = \frac{1}{2},\quad a_n = \frac{(2n - 3)!!}{n!2^n}\quad (n \geq 2)
 \end{align*}
-を用いると\(\sum_{n = 0}^\infty a_n s^n\)と表される．Ratio testを行うために\(a_{n + 1}/a_n\) \((n \geq 2)\)を計算する：
+とした．このとき
 \begin{align*}
-  \frac{a_{n + 1}}{a_n}
-  =  \frac{n!2^n}{(2n - 3)!!} \frac{(2n - 1)!!}{(n + 1)!2^{n + 1}}
-  =  \frac{2n - 1}{2n}
-  =  1 - \frac{1}{2n}.
+\left|\sqrt{1 - h} - \left(1 - \sum_{k = 2}^{n -1} a_k h^k \right)\right|
+&amp;= \left| a_n \theta^k \right| \\
+&amp;= \frac{(2n - 3)!!}{n!2^n} \theta^n  \\
+&amp;\lt \frac{1}{2^n (2n - 4) \cdot (2n - 6) \cdot \cdots \cdot 4 \cdot 2}  \\
+&amp;\leq \frac{1}{2^n} \to 0 \quad(n \to \infty)
 \end{align*}
-ゆえに\(\lim_{n \to \infty}|a_{n + 1}/a_n| = 1\)である．したがってratio testだけでは判断できない．次にRaabeの判定法を用いることを試みると
+となるから，\(h \in (-1,\,1)\)の各点で
+\begin{align}
+  \sqrt{1 - h} = 1 - \sum_{k = 1}^\infty a_n h^n
+\end{align}
+が成り立つ．\(h = \pm 1\)のときにも\((\ref{taylor})\)が成り立つことを示す．まず\(h = \pm 1\)のとき\(\sum_{n = 0}^\infty a_n h^n\)が収束するかどうかを確認する．Ratio testを試すと
+\begin{align}
+  \left| \frac{a_{n + 1}h^{n + 1}}{a_n h^n} \right|
+  &amp;=  \frac{n!2^n}{(2n - 3)!!} \frac{(2n - 1)!!}{(n + 1)!2^{n + 1}} \notag \\
+  &amp;=  \frac{2n - 1}{2(n + 1)} \notag \\
+  &amp;=  \frac{2(n + 1) - 3}{2(n + 1)} \notag \\
+  &amp;= 1 - \frac{3}{2(n + 1)} \to 1 \quad(n \to \infty) \label{radius}
+\end{align}
+となり，判断することができない．次にRaabeの判定法を試みると
 \begin{align*}
-n \left( \frac{a_{n + 1}}{a_n} - 1\right) = - \frac{1}{2}
+n \left(1 - \left|\frac{a_{n + 1}h^{n + 1}}{a_n h^n}\right|\right)
+&amp;= n \left(1 - 1 + \frac{3}{2(n + 1)}\right) \\
+&amp;= \frac{3 n}{2(n + 1)} \\
+&amp;= \frac{3}{\displaystyle 2\left(1 + \frac{1}{n}\right)} \to \frac{3}{2} \quad (n \to \infty).
 \end{align*}
-が成り立つから，絶対収束する．
+となりしたがって\(h = \pm 1\)の場合も収束することがわかる．Abelの連続性定理により
+Diniの定理？
+</p>
+<p>関数\(p\)を
+\begin{align}
+  p [0,\, 1]\colon \to \mathbb{R},\quad p(h) = \sum_{k = 1}^n a_n h^n
+\end{align}
+で定義する．\(1 - t^2\)
+\begin{align*}
+  \Bigl| |t| - p(t) \Bigr|
+  &amp;= \left| \sqrt{1 - s} - \sum_{k = 1}^N a_k s^k  \right| \\
+\end{align*}
 </p>
