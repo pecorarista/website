@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', event => {
     element.setAttribute('target', '_blank');
   });
 
-  document.body.querySelectorAll('p, li, h1, h2, h3, h4, h5').forEach(element => {
+  document.body.querySelectorAll('p, li, h1, h2, h3, h4, h5, figcaption').forEach(element => {
     transform(element);
   });
 

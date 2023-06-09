@@ -360,7 +360,35 @@
 
 
 <div class="card">
-<h5>命題 .13</h5>
+<h5>定理 13（Raabeの判定法）</h5>
+<p>正項級数\(\displaystyle \sum_{n = 1}^\infty a_n\)について，\(\displaystyle \lim_{n\to \infty} \frac{a_{n + 1}}{a_n} = 1\)（なのでratio testでは判別できない）かつ\(\displaystyle b_n := n\left(1 - \frac{a_{n + 1}}{a_n}\right)\)の極限\(\displaystyle \beta := \lim_{n \to \infty} b_n\)が存在するとき，\(\displaystyle \sum_{n = 1}^\infty a_n\)は\(\beta \gt 1\)ならば収束し，\(\beta\lt 1\)ならば発散する．</p>
+</div>
+
+
+<div class="card">
+<h5>定理 14（Abelの連続性定理）</h5>
+<p>収束半径\(1\)の冪級数\(\displaystyle \sum_{n = 0}^\infty a_n x^n\)の定める連続関数を\(G\)とする．\(\displaystyle \sum_{n = 0}^\infty a_n\)が収束するならば
+\begin{align}
+  \lim_{x \to 1-0} G(x) = \sum_{n = 0}^\infty a^n x^n
+\end{align}
+が成り立つ．
+</p>
+</div>
+
+<strong>証明</strong> <p>\(\sum_{n = 0}^\infty a_n\)が収束するので，任意の\(\varepsilon \gt 0\)に対して，ある\(N \in \mathbb{N}\)が存在して，任意の\(n \geq m \geq N\)について
+\begin{align*}
+  \left|\sum_{k = m}^n a^n\right| \lt \varepsilon
+\end{align*}
+が成り立つ．\(\displaystyle s_n = \sum_{k = m}^n a_k\)とすると，任意の\(x \in [0,\,1]\)について
+\begin{align*}
+  \left|\sum_{k = m}^n a_k x^k \right|
+&amp;= |\|
+\end{align*}
+</p>
+
+
+<div class="card">
+<h5>命題 15</h5>
 <p>
 a
 </p>
@@ -368,7 +396,7 @@ a
 
 <p><strong>証明</strong> 関数\(f\)を
 \begin{align*}
-  f\colon(-\infty,\,1] \to \mathbb{R},\quad (f(t) = \sqrt{1 - t}
+  f\colon(-\infty,\,1] \to \mathbb{R},\quad f(t) = \sqrt{1 - t}
 \end{align*}
 と定義する．この関数は\((-\infty,\,1)\)で微分可能で，各次の導関数は以下のようになる：
 \begin{gather*}
@@ -379,61 +407,70 @@ a
   f^{(n)}(t) = - \frac{(2 n - 3) !! }{2^n} (1 - t)^{- (2 n - 1)/2} \ (n \geq 2).
 \end{gather*}
 ここで\((2n - 3)!!\)は二重階乗\((2n - 3)\cdot(2n - 5) \cdot \cdots \cdot 5 \cdot 3 \cdot 1\)である．</p>
-<p>Taylorの定理により任意の\(-1 \lt h \lt 1\)について\(|\theta| \lt h\)が存在して
+<p>Taylorの定理によりと任意の\(-1 \lt t \lt 1\)について\(|\theta| \lt t\)が存在して
 \begin{align*}
-  \sqrt{1 - h}
-  &amp;= f(0) + f'(0) h + \frac{1}{2} f''(0) h^2 + \frac{1}{3!}f'''(0) h^3 + \cdots + \frac{1}{(n - 1)!} f^{(n - 1)} h^{n - 1} + \frac{1}{n!}f^{(n)}(\theta) t^n \\
-  &amp;= 1 - \frac{h}{2} -\sum_{k = 2}^{n - 1} \frac{(2k - 5)!!}{(k - 1)!2^{k - 1}} h^{k - 1} -
+  \sqrt{1 - t}
+  &amp;= f(0) + f'(0) t + \frac{1}{2} f''(0) t^2 + \frac{1}{3!}f'''(0) t^3 + \cdots + \frac{1}{(n - 1)!} f^{(n - 1)} t^{n - 1} + \frac{1}{n!}f^{(n)}(\theta) t^n \\
+  &amp;= 1 - \frac{t}{2} -\sum_{k = 2}^{n - 1} \frac{(2k - 3)!!}{k!2^k} t^{k} -
   \frac{(2n - 3)!!}{n!2^n} \theta^n \\
-  &amp;= 1 - \sum_{k = 1}^{n - 1} a_k h^k - a_n \theta^n
+  &amp;= \sum_{k = 0}^{n - 1} a_k t^k - a_n \theta^n
 \end{align*}
 が成り立つ．ここで
 \begin{align*}
-  a_1 = \frac{1}{2},\quad a_n = \frac{(2n - 3)!!}{n!2^n}\quad (n \geq 2)
+  a_0 = 1,\quad a_1 = \frac{1}{2},\quad a_n = \frac{(2n - 3)!!}{n!2^n}\quad (n \geq 2)
 \end{align*}
-とした．このとき
-\begin{align*}
-\left|\sqrt{1 - h} - \left(1 - \sum_{k = 2}^{n -1} a_k h^k \right)\right|
-&amp;= \left| a_n \theta^k \right| \\
-&amp;= \frac{(2n - 3)!!}{n!2^n} \theta^n  \\
-&amp;\lt \frac{1}{2^n (2n - 4) \cdot (2n - 6) \cdot \cdots \cdot 4 \cdot 2}  \\
-&amp;\leq \frac{1}{2^n} \to 0 \quad(n \to \infty)
-\end{align*}
-となるから，\(h \in (-1,\,1)\)の各点で
+とした．\(t = \pm 1\)のとき\(\sum_{n = 0}^\infty a_n t^n\)が収束することを示す．Ratio testを試みると
 \begin{align}
-  \sqrt{1 - h} = 1 - \sum_{k = 1}^\infty a_n h^n
-  \label{taylor}
-\end{align}
-が成り立つ．\(h = \pm 1\)のときにも\((\ref{taylor})\)が成り立つことを示す．まず\(h = \pm 1\)のとき\(\sum_{n = 0}^\infty a_n h^n\)が収束することを確認する．Ratio testを試すと
-\begin{align}
-  \left| \frac{a_{n + 1}h^{n + 1}}{a_n h^n} \right|
+  \left| \frac{a_{n + 1}t^{n + 1}}{a_n t^n} \right|
   &amp;=  \frac{n!2^n}{(2n - 3)!!} \frac{(2n - 1)!!}{(n + 1)!2^{n + 1}} \notag \\
   &amp;=  \frac{2n - 1}{2(n + 1)} \notag \\
   &amp;=  \frac{2(n + 1) - 3}{2(n + 1)} \notag \\
   &amp;= 1 - \frac{3}{2(n + 1)} \to 1 \quad(n \to \infty) \label{radius}
 \end{align}
-となり，判断することができない．次にRaabeの判定法を試みると
+となるため，ratio testではなくRaabeの判定法を試みる．
 \begin{align*}
-n \left(1 - \left|\frac{a_{n + 1}h^{n + 1}}{a_n h^n}\right|\right)
+b_n
+&amp;:= n \left(1 - \frac{|a_{n + 1}t^{n + 1}|}{|a_n t^n|}\right) \\
 &amp;= n \left(1 - 1 + \frac{3}{2(n + 1)}\right) \\
 &amp;= \frac{3 n}{2(n + 1)} \\
-&amp;= \frac{3}{\displaystyle 2\left(1 + \frac{1}{n}\right)} \to \frac{3}{2} \quad (n \to \infty).
+&amp;= \frac{3}{\displaystyle 2\left(1 + \frac{1}{n}\right)} \to \frac{3}{2}
 \end{align*}
-となる．したがって\(h = \pm 1\)の場合も（何らかの値に）収束する．</p>
-<p>関数\(g\)を
+\(\lim_{n \to \infty} b_n \gt 1\)であるから，\(t = \pm 1\)のとき\(\sum_{n = 0}^\infty a_n t^n\)は絶対収束する．このことと冪級数の性質から\(\sum_{n = 0}^n a_n t^n\)が\(|t| \lt 1\)の範囲で\(f(t)\)に一様収束することがわかる．</p>
+<p>関数\(g\colon[-1,\,1] \to \mathbb{R}\)を
 \begin{align}
-  g\colon[0,\, 1] \to \mathbb{R},\quad g(t) = 1 - \sum_{k = 1}^n a_n t^n
+  g(t) = \sum_{n = 0}^\infty a_n t^n
 \end{align}
 で定義する．Abelの連続性定理により
 \begin{align*}
   g(1) = \lim_{t \to 1 - 0} \sqrt{1 - t} = 0
 \end{align*}
-\(\sqrt{1 - f(t)} \in \overline{B}\)
+である．</p>
+<p>\(y = f(t)\)の多項式近似を図示すると以下のようになる．</p>
+<figure class="centered">
+  <img
+    src="/static/images/sqrt.svg"
+    alt="polynomial approximation of sqrt(1 - t)"
+    style="background-color: transparent; width: 100%; height: auto; max-width: 600px; margin-top: 2ex;"
+  >
+  <figcaption><strong>図1：</strong>\(\sqrt{1 - t}\)の多項式近似．</figcaption>
+</figure>
+<p>関数\(p\colon[-1,\,1] \to \mathbb{R}_+\)を
 \begin{align*}
-  \Bigl| |f(t)| - p(t) \Bigr|
-  &amp;= \left| \sqrt{1 - s} - \sum_{k = 1}^N a_k s^k  \right| \\
+  p(t) = g(1 - t^2)
 \end{align*}
+で定義する．
+
+また\(p(0) = g(1) = 0\)であるから
 </p>
+<figure class="centered">
+  <img
+    src="/static/images/abs.svg"
+    alt="polynomial approximation of absolute value"
+    style="background-color: transparent; width: 100%; height: auto; max-width: 800px; margin-top: 2ex;"
+  >
+  <figcaption><strong>図2：</strong>\(|t|\)の多項式近似．</figcaption>
+</figure>
+
 </section>
 
   </div>
