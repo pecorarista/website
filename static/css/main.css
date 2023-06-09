@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @font-face {
   font-family: "mathematical";
   src: url("/static/fonts/MathJax_Main-Regular.otf") format("opentype");
@@ -191,7 +192,7 @@ ol.math li::before {
 }
 
 .card {
-  margin: 20px 0;
+  margin: 30px 0;
   background-color: inherit;
   border: 2px solid #1560bd;
   border-radius: 5px;
@@ -200,14 +201,20 @@ ol.math li::before {
   margin-top: 0.5rem;
 }
 .card h5 {
-  padding: 4px 12px;
-  margin: 0;
+  padding: 10px 18px;
+  margin: 0 0 10px;
   font-weight: bold;
   color: #fff;
   background-color: #1560bd;
 }
 .card p {
-  padding: 12px 12px 0;
+  padding: 15px 30px 0;
+}
+.card p:last-child {
+  padding-bottom: 15px;
+}
+.card ol.math:last-child {
+  padding-bottom: 20px;
 }
 
 ol.narrow li {
@@ -219,34 +226,6 @@ ol.math li.s::before {
   content: "(s" counter(m) ")";
 }
 
-ol.math li.parentheses::before {
-  content: "(" counter(m) ")";
-}
-
-ol.math li.capsw::before {
-  content: "(SW" counter(m) ")";
-}
-
-ol.math li.capsm::before {
-  content: "(SM" counter(m) ")";
-}
-
-ol.math li.capd::before {
-  content: "(D" counter(m) ")";
-}
-
-ol.math li.capr::before {
-  content: "(R" counter(m) ")";
-}
-
-ol.math li.capm::before {
-  content: "(M" counter(m) ")";
-}
-
-ol.math li.capsa::before {
-  content: "(SA" counter(m) ")";
-}
-
 ol.math li.p::before {
   content: "(p" counter(m) ")";
 }
@@ -255,64 +234,32 @@ ol.math li.d::before {
   content: "(d" counter(m) ")";
 }
 
-ol.math li.alphabetical::before {
-  content: "(" counter(m, lower-latin) ")";
+ol.math li.parentheses::before {
+  content: "(" counter(m) ")";
+}
+
+ol.math li.prime::before {
+  content: "(" counter(m) "ʹ)";
+}
+
+ol.math li.parentheses4::before {
+  content: "(4)";
+}
+
+ol.math li.parentheses5::before {
+  content: "(5)";
 }
 
 ol.math li.capc::before {
   content: "(C" counter(m) ")";
 }
 
-ol.math li.capc4::before {
-  content: "(C4)";
-}
-
-ol.math li.capc5::before {
-  content: "(C5)";
-}
-
-ol.math li.capa::before {
-  content: "(A" counter(m) ")";
-}
-
-ol.math li.capa4::before {
-  content: "(A4)";
-}
-
-ol.math li.capa5::before {
-  content: "(A5)";
-}
-
-ol.math li.capn::before {
-  content: "(N" counter(m) ")";
-}
-
-ol.math li.capn4::before {
-  content: "(N4)";
-}
-
-ol.math li.capn5::before {
-  content: "(N5)";
-}
-
-ol.math li.roman::before {
+ol.math li.lower-roman::before {
   content: "(" counter(m, lower-roman) ")";
 }
 
-ol.math li.capv1::before {
-  content: "(V1)";
-}
-
-ol.math li.capv1child::before {
-  content: "(V1." counter(m) ")";
-}
-
-ol.math li.capv2::before {
-  content: "(V2)";
-}
-
-ol.math li.capv2child::before {
-  content: "(V2." counter(m) ")";
+ol.math li.upper-roman::before {
+  content: "(" counter(m, upper-roman) ")";
 }
 
 figure.blockquote {
