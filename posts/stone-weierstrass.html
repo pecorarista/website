@@ -375,15 +375,36 @@
 </p>
 </div>
 
-<strong>証明</strong> <p>\(\sum_{n = 0}^\infty a_n\)が収束するので，任意の\(\varepsilon \gt 0\)に対して，ある\(N \in \mathbb{N}\)が存在して，任意の\(n \geq m \geq N\)について
+<strong>証明</strong> <p>\(\sum_{n = 0}^\infty a_n\)が収束するので，任意の\(\varepsilon \gt 0\)に対して，ある\(N \in \mathbb{N}\)が存在して，任意の\(n \gt m \geq N\)について
 \begin{align*}
-  \left|\sum_{k = m}^n a^n\right| \lt \varepsilon
+  \left|\sum_{k = 0}^n a_k - \sum_{k = 0}^m a_k \right| = \left| \sum_{k = m + 1}^n a_k \right| \lt \varepsilon
 \end{align*}
-が成り立つ．\(\displaystyle s_n = \sum_{k = m}^n a_k\)とすると，任意の\(x \in [0,\,1]\)について
+が成り立つ．任意の\(x \in [0,\,1]\)について
 \begin{align*}
-  \left|\sum_{k = m}^n a_k x^k \right|
-&amp;= |\|
+  &amp;\left|\sum_{k = 0}^n a_k x^k  -  \sum_{k = 0}^m a_k x^k  \right| \\
+  &amp;= \left|a_{m +  1} x^{m + 1} + a_{m + 2} x^{m + 2} + \cdots + a_{n - 1} x^{n - 1} + a_n x^{n}\right| \\
+  &amp;= \left|
+    \sum_{k = m + 1}^{m + 1} a_k x^{m + 1}
+    +
+    \left(\sum_{k = m + 1}^{m + 2} a_k  -  \sum_{k = m + 1}^{m + 1} a_k \right)x^{m + 2}
+    + \cdots
+    \left(\sum_{k = m + 1}^n a_k - \sum_{k = m + 1}^{n - 1} a_k \right) x^n
+    \right| \\
+  &amp;= \left|
+    (x^{m + 1} - x^{m + 2}) \sum_{k = m + 1}^{m + 1} a_k
+    + \cdots
+    + (x^{n - 1} - x^n) \sum_{k = m + 1}^{n - 1} a_k
+    + x^n \sum_{k = m + 1}^{n} a_k
+    \right| \\
+  &amp;\leq
+    \left| x^{m + 1} - x^{m + 2}\right| \left| \sum_{k = m + 1}^{m + 1} a_k \right|
+    + \cdots
+    + \left| x^{n - 1} - x^n \right| \left| \sum_{k = m + 1}^{n - 1} a_k \right|
+    + \left| x^n \right| \left| \sum_{k = m + 1}^{n} a_k \right| \\
+    &amp; \leq \varepsilon \left(x^{m + 1} - x^{m + 2} + x^{m + 2} - x^{m + 3} + \cdots + x^{n - 1} - x^{n} + x^n \right) \\
+    &amp; \leq \varepsilon x^{m + 1} \leq \varepsilon
 \end{align*}
+となり\(\sum_{n = 0}^\infty a_n x^n\)は一様収束する．
 </p>
 
 
@@ -419,7 +440,15 @@ a
 \begin{align*}
   a_0 = 1,\quad a_1 = \frac{1}{2},\quad a_n = \frac{(2n - 3)!!}{n!2^n}\quad (n \geq 2)
 \end{align*}
-とした．\(t = \pm 1\)のとき\(\sum_{n = 0}^\infty a_n t^n\)が収束することを示す．Ratio testを試みると
+とした．このとき
+\begin{align*}
+\left|\sqrt{1 - t} - \left(1 - \sum_{k = 2}^{n -1} a_k t^k \right)\right|
+  &amp;= \left| a_n \theta^k \right| \\
+  &amp;= \frac{(2n - 3)!!}{n!2^n} \theta^n  \\
+  &amp;\lt \frac{1}{2^n (2n - 4) \cdot (2n - 6) \cdot \cdots \cdot 4 \cdot 2}  \\
+  &amp;\leq \frac{1}{2^n} \to 0 \quad(n \to \infty)
+\end{align*}
+となるから，\(\sum_{k = 1}^\infty a_k t^k\)は区間\((-1,\,1)\)で\(\sqrt{1 - t}\)に一様収束する．\(t = \pm 1\)のとき\(\sum_{n = 0}^\infty a_n t^n\)が収束することを示す．Ratio testを試みると
 \begin{align}
   \left| \frac{a_{n + 1}t^{n + 1}}{a_n t^n} \right|
   &amp;=  \frac{n!2^n}{(2n - 3)!!} \frac{(2n - 1)!!}{(n + 1)!2^{n + 1}} \notag \\
@@ -435,14 +464,9 @@ b_n
 &amp;= \frac{3 n}{2(n + 1)} \\
 &amp;= \frac{3}{\displaystyle 2\left(1 + \frac{1}{n}\right)} \to \frac{3}{2}
 \end{align*}
-\(\lim_{n \to \infty} b_n \gt 1\)であるから，\(t = \pm 1\)のとき\(\sum_{n = 0}^\infty a_n t^n\)は絶対収束する．このことと冪級数の性質から\(\sum_{n = 0}^n a_n t^n\)が\(|t| \lt 1\)の範囲で\(f(t)\)に一様収束することがわかる．</p>
-<p>関数\(g\colon[-1,\,1] \to \mathbb{R}\)を
-\begin{align}
-  g(t) = \sum_{n = 0}^\infty a_n t^n
-\end{align}
-で定義する．Abelの連続性定理により
+\(\lim_{n \to \infty} b_n \gt 1\)であるから，\(t = \pm 1\)のとき\(\sum_{n = 0}^\infty a_n t^n\)は絶対収束する．Abelの連続性定理により
 \begin{align*}
-  g(1) = \lim_{t \to 1 - 0} \sqrt{1 - t} = 0
+  lim_{t \to 1 - 0} \sqrt{1 - t} = 0
 \end{align*}
 である．</p>
 <p>\(y = f(t)\)の多項式近似を図示すると以下のようになる．</p>
