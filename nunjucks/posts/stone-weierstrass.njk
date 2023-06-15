@@ -318,45 +318,72 @@
 
 {% set thm = thm + 1 %}
 <div class="card">
-<h5>定理 {{ thm }}（Abelの連続性定理）</h5>
-<p>収束半径\(1\)の冪級数\(\displaystyle \sum_{n = 0}^\infty a_n x^n\)の定める連続関数を\(G\)とする．\(\displaystyle \sum_{n = 0}^\infty a_n\)が収束するならば
+<h5>定理 {{ thm }}（Abelの連続性定理の簡易版）</h5>
+<p>冪級数\(\displaystyle \sum_{n = 0}^\infty a_n x^n\)が収束半径\(1\)で関数\(f\colon (-1,\,1) \to \mathbb{R}\)に収束し，\(\sum_{n = 0}^\infty a_n\)が絶対収束するならば
 \begin{align}
-  \lim_{x \to 1-0} G(x) = \sum_{n = 0}^\infty a^n x^n
+  \sum_{n = 0}^\infty a^n = \lim_{x \to 1 - 0}f(x)
 \end{align}
 が成り立つ．
 </p>
 </div>
 
-<strong>証明</strong> <p>\(\sum_{n = 0}^\infty a_n\)が収束するので，任意の\(\varepsilon \gt 0\)に対して，ある\(N \in \mathbb{N}\)が存在して，任意の\(n \gt m \geq N\)について
+<strong>証明</strong> <p>\(x \in (-1,\,1)\)において\(\sum_{k = 0}^n a_k x^k \)が収束するので，
+\(\sum_{k = 0}^\infty a_k x^k\)が存在して，任意の\(\varepsilon \gt 0\)について，十分大きな\(n \in \mathbb{N}\)をとれば
 \begin{align*}
-  \left|\sum_{k = 0}^n a_k - \sum_{k = 0}^m a_k \right| = \left| \sum_{k = m + 1}^n a_k \right| \lt \varepsilon
+  \left| \sum_{k = 0}^n a_k x^k - \sum_{k = 0}^\infty a_k x^k\right| \leq \frac{\varepsilon}{3}
 \end{align*}
-が成り立つ．任意の\(x \in [0,\,1]\)について
-\begin{align*}
-  &amp;\left|\sum_{k = 0}^n a_k x^k  -  \sum_{k = 0}^m a_k x^k  \right| \\
-  &amp;= \left|a_{m +  1} x^{m + 1} + a_{m + 2} x^{m + 2} + \cdots + a_{n - 1} x^{n - 1} + a_n x^{n}\right| \\
-  &amp;= \left|
-    \sum_{k = m + 1}^{m + 1} a_k x^{m + 1}
+が成り立つ．
+Abelの変形により
+\begin{align}
+    \sum_{k = 0}^n a_k x^k
+    &amp; = \sum_{k = 0}^{0} a_k
+    + \left(\sum_{k = 0}^1 a_k - \sum_{k = 0}^{0} a_k \right) x
+    + \cdots +
+    \left(\sum_{k = 0}^n a_k - \sum_{k = 0}^{n - 1} a_k \right) x^n \notag \\
+    &amp; =
+    \left(\sum_{k = 0}^{0} a_k \right) (1 - x)
     +
-    \left(\sum_{k = m + 1}^{m + 2} a_k  -  \sum_{k = m + 1}^{m + 1} a_k \right)x^{m + 2}
-    + \cdots
-    \left(\sum_{k = m + 1}^n a_k - \sum_{k = m + 1}^{n - 1} a_k \right) x^n
-    \right| \\
-  &amp;= \left|
-    (x^{m + 1} - x^{m + 2}) \sum_{k = m + 1}^{m + 1} a_k
-    + \cdots
-    + (x^{n - 1} - x^n) \sum_{k = m + 1}^{n - 1} a_k
-    + x^n \sum_{k = m + 1}^{n} a_k
-    \right| \\
-  &amp;\leq
-    \left| x^{m + 1} - x^{m + 2}\right| \left| \sum_{k = m + 1}^{m + 1} a_k \right|
-    + \cdots
-    + \left| x^{n - 1} - x^n \right| \left| \sum_{k = m + 1}^{n - 1} a_k \right|
-    + \left| x^n \right| \left| \sum_{k = m + 1}^{n} a_k \right| \\
-    &amp; \leq \varepsilon \left(x^{m + 1} - x^{m + 2} + x^{m + 2} - x^{m + 3} + \cdots + x^{n - 1} - x^{n} + x^n \right) \\
-    &amp; \leq \varepsilon x^{m + 1} \leq \varepsilon
+    \left(\sum_{k = 0}^{1} a_k \right) (x - x^2)
+    + \cdots +
+    \left(\sum_{k = 0}^{n - 1} a_k \right) (x^{n - 1} - x^n)
+    + \left(\sum_{k = 0}^n a_k \right) x^n \notag \\
+    &amp; =
+    (1 - x) \sum_{j = 0}^{n - 1} s_j x^j
+    + s_n x^n \label{abel},
+\end{align}
+ただし
+\begin{align*}
+  s_0 = a_0,\quad s_n = \sum_{k = 0}^n a_k\quad(n \in \mathbb{Z}_+)
 \end{align*}
-となり\(\sum_{n = 0}^\infty a_n x^n\)は一様収束する．
+が成り立つ．
+</p>
+<p>
+\begin{align*}
+  \sum_{j = 0}
+\end{align*}
+</p>
+<p>仮定より\((s_n)_{n \in \mathbb{N}}\)が収束するので，\(\alpha := \lim_{n \to \infty} s_n\)とすると
+\begin{align}
+  |s_n - \alpha | \leq \frac{\varepsilon}{3}
+\end{align}
+が成り立つ．したがって\(x \in [0,\,1)\)のとき，十分大きな\(n \in \mathbb{N}\)をとれば
+\begin{align*}
+\left|  \sum_{k = 0}^\infty a_k x^k - \alpha \right|
+&amp;\leq \left| \sum_{k = 0}^\infty a_k x^k - \sum_{k = 0}^n a_k x^k  + \sum_{k = 0}^n a_k x^k - \alpha \right| \\
+&amp;\leq \left| \sum_{k = 0}^\infty a_k x^k - \sum_{k = 0}^n a_k x^k \right|  + \left| \sum_{k = 0}^n a_k x^k - \alpha \right| \\
+&amp;\leq \frac{\varepsilon}{3} + \left| (1 - x)\sum_{j = 0}^{n - 1} s_j x^j + s_n x^n \right| \\
+&amp;\leq \frac{\varepsilon}{3} + (1 - x)\left| \sum_{j = 0}^{n - 1} s_j x^j - \alpha \sum_{j = 0}^{\infty} x^n \right| + |s_n x^n| \\
+&amp;\leq (1 - x) \varepsilon + \left(|\alpha| + 1 \right) x^n  \\
+\end{align*}
+
+
+\begin{align*}
+&amp; \left|  \sum_{k = 0}^\infty a_k x^k - (1 - x)\sum_{j = 0}^\infty s_j x^j \right| \\
+&amp;= \left|  \sum_{k = 0}^\infty a_k x^k - \sum_{k = 0}^n a_k x^k + \sum_{k = 0}^n a_k x^k -(1 - x) \sum_{k = 0}^{n - 1} s_j x^j + (1 -x) \sum_{j = 0}^{n - 1} s_j x^j - (1 - x)\sum_{j = 0}^\infty s_j x^j \right| \\
+&amp;\leq \left|  \sum_{k = 0}^\infty a_k x^k - \sum_{k = 0}^n a_k x^k \right| + \left| \sum_{k = 0}^n a_k x^k -(1 - x) \sum_{k = 0}^{n - 1} s_j x^j \right| + \left| (1 -x) \sum_{j = 0}^{n - 1} s_j x^j - (1 - x)\sum_{j = 0}^\infty s_j x^j \right| \\
+&amp;\leq \left|  \sum_{k = 0}^\infty a_k x^k - \sum_{k = 0}^n a_k x^k \right| + M x^n + (1 -x) \left| \sum_{j = 0}^{n - 1} s_j x^j - \sum_{j = 0}^\infty s_j x^j \right|
+\end{align*}
+
 </p>
 
 {% set thm = thm + 1 %}
@@ -394,13 +421,13 @@ a
 \end{align*}
 とした．このとき
 \begin{align*}
-\left|\sqrt{1 - t} - \left(1 - \sum_{k = 2}^{n -1} a_k t^k \right)\right|
+\left|\sqrt{1 - t} - \left(\sum_{k = 0}^{n -1} a_k t^k \right)\right|
   &amp;= \left| a_n \theta^k \right| \\
   &amp;= \frac{(2n - 3)!!}{n!2^n} \theta^n  \\
   &amp;\lt \frac{1}{2^n (2n - 4) \cdot (2n - 6) \cdot \cdots \cdot 4 \cdot 2}  \\
   &amp;\leq \frac{1}{2^n} \to 0 \quad(n \to \infty)
 \end{align*}
-となるから，\(\sum_{k = 1}^\infty a_k t^k\)は区間\((-1,\,1)\)で\(\sqrt{1 - t}\)に一様収束する．\(t = \pm 1\)のとき\(\sum_{n = 0}^\infty a_n t^n\)が収束することを示す．Ratio testを試みると
+となるから，\(\sum_{k = 1}^\infty a_k t^k\)は区間\((-1,\,1)\)で\(\sqrt{1 - t}\)に一様収束する．\(t = 1\)のとき\(\sum_{n = 0}^\infty a_n t^n\)が収束する，すなわち\(\sum_{n = 0}^\infty a_n\)が収束することを示す．Ratio testを試みると
 \begin{align}
   \left| \frac{a_{n + 1}t^{n + 1}}{a_n t^n} \right|
   &amp;=  \frac{n!2^n}{(2n - 3)!!} \frac{(2n - 1)!!}{(n + 1)!2^{n + 1}} \notag \\
@@ -416,11 +443,13 @@ b_n
 &amp;= \frac{3 n}{2(n + 1)} \\
 &amp;= \frac{3}{\displaystyle 2\left(1 + \frac{1}{n}\right)} \to \frac{3}{2}
 \end{align*}
-\(\lim_{n \to \infty} b_n \gt 1\)であるから，\(t = \pm 1\)のとき\(\sum_{n = 0}^\infty a_n t^n\)は絶対収束する．Abelの連続性定理により
+\(\lim_{n \to \infty} b_n \gt 1\)であるから，\(\sum_{n = 0}^\infty a_n\)は絶対収束する．
 \begin{align*}
-  lim_{t \to 1 - 0} \sqrt{1 - t} = 0
+  \left| \sqrt{1 - t} - \sum_{k = 0}^\infty a_k t^k \right|
+  &amp;\leq \left| \sqrt{1 - t} - \sum_{k = 0}^n a_k t^k \right|
+    +  \left| \sum_{k = 0}^n a_k t^k  - \sum_{n = 0}^\infty a_n t^n\right|
 \end{align*}
-である．</p>
+</p>
 <p>\(y = f(t)\)の多項式近似を図示すると以下のようになる．</p>
 <figure class="centered">
   <img
