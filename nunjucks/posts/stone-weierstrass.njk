@@ -3,6 +3,7 @@
 {% set mathematical = 'true' %}
 {% set title = 'Stone–Weierstraßの定理（書きかけ）' %}
 {% set posted = '2023-06-09' %}
+{% set updated = '2023-06-17' %}
 
 {% block post %}
 
@@ -11,7 +12,8 @@
 <h5 id="notation" class="math">記法について</h5>
 <ul>
   <li>\(\mathbb{K}\)は実数体\(\mathbb{R}\)または複素数体\(\mathbb{C}\)のいずれかを指す．</li>
-  <li>\(\mathfrak{P}(\varOmega)\)は\(\varOmega\)の冪集合を表す．</li>
+  <li>\(\mathbb{N} = \{0,\,1,\,\ldots\}\)，\(\mathbb{Z}_+ = \{1,\,2,\,\ldots\}\)．</li>
+  <li>\((f\lor g)(x) := \max\{f(x),\,g(x)\}\)，\((f \land g)(x) := \min \{f(x),\,g(x)\}\)．</li>
 </ul>
 
 </section>
@@ -265,7 +267,7 @@
 
 {% set thm = thm + 1 %}
 <div class="card">
-<h5>命題 {{ section }}.{{ thm }}</h5>
+<h5>命題 {{ thm }}</h5>
 <p>\(B\)が\(C(X)\)部分代数ならばその閉包\(\overline{B}\)も部分代数である．</p>
 </div>
 
@@ -291,30 +293,15 @@
 \end{align*}
 が成り立つ．したがって任意の\(\varepsilon \gt 0\)で\(\{h \in C(X) \mid \|h - fg\| \lt \varepsilon\} \cap B \neq \emptyset\)となり，\(fg \in \overline{B}\)がわかる．</p>
 
-{% set thm = thm + 1 %}
-<div class="math-book">
-<i class="fa-solid fa-bookmark"></i> <a href="#miyajima"><cite lang="ja">宮島</cite></a>補題 7.62
-</div>
-<div class="card">
-<h5>命題 {{ section }}.{{ thm }}</h5>
-<p>\(X\)をコンパクトHausdorff空間，\(B\)を\(C(X,\,\mathbb{R})\)の閉部分代数とする．このとき\(f,\,g \in C(X,\,\mathbb{R})\)ならば\(f \land g,\,f \lor g \in B\)が成り立つ．</p>
-</div>
-
-{% set thm = thm + 1 %}
-<div class="card">
-<h5 id="stone-weierstrass-statement">定理 {{ section }}.{{ thm }} Stone&ndash;Weierstra&szlig;の定理</h5>
-<p>\(X\)をコンパクトHausdorff空間とする．\(C(X)\)の部分集合\(A\)が以下の<span class="mathitem">(1), (2)</span>を満たすならば，\(A\)の生成する\(C(X)\)の部分代数は\(C(X)\)で稠密になる．</p>
-<ol class="math narrow">
-  <li class="parentheses">\(1_{C(X)} \in A.\)</li>
-  <li class="parentheses">任意の異なる2点\(x,\,y \in X\)に対して，\(f \in A\)で\(f(x) \neq f(y)\)となるものが存在する．</li>
-</ol>
-</div>
+<p>命題{{ thm + 3 }}の証明に必要な定理2つを紹介する．</p>
 
 {% set thm = thm + 1 %}
 <div class="card">
 <h5>定理 {{ thm }}（Raabeの判定法）</h5>
 <p>正項級数\(\displaystyle \sum_{n = 1}^\infty a_n\)について，\(\displaystyle \lim_{n\to \infty} \frac{a_{n + 1}}{a_n} = 1\)（なのでratio testでは判別できない）かつ\(\displaystyle b_n := n\left(1 - \frac{a_{n + 1}}{a_n}\right)\)の極限\(\displaystyle \beta := \lim_{n \to \infty} b_n\)が存在するとき，\(\displaystyle \sum_{n = 1}^\infty a_n\)は\(\beta \gt 1\)ならば収束し，\(\beta\lt 1\)ならば発散する．</p>
 </div>
+
+<p><strong>証明</strong> 略．</p>
 
 {% set thm = thm + 1 %}
 <div class="card">
@@ -327,7 +314,7 @@
 </p>
 </div>
 
-<strong>証明</strong> <p>数列\((s_n)_{n \in \mathbb{N}}\)を\(s_n = \sum_{k = 0}^n a_k\)で定め，\(s = \lim_{n \to \infty} s_n = \sum_{k = 0}^\infty a_k\)とする．Abelの変形により
+<p><strong>証明</strong> 各\(n \in \mathbb{N}\)について\(s_n = \sum_{k = 0}^n a_k\)とし，\(s = \lim_{n \to \infty} s_n = \sum_{k = 0}^\infty a_k\)とする．Abelの変形により
 \begin{align*}
     \sum_{k = 0}^n a_k x^k
     &amp; = \sum_{k = 0}^{0} a_k
@@ -381,15 +368,20 @@
 \end{align*}
 が成り立つということを述べている．</p>
 
+
 {% set thm = thm + 1 %}
 <div class="card">
 <h5>命題 {{ thm }}</h5>
-<p>
-a
-</p>
+<p>\(X\)をコンパクトHausdorff空間，\(B\)を\(C(X)\)の閉部分代数とする．\(f,g \in B\)ならば\(f \lor g,\,f\land g \in B\)が成り立つ．</p>
 </div>
 
-<p><strong>証明</strong> 関数\(f\)を
+<p><strong>証明</strong> \(f \lor g,\,f \land g\)はそれぞれ
+\begin{align*}
+  f \lor g = \frac{1}{2} (f + g + |f - g|), \\
+  f \land g = \frac{1}{2} (f + g - |f - g|), \\
+\end{align*}
+と表すことができる．したがって\(f \in B\)ならば\(|f| \in B\)が成り立つことを示せばよい．まず\(|f|\)が \(a_1f + a_2 f^2 + \cdots a_n f^n \in B\)で近似できることを示す（\(B\)がunitalとはいっていないため\(a_0 1_{C(X)},\,a_0 \neq 0\)は含まれていないことに注意する．）．</p>
+<p>\(|t| = \sqrt{t^2}\)なので，これの多項式近似を考えたいところではあるが，\(t \mapsto \sqrt{t^2}\)は扱いが難しいため，かわりに\(t \mapsto \sqrt{1 - t}\)を考える．関数\(f\)を
 \begin{align*}
   f\colon(-\infty,\,1] \to \mathbb{R},\quad f(t) = \sqrt{1 - t}
 \end{align*}
@@ -469,9 +461,45 @@ b_n
   >
   <figcaption><strong>図2：</strong>\(|t|\)の多項式近似．</figcaption>
 </figure>
-<p>
-また\(p(0) = \sum_{k = 0}^\infty a_n = 0\)であるから，
-</p>
+<p>級数\(\sum_{n = 0}^\infty a_n(1 - t^2)^n\)は\(t \in [-1,\,1]\)で絶対収束するから，項の順番を入れ替えて足し合わせてもよい．\(\sum_{n = 0}^\infty a_n = 0\)であったから，以下のように\(p\)を書き改めることができる．
+\begin{align*}
+  p(t)
+  &amp;= \sum_{n = 0}^\infty a_n (1 - t^2)^n \\
+  &amp;= a_0 + a_1 (1 - t^2) + a_2(1- 2 t^2 + t^4) + a_3 (1 - 3t^2 + 3t^4 - t^6) + \cdots \\
+  &amp;= \sum_{n = 0}^\infty a_n - (a_1 + 2 a_2 + \cdots )t^2 + (a_2 + 3 a_3 + \cdots)t^4 + \cdots \\
+  &amp; = \lim_{n \to \infty} \sum_{n = 1}^\infty c_n t^{2n}
+\end{align*}
+ただし記号\(\displaystyle \binom{n}{k}\)は二項係数を表しており，
+\begin{align*}
+  c_n &amp; = (-1)^n \left(\binom{n}{n} a_n + \cdots + \binom{n + j}{n} a_{n + j} + \cdots \right) \\
+      &amp; = (-1)^n \sum_{j = 0}^\infty \left(\binom{n + j}{n} a_{n + j} \right) \\
+\end{align*}
+である．</p>
+<p>\(t \mapsto |t|\)を多項式近似することができたので，これで\(|f|\)の多項式近似を考えることができる．\(\|f\| = 0\)，すなわち\(f = 0_{C(X)}\)のときは\(|f| = f\in B\)となる．よって以下では\(\|f\| \gt 0\)とする．このとき
+\begin{align*}
+  |f| = \|f\| \frac{|f|}{\|f\|}
+\end{align*}
+が成り立つので\(f \in B\)ならば\(|f|/\|f\| \in B\)を示せばよいことがわかる．任意の\(x \in X\)に対して\(f(x)/\|f\| \in [-1,\,1]\)なので
+\begin{align*}
+  \sum_{k = 1}^n c_n \left( \frac{f(x)}{\|f\|} \right)^2 \in B
+\end{align*}
+であり，これは\(n \to \infty\)とすると
+\begin{align*}
+  \left|\frac{f(x)}{\|f\|}\right|
+  = \frac{|f(x)|}{\|f\|}
+  = \frac{|f|(x)}{\|f\|}
+\end{align*}
+に一様収束する．\(B\)が閉集合であるから\(|f|/\|f\| \in B\)である．よって\(f \in B\)ならば\(|f| \in B\)であり，定理の主張が成り立つ．&#8718;</p>
+
+{% set thm = thm + 1 %}
+<div class="card">
+<h5 id="stone-weierstrass-statement">定理 {{ thm }} Stone&ndash;Weierstra&szlig;の定理</h5>
+<p>\(X\)をコンパクトHausdorff空間とする．\(C(X)\)の部分集合\(A\)が以下の<span class="mathitem">(1), (2)</span>を満たすならば，\(A\)の生成する\(C(X)\)の部分代数は\(C(X)\)で稠密になる．</p>
+<ol class="math narrow">
+  <li class="parentheses">\(1_{C(X)} \in A.\)</li>
+  <li class="parentheses">任意の異なる2点\(x,\,y \in X\)に対して，\(f \in A\)で\(f(x) \neq f(y)\)となるものが存在する．</li>
+</ol>
+</div>
 
 </section>
 {% endblock %}
