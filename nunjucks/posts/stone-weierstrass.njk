@@ -161,9 +161,9 @@
 \begin{align*}
   |f(x) - f(x_0)| \lt \varepsilon
 \end{align*}
-となるようなものが存在する．三角不等式の性質\(| |a| - |b| | \leq |a - b|\)より
+となるようなものが存在する．三角不等式の性質\(\Bigl| |a| - |b| \Bigr| \leq |a - b|\)より
 \begin{align*}
-  ||f(x)| - |f(x_0)|| \leq |f(x) - f(x_0)| \lt \varepsilon
+  \Bigl||f(x)| - |f(x_0)|\Bigr| \leq |f(x) - f(x_0)| \lt \varepsilon
 \end{align*}
 が成り立つので\(f\)は\(x_0\)で連続である．\(x_0\)は任意だったので\(f\)は\(X\)で連続であり，ゆえに\(f \in C(X,\,K)\)が示せた．&#8718;</p>
 
@@ -327,64 +327,53 @@
 </p>
 </div>
 
-<strong>証明</strong> <p>\(x \in (-1,\,1)\)において\(\sum_{k = 0}^n a_k x^k \)が収束するので，
-\(\sum_{k = 0}^\infty a_k x^k\)が存在して，任意の\(\varepsilon \gt 0\)について，十分大きな\(n \in \mathbb{N}\)をとれば
+<strong>証明</strong> <p>数列\((s_n)_{n \in \mathbb{N}}\)を\(s_n = \sum_{k = 0}^n a_k\)で定め，\(s = \lim_{n \to \infty} s_n = \sum_{k = 0}^\infty a_k\)とする．Abelの変形により
 \begin{align*}
-  \left| \sum_{k = 0}^n a_k x^k - \sum_{k = 0}^\infty a_k x^k\right| \leq \frac{\varepsilon}{3}
-\end{align*}
-が成り立つ．
-Abelの変形により
-\begin{align}
     \sum_{k = 0}^n a_k x^k
     &amp; = \sum_{k = 0}^{0} a_k
     + \left(\sum_{k = 0}^1 a_k - \sum_{k = 0}^{0} a_k \right) x
     + \cdots +
-    \left(\sum_{k = 0}^n a_k - \sum_{k = 0}^{n - 1} a_k \right) x^n \notag \\
+    \left(\sum_{k = 0}^n a_k - \sum_{k = 0}^{n - 1} a_k \right) x^n \\
     &amp; =
     \left(\sum_{k = 0}^{0} a_k \right) (1 - x)
     +
     \left(\sum_{k = 0}^{1} a_k \right) (x - x^2)
     + \cdots +
     \left(\sum_{k = 0}^{n - 1} a_k \right) (x^{n - 1} - x^n)
-    + \left(\sum_{k = 0}^n a_k \right) x^n \notag \\
+    + \left(\sum_{k = 0}^n a_k \right) x^n \\
     &amp; =
     (1 - x) \sum_{j = 0}^{n - 1} s_j x^j
-    + s_n x^n \label{abel},
-\end{align}
-ただし
-\begin{align*}
-  s_0 = a_0,\quad s_n = \sum_{k = 0}^n a_k\quad(n \in \mathbb{Z}_+)
+    + s_n x^n
 \end{align*}
-が成り立つ．
-</p>
-<p>
-\begin{align*}
-  \sum_{j = 0}
-\end{align*}
-</p>
-<p>仮定より\((s_n)_{n \in \mathbb{N}}\)が収束するので，\(\alpha := \lim_{n \to \infty} s_n\)とすると
+となるから
 \begin{align}
-  |s_n - \alpha | \leq \frac{\varepsilon}{3}
+  \sum_{k = 0}^n a_k x^k - s
+  &amp;= (1 - x) \sum_{j = 0}^{n - 1} s_j x^j + s_n x^n - s (1 - x^n) - s x^n \notag \\
+  &amp;= (1 - x) \sum_{j = 0}^{n - 1} s_j x^j - (1 - x)\frac{1 - x^n}{1 - x}s \notag \\
+  &amp;= (1 - x) \sum_{j = 0}^{n - 1} (s_j - s) x^j \label{abel}
 \end{align}
-が成り立つ．したがって\(x \in [0,\,1)\)のとき，十分大きな\(n \in \mathbb{N}\)をとれば
+が成り立つ．</p>
+<p>\(x \in (-1,\,1)\)において\(\sum_{k = 0}^n a_k x^k \)が\(f\)に収束するので，任意の\(\varepsilon \gt 0\)に対して，ある\(N \in \mathbb{N}\)が存在して，任意の\(n \geq N\)について
 \begin{align*}
-\left|  \sum_{k = 0}^\infty a_k x^k - \alpha \right|
-&amp;\leq \left| \sum_{k = 0}^\infty a_k x^k - \sum_{k = 0}^n a_k x^k  + \sum_{k = 0}^n a_k x^k - \alpha \right| \\
-&amp;\leq \left| \sum_{k = 0}^\infty a_k x^k - \sum_{k = 0}^n a_k x^k \right|  + \left| \sum_{k = 0}^n a_k x^k - \alpha \right| \\
-&amp;\leq \frac{\varepsilon}{3} + \left| (1 - x)\sum_{j = 0}^{n - 1} s_j x^j + s_n x^n \right| \\
-&amp;\leq \frac{\varepsilon}{3} + (1 - x)\left| \sum_{j = 0}^{n - 1} s_j x^j - \alpha \sum_{j = 0}^{\infty} x^n \right| + |s_n x^n| \\
-&amp;\leq (1 - x) \varepsilon + \left(|\alpha| + 1 \right) x^n  \\
+  \left| f(x)  - \sum_{k = 0}^n a_k x^k\right| \leq \frac{\varepsilon}{2}
 \end{align*}
-
-
+が成り立つ．</p>
+<p>よって
 \begin{align*}
-&amp; \left|  \sum_{k = 0}^\infty a_k x^k - (1 - x)\sum_{j = 0}^\infty s_j x^j \right| \\
-&amp;= \left|  \sum_{k = 0}^\infty a_k x^k - \sum_{k = 0}^n a_k x^k + \sum_{k = 0}^n a_k x^k -(1 - x) \sum_{k = 0}^{n - 1} s_j x^j + (1 -x) \sum_{j = 0}^{n - 1} s_j x^j - (1 - x)\sum_{j = 0}^\infty s_j x^j \right| \\
-&amp;\leq \left|  \sum_{k = 0}^\infty a_k x^k - \sum_{k = 0}^n a_k x^k \right| + \left| \sum_{k = 0}^n a_k x^k -(1 - x) \sum_{k = 0}^{n - 1} s_j x^j \right| + \left| (1 -x) \sum_{j = 0}^{n - 1} s_j x^j - (1 - x)\sum_{j = 0}^\infty s_j x^j \right| \\
-&amp;\leq \left|  \sum_{k = 0}^\infty a_k x^k - \sum_{k = 0}^n a_k x^k \right| + M x^n + (1 -x) \left| \sum_{j = 0}^{n - 1} s_j x^j - \sum_{j = 0}^\infty s_j x^j \right|
+\left| f(x) - s \right|
+&amp;= \left| f - \sum_{k = 0}^N a_k x^k + \sum_{k = 0}^N a_k x^k - s \right| \\
+&amp;= \left| f - \sum_{k = 0}^N a_k x^k \right| + \left| \sum_{k = 0}^N a_k x^k - s \right| \\
+&amp;\leq \frac{\varepsilon}{2} + (1 - x) \sum_{j = 0}^{N - 1}|s_j - s|x^j \\
 \end{align*}
-
-</p>
+となるから，\(x\)を十分に\(1\)に近く，具体的には
+\begin{align*}
+  \delta = 1 - \frac{\varepsilon}{2\sum_{k = 0}^{N - 1} |s_j  - s|}
+\end{align*}
+として任意の\(x \in (\delta,\, 1)\)をとれば\(|f(x) - s |\leq \varepsilon\)となり
+\begin{align*}
+  \lim_{x \to 1 - 0}f(x) = s = \sum_{n = 0}^\infty a_k
+\end{align*}
+が成り立つ．&#8718;</p>
 
 {% set thm = thm + 1 %}
 <div class="card">
