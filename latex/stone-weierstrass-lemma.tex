@@ -30,7 +30,7 @@
     \def\SIGMA{0.3};
     \def\A{-2.5};
     \def\B{2.5};
-    \def\yy{1.1};
+    \def\yy{1.2};
     \addplot[color=original, thick][domain=\A:\B] {\SCALE * cos(deg(x))/(x^2 + 1) - \SCALE};
     \addplot[color=slide, thick][domain=\A:\B] {(\SCALE * cos(deg(x))/(x^2 + 1) - \SCALE * cos(deg(\yy))/(\yy^2 + 1) )^2};
     \addplot[color=scaled, thick][domain=\A:\B] {(\SCALE * cos(deg(x))/(x^2 + 1) - \SCALE * cos(deg(\yy))/(\yy^2 + 1) )^2 / (\SCALE * cos(deg(0)) - \SCALE * cos(deg(\yy))/(\yy^2 + 1) )^2};
@@ -41,7 +41,11 @@
     \draw[fill=white, opacity=1] (axis cs:-0.3, 0) circle[radius=1pt];
     \draw[fill=white, opacity=1] (axis cs:0.3, 0) circle[radius=1pt] {};
     \draw[ultra thick] (axis cs: -0.275, 0) -- (axis cs: 0.275, 0);
-    \node[] at (axis cs: 0.25, 0.25) {$U$};
+    \node at (axis cs: 0.25, 0.3) {$U$};
+    \draw[fill=white, opacity=1] (axis cs:0.9, 0) circle[radius=1pt];
+    \draw[fill=white, opacity=1] (axis cs:1.5, 0) circle[radius=1pt] {};
+    \draw[ultra thick] (axis cs: 0.925, 0) -- (axis cs: 1.475, 0);
+    \node at (axis cs: 1.35, 0.3) {$V_y$};
 
     \draw[thick] (axis cs:-2.8, 1) -- (axis cs:2.8, 1);
     \draw[thick, dotted] (axis cs: 0, 0) -- (axis cs: 0, 1);
