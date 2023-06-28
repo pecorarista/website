@@ -3,8 +3,8 @@
 \usepackage{tikz}
 \usepackage{pgfplots}
 \definecolor{slide}{HTML}{d5002d}
-\definecolor{original}{HTML}{005aff}
-\definecolor{scaled}{HTML}{03af7a}
+\definecolor{original}{HTML}{03af7a}
+\definecolor{scaled}{HTML}{005aff}
 \begin{document}
 \begin{tikzpicture}
     \begin{axis}[
@@ -31,12 +31,12 @@
     \def\A{-2.5};
     \def\B{2.5};
     \def\yy{1.2};
-    \addplot[color=original, thick][domain=\A:\B] {\SCALE * cos(deg(x))/(x^2 + 1) - \SCALE};
-    \addplot[color=slide, thick][domain=\A:\B] {(\SCALE * cos(deg(x))/(x^2 + 1) - \SCALE * cos(deg(\yy))/(\yy^2 + 1) )^2};
-    \addplot[color=scaled, thick][domain=\A:\B] {(\SCALE * cos(deg(x))/(x^2 + 1) - \SCALE * cos(deg(\yy))/(\yy^2 + 1) )^2 / (\SCALE * cos(deg(0)) - \SCALE * cos(deg(\yy))/(\yy^2 + 1) )^2};
-    \node[color=original] (original) at (axis cs:-1, -0.9) {$f$};
-    \node[color=slide] (slide) at (axis cs:1.4, 1.4) {$(f - f(y))^2$};
-    \node[color=scaled] (scaled) at (axis cs:2.9, -0.6) {$\displaystyle \frac{(f - f(y))^2}{(f(x) - f(y))^2}$};
+    \addplot[color=original, thick][domain=-1.8:1.8] {\SCALE * cos(deg(x)) - \SCALE};
+    \addplot[color=slide, thick][domain=-2.1:2.1] {(\SCALE * cos(deg(x)) - \SCALE * cos(deg(\yy)))^2};
+    \addplot[color=scaled, thick][domain=-2.1:2.1] {(\SCALE * cos(deg(x)) - \SCALE * cos(deg(\yy)))^2 / (\SCALE * cos(deg(0)) - \SCALE * cos(deg(\yy)))^2};
+    \node[color=original] (original) at (axis cs:-1.3, -0.9) {$f$};
+    \node[color=slide] (slide) at (axis cs:1.1, 1.8) {$(f - f(y))^2$};
+    \node[color=scaled] (scaled) at (axis cs:3.1, 1.6) {$\displaystyle \frac{(f - f(y))^2}{(f(x) - f(y))^2}$};
 
     \draw[fill=white, opacity=1] (axis cs:-0.3, 0) circle[radius=1pt];
     \draw[fill=white, opacity=1] (axis cs:0.3, 0) circle[radius=1pt] {};
