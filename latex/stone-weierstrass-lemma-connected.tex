@@ -1,0 +1,56 @@
+\documentclass[15pt]{standalone}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\definecolor{slide}{HTML}{d5002d}
+\definecolor{original}{HTML}{03af7a}
+\definecolor{scaled}{HTML}{005aff}
+\begin{document}
+\begin{tikzpicture}
+    \begin{axis}[
+        axis x line=middle,
+        axis line style=thick,
+        yscale=1.3,
+        xmin=-3,
+        xmax=4,
+        ymin=-1.8,
+        ymax=1.8,
+        xtick={0, 1.2, 2.4},
+        xticklabels={$x$, $y_1$, $y_2$},
+        x tick style={draw},
+        x axis line style={draw},
+        ytick={},
+        yticklabels={},
+        y axis line style={draw=none},
+        y tick style={draw=none},
+        samples=300,
+        clip=false
+    ]
+    \def\SIGMA{0.3};
+    \def\A{-2.5};
+    \def\B{3.5};
+    \def\yy{1.2};
+    \def\yyy{2.4};
+    \addplot[color=original, thick][domain=\A:-0.703639] {(1/ (1.2)^4 ) * (exp(x) * (x - 1.2)^2  / (x^4 + 1))^2};
+    \addplot[color=original, dashed][domain=-0.703639:0] {(1/ (1.2)^4 ) * (exp(x) * (x - 1.2)^2  / (x^4 + 1))^2};
+    \addplot[color=original, thick][domain=0:1.9636] {(1/ (1.2)^4 ) * (exp(x) * (x - 1.2)^2  / (x^4 + 1))^2};
+    \node[color=original] at (axis cs: -1.4, 0.55) {$f_{y_1}$};
+
+    \addplot[color=scaled, dashed][domain=-0.7:1.9636] {(x - \yyy)^2 / \yyy^2};
+    \addplot[color=scaled, thick][domain=1.9636:\B] {(x - \yyy)^2 / \yyy^2};
+    \node[color=scaled] at (axis cs: 3.8, 0.45) {$f_{y_2}$};
+
+    \draw[fill=white, opacity=1] (axis cs:-0.3, 0) circle[radius=1pt];
+    \draw[fill=white, opacity=1] (axis cs:0.3, 0) circle[radius=1pt] {};
+    \draw[ultra thick] (axis cs: -0.275, 0) -- (axis cs: 0.275, 0);
+    \node at (axis cs: -0.25, 0.15) {$U$};
+
+    \draw[thick, color=slide] (axis cs:-0.703649, 1) -- (axis cs:0, 1);
+    \draw[dashed] (axis cs:-2.75, 1) -- (axis cs:-0.703649, 1);
+    \draw[thick, dotted] (axis cs: 0, 0) -- (axis cs: 0, 1);
+    \draw[dashed] (axis cs:0, 1) -- (axis cs:\B, 1);
+    \node[] (line1) at (axis cs:-1.3, 1.15) {$1_{C(X)}$};
+
+    \end{axis}
+    \end{tikzpicture}
+\end{document}

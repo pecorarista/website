@@ -33,7 +33,7 @@
     \def\yy{1.2};
     \addplot[color=original, thick][domain=-1.8:1.8] {\SCALE * cos(deg(x)) - \SCALE};
     \addplot[color=slide, thick][domain=-2.1:2.1] {(\SCALE * cos(deg(x)) - \SCALE * cos(deg(\yy)))^2};
-    \addplot[color=scaled, thick][domain=-2.1:2.1] {(\SCALE * cos(deg(x)) - \SCALE * cos(deg(\yy)))^2 / (\SCALE * cos(deg(0)) - \SCALE * cos(deg(\yy)))^2};
+    \addplot[color=scaled, thick][domain=-2.1:2.1] {(cos(deg(x)) - cos(deg(\yy)))^2 / (cos(deg(0)) - cos(deg(\yy)))^2};
     \node[color=original] (original) at (axis cs:-1.3, -0.9) {$f$};
     \node[color=slide] (slide) at (axis cs:1.1, 1.8) {$(f - f(y))^2$};
     \node[color=scaled] (scaled) at (axis cs:3.1, 1.6) {$\displaystyle \frac{(f - f(y))^2}{(f(x) - f(y))^2}$};
@@ -45,7 +45,7 @@
     \draw[fill=white, opacity=1] (axis cs:0.9, 0) circle[radius=1pt];
     \draw[fill=white, opacity=1] (axis cs:1.5, 0) circle[radius=1pt] {};
     \draw[ultra thick] (axis cs: 0.925, 0) -- (axis cs: 1.475, 0);
-    \node at (axis cs: 1.35, 0.3) {$V_y$};
+    \node at (axis cs: 1.2, 0.3) {$V_y$};
 
     \draw[thick] (axis cs:-2.8, 1) -- (axis cs:2.8, 1);
     \draw[thick, dotted] (axis cs: 0, 0) -- (axis cs: 0, 1);
