@@ -83,7 +83,7 @@
 <p>と定義するとき，\(C(X)\)は\(\mathbb{K}\)上のベクトル空間となる．さらに乗法と乗法単位元を</p>
 <ol class="math narrow">
   <li class="parentheses4">\((fg)(x) := f(x)g(x).\)</li>
-  <li class="parentheses5">\(1_{C(X)} \colon X \to \mathbb{K},\, 1_{C(X)}(x) := 1.\)</li>
+  <li class="parentheses5">\(1_X} \colon X \to \mathbb{K},\, 1_{X}(x) := 1.\)</li>
 </ol>
 <p>と定義するとき，\(C(X)\)は\(\mathbb{K}\)上の代数となる．</p>
 </div>
@@ -381,7 +381,7 @@
   f \lor g = \frac{1}{2} (f + g + |f - g|), \\
   f \land g = \frac{1}{2} (f + g - |f - g|), \\
 \end{align*}
-と表すことができる．したがって\(f \in B\)ならば\(|f| \in B\)が成り立つことを示せばよい．まず\(|f|\)が \(a_1f + a_2 f^2 + \cdots a_n f^n \in B\)で近似できることを示す（\(B\)がunitalとはいっていないため\(a_0 1_{C(X)},\,a_0 \neq 0\)は含まれていないことに注意する．）．</p>
+と表すことができる．したがって\(f \in B\)ならば\(|f| \in B\)が成り立つことを示せばよい．まず\(|f|\)が \(a_1f + a_2 f^2 + \cdots a_n f^n \in B\)で近似できることを示す（\(B\)がunitalとはいっていないため\(a_0 1_X,\,a_0 \neq 0\)は含まれていないことに注意する．）．</p>
 <p>\(|t| = \sqrt{t^2}\)なので，これの多項式近似を考えたいところではあるが，\(t \mapsto \sqrt{t^2}\)は扱いが難しいため，かわりに\(t \mapsto \sqrt{1 - t}\)を考える．関数\(f\)を
 \begin{align*}
   f\colon(-\infty,\,1] \to \mathbb{R},\quad f(t) = \sqrt{1 - t}
@@ -497,38 +497,62 @@ b_n
 <h5 id="stone-weierstrass-statement">定理 {{ thm }} Stone&ndash;Weierstra&szlig;の定理</h5>
 <p>\(X\)をコンパクトHausdorff空間とする．\(C(X)\)の部分集合\(A\)が以下の<span class="mathitem">(1), (2)</span>を満たすならば，\(A\)の生成する\(C(X)\)の部分代数は\(C(X)\)で稠密になる．</p>
 <ol class="math narrow">
-  <li class="parentheses">\(1_{C(X)} \in A.\)</li>
-  <li class="parentheses">任意の異なる2点\(x,\,y \in X\)に対して，\(f \in A\)で\(f(x) \neq f(y)\)となるものが存在する．</li>
+  <li class="parentheses">\(1_X \in A.\)</li>
+  <li class="parentheses">任意の異なる2点\(x,\,y \in X\)に対して，\(\varphi \in A\)で\(\varphi(x) \neq \varphi(y)\)となるものが存在する．</li>
 </ol>
 </div>
 
+<p><strong>仮定<span class="mathitem">(2)</span>について</strong>
+この仮定を満たさない部分代数は実際に存在する．例えば\(X = [-1,\,1]\)として，偶数次の項のみからなる多項式関数の集合
+\begin{align*}
+  A := \left\{f\colon x \mapsto a_0 + a_2 x^2 + \cdots + a_{2n} x^{2n} \; \middle| \; a_{0},\,\ldots,\,a_{2n} \in \mathbb{R} \right\}
+\end{align*}
+を考える．これは\(C(X)\)の部分代数になっていることがすぐにわかる．しかし\(x \neq 0\)をとると\(\varphi(x) =  \varphi(-x)\)となり，この仮定は満たされない．</p>
 
-<figure class="centered">
-  <img
-    src="/static/images/stone-weierstrass-lemma.svg"
-    alt="translation and scaling"
-    style="background-color: transparent; width: 100%; height: auto; max-width: 800px; margin-top: 2ex;"
-  >
-  <figcaption><strong>図3：</strong>Step 2における一般性を保つ変形の例．</figcaption>
-</figure>
-
-<figure class="centered">
-  <img
-    src="/static/images/stone-weierstrass-lemma-connected.svg"
-    alt="translation and scaling"
-    style="background-color: transparent; width: 100%; height: auto; max-width: 800px; margin-top: 2ex; margin-bottom: 20px;"
-  >
-  <figcaption><strong>図4：</strong>Step 2の例．</figcaption>
-</figure>
-
-<figure class="centered">
-  <img
-    src="/static/images/stone-weierstrass-lemma-connected-x.svg"
-    alt="translation and scaling"
-    style="background-color: transparent; width: 100%; height: auto; max-width: 800px; margin-top: 2ex; margin-bottom: 20px;"
-  >
-  <figcaption><strong>図5：</strong>Step 3の例．</figcaption>
-</figure>
+<p><strong>証明</strong> 任意の\(x_1 \neq x_2\)を満たす\(x_1,\,x_2 \in X\)と，任意の\(\alpha,\,\beta \in \mathbb{R}\)が与えられたとき，\(h(x_1) = \alpha\)，\(h(x_2) = \beta\)を満たす\(h \in A\)が存在することを示す．仮定<span class="mathitem">(2)</span>により，\(\varphi \in A\)で\(\varphi(x_1) \neq \varphi(x_2)\)を満たすものが存在する．このとき\(h\)を
+\begin{align*}
+  h(x) = \alpha + (\beta - \alpha) \frac{\varphi(x) - \varphi(x_1)}{\varphi(x_2) - \varphi(x_1)}
+\end{align*}
+で定義すると，これは条件を満たす．</p>
+<p>次に任意の\(f \in C(X)\)と\(\varepsilon \gt 0\)を与えられたとする．このとき任意の\(z \in X\)について
+\begin{align}
+  | g(z) - f(z) | \lt \varepsilon \label{g}
+\end{align}
+となるような\(g \in A\)が存在することを示す．任意の\(x \in X\)をとる．先の結果より，\(x \neq y\)を満たす任意の\(y \in X\)について
+\begin{align}
+  h_{x,\,y}(x) = f(x),\quad h_{x,\,y}(y) = f(y) \label{h}
+\end{align}
+となるような\(h_{x,\,y} \in A\)をとることができる．\(x = y\)
+のときは
+\(h_{x,\,y} = f(x) 1_X\)
+とすれば\((\ref{h})\)が成り立つ．
+\(h_{x,\,y}\)と\(f\)は連続なので，\(y\)の開近傍\(U_y\)で
+\begin{align*}
+  z \in U_y \; \Longrightarrow \; h_{x,\,y}(z) - f(z) \lt \varepsilon
+\end{align*}
+となるようなものをとることができる．このようにして得られた集合族
+\(\{U_y\}_{y \in X}\)
+は
+\(X\)
+の開被覆である．\(X\)はコンパクトであるから，有限個\(U_{y_1},\,\ldots,\,U_{y_n}\)によって\(X\)を覆うことができる．そこで
+\begin{align*}
+  h_x = h_{x,\,y_1} \land \cdots \land h_{x,\,y_1}
+\end{align*}
+によって定義すると，命題{{ thm - 1}}により\(h_x \in A\)である．さらに任意の\(z \in X\)で
+\begin{align*}
+  h_x(z) - f(z) \lt \varepsilon,\quad h_x(x) = f(x)
+\end{align*}
+となる．関数\(h_{x},\, f\)が連続なので，各\(x \in X\)について，その開近傍\(V_x\)で，
+\(z \in V_x\)ならば
+\begin{align*}
+  z \in V_z \; \Longrightarrow \; -\varepsilon \lt h_x(z) - f(z)
+\end{align*}
+となるようなものをとることができる．\(\{V_x\}_{x \in X}\)は\(X\)の開被覆であり，\(X\)がコンパクトなので，有限個の\(V_{x_1},\,\ldots,\,V_{x_n}\)で\(X\)を覆うことができる．そこで
+\begin{align*}
+  g = h_{x_1} \lor \cdots \lor h_{x_m}
+\end{align*}
+と定義する．このとき\(g \in A\)であり，これは\((\ref{g})\)を満たす．したがって\(\|f - g\| \lt \varepsilon\)であり，\(f \in \overline{A}\)が成り立つ．よって\(C(X) \subseteq \overline{A}\)が示された．&#8718;
+</p>
 
 
 
