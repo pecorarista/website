@@ -76,7 +76,7 @@
 <h5>定義 1（ベクトル空間）</h5>
 <p>集合\(X\)が以下の性質（ベクトル空間の公理）を満たすとき，\(X\)は\(\mathbb{K}\)上のベクトル空間であるという．</p>
 <ol class="math narrow" style="padding-bottom: 0px;">
-  <li class="upper-roman">加法または和と呼ばれる二項演算\(X \times X \to X\)が定義されている．加法は，それによる\((x,\,y)\)の像（単に\(x\)と\(y\)の和ということが多い）を\(x + y\)のように書くとき，以下を満たすような演算である：
+  <li class="upper-roman">加法または和と呼ばれる二項演算が定義されている．加法とは写像\(X\times X\to X\)で，それによる\((x,\,y)\)の像（単に\(x\)と\(y\)の和ということが多い）を\(x + y\)のように書くとき，以下を満たすようなものである：
   <ol class="math narrow">
     <li class="parentheses">任意の\(x,\,y \in X\)について\((x + y) + z = x + (y + z)\)．</li>
     <li class="parentheses">任意の\(x,\,y \in X\)について\(x + y = y + x\)．</li>
@@ -84,7 +84,7 @@
     </li>
     <li class="parentheses">任意の\(x \in X\)に対して，ある元\(x' \in X\)が存在して\(x + x' = 0\)が成り立つ．これを逆ベクトル（加法逆元）と呼び，\(-x\)で表す．</li>
   </ol>
-  <li class="upper-roman">スカラー倍と呼ばれる二項演算\(\mathbb{K} \times X \to X\)が定義されている．スカラー倍は，それによる\((\alpha,\,x)\)の像を\(\alpha x\)のように書くとき，以下を満たすような演算である．
+  <li class="upper-roman">スカラー倍と呼ばれる二項演算が定義されている．スカラー倍とは写像\(\mathbb{K}\times X\to X\)で，それによる\((\alpha,\,x)\)の像を\(\alpha x\)のように書くとき，以下を満たすような演算である：
     <ol class="math narrow">
       <li class="parentheses">任意の\(\alpha,\,\beta \in \mathbb{K}\)と任意の\(x \in X\)について\((\alpha + \beta) x = \alpha x + \beta x\)．</li>
       <li class="parentheses">任意の\(\alpha \in \mathbb{K}\)と任意の\(x,\,y \in X\)について\(\alpha (x + y) = \alpha x + \alpha y\)．</li>
@@ -98,7 +98,7 @@
 
 <div class="card" id="algebra">
 <h5>定義 2 （代数）</h5>
-<p>\(\mathbb{K}\)上のベクトル空間\(X\)において，乗法または積と呼ばれる二項演算\(X \times X \to X\)が定義されているとき，\(X\)は\(\mathbb{K}\)上の<strong class="math-keyword">代数</strong>(algebra)であるという．乗法は，それによる\((x,\,y)\)の像（単に\(x\)と\(y\)の積ということが多い）を\(xy\)のように書くとき，以下を満たすような演算である：
+<p>\(\mathbb{K}\)上のベクトル空間\(X\)において，乗法または積と呼ばれる二項演算が定義されているとき，\(X\)は\(\mathbb{K}\)上の<strong class="math-keyword">代数</strong>(algebra)であるという．乗法とは，写像\(X \times X \to X\)で，それによる\((x,\,y)\)の像（単に\(x\)と\(y\)の積ということが多い）を\(xy\)のように書くとき，以下を満たすようなものである：
   <ol class="math narrow">
     <li class="parentheses">任意の\(x,\,y,\,z \in V\)について\(x (yz) = (xy) z\)．</li>
     <li class="parentheses">任意の\(x,\,y,\,z \in V\)について\((x + y) z = xz + yz,\,x (y + z) = xz + xz\)．</li>
@@ -237,7 +237,7 @@
 <p>\(\mathbb{K}\)上のベクトル空間\(X\)において，単項演算\(\|\cdot\|\colon X \to \mathbb{R}_+\)が以下の性質（ノルムの公理）を満たすとき，\(\|\cdot\|\)を\(X\)上のノルムと呼ぶ．</p>
 <ol class="math narrow">
   <li class="parentheses">任意の\(x \in X\)で\(\|x\| = 0\;\Leftrightarrow\;x = 0.\)</li>
-  <li class="parentheses">任意の\(x \in X\)と\(\alpha \in K\)について\(\|\alpha x\| = |\alpha|\|x\|.\)</li>
+  <li class="parentheses">任意の\(x \in X\)と\(\alpha \in \mathbb{K}\)について\(\|\alpha x\| = |\alpha|\|x\|.\)</li>
   <li class="parentheses">（三角不等式，劣加法性）任意の\(x,\,y \in X\)について\(\|x + y\| \leq \|x\| + \|y\|.\)</li>
 </div>
 
