@@ -114,7 +114,7 @@
   </ol>
 </div>
 
-<p>以下で代数といった場合，単位的で可換な代数を指すものとする．代表的な代数は以下のものである．</p>
+<p>以下で代数といった場合，可換な代数を指すものとする．代表的な代数は以下のものである．</p>
 
 
 <div class="card">
@@ -278,7 +278,7 @@
 \begin{align*}
   |f_m(x) - f_n(x)| \lt \varepsilon
 \end{align*}
-が成り立つ．\(K\)の完備性により\((f_n(x))_{n \in \mathbb{Z}_+}\)はある\(\alpha_x \in K\)に収束する．すなわち\(f(x) := \alpha_x\)とすると，\(f\colon X \to K\)であり，ある\(N \in \mathbb{Z}_+\)が存在して
+が成り立つ．\(\mathbb{K}\)の完備性により\((f_n(x))_{n \in \mathbb{Z}_+}\)はある\(\alpha_x \in \mathbb{K}\)に収束する．すなわち\(f(x) := \alpha_x\)とすると，\(f\colon X \to \mathbb{K}\)であり，ある\(N \in \mathbb{Z}_+\)が存在して
 \begin{align}
   |f_N(x) - f(x)| \lt \frac{\varepsilon}{3}
   \label{complete}
@@ -297,23 +297,31 @@
 \end{align*}
 よって\(f\)は\(x\)で連続であり，\(x\)は任意だったので，\(f \in C(X)\)が示せた．<p/>
 
+
+<div class="card">
+<h5>系 9</h5>
+<p>\(C(X)\)は閉集合である．</p>
+</div>
+
+<p><strong>証明</strong>
+任意の\(f \in \overline{C(X)}\)をとる．このとき\(C(X)\)の要素の列\((f_n)_{n \in \mathbb{Z}_+}\)で\(f\)に収束するものがとれる．収束列はCauchy列であり，\(C(X)\)が完備であるから，その極限\(f\)は\(C(X)\)の要素である．ゆえに\(\overline{C(X)} \subseteq C(X)\)が成り立ち，\(C(X)\)が閉集合であることがわかる．&#8718;</p>
+
 <p style="padding-top: 20px;">次は代数における部分ベクトル空間に対応するものを考える．</p>
 
 
 <div class="card">
-<h5>定義 9（部分代数）</h5>
+<h5>定義 10（部分代数）</h5>
 <p>体\(\mathbb{K}\)上の代数\(X\)の部分集合\(A\)が\(X\)における加法，スカラー倍，乗法について閉じているとき，すなわち以下の<span class="mathitem">(1)&ndash;(3)</span>が成り立つとき，<strong class="math-keyword">部分代数</strong>(subalgebra)であるという．</p>
 <ol class="math narrow">
   <li class="parentheses">任意の\(x,\,y \in A\)で\(x + y \in A\)．</li>
   <li class="parentheses">任意の\(\alpha \in K\)と任意の\(x \in A\)について\(\alpha x \in A\)．</li>
   <li class="parentheses">任意の\(x,\,y \in A\)で\(xy \in A\)．</li>
 </ol>
-<p>\(A\)を\(X\)の任意の部分集合とすると，\(A\)を含むような最小の部分代数が存在する．これは\(A\)を含む部分代数の共通部分として得られる．そのような部分代数を，\(A\)によって生成される部分代数という．</p>
 </div>
 
 
 <div class="card">
-<h5>命題 10</h5>
+<h5>命題 11</h5>
 <p>\(A\)が\(C(X)\)の部分代数ならばその閉包\(\overline{A}\)も部分代数である．</p>
 </div>
 
@@ -339,11 +347,11 @@
 \end{align*}
 が成り立つ．したがって任意の\(\varepsilon \gt 0\)で\(\{h \in C(X) \mid \|h - fg\| \lt \varepsilon\} \cap A \neq \emptyset\)となり，\(fg \in \overline{A}\)がわかる．</p>
 
-<p>命題13の証明に必要な定理2つを紹介する．</p>
+<p>命題14の証明に必要な定理2つを紹介する．</p>
 
 
 <div class="card">
-<h5>定理 11（Raabeの判定法）</h5>
+<h5>定理 12（Raabeの判定法）</h5>
 <p>正項級数\(\displaystyle \sum_{n = 1}^\infty a_n\)について，\(\displaystyle \lim_{n\to \infty} \frac{a_{n + 1}}{a_n} = 1\)（なのでratio testでは判別できない）かつ\(\displaystyle b_n := n\left(1 - \frac{a_{n + 1}}{a_n}\right)\)の極限\(\displaystyle \beta := \lim_{n \to \infty} b_n\)が存在するとき，\(\displaystyle \sum_{n = 1}^\infty a_n\)は\(\beta \gt 1\)ならば収束し，\(\beta\lt 1\)ならば発散する．</p>
 </div>
 
@@ -351,7 +359,7 @@
 
 
 <div class="card">
-<h5>定理 12（Abelの連続性定理）</h5>
+<h5>定理 13（Abelの連続性定理）</h5>
 <p>冪級数\(\displaystyle \sum_{n = 0}^\infty a_n x^n\)が収束半径\(1\)で関数\(f\colon (-1,\,1) \to \mathbb{R}\)に収束し，\(\sum_{n = 0}^\infty a_n\)が絶対収束するならば
 \begin{align}
   \sum_{n = 0}^\infty a^n = \lim_{x \to 1 - 0}f(x)
@@ -417,7 +425,7 @@
 
 
 <div class="card">
-<h5>命題 13</h5>
+<h5>命題 14</h5>
 <p>\(X\)をコンパクトHausdorff空間，\(A\)を\(C(X)\)の閉部分代数とする．\(f,g \in A\)ならば\(f \lor g,\,f\land g \in A\)が成り立つ．</p>
 </div>
 
@@ -476,7 +484,7 @@ b_n
 &amp;= \frac{3 n}{2(n + 1)} \\
 &amp;= \frac{3}{\displaystyle 2\left(1 + \frac{1}{n}\right)} \to \frac{3}{2}
 \end{align*}
-\(\lim_{n \to \infty} b_n \gt 1\)であるから，\(\sum_{n = 0}^\infty a_n\)は絶対収束する．したがってAbelの連続性定理（定理12）により
+\(\lim_{n \to \infty} b_n \gt 1\)であるから，\(\sum_{n = 0}^\infty a_n\)は絶対収束する．したがってAbelの連続性定理（定理13）により
 \begin{align*}
   \sum_{k = 0}^\infty a_k = \lim_{t \to 1 - 0}\sqrt{1 - t} = 0
 \end{align*}
@@ -537,42 +545,51 @@ b_n
 \end{align*}
 に一様収束する．\(A\)が閉集合であるから\(|f|/\|f\| \in A\)である．よって\(f \in A\)ならば\(|f| \in A\)であり，定理の主張が成り立つ．&#8718;</p>
 
-<p style="margin-top: 100px;">\(C(X)\)の部分代数\(A\)の任意の異なる2点\(x,\,y \in X\)に対して，\(\varphi \in A\)で\(\varphi(x) \neq \varphi(y)\)となるものが存在するとき，
-</p>
-
-<p>
-この仮定を満たさない部分代数は実際に存在する．例えば\(X = [-1,\,1]\)として，偶数次の項のみからなる多項式関数の集合
+<p style="margin-top: 100px;">\(C(X,\,\mathbb{K})\)の部分代数\(A\)において，\(X\)の任意の異なる2点\(x_1,\,x_2\)に対して，\(f(x_1) \neq f(x_2)\)となるような\(f\in A\)が存在するとき，\(A\)は\(X\)を<strong>分離する</strong>という．例えば\(X = [-1,\,1]\)上の多項式関数全体の集合
 \begin{align*}
-  A := \left\{f\colon x \mapsto a_0 + a_2 x^2 + \cdots + a_{2n} x^{2n} \; \middle| \; a_{0},\,\ldots,\,a_{2n} \in \mathbb{R} \right\}
+  A := \left\{f\colon x \mapsto a_0 + a_1 x + \cdots + a_{n} x^{n} \; \middle| \; a_{0},\,\ldots,\,a_{n} \in \mathbb{K} \right\}
 \end{align*}
-を考える．これは\(C(X)\)の部分代数になっていることがすぐにわかる．しかし\(x \neq 0\)をとると\(\varphi(x) =  \varphi(-x)\)となり，この仮定は満たされない．</p>
-
-<p><strong>証明</strong> 任意の\(x_1 \neq x_2\)を満たす\(x_1,\,x_2 \in X\)と，任意の\(\alpha,\,\beta \in \mathbb{R}\)が与えられたとき，\(h(x_1) = \alpha\)，\(h(x_2) = \beta\)を満たす\(h \in A\)が存在することを示す．仮定<span class="mathitem">(2)</span>により，\(\varphi \in A\)で\(\varphi(x_1) \neq \varphi(x_2)\)を満たすものが存在する．このとき\(h\)を
+は\(C(X,\,\mathbb{K})\)の部分代数であり，\(f\colon x \mapsto x\)により，\(f(x_1) \neq f(x_2)\)とできる．一方で偶数次の項のみからなる多項式関数の全体の集合
 \begin{align*}
-  h(x) = \alpha + (\beta - \alpha) \frac{\varphi(x) - \varphi(x_1)}{\varphi(x_2) - \varphi(x_1)}
+  A' := \left\{f\colon x \mapsto a_0 + a_2 x^2 + \cdots + a_{2n} x^{2n} \; \middle| \; a_{0},\,\ldots,\,a_{2n} \in \mathbb{K} \right\}
 \end{align*}
-で定義すると，これは条件を満たす．</p>
+は部分代数ではあるが，どのような\(f\in A\)をとっても\(f(-1) =  f(1)\)となるため，\(X\)を分離することはできない．</p>
+
 
 
 <div class="card">
-<h5 id="stone-weierstrass-statement">定理 14 Stone&ndash;Weierstra&szlig;の定理</h5>
-<p>\(X\)をコンパクトHausdorff空間とする．\(C(X,\,\mathbb{R})\)の閉かつ単位的な部分代数\(A\)が以下の<span class="mathitem">(2)</span>を満たすならば，\(A\)の生成する\(C(X)\)の部分代数は\(C(X)\)で稠密になる．</p>
-<ol class="math narrow">
-  <li class="parentheses">任意の異なる2点\(x,\,y \in X\)に対して，\(\varphi \in A\)で\(\varphi(x) \neq \varphi(y)\)となるものが存在する．</li>
-</ol>
+<h5 id="stone-weierstrass-statement">補題 15</h5>
+<p>\(C(X,\,\mathbb{K})\)の単位的な部分代数\(A\)が\(X\)を分離するならば，\(X\)の任意の異なる2点\(x_1,\,x_2\)と任意の定数\(\alpha,\,\beta \in \mathbb{K}\)について
+\begin{align*}
+  h(x_1) = \alpha,\quad h(x_2) = \beta
+\end{align*}
+となるような\(h \in A\)が存在する．</p>
+</div>
+
+<p>
+<p><strong>証明</strong> \(A\)が\(X\)を分離するので，\(X\)の異なる任意の2点\(x_1,\,x_2\)に対して，\(f(x_1) \neq f(x_2)\)となるような\(f\in A\)が存在する．このとき\(h\)を
+\begin{align*}
+  h(x) = \alpha \boldsymbol{1} + (\beta - \alpha) \frac{f(x) - f(x_1)}{f(x_2) - f(x_1)}
+\end{align*}
+と定義すると，これは条件を満たす．&#8718;</p>
+
+
+<div class="card">
+<h5 id="stone-weierstrass-statement">定理 16 Stone&ndash;Weierstra&szlig;の定理</h5>
+<p>\(X\)をコンパクトHausdorff空間とする．\(C(X,\,\mathbb{R})\)の単位的な部分代数\(A\)が\(X\)を分離するならば，\(A\)は\(C(X,\,\mathbb{R})\)で稠密になる．</p>
 </div>
 
 <p><strong>証明</strong> 任意の\(f \in C(X)\)と\(\varepsilon \gt 0\)を与えられたとする．このとき任意の\(z \in X\)について
 \begin{align}
   | g(z) - f(z) | \lt \varepsilon \label{g}
 \end{align}
-となるような\(g \in A\)が存在することを示す．任意の\(x \in X\)をとる．先の結果より，\(x \neq y\)を満たす任意の\(y \in X\)について
+となるような\(g \in A\)が存在することを示す．まず任意に\(x \in X\)をとる．補題15の結果より，\(x \neq y\)を満たす任意の\(y \in X\)について
 \begin{align}
   h_{x,\,y}(x) = f(x),\quad h_{x,\,y}(y) = f(y) \label{h}
 \end{align}
 となるような\(h_{x,\,y} \in A\)をとることができる．\(x = y\)
 のときは
-\(h_{x,\,y} = f(x) 1_X\)
+\(h_{x,\,y} := f(x) \boldsymbol{1}\)
 とすれば\((\ref{h})\)が成り立つ．
 \(h_{x,\,y}\)と\(f\)は連続なので，\(y\)の開近傍\(U_y\)で
 \begin{align*}
@@ -586,11 +603,11 @@ b_n
 \begin{align*}
   h_x = h_{x,\,y_1} \land \cdots \land h_{x,\,y_1}
 \end{align*}
-によって定義すると，命題13により\(h_x \in A\)である．さらに任意の\(z \in X\)で
+によって定義すると，命題14により\(h_x \in A\)である．さらに任意の\(z \in X\)で
 \begin{align*}
-  h_x(z) - f(z) \lt \varepsilon,\quad h_x(x) = f(x)
+  h_x(z) - f(z) \lt \varepsilon
 \end{align*}
-となる．関数\(h_{x},\, f\)が連続なので，各\(x \in X\)について，その開近傍\(V_x\)で，
+かつ\(h_x(x) = f(x)\)である．関数\(h_{x},\, f\)が連続なので，各\(x \in X\)について，その開近傍\(V_x\)で，
 \(z \in V_x\)ならば
 \begin{align*}
   z \in V_z \; \Longrightarrow \; -\varepsilon \lt h_x(z) - f(z)
@@ -599,11 +616,7 @@ b_n
 \begin{align*}
   g = h_{x_1} \lor \cdots \lor h_{x_m}
 \end{align*}
-と定義する．このとき\(g \in A\)であり，これは\((\ref{g})\)を満たす．したがって\(\|f - g\| \lt \varepsilon\)であり，\(f \in \overline{A}\)が成り立つ．よって\(C(X) \subseteq \overline{A}\)が示された．</p>
-<p>\(A \subseteq C(X)\)より\(\overline{A} \subseteq \overline{C(X)} = C(X)\)となり\(A = C(X)\)となる．&#8718;</p>
-
-
-
+と定義する．このとき\(g \in A\)であり，これは\((\ref{g})\)を満たす．したがって\(\|f - g\| \lt \varepsilon\)であり，\(f \in \overline{A}\)が成り立つ．したがって\(C(X)\subseteq \overline{A}\)が成り立つ．系9より\(C(X)\)は閉集合なので，\(\overline{A} \subseteq \overline{C(X)} = C(X)\)が成り立ち，\(\overline{A} = C(X)\)が示された．&#8718;</p>
 </section>
 
   </div>
