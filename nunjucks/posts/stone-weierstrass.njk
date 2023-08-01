@@ -1,9 +1,9 @@
 {% extends 'nunjucks/_layout/_article.njk' %}
 {% set lang = 'ja' %}
 {% set mathematical = 'true' %}
-{% set title = 'Stone–Weierstraßの定理（書きかけ）' %}
+{% set title = 'Stone–Weierstraßの定理' %}
 {% set posted = '2023-06-09' %}
-{% set updated = '2023-07-02' %}
+{% set updated = '2023-08-01' %}
 
 {% block post %}
 
@@ -20,14 +20,13 @@
 </section>
 
 <section>
-
 {% set thm = 1 %}
 
 <div class="card" id="vector-space">
 <h5>定義 {{ thm }}（ベクトル空間）</h5>
 <p>集合\(X\)が以下の性質（ベクトル空間の公理）を満たすとき，\(X\)は\(\mathbb{K}\)上のベクトル空間であるという．</p>
 <ol class="math narrow" style="padding-bottom: 0px;">
-  <li class="upper-roman">加法または和と呼ばれる二項演算が定義されている．加法とは写像\(X\times X\to X\)で，それによる\((x,\,y)\)の像（単に\(x\)と\(y\)の和ということが多い）を\(x + y\)のように書くとき，以下を満たすようなものである：
+  <li class="upper-roman">加法または和と呼ばれる二項演算が定義されている．加法とは\(X\times X\)から\( X\)への写像で，それによる\((x,\,y)\)の像（単に\(x\)と\(y\)の和ということが多い）を\(x + y\)のように書くとき，以下を満たすようなものである：
   <ol class="math narrow">
     <li class="parentheses">任意の\(x,\,y \in X\)について\((x + y) + z = x + (y + z)\)．</li>
     <li class="parentheses">任意の\(x,\,y \in X\)について\(x + y = y + x\)．</li>
@@ -35,7 +34,7 @@
     </li>
     <li class="parentheses">任意の\(x \in X\)に対して，ある元\(x' \in X\)が存在して\(x + x' = 0\)が成り立つ．これを逆ベクトル（加法逆元）と呼び，\(-x\)で表す．</li>
   </ol>
-  <li class="upper-roman">スカラー倍と呼ばれる二項演算が定義されている．スカラー倍とは写像\(\mathbb{K}\times X\to X\)で，それによる\((\alpha,\,x)\)の像を\(\alpha x\)のように書くとき，以下を満たすような演算である：
+  <li class="upper-roman">スカラー倍と呼ばれる二項演算（写像）が定義されている．スカラー倍とは\(\mathbb{K}\times X\)から\(X\)への写像で，それによる\((\alpha,\,x)\)の像を\(\alpha x\)のように書くとき，以下を満たすようなものである：
     <ol class="math narrow">
       <li class="parentheses">任意の\(\alpha,\,\beta \in \mathbb{K}\)と任意の\(x \in X\)について\((\alpha + \beta) x = \alpha x + \beta x\)．</li>
       <li class="parentheses">任意の\(\alpha \in \mathbb{K}\)と任意の\(x,\,y \in X\)について\(\alpha (x + y) = \alpha x + \alpha y\)．</li>
@@ -49,7 +48,7 @@
 {% set thm = thm + 1 %}
 <div class="card" id="algebra">
 <h5>定義 {{ thm }} （代数）</h5>
-<p>\(\mathbb{K}\)上のベクトル空間\(X\)において，乗法または積と呼ばれる二項演算が定義されているとき，\(X\)は\(\mathbb{K}\)上の<strong class="math-keyword">代数</strong>(algebra)であるという．乗法とは，写像\(X \times X \to X\)で，それによる\((x,\,y)\)の像（単に\(x\)と\(y\)の積ということが多い）を\(xy\)のように書くとき，以下を満たすようなものである：
+<p>\(\mathbb{K}\)上のベクトル空間\(X\)において，乗法または積と呼ばれる二項演算が定義されているとき，\(X\)は\(\mathbb{K}\)上の<strong class="math-keyword">代数</strong>(algebra)であるという．乗法とは，\(X \times X\)から\(X\)への写像で，それによる\((x,\,y)\)の像（単に\(x\)と\(y\)の積ということが多い）を\(xy\)のように書くとき，以下を満たすようなものである：
   <ol class="math narrow">
     <li class="parentheses">任意の\(x,\,y,\,z \in V\)について\(x (yz) = (xy) z\)．</li>
     <li class="parentheses">任意の\(x,\,y,\,z \in V\)について\((x + y) z = xz + yz,\,x (y + z) = xz + xz\)．</li>
@@ -70,17 +69,17 @@
 {% set thm = thm + 1 %}
 <div class="card">
 <h5>定義 {{ thm }}（コンパクトHausdorff空間上の連続関数全体の集合から作られる代数）</h5>
-<p>\(X\)をコンパクトHausdorff空間とし，\(X\)から\(\mathbb{K}\)への連続関数全体の集合を\(C(X,\,\mathbb{K})\)または単に\(C(X)\)と書く．\(C(X)\)における加法，スカラー倍，ゼロベクトル（加法単位元）をそれぞれ</p>
-<ol class="math narrow">
-  <li class="parentheses">\((f + g)(x) := f(x) + g(x).\)</li>
-  <li class="parentheses">\((\alpha f)(x) := \alpha f(x).\)</li>
-  <li class="parentheses">\(\boldsymbol{0} \colon X \to \mathbb{K},\, \boldsymbol{0} (x) := 0.\)</li>
-</ol>
-<p>で定義するとき，\(C(X)\)は\(\mathbb{K}\)上のベクトル空間となる．さらに乗法と乗法単位元を</p>
-<ol class="math narrow">
-  <li class="parentheses4">\((fg)(x) := f(x)g(x).\)</li>
-  <li class="parentheses5">\(\boldsymbol{1} \colon X \to \mathbb{K},\, \boldsymbol{1}(x) := 1.\)</li>
-</ol>
+<p>\(X\)をコンパクトHausdorff空間とし，\(X\)から\(\mathbb{K}\)への連続関数全体の集合を\(C(X,\,\mathbb{K})\)または単に\(C(X)\)と書く．\(C(X)\)における加法，スカラー倍，ゼロベクトル（加法単位元）をそれぞれ
+\begin{gather*}
+  (f + g)(x) := f(x) + g(x),\\[3pt]
+  (\alpha f)(x) := \alpha f(x), \\[3pt]
+  \boldsymbol{0} \colon X \to \mathbb{K},\, \boldsymbol{0} (x) := 0
+\end{gather*}
+で定義するとき，\(C(X)\)は\(\mathbb{K}\)上のベクトル空間となる．さらに乗法と乗法単位元を</p>
+\begin{gather*}
+  (fg)(x) := f(x)g(x), \\[3pt]
+  \boldsymbol{1} \colon X \to \mathbb{K},\, \boldsymbol{1}(x) := 1
+\end{gather*}
 <p>と定義するとき，\(C(X)\)は\(\mathbb{K}\)上の代数となる．</p>
 </div>
 
@@ -151,7 +150,7 @@
 が成り立つ．よって\(fg \in C(X)\)である．</p>
 
 {% set thm = thm + 1 %}
-<div class="card">
+<div class="card" id="abs">
 <h5>命題 {{ thm }}</h5>
 <p>\(f \in C(X)\)ならば\(|f| \in C(X)\)が成り立つ．</p>
 </div>
@@ -177,7 +176,7 @@
   f \lor g = \frac{1}{2}(f + g + | f - g|),\quad
   f \land g = \frac{1}{2}(f + g - | f - g|),\quad
 \end{align*}
-と表される．命題{{ thm - 1 }}より\(|f -g| \in C(X,\,\mathbb{R})\)であるから\(f \lor g,\,f \land g \in C(X,\,\mathbb{R})\)がわかる．&#8718;</p>
+と表される．<a href="#abs">命題{{ thm - 1 }}</a>より\(|f -g| \in C(X,\,\mathbb{R})\)であるから\(f \lor g,\,f \land g \in C(X,\,\mathbb{R})\)がわかる．&#8718;</p>
 
 
 <p style="padding-top: 20px;">代数はベクトル空間を拡張したものであるから，ノルムを導入することができる．先にノルムの定義を確認する．</p>
@@ -211,17 +210,17 @@
 <div class="card">
 <h5>定義 {{ thm }}（C(X)のノルム）</h5>
 <p>代数\(C(X)\)に一様ノルム（ここでは最大値ノルムに一致）を入れる，すなわち任意の\(f \in C(X)\)について
-\begin{align}
-\|f\|_\infty = \sup_{x \in X} |f(x)| \label{submultiplicative} \tag{1.1}
-\end{align}
+\begin{align*}
+\|f\|_\infty = \sup_{x \in X} |f(x)| \label{submultiplicative}
+\end{align*}
 と定義する．このとき\((C(X),\,\|\cdot\|_\infty)\)はBanach代数となる．</p>
 </div>
 
-<p>上の定義がwell-definedであるか確認する．以下では\(C(X)\)のノルムとしては一様ノルムのみを考え，\(\|\cdot\|_\infty\)を単に\(\|\cdot\|\)と書く．</p>
+<p>以下では\(C(X)\)のノルムとしては一様ノルムのみを考え，\(\|\cdot\|_\infty\)を単に\(\|\cdot\|\)と書く．</p>
 
-<p><span>【一様ノルムが代数のノルムになっていること】</span> 省略．</p>
+<p><span>【一様ノルムが代数のノルムになっていることの確認】</span> 省略．</p>
 
-<p><span>【完備であること】</span> \(C(X)\)上の任意のCauchy列\((f_n)_{n \in \mathbb{Z}_+}\)をとる．このとき，任意の\(\varepsilon \gt 0\)に対して，ある\(N_1 \in \mathbb{Z}_+\)が存在して，\(m,\,n \geq N_0\)ならば
+<p><span>【完備であることの確認】</span> \(C(X)\)上の任意のCauchy列\((f_n)_{n \in \mathbb{Z}_+}\)をとる．このとき，任意の\(\varepsilon \gt 0\)に対して，ある\(N_1 \in \mathbb{Z}_+\)が存在して，\(m,\,n \geq N_0\)ならば
 \begin{align*}
   \|f_m - f_n\| \lt \varepsilon,
 \end{align*}
@@ -248,15 +247,6 @@
 \end{align*}
 よって\(f\)は\(x\)で連続であり，\(x\)は任意だったので，\(f \in C(X)\)が示せた．<p/>
 
-{% set thm = thm + 1 %}
-<div class="card">
-<h5>系 {{ thm }}</h5>
-<p>\(C(X)\)は閉集合である．</p>
-</div>
-
-<p><strong>証明</strong>
-任意の\(f \in \overline{C(X)}\)をとる．このとき\(C(X)\)の要素の列\((f_n)_{n \in \mathbb{Z}_+}\)で\(f\)に収束するものがとれる．収束列はCauchy列であり，\(C(X)\)が完備であるから，その極限\(f\)は\(C(X)\)の要素である．ゆえに\(\overline{C(X)} \subseteq C(X)\)が成り立ち，\(C(X)\)が閉集合であることがわかる．&#8718;</p>
-
 <p style="padding-top: 20px;">次は代数における部分ベクトル空間に対応するものを考える．</p>
 
 {% set thm = thm + 1 %}
@@ -270,47 +260,216 @@
 </ol>
 </div>
 
+<p>\(C(X,\,\mathbb{K})\)の部分代数\(A\)において，\(X\)の任意の異なる2点\(x_1,\,x_2\)に対して，\(f(x_1) \neq f(x_2)\)となるような\(f\in A\)が存在するとき，\(A\)は\(X\)を<strong>分離する</strong>という．例えば\(X = [-1,\,1]\)上の多項式関数全体の集合
+\begin{align*}
+  A := \left\{f\colon x \mapsto a_0 + a_1 x + \cdots + a_{n} x^{n} \; \middle| \; a_{0},\,\ldots,\,a_{n} \in \mathbb{K} \right\}
+\end{align*}
+は\(C(X,\,\mathbb{K})\)の部分代数であり，\(f\colon x \mapsto x\)により，\(f(x_1) \neq f(x_2)\)とできる．一方で偶数次の項のみからなる多項式関数の全体の集合
+\begin{align*}
+  A' := \left\{f\colon x \mapsto a_0 + a_2 x^2 + \cdots + a_{2n} x^{2n} \; \middle| \; a_{0},\,\ldots,\,a_{2n} \in \mathbb{K} \right\}
+\end{align*}
+は部分代数ではあるが，どのような\(f\in A\)をとっても\(f(-1) =  f(1)\)となるため，\(X\)を分離することはできない．</p>
+
 {% set thm = thm + 1 %}
-<div class="card">
+<div class="card" id="lemma-h">
 <h5>命題 {{ thm }}</h5>
-<p>\(A\)が\(C(X)\)の部分代数ならばその閉包\(\overline{A}\)も部分代数である．</p>
+<p>\(C(X,\,\mathbb{K})\)の単位的な部分代数\(A\)が\(X\)を分離するならば，\(X\)の任意の異なる2点\(x_1,\,x_2\)と任意の定数\(\alpha,\,\beta \in \mathbb{K}\)について
+\begin{align*}
+  h(x_1) = \alpha,\quad h(x_2) = \beta
+\end{align*}
+となるような\(h \in A\)が存在する．</p>
 </div>
 
-<p><strong>証明</strong> 【積について閉じていること】 任意の\(f \in \overline{A}\)をとる．\(f\)が\(A\)の集積点なので，\(A\)上の列\((f_n)_{n \in \mathbb{Z}_+}\)で，\(f_n \to f\)となるようなものが存在する．この\((f_n)_{n \in \mathbb{Z}_+}\)について，ある\(N_1 \in \mathbb{Z}_+\)が存在して，\(n \geq N_1\)ならば
+<p><strong>証明</strong> \(A\)が\(X\)を分離するので，\(X\)の異なる任意の2点\(x_1,\,x_2\)に対して，\(f(x_1) \neq f(x_2)\)となるような\(f\in A\)が存在する．このとき\(h\)を
 \begin{align*}
-  \|f_n\| - \|f\| \leq \|f_n - f\| \lt 1 \\
+  h(x) = \alpha \boldsymbol{1} + (\beta - \alpha) \frac{f(x) - f(x_1)}{f(x_2) - f(x_1)}
 \end{align*}
-が成り立つ．また任意の\(\varepsilon \gt 0\)に対し，ある\(N_2 \in \mathbb{Z}_+\)が存在して，\(n \geq N_2\)ならば
-\begin{align*}
-  \|f_n - f\| \lt \frac{\varepsilon}{2(\|g\| + 1)}
-\end{align*}
-が成り立つ．\(g \in \overline{A}\)についても同様に\(g\)が\(A\)の集積点なので，\(A\)上の列\((g_n)_{n \in \mathbb{Z}_+}\)で\(g_n \to g\)，すなわち，ある\(N_3 \in \mathbb{Z}_+\)が存在して，\(n \geq N_3\)ならば
-\begin{align*}
-  \|g_n - g\| \lt \frac{\varepsilon}{2(\|f\| + 1)}
-\end{align*}
-が成り立つ．これらの乗法で定まる新しい列\((f_n g_n)_{n \in \mathbb{Z}_+}\)と\(fg \in C(X)\)について，\(n \geq \max\{N_1,\,N_2,\,N_3\}\)となるようにとれば
-\begin{align*}
-  \|f_n g_n - fg\|
-  &amp;= \|f_n g_n - f_n g  + f_n g - f g \| \\
-  &amp;\leq \|f_n \| \| g_n - g \| + \| f_n - f \| \| g \| \\
-  &amp;\lt (\|f\| + 1) \frac{\varepsilon}{2(\|f\| + 1)} + \frac{\varepsilon}{2(\|g\| + 1)} \| g \| \\
-  &amp;\leq \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
-\end{align*}
-が成り立つ．したがって任意の\(\varepsilon \gt 0\)で\(\{h \in C(X) \mid \|h - fg\| \lt \varepsilon\} \cap A \neq \emptyset\)となり，\(fg \in \overline{A}\)がわかる．</p>
+と定義すると，これは条件を満たす．&#8718;</p>
 
-<p>命題{{ thm + 3 }}の証明に必要な定理2つを紹介する．</p>
+<p>これでStone&ndash;Weierstra&szlig;の定理を述べるための準備が整った．</p>
 
 {% set thm = thm + 1 %}
 <div class="card">
-<h5>定理 {{ thm }}（Raabeの判定法）</h5>
+<h5 id="stone-weierstrass-statement">定理 {{ thm }}（Stone&ndash;Weierstra&szlig;の定理）</h5>
+<p>\(X\)をコンパクトHausdorff空間とする．\(C(X,\,\mathbb{R})\)の単位的な閉部分代数\(A\)が\(X\)を分離するならば，\(A\)は\(C(X,\,\mathbb{R})\)で稠密になる．</p>
+</div>
+
+<p>証明にあたり，必要となる補題を示す．</p>
+
+{% set thm = thm + 1 %}
+<div class="card">
+<h5>補題 {{ thm }}</h5>
+<p>\(X\)をコンパクトHausdorff空間，\(A\)を\(C(X)\)の閉部分代数とする．\(f,g \in A\)ならば\(f \lor g,\,f\land g \in A\)が成り立つ．</p>
+</div>
+
+<p><strong>証明</strong> \(f \lor g,\,f \land g\)はそれぞれ
+\begin{align*}
+  f \lor g = \frac{1}{2} (f + g + |f - g|), \\
+  f \land g = \frac{1}{2} (f + g - |f - g|), \\
+\end{align*}
+と表すことができる．したがって\(f \in A\)ならば\(|f| \in A\)が成り立つことを示せばよい．まず\(|f|\)が \(a_1f + a_2 f^2 + \cdots a_n f^n \in A\)で近似できることを示す（\(A\)がunitalとはいっていないため\(a_0 1_X,\,a_0 \neq 0\)は含まれていないことに注意する．）．</p>
+<p>\(|t| = \sqrt{t^2}\)なので，これの多項式近似を考えたいところではあるが，\(t \mapsto \sqrt{t^2}\)は扱いが難しいため，かわりに\(t \mapsto \sqrt{1 - t}\)を考える．関数\(f\)を
+\begin{align*}
+  f\colon(-\infty,\,1] \to \mathbb{R},\quad f(t) = \sqrt{1 - t}
+\end{align*}
+と定義する．この関数は\((-\infty,\,1)\)で微分可能で，各次の導関数は以下のようになる：
+\begin{gather*}
+  f'(t) = \frac{1}{2} (1 - t)^{-1/2} \cdot (-1) = -\frac{1}{2}(1 - t)^{-1/2}, \\
+  f''(t) = -\frac{1}{2}\cdot \left(-\frac{1}{2}\right) \cdot (1 - t)^{-3/2} \cdot (-1) = - \frac{1}{4}(1 - t)^{-3/2}, \\
+  f'''(t) = -\frac{1}{4} \cdot \left(-\frac{3}{2}\right) \cdot (1 - t)^{-5/2} \cdot (-1) = - \frac{3}{8} (1 - t)^{-5/2}, \\
+  \vdots \\
+  f^{(n)}(t) = - \frac{(2 n - 3) !! }{2^n} (1 - t)^{- (2 n - 1)/2} \ (n \geq 2).
+\end{gather*}
+ここで\((2n - 3)!!\)は二重階乗\((2n - 3)\cdot(2n - 5) \cdot \cdots \cdot 5 \cdot 3 \cdot 1\)である．</p>
+<p>Taylorの定理によりと任意の\(-1 \lt t \lt 1\)について\(|\theta| \lt t\)が存在して
+\begin{align*}
+  \sqrt{1 - t}
+  &amp;= f(0) + f'(0) t + \frac{1}{2} f''(0) t^2 + \frac{1}{3!}f'''(0) t^3 + \cdots + \frac{1}{(n - 1)!} f^{(n - 1)} t^{n - 1} + \frac{1}{n!}f^{(n)}(\theta) t^n \\
+  &amp;= 1 - \frac{t}{2} -\sum_{k = 2}^{n - 1} \frac{(2k - 3)!!}{k!2^k} t^{k} -
+  \frac{(2n - 3)!!}{n!2^n} \theta^n \\
+  &amp;= \sum_{k = 0}^{n - 1} a_k t^k - a_n \theta^n
+\end{align*}
+が成り立つ．ここで
+\begin{align*}
+  a_0 = 1,\quad a_1 = \frac{1}{2},\quad a_n = \frac{(2n - 3)!!}{n!2^n}\quad (n \geq 2)
+\end{align*}
+とした．このとき
+\begin{align*}
+\left|\sqrt{1 - t} - \left(\sum_{k = 0}^{n -1} a_k t^k \right)\right|
+  &amp;= \left| a_n \theta^k \right| \\
+  &amp;= \frac{(2n - 3)!!}{n!2^n} \theta^n  \\
+  &amp;\lt \frac{1}{2^n (2n - 4) \cdot (2n - 6) \cdot \cdots \cdot 4 \cdot 2}  \\
+  &amp;\leq \frac{1}{2^n} \to 0 \quad(n \to \infty)
+\end{align*}
+となるから，\(\sum_{k = 1}^\infty a_k t^k\)は区間\((-1,\,1)\)で\(\sqrt{1 - t}\)に一様収束する．\(t = 1\)のとき\(\sum_{n = 0}^\infty a_n t^n\)が収束する，すなわち\(\sum_{n = 0}^\infty a_n\)が収束することを示す．Ratio testを試みると
+\begin{align}
+  \left| \frac{a_{n + 1}}{a_n } \right|
+  &amp;=  \frac{n!2^n}{(2n - 3)!!} \frac{(2n - 1)!!}{(n + 1)!2^{n + 1}} \notag \\
+  &amp;=  \frac{2n - 1}{2(n + 1)} \notag \\
+  &amp;=  \frac{2(n + 1) - 3}{2(n + 1)} \notag \\
+  &amp;= 1 - \frac{3}{2(n + 1)} \to 1 \quad(n \to \infty) \label{radius}
+\end{align}
+となるため，ratio testではなくRaabeの判定法（<a href="raabe">定理 A.1</a>）を試みる．
+\begin{align*}
+b_n
+&amp;:= n \left(1 - \frac{|a_{n + 1}|}{|a_n|}\right) \\
+&amp;= n \left(1 - 1 + \frac{3}{2(n + 1)}\right) \\
+&amp;= \frac{3 n}{2(n + 1)} \\
+&amp;= \frac{3}{\displaystyle 2\left(1 + \frac{1}{n}\right)} \to \frac{3}{2}
+\end{align*}
+\(\lim_{n \to \infty} b_n \gt 1\)であるから，\(\sum_{n = 0}^\infty a_n\)は絶対収束する．したがってAbelの連続性定理（<a href="abel">定理A.2</a>）により
+\begin{align*}
+  \sum_{k = 0}^\infty a_k = \lim_{t \to 1 - 0}\sqrt{1 - t} = 0
+\end{align*}
+となる．ゆえに級数\(\sum_{k = 0}^\infty a_k t^k\)は\((-1,\,1]\)，特に\([0,\,1]\)で\(f\)に一様収束することがわかった．視覚的に確認するために\(y = \sqrt{1 - t}\)と\(y = \sum_{k = 0}^n a_k t^k\) \((n = 1,\,10)\)を図示すると以下のようになっており，確かに成り立っていそうである．</p>
+<figure class="centered">
+  <img
+    src="/static/images/sqrt.svg"
+    alt="polynomial approximation of sqrt(1 - t)"
+    style="background-color: transparent; width: 100%; height: auto; max-width: 600px; margin-top: 2ex;"
+  >
+  <figcaption><strong>図1：</strong>\(\sqrt{1 - t}\)の多項式近似．</figcaption>
+</figure>
+<p>関数\(p\colon[-1,\,1] \to \mathbb{R}\)を
+\begin{align*}
+  p(t) = \sum_{n = 0}^\infty a_n (1 - t^2)^n
+\end{align*}
+で定義する．このとき
+\begin{align*}
+  \Bigl||t| - p(t)\Bigr|
+  &amp; = \left| \sqrt{1 - (1 - t^2)} - \sum_{k = 0}^\infty a_k (1 - t^2)^n \right|
+\end{align*}
+となるから\(p\)は\([-1,\,1]\)で\(|t|\)に一様収束する．\(y = |t|\)と\(y = \sum_{k = 0}^n a_k (1 - t^2)^k\) \((n = 1,\,10)\)についても図示してみると以下のようになっており，うまく近似できていることがわかる．</p>
+<figure class="centered">
+  <img
+    src="/static/images/abs.svg"
+    alt="polynomial approximation of absolute value"
+    style="background-color: transparent; width: 100%; height: auto; max-width: 800px; margin-top: 2ex;"
+  >
+  <figcaption><strong>図2：</strong>\(|t|\)の多項式近似．</figcaption>
+</figure>
+<p>級数\(\sum_{n = 0}^\infty a_n(1 - t^2)^n\)は\(t \in [-1,\,1]\)で絶対収束するから，項の順番を入れ替えて足し合わせてもよい．\(\sum_{n = 0}^\infty a_n = 0\)であったから，以下のように\(p\)を書き改めることができる．
+\begin{align*}
+  p(t)
+  &amp;= \sum_{n = 0}^\infty a_n (1 - t^2)^n \\
+  &amp;= a_0 + a_1 (1 - t^2) + a_2(1- 2 t^2 + t^4) + a_3 (1 - 3t^2 + 3t^4 - t^6) + \cdots \\
+  &amp;= \sum_{n = 0}^\infty a_n - (a_1 + 2 a_2 + \cdots )t^2 + (a_2 + 3 a_3 + \cdots)t^4 + \cdots \\
+  &amp; = \lim_{n \to \infty} \sum_{n = 1}^\infty c_n t^{2n}
+\end{align*}
+ただし記号\(\displaystyle \binom{n}{k}\)は二項係数を表しており，
+\begin{align*}
+  c_n &amp; = (-1)^n \left(\binom{n}{n} a_n + \cdots + \binom{n + j}{n} a_{n + j} + \cdots \right) \\
+      &amp; = (-1)^n \sum_{j = 0}^\infty \left(\binom{n + j}{n} a_{n + j} \right) \\
+\end{align*}
+である．</p>
+<p>\(t \mapsto |t|\)を多項式近似することができたので，これで\(|f|\)の多項式近似を考えることができる．\(\|f\| = 0\)，すなわち\(f = 0_{C(X)}\)のときは\(|f| = f\in A\)となる．よって以下では\(\|f\| \gt 0\)とする．このとき
+\begin{align*}
+  |f| = \|f\| \frac{|f|}{\|f\|}
+\end{align*}
+が成り立つので\(f \in A\)ならば\(|f|/\|f\| \in A\)を示せばよいことがわかる．任意の\(x \in X\)に対して\(f(x)/\|f\| \in [-1,\,1]\)なので
+\begin{align*}
+  \sum_{k = 1}^n c_n \left( \frac{f(x)}{\|f\|} \right)^2 \in A
+\end{align*}
+であり，これは\(n \to \infty\)とすると
+\begin{align*}
+  \left|\frac{f(x)}{\|f\|}\right|
+  = \frac{|f(x)|}{\|f\|}
+  = \frac{|f|(x)}{\|f\|}
+\end{align*}
+に一様収束する．\(A\)が閉集合であるから\(|f|/\|f\| \in A\)である．よって\(f \in A\)ならば\(|f| \in A\)であり，定理の主張が成り立つ．&#8718;</p>
+
+<p><strong>証明</strong> 任意の\(f \in C(X)\)と\(\varepsilon \gt 0\)を与えられたとする．このとき任意の\(z \in X\)について
+\begin{align}
+  | g(z) - f(z) | \lt \varepsilon \label{g}
+\end{align}
+となるような\(g \in A\)が存在することを示す．まず任意に\(x \in X\)をとる．<a href="#lemma-h">命題{{ thm - 2 }}</a>の結果より，\(x \neq y\)を満たす任意の\(y \in X\)について
+\begin{align}
+  h_{x,\,y}(x) = f(x),\quad h_{x,\,y}(y) = f(y) \label{h}
+\end{align}
+となるような\(h_{x,\,y} \in A\)をとることができる．\(x = y\)
+のときは
+\(h_{x,\,y} := f(x) \boldsymbol{1}\)
+とすれば\((\ref{h})\)が成り立つ．
+\(h_{x,\,y}\)と\(f\)は連続なので，\(y\)の開近傍\(U_y\)で
+\begin{align*}
+  z \in U_y \; \Longrightarrow \; h_{x,\,y}(z) - f(z) \lt \varepsilon
+\end{align*}
+となるようなものをとることができる．このようにして得られた集合族
+\(\{U_y\}_{y \in X}\)
+は
+\(X\)
+の開被覆である．\(X\)はコンパクトであるから，有限個\(U_{y_1},\,\ldots,\,U_{y_n}\)によって\(X\)を覆うことができる．そこで
+\begin{align*}
+  h_x = h_{x,\,y_1} \land \cdots \land h_{x,\,y_1}
+\end{align*}
+によって定義すると，命題{{ thm - 2 }}により\(h_x \in A\)である．さらに任意の\(z \in X\)で
+\begin{align*}
+  h_x(z) - f(z) \lt \varepsilon
+\end{align*}
+かつ\(h_x(x) = f(x)\)である．関数\(h_{x},\, f\)が連続なので，各\(x \in X\)について，その開近傍\(V_x\)で，
+\(z \in V_x\)ならば
+\begin{align*}
+  z \in V_z \; \Longrightarrow \; -\varepsilon \lt h_x(z) - f(z)
+\end{align*}
+となるようなものをとることができる．\(\{V_x\}_{x \in X}\)は\(X\)の開被覆であり，\(X\)がコンパクトなので，有限個の\(V_{x_1},\,\ldots,\,V_{x_n}\)で\(X\)を覆うことができる．そこで
+\begin{align*}
+  g = h_{x_1} \lor \cdots \lor h_{x_m}
+\end{align*}
+と定義する．このとき\(g \in A\)であり，これは\((\ref{g})\)を満たす．したがって\(\|f - g\| \lt \varepsilon\)であり，\(f \in \overline{A}\)が成り立つ．したがって\(C(X)\subseteq \overline{A}\)となるが，\(A\)は閉集合だったので\(A = \overline{A} = C(X)\)が成り立つ．&#8718;</p>
+</section>
+
+<section>
+<h2>付録 A</h2>
+<div class="card" id="raabe">
+<h5>定理 A.1（Raabeの判定法）</h5>
 <p>正項級数\(\displaystyle \sum_{n = 1}^\infty a_n\)について，\(\displaystyle \lim_{n\to \infty} \frac{a_{n + 1}}{a_n} = 1\)（なのでratio testでは判別できない）かつ\(\displaystyle b_n := n\left(1 - \frac{a_{n + 1}}{a_n}\right)\)の極限\(\displaystyle \beta := \lim_{n \to \infty} b_n\)が存在するとき，\(\displaystyle \sum_{n = 1}^\infty a_n\)は\(\beta \gt 1\)ならば収束し，\(\beta\lt 1\)ならば発散する．</p>
 </div>
 
 <p><strong>証明</strong> 略．</p>
 
 {% set thm = thm + 1 %}
-<div class="card">
-<h5>定理 {{ thm }}（Abelの連続性定理）</h5>
+<div class="card" id="abel">
+<h5>定理 A.2（Abelの連続性定理）</h5>
 <p>冪級数\(\displaystyle \sum_{n = 0}^\infty a_n x^n\)が収束半径\(1\)で関数\(f\colon (-1,\,1) \to \mathbb{R}\)に収束し，\(\sum_{n = 0}^\infty a_n\)が絶対収束するならば
 \begin{align}
   \sum_{n = 0}^\infty a^n = \lim_{x \to 1 - 0}f(x)
@@ -372,201 +531,15 @@
 \lim_{x \to 1 - 0} \lim_{n \to \infty}\sum_{k = 0}^n a_n x^n = \lim_{n \to \infty} \lim_{x \to 1 - 0}\sum_{k = 0}^n a_n x^n
 \end{align*}
 が成り立つということを述べている．</p>
+</section>
 
-
-{% set thm = thm + 1 %}
-<div class="card">
-<h5>命題 {{ thm }}</h5>
-<p>\(X\)をコンパクトHausdorff空間，\(A\)を\(C(X)\)の閉部分代数とする．\(f,g \in A\)ならば\(f \lor g,\,f\land g \in A\)が成り立つ．</p>
-</div>
-
-<p><strong>証明</strong> \(f \lor g,\,f \land g\)はそれぞれ
-\begin{align*}
-  f \lor g = \frac{1}{2} (f + g + |f - g|), \\
-  f \land g = \frac{1}{2} (f + g - |f - g|), \\
-\end{align*}
-と表すことができる．したがって\(f \in A\)ならば\(|f| \in A\)が成り立つことを示せばよい．まず\(|f|\)が \(a_1f + a_2 f^2 + \cdots a_n f^n \in A\)で近似できることを示す（\(A\)がunitalとはいっていないため\(a_0 1_X,\,a_0 \neq 0\)は含まれていないことに注意する．）．</p>
-<p>\(|t| = \sqrt{t^2}\)なので，これの多項式近似を考えたいところではあるが，\(t \mapsto \sqrt{t^2}\)は扱いが難しいため，かわりに\(t \mapsto \sqrt{1 - t}\)を考える．関数\(f\)を
-\begin{align*}
-  f\colon(-\infty,\,1] \to \mathbb{R},\quad f(t) = \sqrt{1 - t}
-\end{align*}
-と定義する．この関数は\((-\infty,\,1)\)で微分可能で，各次の導関数は以下のようになる：
-\begin{gather*}
-  f'(t) = \frac{1}{2} (1 - t)^{-1/2} \cdot (-1) = -\frac{1}{2}(1 - t)^{-1/2}, \\
-  f''(t) = -\frac{1}{2}\cdot \left(-\frac{1}{2}\right) \cdot (1 - t)^{-3/2} \cdot (-1) = - \frac{1}{4}(1 - t)^{-3/2}, \\
-  f'''(t) = -\frac{1}{4} \cdot \left(-\frac{3}{2}\right) \cdot (1 - t)^{-5/2} \cdot (-1) = - \frac{3}{8} (1 - t)^{-5/2}, \\
-  \vdots \\
-  f^{(n)}(t) = - \frac{(2 n - 3) !! }{2^n} (1 - t)^{- (2 n - 1)/2} \ (n \geq 2).
-\end{gather*}
-ここで\((2n - 3)!!\)は二重階乗\((2n - 3)\cdot(2n - 5) \cdot \cdots \cdot 5 \cdot 3 \cdot 1\)である．</p>
-<p>Taylorの定理によりと任意の\(-1 \lt t \lt 1\)について\(|\theta| \lt t\)が存在して
-\begin{align*}
-  \sqrt{1 - t}
-  &amp;= f(0) + f'(0) t + \frac{1}{2} f''(0) t^2 + \frac{1}{3!}f'''(0) t^3 + \cdots + \frac{1}{(n - 1)!} f^{(n - 1)} t^{n - 1} + \frac{1}{n!}f^{(n)}(\theta) t^n \\
-  &amp;= 1 - \frac{t}{2} -\sum_{k = 2}^{n - 1} \frac{(2k - 3)!!}{k!2^k} t^{k} -
-  \frac{(2n - 3)!!}{n!2^n} \theta^n \\
-  &amp;= \sum_{k = 0}^{n - 1} a_k t^k - a_n \theta^n
-\end{align*}
-が成り立つ．ここで
-\begin{align*}
-  a_0 = 1,\quad a_1 = \frac{1}{2},\quad a_n = \frac{(2n - 3)!!}{n!2^n}\quad (n \geq 2)
-\end{align*}
-とした．このとき
-\begin{align*}
-\left|\sqrt{1 - t} - \left(\sum_{k = 0}^{n -1} a_k t^k \right)\right|
-  &amp;= \left| a_n \theta^k \right| \\
-  &amp;= \frac{(2n - 3)!!}{n!2^n} \theta^n  \\
-  &amp;\lt \frac{1}{2^n (2n - 4) \cdot (2n - 6) \cdot \cdots \cdot 4 \cdot 2}  \\
-  &amp;\leq \frac{1}{2^n} \to 0 \quad(n \to \infty)
-\end{align*}
-となるから，\(\sum_{k = 1}^\infty a_k t^k\)は区間\((-1,\,1)\)で\(\sqrt{1 - t}\)に一様収束する．\(t = 1\)のとき\(\sum_{n = 0}^\infty a_n t^n\)が収束する，すなわち\(\sum_{n = 0}^\infty a_n\)が収束することを示す．Ratio testを試みると
-\begin{align}
-  \left| \frac{a_{n + 1}}{a_n } \right|
-  &amp;=  \frac{n!2^n}{(2n - 3)!!} \frac{(2n - 1)!!}{(n + 1)!2^{n + 1}} \notag \\
-  &amp;=  \frac{2n - 1}{2(n + 1)} \notag \\
-  &amp;=  \frac{2(n + 1) - 3}{2(n + 1)} \notag \\
-  &amp;= 1 - \frac{3}{2(n + 1)} \to 1 \quad(n \to \infty) \label{radius}
-\end{align}
-となるため，ratio testではなくRaabeの判定法を試みる．
-\begin{align*}
-b_n
-&amp;:= n \left(1 - \frac{|a_{n + 1}|}{|a_n|}\right) \\
-&amp;= n \left(1 - 1 + \frac{3}{2(n + 1)}\right) \\
-&amp;= \frac{3 n}{2(n + 1)} \\
-&amp;= \frac{3}{\displaystyle 2\left(1 + \frac{1}{n}\right)} \to \frac{3}{2}
-\end{align*}
-\(\lim_{n \to \infty} b_n \gt 1\)であるから，\(\sum_{n = 0}^\infty a_n\)は絶対収束する．したがってAbelの連続性定理（定理{{ thm - 1}}）により
-\begin{align*}
-  \sum_{k = 0}^\infty a_k = \lim_{t \to 1 - 0}\sqrt{1 - t} = 0
-\end{align*}
-となる．ゆえに級数\(\sum_{k = 0}^\infty a_k t^k\)は\((-1,\,1]\)，特に\([0,\,1]\)で\(f\)に一様収束することがわかった．視覚的に確認するために\(y = \sqrt{1 - t}\)と\(y = \sum_{k = 0}^n a_k t^k\) \((n = 1,\,10)\)を図示すると以下のようになっており，確かに成り立っていそうである．</p>
-<figure class="centered">
-  <img
-    src="/static/images/sqrt.svg"
-    alt="polynomial approximation of sqrt(1 - t)"
-    style="background-color: transparent; width: 100%; height: auto; max-width: 600px; margin-top: 2ex;"
-  >
-  <figcaption><strong>図1：</strong>\(\sqrt{1 - t}\)の多項式近似．</figcaption>
-</figure>
-<p>関数\(p\colon[-1,\,1] \to \mathbb{R}\)を
-\begin{align*}
-  p(t) = \sum_{n = 0}^\infty a_n (1 - t^2)^n
-\end{align*}
-で定義する．このとき
-\begin{align*}
-  \Bigl||t| - p(t)\Bigr|
-  &amp; = \left| \sqrt{1 - (1 - t^2)} - \sum_{k = 0}^\infty a_k (1 - t^2)^n \right|
-\end{align*}
-となるから\(p\)は\([-1,\,1]\)で\(|t|\)に一様収束する．\(y = |t|\)と\(y = \sum_{k = 0}^n a_k (1 - t^2)^k\) \((n = 1,\,10)\)についても図示してみると以下のようになっており，うまく近似できていることがわかる．</p>
-<figure class="centered">
-  <img
-    src="/static/images/abs.svg"
-    alt="polynomial approximation of absolute value"
-    style="background-color: transparent; width: 100%; height: auto; max-width: 800px; margin-top: 2ex;"
-  >
-  <figcaption><strong>図2：</strong>\(|t|\)の多項式近似．</figcaption>
-</figure>
-<p>級数\(\sum_{n = 0}^\infty a_n(1 - t^2)^n\)は\(t \in [-1,\,1]\)で絶対収束するから，項の順番を入れ替えて足し合わせてもよい．\(\sum_{n = 0}^\infty a_n = 0\)であったから，以下のように\(p\)を書き改めることができる．
-\begin{align*}
-  p(t)
-  &amp;= \sum_{n = 0}^\infty a_n (1 - t^2)^n \\
-  &amp;= a_0 + a_1 (1 - t^2) + a_2(1- 2 t^2 + t^4) + a_3 (1 - 3t^2 + 3t^4 - t^6) + \cdots \\
-  &amp;= \sum_{n = 0}^\infty a_n - (a_1 + 2 a_2 + \cdots )t^2 + (a_2 + 3 a_3 + \cdots)t^4 + \cdots \\
-  &amp; = \lim_{n \to \infty} \sum_{n = 1}^\infty c_n t^{2n}
-\end{align*}
-ただし記号\(\displaystyle \binom{n}{k}\)は二項係数を表しており，
-\begin{align*}
-  c_n &amp; = (-1)^n \left(\binom{n}{n} a_n + \cdots + \binom{n + j}{n} a_{n + j} + \cdots \right) \\
-      &amp; = (-1)^n \sum_{j = 0}^\infty \left(\binom{n + j}{n} a_{n + j} \right) \\
-\end{align*}
-である．</p>
-<p>\(t \mapsto |t|\)を多項式近似することができたので，これで\(|f|\)の多項式近似を考えることができる．\(\|f\| = 0\)，すなわち\(f = 0_{C(X)}\)のときは\(|f| = f\in A\)となる．よって以下では\(\|f\| \gt 0\)とする．このとき
-\begin{align*}
-  |f| = \|f\| \frac{|f|}{\|f\|}
-\end{align*}
-が成り立つので\(f \in A\)ならば\(|f|/\|f\| \in A\)を示せばよいことがわかる．任意の\(x \in X\)に対して\(f(x)/\|f\| \in [-1,\,1]\)なので
-\begin{align*}
-  \sum_{k = 1}^n c_n \left( \frac{f(x)}{\|f\|} \right)^2 \in A
-\end{align*}
-であり，これは\(n \to \infty\)とすると
-\begin{align*}
-  \left|\frac{f(x)}{\|f\|}\right|
-  = \frac{|f(x)|}{\|f\|}
-  = \frac{|f|(x)}{\|f\|}
-\end{align*}
-に一様収束する．\(A\)が閉集合であるから\(|f|/\|f\| \in A\)である．よって\(f \in A\)ならば\(|f| \in A\)であり，定理の主張が成り立つ．&#8718;</p>
-
-<p style="margin-top: 100px;">\(C(X,\,\mathbb{K})\)の部分代数\(A\)において，\(X\)の任意の異なる2点\(x_1,\,x_2\)に対して，\(f(x_1) \neq f(x_2)\)となるような\(f\in A\)が存在するとき，\(A\)は\(X\)を<strong>分離する</strong>という．例えば\(X = [-1,\,1]\)上の多項式関数全体の集合
-\begin{align*}
-  A := \left\{f\colon x \mapsto a_0 + a_1 x + \cdots + a_{n} x^{n} \; \middle| \; a_{0},\,\ldots,\,a_{n} \in \mathbb{K} \right\}
-\end{align*}
-は\(C(X,\,\mathbb{K})\)の部分代数であり，\(f\colon x \mapsto x\)により，\(f(x_1) \neq f(x_2)\)とできる．一方で偶数次の項のみからなる多項式関数の全体の集合
-\begin{align*}
-  A' := \left\{f\colon x \mapsto a_0 + a_2 x^2 + \cdots + a_{2n} x^{2n} \; \middle| \; a_{0},\,\ldots,\,a_{2n} \in \mathbb{K} \right\}
-\end{align*}
-は部分代数ではあるが，どのような\(f\in A\)をとっても\(f(-1) =  f(1)\)となるため，\(X\)を分離することはできない．</p>
-
-
-{% set thm = thm + 1 %}
-<div class="card">
-<h5 id="stone-weierstrass-statement">補題 {{ thm }}</h5>
-<p>\(C(X,\,\mathbb{K})\)の単位的な部分代数\(A\)が\(X\)を分離するならば，\(X\)の任意の異なる2点\(x_1,\,x_2\)と任意の定数\(\alpha,\,\beta \in \mathbb{K}\)について
-\begin{align*}
-  h(x_1) = \alpha,\quad h(x_2) = \beta
-\end{align*}
-となるような\(h \in A\)が存在する．</p>
-</div>
-
-<p>
-<p><strong>証明</strong> \(A\)が\(X\)を分離するので，\(X\)の異なる任意の2点\(x_1,\,x_2\)に対して，\(f(x_1) \neq f(x_2)\)となるような\(f\in A\)が存在する．このとき\(h\)を
-\begin{align*}
-  h(x) = \alpha \boldsymbol{1} + (\beta - \alpha) \frac{f(x) - f(x_1)}{f(x_2) - f(x_1)}
-\end{align*}
-と定義すると，これは条件を満たす．&#8718;</p>
-
-{% set thm = thm + 1 %}
-<div class="card">
-<h5 id="stone-weierstrass-statement">定理 {{ thm }} Stone&ndash;Weierstra&szlig;の定理</h5>
-<p>\(X\)をコンパクトHausdorff空間とする．\(C(X,\,\mathbb{R})\)の単位的な部分代数\(A\)が\(X\)を分離するならば，\(A\)は\(C(X,\,\mathbb{R})\)で稠密になる．</p>
-</div>
-
-<p><strong>証明</strong> 任意の\(f \in C(X)\)と\(\varepsilon \gt 0\)を与えられたとする．このとき任意の\(z \in X\)について
-\begin{align}
-  | g(z) - f(z) | \lt \varepsilon \label{g}
-\end{align}
-となるような\(g \in A\)が存在することを示す．まず任意に\(x \in X\)をとる．補題{{ thm - 1}}の結果より，\(x \neq y\)を満たす任意の\(y \in X\)について
-\begin{align}
-  h_{x,\,y}(x) = f(x),\quad h_{x,\,y}(y) = f(y) \label{h}
-\end{align}
-となるような\(h_{x,\,y} \in A\)をとることができる．\(x = y\)
-のときは
-\(h_{x,\,y} := f(x) \boldsymbol{1}\)
-とすれば\((\ref{h})\)が成り立つ．
-\(h_{x,\,y}\)と\(f\)は連続なので，\(y\)の開近傍\(U_y\)で
-\begin{align*}
-  z \in U_y \; \Longrightarrow \; h_{x,\,y}(z) - f(z) \lt \varepsilon
-\end{align*}
-となるようなものをとることができる．このようにして得られた集合族
-\(\{U_y\}_{y \in X}\)
-は
-\(X\)
-の開被覆である．\(X\)はコンパクトであるから，有限個\(U_{y_1},\,\ldots,\,U_{y_n}\)によって\(X\)を覆うことができる．そこで
-\begin{align*}
-  h_x = h_{x,\,y_1} \land \cdots \land h_{x,\,y_1}
-\end{align*}
-によって定義すると，命題{{ thm - 2 }}により\(h_x \in A\)である．さらに任意の\(z \in X\)で
-\begin{align*}
-  h_x(z) - f(z) \lt \varepsilon
-\end{align*}
-かつ\(h_x(x) = f(x)\)である．関数\(h_{x},\, f\)が連続なので，各\(x \in X\)について，その開近傍\(V_x\)で，
-\(z \in V_x\)ならば
-\begin{align*}
-  z \in V_z \; \Longrightarrow \; -\varepsilon \lt h_x(z) - f(z)
-\end{align*}
-となるようなものをとることができる．\(\{V_x\}_{x \in X}\)は\(X\)の開被覆であり，\(X\)がコンパクトなので，有限個の\(V_{x_1},\,\ldots,\,V_{x_n}\)で\(X\)を覆うことができる．そこで
-\begin{align*}
-  g = h_{x_1} \lor \cdots \lor h_{x_m}
-\end{align*}
-と定義する．このとき\(g \in A\)であり，これは\((\ref{g})\)を満たす．したがって\(\|f - g\| \lt \varepsilon\)であり，\(f \in \overline{A}\)が成り立つ．したがって\(C(X)\subseteq \overline{A}\)が成り立つ．系9より\(C(X)\)は閉集合なので，\(\overline{A} \subseteq \overline{C(X)} = C(X)\)が成り立ち，\(\overline{A} = C(X)\)が示された．&#8718;</p>
+<section>
+<h2>参考文献</h2>
+  <ol class="citation">
+    <li id="lang"><a href="https://link.springer.com/book/10.1007/978-1-4612-0897-6">Serge Lang (1993)<em>Real and Functional Analysis.</em> Springer New York.</a></li>
+    <li id="dudley"><a href="https://link.springer.com/book/10.1007/978-1-4419-6950-7">R. M. Dudley and R. Norvai&scaron;a (2010) <em>Concrete Functional Calculus.</em> Springer New York.</a></li>
+    <li>松坂 和夫(2018)<span class="half"></span>「解析入門 中[電子書籍版]」岩波書店．</li>
+    <li>宮島 静雄(2003)<span class="half"></span>「微分積分学I」共立出版．</li>
+  </ol>
 </section>
 {% endblock %}
