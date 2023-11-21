@@ -212,13 +212,20 @@ h^\mathsf{T} S h \leq \lVert h \rVert {\lVert S \rVert}_\mathrm{F} \lVert h \rVe
 よって
 \((p - 1)\)
 次元球面はコンパクトであり，
-\(w^\mathsf{T} S w\)の最大値が\(\lambda^\mathord{*}\)
+\(w^\mathsf{T} S w\)の最大値が\(\lambda_1\)
 であることが確かめられた．</p>
-<p>分散共分散行列\(S\)は半正定値である．
-すなわち任意の\(w \in \mathbb{R}^p\)に対して\(w^\top S w \geq 0\)を満たす．
-このとき固有値はすべて非負である（<a href="#yamamoto">山本[3]</a>定理2.12）．
-異なる\(r\) \((&lt; p)\)個の固有値\(\lambda_1 &gt; \lambda_2 &gt; \cdots &gt; \lambda_r \geq 0\)とそれぞれに対応する固有ベクトル\(w_1,\,\ldots,\,w_r\)が得られたと仮定する．
-このとき\(r\)次元の\(n\)個のベクトル
+<p>行列\((n - 1)S\)は<strong>Gram行列</strong>（<a href="#yamamoto">山本[3]</a> &#167;1.6）である．
+したがって半正定値（<a href="#yamamoto">ibid.</a> &#167;定理2.12）であり，任意の\(w \in \mathbb{R}^p\)に対して\(w^\top S w \geq 0\)を満たす．このとき固有値はすべて非負である（<a href="#yamamoto">ibid.</a>定理2.14）．異なる
+\(r\) \((&lt; p)\)
+個の固有値
+\(\lambda_1 &gt; \lambda_2 &gt; \cdots &gt; \lambda_r \geq 0\)
+とそれぞれに対応する固有ベクトル
+\(w_1,\,\ldots,\,w_r\)
+が得られたと仮定する．このとき
+\(r\)
+次元の
+\(n\)
+個のベクトル
 \begin{align*}
     \begin{pmatrix}
         w_1^\top v^{(1)} \\
@@ -232,7 +239,8 @@ h^\mathsf{T} S h \leq \lVert h \rVert {\lVert S \rVert}_\mathrm{F} \lVert h \rVe
         w_r^\top v^{(n)}
     \end{pmatrix}
 \end{align*}
-は，\(p\)より少ない次元で
+は，\(p\)
+より少ない次元で
 \(v^{(1)},\,\ldots,\,v^{(n)}\)
 の情報を表すものになっている．
 詳細は<a href="#konishi">小西[5]</a>などを参照．</p>
