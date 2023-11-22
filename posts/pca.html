@@ -66,7 +66,7 @@
 \(p\)
 はともに正整数であり，各成分は実数とする．各ベクトル\(v^{(1)},\, \ldots,\, v^{(n)}\)を1次元空間上に（線形変換で）写し，それらの違い（分散）ができる限り強調されるようにしたい．
 </p>
-<p>\(\symbb{R}^p\)から\(\symbb{R}\)への線形変換，すなわち\(\mathbb{R}^p\)の双対空間の元は，ある\(w^\mathsf{T} \in \symbb{R}^{1 \times p}\)によって\(\varphi(v) = w^\mathsf{T} v\)と表すことができる（<a href="#yukie">雪江[1]</a> &#167;10.1）．
+<p>\(\mathbb{R}^p\)から\(\mathbb{R}\)への線形変換，すなわち\(\mathbb{R}^p\)の双対空間の元は，ある\(w^\mathsf{T} \in \mathbb{R}^{1 \times p}\)によって\(\varphi(v) = w^\mathsf{T} v\)と表すことができる（<a href="#yukie">雪江[1]</a> &#167;10.1）．
 変換後のベクトルを\(u_1 := w^\mathsf{T} v_1,\,\ldots,\,u_n := w^\mathsf{T} v_n\)として，これらの分散を求める．変換前のベクトル\(v_1,\,\ldots,\,v_n\)の平均は
 \begin{align*}
     \overline{v} = \frac{1}{n} \sum_{i = 1}^n v^{(i)}
@@ -220,9 +220,9 @@ h^\mathsf{T} S h \leq \lVert h \rVert {\lVert S \rVert}_\mathrm{F} \lVert h \rVe
 したがって半正定値（<a href="#yamamoto">ibid.</a> &#167;定理2.12）であり，任意の\(w \in \mathbb{R}^p\)に対して\(w^\mathsf{T} S w \geq 0\)を満たす．このとき固有値はすべて非負である（<a href="#yamamoto">ibid.</a>定理2.14）．異なる
 \(r\) \((&lt; p)\)
 個の固有値
-\(\lambda_1 &gt; \lambda_2 &gt; \cdots &gt; \lambda_r \geq 0\)
+\(\lambda^{(1)} &gt; \cdots &gt; \lambda^{(r)} \geq 0\)
 とそれぞれに対応する固有ベクトル
-\(w_1,\,\ldots,\,w_r\)
+\(w^{(1)},\,\ldots,\,w^{(r)}\)
 が得られたと仮定する．このとき
 \(r\)
 次元の
@@ -230,15 +230,15 @@ h^\mathsf{T} S h \leq \lVert h \rVert {\lVert S \rVert}_\mathrm{F} \lVert h \rVe
 個のベクトル
 \begin{align*}
     \begin{pmatrix}
-        w_1^\mathsf{T} v^{(1)} \\
+        w^{(1)}{}^\mathsf{T} v^{(1)} \\
         \vdots \\
-        w_r^\mathsf{T} v^{(1)}
+        w^{(r)}{}^\mathsf{T} v^{(1)}
     \end{pmatrix}
     ,\,\ldots,\,
     \begin{pmatrix}
-        w_1^\mathsf{T} v^{(n)} \\
+        w^{(1)}{}^\mathsf{T} v^{(n)} \\
         \vdots \\
-        w_r^\mathsf{T} v^{(n)}
+        w^{(r)}{}^\mathsf{T} v^{(n)}
     \end{pmatrix}
 \end{align*}
 は，\(p\)
