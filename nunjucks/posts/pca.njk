@@ -3,6 +3,7 @@
 {% set mathematical = 'true' %}
 {% set title = '主成分分析(Principal Component Analysis, PCA)' %}
 {% set posted = '2023-11-21' %}
+{% set updated = '2023-11-22' %}
 
 {% block post %}
 <section>
@@ -14,9 +15,9 @@
 \(n\)
 と
 \(p\)
-はともに正整数であり，各成分は実数とする．各ベクトル\(v^{(1)},\, \ldots,\, v^{(n)}\)を1次元空間上に写し，それらの違い（分散）ができる限り強調されるようにしたい．
+はともに正整数であり，各成分は実数とする．各ベクトル\(v^{(1)},\, \ldots,\, v^{(n)}\)を1次元空間上に（線形変換で）写し，それらの違い（分散）ができる限り強調されるようにしたい．
 </p>
-<p>任意の線形変換\(\varphi\colon \symbb{R}^p \to \symbb{R}\)について、<strong>Rieszの表現定理</strong>（<a href="#functional-analysis">宮島[1]</a>定理4.38）より\(w \in \symbb{R}^{1 \times p}\)が存在して\(\varphi(v) = w^\mathsf{T} v\)と表すことができる．
+<p>\(\symbb{R}^p\)から\(\symbb{R}\)への線形変換，すなわち\(\mathbb{R}^p\)の双対空間の元は，ある\(w^\mathsf{T} \in \symbb{R}^{1 \times p}\)によって\(\varphi(v) = w^\mathsf{T} v\)と表すことができる（<a href="#yukie">雪江[1]</a> &#167;10.1）．
 変換後のベクトルを\(u_1 := w^\mathsf{T} v_1,\,\ldots,\,u_n := w^\mathsf{T} v_n\)として，これらの分散を求める．変換前のベクトル\(v_1,\,\ldots,\,v_n\)の平均は
 \begin{align*}
     \overline{v} = \frac{1}{n} \sum_{i = 1}^n v^{(i)}
@@ -167,7 +168,7 @@ h^\mathsf{T} S h \leq \lVert h \rVert {\lVert S \rVert}_\mathrm{F} \lVert h \rVe
 \(w^\mathsf{T} S w\)の最大値が\(\lambda_1\)
 であることが確かめられた．</p>
 <p>行列\((n - 1)S\)は<strong>Gram行列</strong>（<a href="#yamamoto">山本[3]</a> &#167;1.6）である．
-したがって半正定値（<a href="#yamamoto">ibid.</a> &#167;定理2.12）であり，任意の\(w \in \mathbb{R}^p\)に対して\(w^\top S w \geq 0\)を満たす．このとき固有値はすべて非負である（<a href="#yamamoto">ibid.</a>定理2.14）．異なる
+したがって半正定値（<a href="#yamamoto">ibid.</a> &#167;定理2.12）であり，任意の\(w \in \mathbb{R}^p\)に対して\(w^\mathsf{T} S w \geq 0\)を満たす．このとき固有値はすべて非負である（<a href="#yamamoto">ibid.</a>定理2.14）．異なる
 \(r\) \((&lt; p)\)
 個の固有値
 \(\lambda_1 &gt; \lambda_2 &gt; \cdots &gt; \lambda_r \geq 0\)
@@ -180,15 +181,15 @@ h^\mathsf{T} S h \leq \lVert h \rVert {\lVert S \rVert}_\mathrm{F} \lVert h \rVe
 個のベクトル
 \begin{align*}
     \begin{pmatrix}
-        w_1^\top v^{(1)} \\
+        w_1^\mathsf{T} v^{(1)} \\
         \vdots \\
-        w_r^\top v^{(1)}
+        w_r^\mathsf{T} v^{(1)}
     \end{pmatrix}
     ,\,\ldots,\,
     \begin{pmatrix}
-        w_1^\top v^{(n)} \\
+        w_1^\mathsf{T} v^{(n)} \\
         \vdots \\
-        w_r^\top v^{(n)}
+        w_r^\mathsf{T} v^{(n)}
     \end{pmatrix}
 \end{align*}
 は，\(p\)
@@ -200,7 +201,7 @@ h^\mathsf{T} S h \leq \lVert h \rVert {\lVert S \rVert}_\mathrm{F} \lVert h \rVe
 <section id="materials">
   <h2>参考文献</h2>
   <ol class="citation">
-    <li id="functional-analysis">宮島静雄(2005) 『関数解析』横浜図書．</li>
+    <li id="yukie">雪江明彦(2006) 『線形代数概説』培風館．</li>
     <li id="miyajima">宮島静雄(2003) 『微分積分学II』共立出版．</li>
     <li id="yamamoto">山本哲朗(2010) 『行列解析の基礎 Advanced線形代数』サイエンス社．</li>
     <li id="matsumoto">松本幸夫(1985) 『トポロジー入門』岩波書店．</li>
