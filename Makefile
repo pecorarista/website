@@ -3,6 +3,7 @@
 DIST := dist
 IMAGES := $(addprefix $(DIST)/static/images/, $(notdir $(wildcard images/*)))
 VIDEOS := $(addprefix $(DIST)/static/videos/, $(notdir $(wildcard videos/*)))
+DOCS := $(addprefix $(DIST)/static/docs/, $(notdir $(wildcard docs/*)))
 VECTOR_IMAGES := $(addprefix $(DIST)/static/images/, $(notdir $(wildcard latex/*.svg)))
 FONTS := $(addprefix $(DIST)/static/fonts/, $(notdir $(wildcard fonts/*)))
 POST_SOURCES := $(wildcard nunjucks/posts/*.njk)
@@ -15,6 +16,7 @@ release: $(DIST)/CNAME \
 	$(DIST)/favicon.ico \
 	$(IMAGES) \
 	$(VIDEOS) \
+	$(DOCS) \
 	$(VECTOR_IMAGES) \
 	$(FONTS) \
 	$(DIST)/static/css/main.css \
@@ -41,6 +43,10 @@ $(DIST)/static/images/%.svg: latex/%.svg
 	@cp $< $@
 
 $(DIST)/static/videos/%: videos/%
+	@mkdir -p $(@D)
+	@cp $< $@
+
+$(DIST)/static/docs/%: docs/%
 	@mkdir -p $(@D)
 	@cp $< $@
 
