@@ -33,6 +33,7 @@ body {
   font-feature-settings: 'kern' 1, 'liga' 0, 'palt';
   font-variant-ligatures: none;
   background-color: $white-smoke;
+  text-autospace: normal;
 }
 
 :lang(ja) {
