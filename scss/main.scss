@@ -130,14 +130,19 @@ section {
   font-size: 1.2rem;
 }
 
+.navbar-nav {
+  .separator {
+    padding: 0 0.5rem;
+    font-size: 1rem;
+    color: $white;
+    vertical-align: middle;
+    pointer-events: none;
+  }
+}
+
 figure {
   margin-top: 40px;
   margin-bottom: 40px;
-
-  &.centered {
-    margin-bottom: 50px;
-    text-align: center;
-  }
 
   figcaption {
     padding-bottom: 10px;
@@ -154,6 +159,26 @@ figure {
     &.pseudocode {
       min-width: 380px;
       background-color: $white;
+    }
+  }
+
+  &.blockquote {
+    padding: 3px 15px;
+    margin: 40px 2px;
+    border-left: 4px solid #ccc;
+  }
+
+  &.centered {
+    margin-bottom: 50px;
+    text-align: center;
+  }
+
+  &.material {
+    margin-top: 0;
+    margin-bottom: 0;
+
+    figcaption {
+      margin-top: 20px;
     }
   }
 }
@@ -307,12 +332,6 @@ ol.math li.lower-roman::before {
 
 ol.math li.upper-roman::before {
   content: '(' counter(m, upper-roman) ')';
-}
-
-figure.blockquote {
-  padding: 3px 15px;
-  margin: 40px 2px;
-  border-left: 4px solid #ccc;
 }
 
 figcaption.blockquote-footer {
