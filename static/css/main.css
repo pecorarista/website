@@ -105,13 +105,17 @@ section section {
   font-size: 1.2rem;
 }
 
+.navbar-nav .separator {
+  padding: 0 0.5rem;
+  font-size: 1rem;
+  color: #fff;
+  vertical-align: middle;
+  pointer-events: none;
+}
+
 figure {
   margin-top: 40px;
   margin-bottom: 40px;
-}
-figure.centered {
-  margin-bottom: 50px;
-  text-align: center;
 }
 figure figcaption {
   padding-bottom: 10px;
@@ -127,6 +131,22 @@ figure img {
 figure img.pseudocode {
   min-width: 380px;
   background-color: #fff;
+}
+figure.blockquote {
+  padding: 3px 15px;
+  margin: 40px 2px;
+  border-left: 4px solid #ccc;
+}
+figure.centered {
+  margin-bottom: 50px;
+  text-align: center;
+}
+figure.material {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+figure.material figcaption {
+  margin-top: 20px;
 }
 
 ol.citation {
@@ -261,12 +281,6 @@ ol.math li.lower-roman::before {
 
 ol.math li.upper-roman::before {
   content: "(" counter(m, upper-roman) ")";
-}
-
-figure.blockquote {
-  padding: 3px 15px;
-  margin: 40px 2px;
-  border-left: 4px solid #ccc;
 }
 
 figcaption.blockquote-footer {

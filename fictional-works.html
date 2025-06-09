@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@pecorarista">
-    <meta name="twitter:title" content="Hakyllで日本語文中の余分な空白を削除する — pecorarista.com">
+    <meta name="twitter:title" content="創作 — pecorarista.com">
     <meta name="twitter:description" content="">
     <meta name="twitter:image" content="https://pecorarista.com/static/images/avatar.png">
     <link rel="icon" href="/favicon.ico">
@@ -26,7 +26,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-lucario.min.css" integrity="sha512-Aj5jCt/M5XlTn+Y93TazO+EjpRTiUGMrMuaJOcBcu80Fopd7+LSL094m3pbVTNJxf1hOAMSYI/hONBGjvPWwGQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="/static/css/main.css"/>
 
-    <title>Hakyllで日本語文中の余分な空白を削除する</title>
+    <title>創作</title>
   </head>
   <body>
     <div class="wrapper">
@@ -46,51 +46,42 @@
       </header>
       <main>
         
-<article>
-  <div class="container">
-    <h1>Hakyllで日本語文中の余分な空白を削除する</h1>
-    <div class="info text-muted">
-      Posted: 2016-09-18
-      
+<div class="container">
+  <article>
+    <div class="row">
+      <div class="col-12 col-lg-6">
+        <section>
+          <figure class="material">
+            <a href="/static/images/amana-lethia-material-v1.png">
+              <img
+                src="/static/images/amana-lethia-material-v1.png"
+                alt="天奈レティア設定画"
+              >
+            </a>
+            <figcaption>
+              <h4>設定画</h4>
+            </figcaption>
+          </figure>
+        </section>
+      </div>
+      <div class="col-12 col-lg-6">
+        <section id="character">
+          <h3>オリジナルキャラクター</h3>
+          <ul>
+            <li>名前：<ruby>天奈<rt>あまな</rt></ruby>レティア Amana Lethia<br>
+            </li>
+          </ul>
+        </section>
+        <section id="novel">
+          <h3>小説</h3>
+        </section>
+        <section id="language">
+          <h3>人工言語</h3>
+        </section>
+      </div>
     </div>
-    
-<section>
-  <p>静的サイト作成ツールHakyllで日本語を含むページを作成したとき、以下の図の反転部分のように余分な空白が入ってしまうことがあります。</p>
-  <figure class="centered">
-    <img src="https://qiita-image-store.s3.amazonaws.com/0/55753/0f06f4a1-4500-a22e-e445-f4df7999b511.png" alt="Hakyllによって生成された、余分な空白を含むページ" class="img-responsive">
-  </figure>
-  <p>これは内部で動いている<a href="http://pandoc.org/">Pandoc</a>が、Markdownファイルに含まれている改行文字を空白文字に変換するために起こります。</p>
-  <!-- <pre class="line-numbers"> --><pre><code class="language-markdown">---
-title: Test
-date: 2016-02-27
----
-Pandoc converts newline characters in a
-sentence into whitespaces.
-したがって日本語の文章の途中で
-改行すると、不自然な空白が挿入されてしまいます。
-</code></pre>
-  <p>このような挙動を望まないユーザーのために<a href="http://pandoc.org/releases.html#pandoc-1.16.0.1-10-jan-2016">1.16.0.1</a>から<code>east_asian_line_breaks</code>という拡張が加えられています。以下でその使い方を説明します。</p>
-  <p>まず上記の拡張を使うため<code>&lt;project_name&gt;.cabal</code>で使用する<code>pandoc</code>のバージョンが1.16.0.1以降になるようにしてください。また以下で示すコードにおいて集合の演算を使うため、それをそのまま使う場合は<code>&lt;project_name&gt;.cabal</code>の依存関係に<code>containers</code>も追加してください。</p>
-  <p>依存関係の設定が終わったら、以下のように<code>site.hs</code>を変更します。</p>
-  <pre><code class="language-haskell">import qualified Data.Set as S
-import Text.Pandoc.Options (Extension(Ext_east_asian_line_breaks), readerExtensions)
--- omission --
-customPandocCompiler =
-    let
-        defaultExtensions = readerExtensions defaultHakyllReaderOptions
-        newExtensions = S.insert Ext_east_asian_line_breaks defaultExtensions
-        readerOptions = defaultHakyllReaderOptions { readerExtensions = newExtensions }
-    in
-        pandocCompilerWith readerOptions defaultHakyllWriterOptions</code></pre>
-  <p>今回追加する<code>Ext_east_asian_line_breaks</code>は<code>writerExtensions</code>ではなく<code>readerExtensions</code>に追加するようです。その後、この<code>customPandocCompiler</code>で<code>pandocCompiler</code>を置き換え、<code>stack build</code>してください。</p>
-  <p>最後に<code>exec site clean</code>, <code>stack exec site watch</code>で出来上がりを確認して終わりです。</p>
-  <figure class="centered">
-    <img src="http://qiita-image-store.s3.amazonaws.com/0/55753/6280be48-41fb-3b98-ea9f-47bce8de0fda.png" alt="Hakyllによって生成された、余分な空白を含まないページ">
-  </figure>
-</section>
-
-  </div>
-</article>
+  </article>
+</div>
 
       </main>
       <footer>
