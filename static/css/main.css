@@ -7,10 +7,14 @@ html {
   font-size: 100%;
 }
 
+.gold {
+  color: #b89350;
+}
+
 body {
   font-family: "Roboto", "source-han-sans-japanese", sans-serif;
   font-size: 1.1rem;
-  font-weight: 400;
+  font-weight: normal;
   font-feature-settings: "kern" 1, "liga" 0, "palt";
   font-variant-ligatures: none;
   background-color: #f5f5f5;
@@ -29,13 +33,18 @@ body {
   content: "";
 }
 
+:lang(ar) {
+  font-family: "Amiri", "Roboto", "source-han-sans-japanese", sans-serif;
+}
+
 em {
   font-family: "Roboto", sans-serif;
   font-style: oblique;
 }
-
-:lang(ar) {
-  font-family: "Amiri", "Roboto", "source-han-sans-japanese", sans-serif;
+em.italic {
+  font-family: "Noto Serif", serif;
+  font-style: italic;
+  font-weight: normal;
 }
 
 .wrapper {
@@ -95,22 +104,20 @@ section section {
 .navbar-dark {
   background-color: #581a56;
 }
-
 .navbar-brand {
   font-size: 1.4rem;
   font-weight: bold;
 }
-
-.nav-link {
-  font-size: 1.2rem;
-}
-
 .navbar-nav .separator {
   padding: 0 0.5rem;
   font-size: 1rem;
   color: #fff;
   vertical-align: middle;
   pointer-events: none;
+}
+
+.nav-link {
+  font-size: 1.2rem;
 }
 
 figure {
@@ -168,29 +175,9 @@ ol.citation li::before {
   font-size: 119.5%;
   font-feature-settings: "palt";
 }
-
 .math-keyword {
   font-weight: bold;
 }
-
-ol.math {
-  padding-left: 1rem;
-  margin-bottom: 0;
-  counter-reset: m;
-}
-ol.math li {
-  position: relative;
-  margin: 1.8ex;
-  list-style: none;
-}
-ol.math li::before {
-  position: relative;
-  padding-right: 1rem;
-  font-family: "mathematical", serif;
-  font-size: 119.5%;
-  counter-increment: m;
-}
-
 .math-book {
   padding-bottom: 0;
 }
@@ -212,75 +199,78 @@ ol.math li::before {
   color: #1560bd;
 }
 
-.card {
-  margin: 30px 0;
-  background-color: inherit;
-  border: 2px solid #1560bd;
-  border-radius: 5px;
+ol.math {
+  padding-left: 1rem;
+  margin-bottom: 0;
+  counter-reset: m;
 }
-.math-book + .card {
-  margin-top: 0.5rem;
+ol.math li {
+  position: relative;
+  margin: 1.8ex;
+  list-style: none;
 }
-.card h5 {
-  padding: 10px 18px;
-  margin: 0 0 10px;
-  font-weight: bold;
-  color: #fff;
-  background-color: #1560bd;
+ol.math li::before {
+  position: relative;
+  padding-right: 1rem;
+  font-family: "mathematical", serif;
+  font-size: 119.5%;
+  counter-increment: m;
 }
-.card p {
-  padding: 15px 30px 0;
+ol.math li.s::before {
+  content: "(s" counter(m) ")";
 }
-.card p:last-child {
-  padding-bottom: 15px;
+ol.math li.p::before {
+  content: "(p" counter(m) ")";
 }
-.card ol.math:last-child {
-  padding-bottom: 20px;
+ol.math li.d::before {
+  content: "(d" counter(m) ")";
+}
+ol.math li.parentheses::before {
+  content: "(" counter(m) ")";
+}
+ol.math li.prime::before {
+  content: "(" counter(m) "ʹ)";
+}
+ol.math li.capc::before {
+  content: "(C" counter(m) ")";
+}
+ol.math li.parentheses4::before {
+  content: "(4)";
+}
+ol.math li.parentheses5::before {
+  content: "(5)";
+}
+ol.math li.lower-roman::before {
+  content: "(" counter(m, lower-roman) ")";
+}
+ol.math li.upper-roman::before {
+  content: "(" counter(m, upper-roman) ")";
+}
+
+th {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.interlinear-gloss {
+  padding-bottom: 25px;
+}
+.interlinear-gloss p {
+  margin: 0.75rem 0;
+}
+.interlinear-gloss table {
+  width: auto;
+  padding: 0;
+  margin: 0;
+  table-layout: auto;
+}
+.interlinear-gloss table tr th {
+  text-align: left;
 }
 
 ol.narrow li {
   margin-top: 0.5ex;
   margin-bottom: 0.5ex;
-}
-
-ol.math li.s::before {
-  content: "(s" counter(m) ")";
-}
-
-ol.math li.p::before {
-  content: "(p" counter(m) ")";
-}
-
-ol.math li.d::before {
-  content: "(d" counter(m) ")";
-}
-
-ol.math li.parentheses::before {
-  content: "(" counter(m) ")";
-}
-
-ol.math li.prime::before {
-  content: "(" counter(m) "ʹ)";
-}
-
-ol.math li.parentheses4::before {
-  content: "(4)";
-}
-
-ol.math li.parentheses5::before {
-  content: "(5)";
-}
-
-ol.math li.capc::before {
-  content: "(C" counter(m) ")";
-}
-
-ol.math li.lower-roman::before {
-  content: "(" counter(m, lower-roman) ")";
-}
-
-ol.math li.upper-roman::before {
-  content: "(" counter(m, upper-roman) ")";
 }
 
 figcaption.blockquote-footer {
@@ -322,11 +312,6 @@ main {
   padding-bottom: 50px;
 }
 
-th {
-  text-align: center;
-  vertical-align: middle;
-}
-
 .uri {
   font-family: "Roboto Mono", monospace;
   word-break: break-all;
@@ -334,20 +319,6 @@ th {
 
 .monospace {
   font-family: "Roboto Mono", monospace;
-}
-
-.quarter::after {
-  display: inline;
-  font-family: "source-han-sans-japanese", monospace;
-  font-size: 50%;
-  content: " ";
-}
-
-.half::after {
-  display: inline;
-  font-family: "source-han-sans-japanese", monospace;
-  font-weight: normal;
-  content: " ";
 }
 
 code {
@@ -362,10 +333,6 @@ code {
 code[class*=language-] {
   font-family: "Roboto Mono", monospace;
 }
-code .quarter,
-code .half {
-  display: none;
-}
 
 pre {
   max-height: 50em;
@@ -374,10 +341,6 @@ pre {
 pre[class*=language-] {
   font-family: "Roboto Mono", monospace;
   border-radius: 3px;
-}
-pre .quarter,
-pre .half {
-  display: none;
 }
 pre code {
   padding: 0;
@@ -393,29 +356,13 @@ kbd {
   background-color: #263e52;
   border-radius: 3px;
 }
-kbd .quarter,
-kbd .half {
-  display: none;
-}
-
-samp .quarter,
-samp .half {
-  display: none;
-}
-
-ol > .quarter,
-ul > .quarter,
-ol > .half,
-ul > .half {
-  display: none;
-}
 
 .russian {
-  font-family: "Roboto", serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .ipa {
-  font-family: "Judson", serif;
+  font-family: "Noto Serif", serif;
 }
 
 .lig {
@@ -457,6 +404,10 @@ h5.math {
   background: linear-gradient(transparent 50%, yellow);
 }
 
+.toc-title {
+  font-weight: bold;
+  text-align: center;
+}
 .toc-container {
   display: table;
   width: auto;
@@ -489,9 +440,28 @@ h5.math {
   content: counters(item, ".") " ";
 }
 
-.toc-title {
-  font-weight: bold;
-  text-align: center;
+blockquote.quotation {
+  position: relative;
+  padding: 1rem 3.3rem 0.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+  border-left: 8px solid #808080;
+}
+blockquote.quotation::before {
+  position: absolute;
+  top: -18px;
+  left: 10px;
+  font-family: "Noto Serif", serif;
+  font-size: 4rem;
+  color: #808080;
+  content: "“";
+}
+blockquote.quotation::after {
+  content: "";
+}
+blockquote.quotation h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
 }
 
 .me {

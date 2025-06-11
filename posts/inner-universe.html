@@ -21,7 +21,7 @@
 		</script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Amiri&family=Judson&family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400;700&family=Roboto+Mono:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Noto+Serif:ital@0;1&family=Roboto+Mono:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cosmo/bootstrap.min.css" integrity="sha384-5QFXyVb+lrCzdN228VS3HmzpiE7ZVwLQtkt+0d9W43LQMzz4HBnnqvVxKg6O+04d" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-lucario.min.css" integrity="sha512-Aj5jCt/M5XlTn+Y93TazO+EjpRTiUGMrMuaJOcBcu80Fopd7+LSL094m3pbVTNJxf1hOAMSYI/hONBGjvPWwGQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="/static/css/main.css"/>
@@ -63,35 +63,347 @@
 </section>
 <section>
   <h2>文法用語の略称</h2>
-  <p>略称は主に<a href="https://en.wikipedia.org/wiki/List_of_glossing_abbreviations">List of glossing abbreviations</a>に従っています。名詞と動詞の品詞は、性や完了・不完了の表示があればわかるため書いていません。</p>
-  <ul style="list-style-type: none; padding-left: 1.08rem;"><li>〈品詞〉<ul class="list-inline"><li class="list-inline-item"><span class="grammar">adj</span><span class="widespace"> </span><em class="serif">adjective</em><span class="widespace"> </span><span class="translation">形容詞</span></li><li class="list-inline-item"><span class="grammar">adv</span><span class="widespace"> </span><em class="serif">adverb</em><span class="widespace"> </span><span class="translation">副詞</span></li><li class="list-inline-item"><span class="grammar">conj</span><span class="widespace"> </span><em class="serif">conjunction</em><span class="widespace"> </span><span class="translation">接続詞</span></li><li class="list-inline-item"><span class="grammar">prep</span><span class="widespace"> </span><em class="serif">preposition</em><span class="widespace"> </span><span class="translation">前置詞</span></li><li class="list-inline-item"><span class="grammar">pron</span><span class="widespace"> </span><em class="serif">pronoun</em><span class="widespace"> </span><span class="translation">代名詞</span></li><li class="list-inline-item"><span class="grammar">ptcl</span><span class="widespace"> </span><em class="serif">particle</em><span class="widespace"> </span><span class="translation">助詞</span></li></ul></li><li>〈有生性〉<ul class="list-inline"><li class="list-inline-item"><span class="grammar">an</span><span class="widespace"> </span><em class="serif">animate</em><span class="widespace"> </span><span class="translation">動物</span></li><li class="list-inline-item"><span class="grammar">inan</span><span class="widespace"> </span><em class="serif">inanimate</em><span class="widespace"> </span><span class="translation">非動物</span></li></ul></li><li>〈性〉<ul class="list-inline"><li class="list-inline-item"><span class="grammar">masc</span><span class="widespace"> </span><em class="serif">masculine</em><span class="widespace"> </span><span class="translation">男性</span></li><li class="list-inline-item"><span class="grammar">fem</span><span class="widespace"> </span><em class="serif">feminine</em><span class="widespace"> </span><span class="translation">女性</span></li><li class="list-inline-item"><span class="grammar">neut</span><span class="widespace"> </span><em class="serif">neuter</em><span class="widespace"> </span><span class="translation">中性</span></li></ul></li><li>〈数〉<ul class="list-inline"><li class="list-inline-item"><span class="grammar">sg</span><span class="widespace"> </span><em class="serif">singular</em><span class="widespace"> </span><span class="translation">単数</span></li><li class="list-inline-item"><span class="grammar">pl</span><span class="widespace"> </span><em class="serif">plural</em><span class="widespace"> </span><span class="translation">複数</span></li></ul></li><li>〈格〉<ul class="list-inline"><li class="list-inline-item"><span class="grammar">nom</span><span class="widespace"> </span><em class="serif">nominative</em><span class="widespace"> </span><span class="translation">主格</span></li><li class="list-inline-item"><span class="grammar">acc</span><span class="widespace"> </span><em class="serif">accusative</em><span class="widespace"> </span><span class="translation">対格</span></li><li class="list-inline-item"><span class="grammar">dat</span><span class="widespace"> </span><em class="serif">dative</em><span class="widespace"> </span><span class="translation">与格</span></li><li class="list-inline-item"><span class="grammar">gen</span><span class="widespace"> </span><em class="serif">genetive</em><span class="widespace"> </span><span class="translation">属格</span></li><li class="list-inline-item"><span class="grammar">instr</span><span class="widespace"> </span><em class="serif">instrumental</em><span class="widespace"> </span><span class="translation">具格</span></li><li class="list-inline-item"><span class="grammar">loc</span><span class="widespace"> </span><em class="serif">locative</em><span class="widespace"> </span><span class="translation">処格</span></li></ul></li><li>〈アスペクト〉<ul class="list-inline"><li class="list-inline-item"><span class="grammar">pf</span><span class="widespace"> </span><em class="serif">perfective</em><span class="widespace"> </span><span class="translation">完了</span></li><li class="list-inline-item"><span class="grammar">impf</span><span class="widespace"> </span><em class="serif">imperfective</em><span class="widespace"> </span><span class="translation">不完了</span></li></ul></li></ul>
+  <p>略称は主に<a href="https://en.wikipedia.org/wiki/List_of_glossing_abbreviations">List of glossing abbreviations</a>に従っています。</p>
+  <h2>ラテン文字への転写</h2>
+  <p><a href="https://www.translit.site/en">translit.site</a>のGOST R 52290を利用しています。</p>
 </section>
 <section>
   <h2>歌詞の内容</h2>
-  <h3>1. <span class="russian">Ангелы и демоны кружили надо мной</span></h3>
-  <ul><li><span class="russian">ангелы</span><span class="widespace"> </span><span class="ipa">/ˈanɡʲɪlʲɨ/</span><span class="widespace"> </span><span class="grammar">masc an</span><span class="widespace"> </span><span class="translation">天使</span><span class="widespace"> </span><span class="grammar">pl nom</span><span class="widespace"> </span>←<span class="widespace"> </span><span class="russian">ангел</span><span class="widespace"> </span><span class="ipa">/ˈanɡʲɪl/</span></li><li><span class="russian">и</span><span class="widespace"> </span><span class="ipa">/i/</span><span class="widespace"> </span><span class="grammar">conj</span><span class="widespace"> </span><span class="translation">と</span><span class="widespace"> </span><span class="grammar"></span></li><li><span class="russian">демоны</span><span class="widespace"> </span><span class="ipa">/ˈdʲemənɨ/</span><span class="widespace"> </span><span class="grammar">masc an</span><span class="widespace"> </span><span class="translation">悪魔</span><span class="widespace"> </span><span class="grammar">pl nom</span><span class="widespace"> </span>←<span class="widespace"> </span><span class="russian">демон</span><span class="widespace"> </span><span class="ipa">/ˈdʲemən/</span></li><li><span class="russian">кружили</span><span class="widespace"> </span><span class="ipa">/krʊˈʒˠɨlʲɪ/</span><span class="widespace"> </span><span class="grammar">impf</span><span class="widespace"> </span><span class="translation">まわす、まわる</span><span class="widespace"> </span><span class="grammar"> pl past</span><span class="widespace"> </span>←<span class="widespace"> </span><span class="russian">кружить</span><span class="widespace"> </span><span class="ipa">/krʊˈʒˠɨtʲ/</span></li><li><span class="russian">надо</span><span class="widespace"> </span><span class="ipa">/nədə/</span><span class="widespace"> </span><span class="grammar">prep</span><span class="widespace"> </span>[+ <span class="grammar">instr</span>]<span class="widespace"> </span><span class="translation">～の上方で</span><span class="widespace"> </span><span class="grammar"></span></li><li><span class="russian">мной</span><span class="widespace"> </span><span class="ipa">/mnoj/</span><span class="widespace"> </span><span class="grammar">pron 1sg instr</span><span class="widespace"> </span>←<span class="widespace"> </span><span class="russian">я</span><span class="widespace"> </span><span class="ipa">/ja/</span></li></ul>
 
-  <h3>2. <span class="russian">Разбивали тернии и звёздные пути</span></h3>
-  <p>この文には実は問題があって、歌詞カードには上のように表記してあるのですが、実際は<a href="https://cess.hatenablog.com/entries/2007/05/03">「せすにっき  攻殻オープニングその後」</a>に書いてあるように <em>Рассекали тернии и млечные пути</em> と歌っているようです。ここでは後者の単語のみを調べます。</p>
-  <ul><li><span class="russian">рассекали</span><span class="widespace"> </span><span class="ipa">/rəsʲːɪˈkalʲɪ/</span><span class="widespace"> </span><span class="grammar">pf</span><span class="widespace"> </span>[+ <span class="grammar">acc</span>]<span class="widespace"> </span><span class="translation">切る、（水・波などを）切って進む</span><span class="widespace"> </span><span class="grammar"> pl past</span><span class="widespace"> </span>←<span class="widespace"> </span><span class="russian">рассекать</span><span class="widespace"> </span><span class="ipa">/rəsʲːɪˈkatʲ/</span></li><li><span class="russian">тернии</span><span class="widespace"> </span><span class="ipa">/ˈtʲernʲɪjɪ/</span><span class="widespace"> </span><span class="grammar">neut inan</span><span class="widespace"> </span><span class="translation">棘</span><span class="widespace"> </span><span class="grammar">sing loc</span><span class="widespace"> </span>←<span class="widespace"> </span><span class="russian">терние</span><span class="widespace"> </span><span class="ipa">/ˈtʲernʲɪjə/</span><span class="widespace"> </span><ul><li>対格のほうが自然だと思いますがよくわかりません。</li></ul></li><li><span class="russian">млечные</span><span class="widespace"> </span><span class="ipa">/ˈmlʲe<span class="lig">tɕ</span>nɨjə/</span><span class="widespace"> </span><span class="grammar">adj</span><span class="widespace"> </span><span class="translation">乳状の</span><span class="widespace"> </span><span class="grammar">pl acc</span><span class="widespace"> </span>←<span class="widespace"> </span><span class="russian">млечный</span><span class="widespace"> </span><span class="ipa">/ˈmlʲe<span class="lig">tɕ</span>nɨj/</span></li><li><span class="russian">пути</span><span class="widespace"> </span><span class="ipa">/pʊˈtʲi/</span><span class="widespace"> </span><span class="grammar">masc inan</span><span class="widespace"> </span><span class="translation">道</span><span class="widespace"> </span><span class="grammar">pl acc</span><span class="widespace"> </span>←<span class="widespace"> </span><span class="russian">путь</span><span class="widespace"> </span><span class="ipa">/ˈputʲ/</span><span class="widespace"> </span><ul><li><span class="russian">млечный путь</span><span class="widespace"> </span><span class="translation">天の川</span></li></ul></li></ul>
+<h3>1. <span class="russian">Ангелы и демоны кружили надо мной</span></h3>
+<div class="interlinear-gloss">
+  <table class="table table-borderless">
+    <tr>
+      <th>歌詞</th>
+      <td class="russian">Ангелы</td>
+      <td class="russian">и</td>
+      <td class="russian">демоны</td>
+      <td class="russian">кружили</td>
+      <td class="russian">надо</td>
+      <td class="russian">мной</td>
+    </tr>
+    <tr>
+      <th>読み</th>
+      <td class="ipa">ˈanɡ<sup>j</sup>ɪl<sup>j</sup>ɨ</td>
+      <td class="ipa">i</td>
+      <td class="ipa">ˈd<sup>j</sup>emənɨ</td>
+      <td class="ipa">krʊˈʒˠɨl<sup>j</sup>ɪ</td>
+      <td class="ipa">nədə</td>
+      <td class="ipa">mnoj</td>
+    </tr>
+    <tr>
+      <th>ラテン文字転写</th>
+      <td class="romanization">angel-y</td>
+      <td class="romanization">i</td>
+      <td class="romanization">demon-y</td>
+      <td class="romanization">kruzhi-li</td>
+      <td class="romanization">nado</td>
+      <td class="romanization">mnoy</td>
+    </tr>
+    <tr>
+      <th>説明</th>
+      <td>天使-<span class="grammar">pl.nom</span></td>
+      <td>と</td>
+      <td>悪魔-<span class="grammar">pl.nom</span></td>
+      <td>旋回する.<span class="grammar">impf</span>-<span class="grammar">pl.past</span></td>
+      <td>～の上で</td>
+      <td>私.<span class="grammar">instr</span></td>
+    </tr>
+  </table>
+</div>
 
-  <h3>3. <span class="russian">Не знает счастья только тот,</span></h3>
-  <ul><li><span class="russian">не</span><span class="widespace"> </span><span class="ipa">/nʲɪ/</span><span class="widespace"> </span><span class="grammar">ptcl</span><span class="widespace"> </span><span class="translation">（任意の文成分の直前に立ち、それを否定する）</span><span class="widespace"> </span><span class="grammar"></span></li><li><span class="russian">знает</span><span class="widespace"> </span><span class="ipa">/ˈznajɪt/</span><span class="widespace"> </span><span class="grammar">impf</span><span class="widespace"> </span>[+ <span class="grammar">acc</span>]<span class="widespace"> </span><span class="translation">知っている、体験する</span><span class="widespace"> </span><span class="grammar"> 3sg pres</span><span class="widespace"> </span>←<span class="widespace"> </span><span class="russian">знать</span><span class="widespace"> </span><span class="ipa">/znatʲ/</span></li><li><span class="russian">счастья</span><span class="widespace"> </span><span class="ipa">/ˈɕːæsʲtʲjə/</span><span class="widespace"> </span><span class="grammar">neut inan</span><span class="widespace"> </span><span class="translation">幸福</span><span class="widespace"> </span><span class="grammar">sg gen</span><span class="widespace"> </span>←<span class="widespace"> </span><span class="russian">счастье</span><span class="widespace"> </span><span class="ipa">/ˈɕːæsʲtʲjə/</span><span class="widespace"> </span><ul><li>意外なところに属格が出てきてしばらく意味がわかりませんでした。文法書を見ると、否定される他動詞の補語は属格になるということが書いてありました<a href="#uda">(宇多 2009, p. 102)</a>。なお、この否定される他動詞の補語に属格を用いる決まりですが、20世紀初め以降は、一部で対格が許容されるようになっていて、今では共存している状況らしいです。</li><li><span class="russian">«сч»</span>は<span class="ipa">[ɕː]</span>という発音が一般的のようです<a href="#kamiyama">(神山 2012, p. 130)</a>．また語末の無アクセントの<span class="russian">«я»</span>と<span class="russian">«е»</span>は通常同じように発音されるものの、格を明示させようとする場合にはアクセント母音に準じた発音が行われることもあるらしいです<a href="#kamiyama">(同書, p. 105)</a>。</li></ul></li><li><span class="russian">только</span><span class="widespace"> </span><span class="ipa">/ˈtolʲkə/</span><span class="widespace"> </span><span class="grammar">adv</span><span class="widespace"> </span><span class="translation">ただ、〜だけ</span><span class="widespace"> </span><span class="grammar">NaN</span></li><li><span class="russian">тот</span><span class="widespace"> </span><span class="ipa">/tot/</span><span class="widespace"> </span><span class="grammar">pron</span><span class="widespace"> </span><span class="translation">それ</span><span class="widespace"> </span><span class="grammar">sg masc nom</span><span class="widespace"> </span><ul><li>関係代名詞とともに使われることが多い。</li></ul></li></ul>
+<h3>2. <span class="russian">Разбивали тернии и звёздные пути</span></h3>
+<div class="interlinear-gloss">
+<p>歌詞カードには<span class="russian">Разбивали тернии и звёздные пути</span>ように表記してあるのですが、実際は<a href="https://cess.hatenablog.com/entries/2007/05/03">「せすにっき  攻殻オープニングその後」</a>に書いてあるように<span class="russian">Разбивали тернии и звёздные пути</span>と歌っているようです。</p>
+  <table class="table table-borderless">
+    <tr>
+      <th>歌詞</th>
+      <td class="russian">Рассекали</td>
+      <td class="russian">тернии</td>
+      <td class="russian">и</td>
+      <td class="russian">млечные</td>
+      <td class="russian">пути</td>
+    </tr>
+    <tr>
+      <th>読み</th>
+      <td class="ipa">rəs<sup>j</sup>ːɪˈkal<sup>j</sup>ɪ</td>
+      <td class="ipa">ˈt<sup>j</sup>ern<sup>j</sup>ɪjɪ</td>
+      <td class="ipa">i</td>
+      <td class="ipa">ˈml<sup>j</sup>et&#860;ɕnɨjə</td>
+      <td class="ipa">pʊˈt<sup>j</sup>i</td>
+    </tr>
+    <tr>
+      <th>ラテン文字転写</th>
+      <td>rasseka-li</td>
+      <td>terni-i</td>
+      <td>i</td>
+      <td>mlechn-yye</td>
+      <td>put-i</td>
+    </tr>
+    <tr>
+      <th>説明</th>
+      <td>（水・波などを）切り裂く<span class="grammar">.pf</span>-<span class="grammar">pl.past</span></td>
+      <td>棘-<span class="grammar">pl.acc</span></td>
+      <td>と</td>
+      <td>乳状の-<span class="grammar">pl.acc</span></td>
+      <td>道-<span class="grammar">pl.acc</span></td>
+    </tr>
+  </table>
+  <p>※<span class="russian">млечный путь</span> 天の川(cf. milky way)</p>
+  <p>ここで現れる<span class="russian">тернии</span>について、当初はWiktionaryの記述だけを見て<span>терние</span>の処格だと思っていました。
+  しかし、そうだと仮定するとрассекатьの目的語は対格であること、また基本的に<span class="russian">и</span>で結ばれたものは格が揃うことと矛盾してしまいます。
+  そこでもう少し情報の多い辞書<a href="https://gramota.ru/meta/ternie" target="_blank">Грамота.ру</a>を参照したところ、以下のような記述がありました。</p>
+  <div lang="ru">
+    <blockquote class="quotation">
+    <h3>те́рние</h3>
+    Существительное, средний род, 2-е склонение
+    <ol>
+      <li>те́рния, -ниев. Всякое колючее растение.<br>
+        <em class="italic gold">Придорожное терние. Венец из терниев.</em>
+      <li>те́рнии, -ний. Страдания, трудности, невзгоды.<br>
+        <em class="italic gold">Без терний и звёзд не достать. Мне достаются лишь терния жизни. Сколько терниев на артистическом поприще! *От века из терний поэта заветный венок.</em> <span class="text-muted">(Брюсов)</span><br>
+        <em class="italic gold">*Через тернии к звёздам. (через трудности к заветной цели).</em>
+      </li>
+    </ol>
+    </blockquote>
+  </div>
+  <p>これを見ると<span class="russian">тернии</span>は比喩的に「困難」などを表す語で、例えば<span class="ru">фантазия</span>の複数形<span>фантазии</span>と同じような活用の仕方をすることがわかりました。
+  したがって<span class="russian">тернии</span>は対格であり、矛盾していないことが確認できました。</p>
+</div>
 
-  <h3>4. <span class="russian">Кто его зова понять не смог…</span></h3>
-  <ul><li><span class="russian">кто</span><span class="widespace"> </span><span class="ipa">/ˈkto/</span><span class="widespace"> </span><span class="grammar">rel</span><span class="widespace"> </span><span class="translation">～する人</span><span class="widespace"> </span><span class="grammar"></span></li><li><span class="russian">его</span><span class="widespace"> </span><span class="ipa">/jɪˈvo/</span><span class="widespace"> </span><span class="grammar">poss</span><span class="widespace"> </span><span class="translation">（男性名詞・中性名詞を指して）その</span><span class="widespace"> </span><span class="grammar"></span><span class="widespace"> </span><ul><li>ここでは«счастья»を指していると思われる。</li></ul></li><li><span class="russian">зова</span><span class="widespace"> </span><span class="ipa">/ˈzovə/</span><span class="widespace"> </span><span class="grammar">masc inan</span><span class="widespace"> </span><span class="translation">呼び声</span><span class="widespace"> </span><span class="grammar">sg gen</span></li><li><span class="russian">понять</span><span class="widespace"> </span><span class="ipa">/pɐˈnʲatʲ/</span><span class="widespace"> </span><span class="grammar">pf</span><span class="widespace"> </span>[+ <span class="grammar">acc</span>]<span class="widespace"> </span><span class="translation">理解する</span><span class="widespace"> </span><span class="grammar">inf</span></li><li><span class="russian">смог</span><span class="widespace"> </span><span class="ipa">/smok/</span><span class="widespace"> </span><span class="grammar">pf</span><span class="widespace"> </span><span class="translation">できる</span><span class="widespace"> </span><span class="grammar">masc sg past</span><span class="widespace"> </span>←<span class="widespace"> </span><span class="russian">смочь</span><span class="widespace"> </span><span class="ipa">/smo<span class="lig">tɕ</span>/</span></li></ul>
+<h3>3. <span class="russian">Не знает счастья только тот,</span></h3>
+<div class="interlinear-gloss">
+  <table class="table table-borderless">
+    <tr>
+      <th>歌詞</th>
+      <td class="russian">Не</td>
+      <td class="russian">знает</td>
+      <td class="russian">счастья</td>
+      <td class="russian">только</td>
+      <td class="russian">тот,</td>
+    </tr>
+    <tr>
+      <th>読み</th>
+      <td class="ipa">n<sup>j</sup>ɪ</td>
+      <td class="ipa">ˈznajɪt</td>
+      <td class="ipa">ˈɕːæs<sup>j</sup>t<sup>j</sup>jə</td>
+      <td class="ipa">ˈtol<sup>j</sup>kə</td>
+      <td class="ipa">tot</td>
+    </tr>
+    <tr>
+      <th>ラテン文字転写</th>
+      <td class="romanization">ne</td>
+      <td class="romanization">znayet</td>
+      <td class="romanization">schast'-ya</td></td>
+      <td class="romanization">tol'ko</td>
+      <td class="romanization">tot</td>
+    </tr>
+    <tr>
+      <th>説明</th>
+      <td><span class="grammar">neg</span></td>
+      <td>
+        知る.<span class="grammar">impf</span>-<span class="grammar">3sg.pres</span>
+      </td>
+      <td>幸福-<span class="grammar">sg.gen</span></td>
+      <td>だけ</td>
+      <td>その人<span class="grammar">.m.sg.nom</span></td>
+    </tr>
+  </table>
+  <p>
+  <span class="russian">счастье</span>が属格になっています。
+  文法書を見ると、否定される他動詞の補語は属格になるということが書いてありました(宇多 2009, p. 102)。なお、この否定される他動詞の補語に属格を用いる決まりですが、20世紀初め以降は、一部で対格が許容されるようになっていて、今では共存している状況らしいです。
+  </p>
+  <p>«сч»は[ɕː]という発音が一般的のようです<a href="#kamiyama">(神山 2012, p. 130)</a>．また語末の無アクセントの«я»と«е»は通常同じように発音されるものの、格を明示させようとする場合にはアクセント母音に準じた発音が行われることもあるらしいです<a href="#kamiyama">(同書, p. 105)</a>。</p>
+</div>
 
-  <h3>5. <span class="russian">Собой остаться дольше…</span></h3>
-  <ul><li><span class="russian">собой</span><span class="widespace"> </span><span class="ipa">/sɐˈboj/</span><span class="widespace"> </span><span class="grammar">pron refl instr</span><span class="widespace"> </span>←<span class="widespace"> </span><span class="russian">себя</span><span class="widespace"> </span><span class="ipa">/sʲɪˈbʲa/</span><span class="widespace"> </span><ul><li>コピュラや、英語で言うところの“become”や“remain”（semi copulative verbsと呼ぶ）は具格を補語に取る<a href="#cubberley">(Cubberley, 2002, p. 207)</a>。</li></ul></li><li><span class="russian">остаться</span><span class="widespace"> </span><span class="ipa">/ɐˈsta<span class="lig">ts</span>ːə/</span><span class="widespace"> </span><span class="grammar">pf</span><span class="widespace"> </span><span class="translation">残る、～のままでいる</span><span class="widespace"> </span><span class="grammar"></span></li><li><span class="russian">дольше</span><span class="widespace"> </span><span class="ipa">/ˈdolʲʃˠɨ/</span><span class="widespace"> </span><span class="grammar">adv</span><span class="widespace"> </span><span class="translation">長く</span><span class="widespace"> </span><span class="grammar">comp</span></li></ul>
+<h3>4. <span class="russian">Кто его зова понять не смог…</span></h3>
+<div class="interlinear-gloss">
+  <table class="table table-borderless">
+    <tr>
+      <th>歌詞</th>
+      <td class="russian">Кто</td>
+      <td class="russian">его</td>
+      <td class="russian">зова</td>
+      <td class="russian">понять</td>
+      <td class="russian">не</td>
+      <td class="russian">смог</td>
+    </tr>
+    <tr>
+      <th>読み</th>
+      <td class="ipa">kto</td>
+      <td class="ipa">jɪˈvo</td>
+      <td class="ipa">ˈzovə</td>
+      <td class="ipa">pɐˈn<sup>j</sup>æt<sup>j</sup></td>
+      <td class="ipa">n<sup>j</sup>ɪ</td>
+      <td class="ipa">smok</td>
+    </tr>
+    <tr>
+      <th>ラテン文字転写</th>
+      <td class="romanization">kto</td>
+      <td class="romanization">ego</td>
+      <td class="romanization">zov-a</td>
+      <td class="romanization">ponyat'</td>
+      <td class="romanization">ne</td>
+      <td class="romanization">smog</td>
+    </tr>
+    <tr>
+      <th>説明</th>
+      <td>～する人</td>
+      <td>それ→幸福<span class="grammar">.poss</span></td>
+      <td>呼び声-<span class="grammar">gen</span></td>
+      <td>理解する.<span class="grammar">pf.inf</span></td>
+      <td><span class="grammar">neg</span></td>
+      <td>できる.<span class="grammar">pf.m.sg.past</span></td>
+    </tr>
+  </table>
+  <p>ここでも否定される他動詞の補語が属格になっています。</p>
+</div>
 
-  <h3>6. <span class="russian">Бесконечный бег…</span></h3>
-  <ul><li><span class="russian">бесконечный</span><span class="widespace"> </span><span class="ipa">/bʲɪskɐˈnʲe<span class="lig">tɕ</span>nɨj/</span><span class="widespace"> </span><span class="grammar">adj</span><span class="widespace"> </span><span class="translation">無限の、いつ終わるかわからない</span><span class="widespace"> </span><span class="grammar">sg masc nom</span></li><li><span class="russian">бег</span><span class="widespace"> </span><span class="ipa">/ˈbʲek/</span><span class="widespace"> </span><span class="grammar">masc inan</span><span class="widespace"> </span><span class="translation">道</span><span class="widespace"> </span><span class="grammar">sg nom</span></li></ul>
+<h3>5. Собой остаться дольше…</h3>
+<div class="interlinear-gloss">
+  <table class="table table-borderless">
+    <tr>
+      <th>歌詞</th>
+      <td class="russian">Собой</td>
+      <td class="russian">остаться</td>
+      <td class="russian">дольше</td>
+    </tr>
+    <tr>
+      <th>読み</th>
+      <td class="ipa">sɐˈboj</td>
+      <td class="ipa">ɐˈstat&#860;sə</td>
+      <td class="ipa">ˈdol<sup>j</sup>ʃ<sup>ɣ</sup>ɨ</td>
+    </tr>
+    <tr>
+      <th>ラテン文字転写</th>
+      <td class="romanization">soboy</td>
+      <td class="romanization">ostat'sya</td>
+      <td class="romanization">dol-'she</td>
+    </tr>
+    <tr>
+      <th>説明</th>
+      <td>自身<span class="grammar">.instr</span></td>
+      <td>留まる<span class="grammar">.pf.inf</span></td>
+      <td>長い-<span class="grammar">adv.cmpar</span></td>
+    </tr>
+  </table>
+  <p>コピュラや、英語で言うところの“become”や“remain”（semi copulative verbsと呼ぶ）は具格を補語に取る<a href="#cubberley">(Cubberley, 2002, p. 207)</a>。</p>
+</div>
 
-  <h3>7. <span class="russian">Пока жива я могу стараться на лету не упасть,</span></h3>
-  <ul><li><span class="russian">пока</span><span class="widespace"> </span><span class="ipa">/pɐˈka/</span><span class="widespace"> </span><span class="grammar">conj</span><span class="widespace"> </span><span class="translation">～する間</span><span class="widespace"> </span><span class="grammar"></span></li><li><span class="russian">жива</span><span class="widespace"> </span><span class="ipa">/ʒˠɨˈva/</span><span class="widespace"> </span><span class="grammar">adj</span><span class="widespace"> </span><span class="translation">生きている</span><span class="widespace"> </span><span class="grammar">sg fem</span><span class="widespace"> </span>←<span class="widespace"> </span><span class="russian">живой</span><span class="widespace"> </span><span class="ipa">/ʒˠɨˈvoj/</span></li><li><span class="russian">я</span><span class="widespace"> </span><span class="ipa">/ja/</span><span class="widespace"> </span><span class="grammar">pron 1sg nom</span></li><li><span class="russian">могу</span><span class="widespace"> </span><span class="ipa">/mɐˈgu/</span><span class="widespace"> </span><span class="grammar">impf</span><span class="widespace"> </span>[+ <span class="grammar">inf</span>]<span class="widespace"> </span><span class="translation">できる</span><span class="widespace"> </span><span class="grammar"> 1sg pres</span><span class="widespace"> </span>←<span class="widespace"> </span><span class="russian">мочь</span><span class="widespace"> </span><span class="ipa">/mot͡ɕ/</span></li><li><span class="russian">стараться</span><span class="widespace"> </span><span class="ipa">/stɐˈra<span class="lig">ts</span>ːə/</span><span class="widespace"> </span><span class="grammar">impf</span><span class="widespace"> </span><span class="translation">試す</span><span class="widespace"> </span><span class="grammar">inf</span></li><li><span class="russian">лету</span><span class="widespace"> </span><span class="ipa">/lʲeˈtu/</span><span class="widespace"> </span><span class="grammar">masc inan</span><span class="widespace"> </span><span class="translation">飛行</span><span class="widespace"> </span><span class="grammar">sg loc</span><span class="widespace"> </span>←<span class="widespace"> </span><span class="russian">лёт</span><span class="widespace"> </span><span class="ipa">/lʲot/</span><span class="widespace"> </span><ul><li><span class="russian">на лету</span><span class="widespace"> </span><span class="translation">飛行中に</span></li></ul></li><li><span class="russian">упасть</span><span class="widespace"> </span><span class="ipa">/ʊˈpasʲtʲ/</span><span class="widespace"> </span><span class="grammar">pf</span><span class="widespace"> </span><span class="translation">落ちる</span><span class="widespace"> </span><span class="grammar">inf</span></li></ul>
+<h3>6. <span class="russian">Бесконечный бег…</span></h3>
+<div class="interlinear-gloss">
+  <table class="table table-borderless">
+    <tr>
+      <th>歌詞</th>
+      <td class="russian">бесконечный</td>
+      <td class="russian">бег</td>
+    </tr>
+    <tr>
+      <th>読み</th>
+      <td class="ipa">b<sup>j</sup>ɪskɐˈn<sup>j</sup>et&#860;ɕnɨj</td>
+      <td class="ipa">ˈb<sup>j</sup>ek</td>
+    </tr>
+    <tr>
+      <th>ラテン文字転写</th>
+      <td class="romanization">beskonechnyy</td>
+      <td class="romanization">beg</td>
+    </tr>
+    <tr>
+      <th>説明</th>
+      <td>終わりのない<span class="grammar">.m.sg.nom</span></td>
+      <td>走ること<span class="grammar">.m.sg.nom</span></td>
+    </tr>
+  </table>
+</div>
 
-  <h3>8. <span class="russian">Не разучиться мечтать… любить…</span></h3>
-  <ul><li><span class="russian">разучиться</span><span class="widespace"> </span><span class="ipa">/rəzʊˈ<span class="lig">tɕ</span>i<span class="lig">ts</span>ːə/</span><span class="widespace"> </span><span class="grammar"></span><span class="widespace"> </span>[+ <span class="grammar">inf</span>]<span class="widespace"> </span><span class="translation">〜できなくなる</span><span class="widespace"> </span><span class="grammar"></span></li><li><span class="russian">мечтать</span><span class="widespace"> </span><span class="ipa">/mʲɪ<span class="lig">tɕ</span>ˈtatʲ/</span><span class="widespace"> </span><span class="grammar">impf</span><span class="widespace"> </span><span class="translation">空想する</span><span class="widespace"> </span><span class="grammar">inf</span></li><li><span class="russian">любить</span><span class="widespace"> </span><span class="ipa">/lʲʊˈbʲitʲ/</span><span class="widespace"> </span><span class="grammar">impf</span><span class="widespace"> </span><span class="translation">愛する</span><span class="widespace"> </span><span class="grammar"></span></li></ul>
+<h3>7. <span class="russian">Пока жива я могу стараться на лету не упасть,</span></h3>
+<div class="interlinear-gloss">
+  <table class="table table-borderless">
+    <tr>
+      <th>歌詞</th>
+      <td class="russian">Пока</td>
+      <td class="russian">жива</td>
+      <td class="russian">я</td>
+      <td class="russian">могу</td>
+      <td class="russian">стараться</td>
+      <td class="russian">на</td>
+      <td class="russian">лету</td>
+      <td class="russian">не</td>
+      <td class="russian">упасть</td>
+    </tr>
+    <tr>
+      <th>読み</th>
+      <td class="ipa">pɐˈka</td>
+      <td class="ipa">ʒ<sup>ɣ</sup>ɨˈva</td>
+      <td class="ipa">ja</td>
+      <td class="ipa">mɐˈɡu</td>
+      <td class="ipa">stɐˈrat͡sːə</td>
+      <td class="ipa">nə</td>
+      <td class="ipa">l<sup>j</sup>ɪˈtu</td>
+      <td class="ipa">n<sup>j</sup>e</td>
+      <td class="ipa">ʊˈpas<sup>j</sup>t<sup>j</sup></td>
+    </tr>
+    <tr>
+      <th>ラテン文字転写</th>
+      <td class="romanization">poka</td>
+      <td class="romanization">zhiv-a</td>
+      <td class="romanization">ya</td>
+      <td class="romanization">mo-gu</td>
+      <td class="romanization">starat'sya</td>
+      <td class="romanization">na</td>
+      <td class="romanization">let-u</td>
+      <td class="romanization">ne</td>
+      <td class="romanization">upast'</td>
+    </tr>
+    <tr>
+      <th>説明</th>
+      <td>～する間</td>
+      <td>生きている-<span class="grammar">f.sg</span></td>
+      <td>私<span class="grammar">.nom</span></td>
+      <td>できる<span class="grammar">.impf.1sg.pres</span></td>
+      <td>努力する<span class="grammar">.inf</span></td>
+      <td>上で</td>
+      <td>飛行-<span class="grammar">loc</span></td>
+      <td><span class="grammar">neg</span></td>
+      <td>落ちる<span class="grammar">.pf.inf</span></td>
+    </tr>
+  </table>
+  <p>※на лету 飛行中に</p>
+</div>
+
+<h3>8. <span class="russian">Не разучиться мечтать… любить…</span></h3>
+<div class="interlinear-gloss">
+  <table class="table table-borderless">
+    <tr>
+      <th>歌詞</th>
+      <td class="russian">Не</td>
+      <td class="russian">разучиться</td>
+      <td class="russian">мечтать…</td>
+      <td class="russian">любить…</td>
+    </tr>
+    <tr>
+      <th>読み</th>
+      <td class="ipa">n<sup>j</sup>e</span>
+      <td class="ipa">rəzʊˈt&#860;ɕit&#860;sːə</td>
+      <td class="ipa">m<sup>j</sup>ɪt&#860;ɕˈtat<sup>j</sup></td>
+      <td class="ipa">l<sup>j</sup>ʊˈb<sup>j</sup>it<sup>j</sup></td>
+    </tr>
+    <tr>
+      <th>ラテン文字転写</th>
+      <td class="romanization">ne</td>
+      <td class="romanization">razuchit'sya</td>
+      <td class="romanization">mechtat'</td>
+      <td class="romanization">lyubit'</td>
+    </tr>
+    <tr>
+      <th>説明</th>
+      <td><span class="grammar">neg</span></td></td>
+      <td>～できなくなる<span class="grammar">.pf.inf</span></td>
+      <td>夢を見る<span class="grammar">.inf</span></td>
+      <td>愛する<span class="grammar">.inf</span></td>
+    </tr>
+  </table>
+</div>
 
 </section>
 <section id="materials">
