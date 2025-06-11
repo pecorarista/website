@@ -7,13 +7,14 @@ $powder-blue: #b0e0e6;
 $white: #fff;
 $white-smoke: #f5f5f5;
 $gray: #808080;
+$gold: #b89350;
 $code-body: #f8f8f2;
 $code-background: #263e52;
 $footer-height: 70px;
 $western-font: 'Roboto';
 // $jp-font: 'hiragino-kaku-gothic-pron';
 $jp-font: 'source-han-sans-japanese';
-$ipa-font: 'Judson';
+$ipa-font: 'Noto Serif';
 $arabic-font: 'Amiri';
 $mono-font: 'Roboto Mono';
 
@@ -26,10 +27,14 @@ html {
   font-size: 100%;
 }
 
+.gold {
+  color: $gold;
+}
+
 body {
   font-family: $western-font, $jp-font, sans-serif;
   font-size: 1.1rem;
-  font-weight: 400;
+  font-weight: normal;
   font-feature-settings: 'kern' 1, 'liga' 0, 'palt';
   font-variant-ligatures: none;
   background-color: $white-smoke;
@@ -53,13 +58,19 @@ body {
   }
 }
 
+:lang(ar) {
+  font-family: $arabic-font, $western-font, $jp-font, sans-serif;
+}
+
 em {
   font-family: $western-font, sans-serif;
   font-style: oblique;
-}
 
-:lang(ar) {
-  font-family: $arabic-font, $western-font, $jp-font, sans-serif;
+  &.italic {
+    font-family: $ipa-font, serif;
+    font-style: italic;
+    font-weight: normal;
+  }
 }
 
 .wrapper {
@@ -117,27 +128,29 @@ section {
   }
 }
 
-.navbar-dark {
-  background-color: $shikon;
-}
+.navbar {
+  &-dark {
+    background-color: $shikon;
+  }
 
-.navbar-brand {
-  font-size: 1.4rem;
-  font-weight: bold;
+  &-brand {
+    font-size: 1.4rem;
+    font-weight: bold;
+  }
+
+  &-nav {
+    .separator {
+      padding: 0 0.5rem;
+      font-size: 1rem;
+      color: $white;
+      vertical-align: middle;
+      pointer-events: none;
+    }
+  }
 }
 
 .nav-link {
   font-size: 1.2rem;
-}
-
-.navbar-nav {
-  .separator {
-    padding: 0 0.5rem;
-    font-size: 1rem;
-    color: $white;
-    vertical-align: middle;
-    pointer-events: none;
-  }
 }
 
 figure {
@@ -199,14 +212,42 @@ ol.citation {
   }
 }
 
-.mathitem {
-  font-family: 'mathematical', serif;
-  font-size: 119.5%;
-  font-feature-settings: 'palt';
-}
+.math {
+  &item {
+    font-family: 'mathematical', serif;
+    font-size: 119.5%;
+    font-feature-settings: 'palt';
+  }
 
-.math-keyword {
-  font-weight: bold;
+  &-keyword {
+    font-weight: bold;
+  }
+
+  &-book {
+    padding-bottom: 0;
+
+    a {
+      color: $black;
+    }
+
+    cite {
+      margin-right: 0.5rem;
+
+      &:lang(en) {
+        font-family: $western-font, sans-serif;
+        font-style: oblique;
+      }
+
+      &:lang(ja) {
+        font-style: normal;
+      }
+    }
+
+    i.fa-bookmark {
+      margin-right: 0.25rem;
+      color: $denim;
+    }
+  }
 }
 
 ol.math {
@@ -227,63 +268,43 @@ ol.math {
       // content: '(' counter(m) ')';
       counter-increment: m;
     }
+
+    &.s::before { content: '(s' counter(m) ')'; }
+    &.p::before { content: '(p' counter(m) ')'; }
+    &.d::before { content: '(d' counter(m) ')'; }
+    &.parentheses::before { content: '(' counter(m) ')'; }
+    &.prime::before { content: '(' counter(m) 'ʹ)'; }
+    &.capc::before { content: '(C' counter(m) ')'; }
+    &.parentheses4::before { content: '(4)'; }
+    &.parentheses5::before { content: '(5)'; }
+    &.lower-roman::before { content: '(' counter(m, lower-roman) ')'; }
+    &.upper-roman::before { content: '(' counter(m, upper-roman) ')'; }
   }
 }
 
-.math-book {
-  padding-bottom: 0;
-
-  a {
-    color: $black;
-  }
-
-  cite {
-    margin-right: 0.5rem;
-
-    &:lang(en) {
-      font-family: $western-font, sans-serif;
-      font-style: oblique;
-    }
-
-    &:lang(ja) {
-      font-style: normal;
-    }
-  }
-
-  i.fa-bookmark {
-    margin-right: 0.25rem;
-    color: $denim;
-  }
+th {
+  text-align: center;
+  vertical-align: middle;
 }
 
-.card {
-  margin: 30px 0;
-  background-color: inherit;
-  border: 2px solid $denim;
-  border-radius: 5px;
-
-  .math-book + & {
-    margin-top: 0.5rem;
-  }
-
-  h5 {
-    padding: 10px 18px;
-    margin: 0 0 10px;
-    font-weight: bold;
-    color: $white;
-    background-color: $denim;
-  }
+.interlinear-gloss {
+  padding-bottom: 25px;
 
   p {
-    padding: 15px 30px 0;
+    margin: 0.75rem 0;
   }
 
-  p:last-child {
-    padding-bottom: 15px;
-  }
+  table {
+    width: auto;
+    padding: 0;
+    margin: 0;
+    table-layout: auto;
 
-  ol.math:last-child {
-    padding-bottom: 20px;
+    tr {
+      th {
+        text-align: left;
+      }
+    }
   }
 }
 
@@ -292,46 +313,6 @@ ol.narrow {
     margin-top: 0.5ex;
     margin-bottom: 0.5ex;
   }
-}
-
-ol.math li.s::before {
-  content: '(s' counter(m) ')';
-}
-
-ol.math li.p::before {
-  content: '(p' counter(m) ')';
-}
-
-ol.math li.d::before {
-  content: '(d' counter(m) ')';
-}
-
-ol.math li.parentheses::before {
-  content: '(' counter(m) ')';
-}
-
-ol.math li.prime::before {
-  content: '(' counter(m) 'ʹ)';
-}
-
-ol.math li.parentheses4::before {
-  content: '(4)';
-}
-
-ol.math li.parentheses5::before {
-  content: '(5)';
-}
-
-ol.math li.capc::before {
-  content: '(C' counter(m) ')';
-}
-
-ol.math li.lower-roman::before {
-  content: '(' counter(m, lower-roman) ')';
-}
-
-ol.math li.upper-roman::before {
-  content: '(' counter(m, upper-roman) ')';
 }
 
 figcaption.blockquote-footer {
@@ -380,11 +361,6 @@ main {
   padding-bottom: 50px;
 }
 
-th {
-  text-align: center;
-  vertical-align: middle;
-}
-
 .uri {
   font-family: $mono-font, monospace;
   word-break: break-all;
@@ -392,24 +368,6 @@ th {
 
 .monospace {
   font-family: $mono-font, monospace;
-}
-
-.quarter {
-  &::after {
-    display: inline;
-    font-family: $jp-font, monospace;
-    font-size: 50%;
-    content: ' ';
-  }
-}
-
-.half {
-  &::after {
-    display: inline;
-    font-family: $jp-font, monospace;
-    font-weight: normal;
-    content: ' ';
-  }
 }
 
 code {
@@ -424,11 +382,6 @@ code {
   &[class*='language-'] {
     font-family: $mono-font, monospace;
   }
-
-  .quarter,
-  .half {
-    display: none;
-  }
 }
 
 pre {
@@ -438,11 +391,6 @@ pre {
   &[class*='language-'] {
     font-family: $mono-font, monospace;
     border-radius: 3px;
-  }
-
-  .quarter,
-  .half {
-    display: none;
   }
 
   code {
@@ -459,29 +407,10 @@ kbd {
   color: $code-body;
   background-color: $code-background;
   border-radius: 3px;
-
-  .quarter,
-  .half {
-    display: none;
-  }
-}
-
-samp {
-  .quarter,
-  .half {
-    display: none;
-  }
-}
-
-ol > .quarter,
-ul > .quarter,
-ol > .half,
-ul > .half {
-  display: none;
 }
 
 .russian {
-  font-family: $western-font, serif;
+  font-family: $western-font, sans-serif;
 }
 
 .ipa {
@@ -527,38 +456,45 @@ h5.math {
   background: linear-gradient(transparent 50%, yellow);
 }
 
-.toc-container {
-  display: table;
-  width: auto;
-  padding-top: 20px;
-  padding-bottom: 5px;
-  margin-top: 60px;
-  margin-bottom: 9px;
-  background: #f9f9f9 none repeat scroll 0 0;
-  border: 1px solid #aaa;
-  border-radius: 5px;
+.toc {
+  &-title {
+    font-weight: bold;
+    text-align: center;
+  }
 
-  ol {
-    padding-right: 2rem;
-    padding-left: 1.5rem;
-    counter-reset: item;
+  &-container {
+    display: table;
+    width: auto;
+    padding-top: 20px;
+    padding-bottom: 5px;
+    margin-top: 60px;
+    margin-bottom: 9px;
+    background: #f9f9f9 none repeat scroll 0 0;
+    border: 1px solid #aaa;
+    border-radius: 5px;
 
-    li {
-      list-style: none;
-      counter-increment: item;
+    ol {
+      padding-right: 2rem;
+      padding-left: 1.5rem;
+      counter-reset: item;
 
-      &::before {
-        padding-right: 10px;
-        content: counter(item);
-      }
+      li {
+        list-style: none;
+        counter-increment: item;
 
-      ol {
-        padding-left: 1.5rem;
+        &::before {
+          padding-right: 10px;
+          content: counter(item);
+        }
 
-        li {
-          &::before {
-            padding-right: 10px;
-            content: counters(item, '.') ' ';
+        ol {
+          padding-left: 1.5rem;
+
+          li {
+            &::before {
+              padding-right: 10px;
+              content: counters(item, '.') ' ';
+            }
           }
         }
       }
@@ -566,9 +502,31 @@ h5.math {
   }
 }
 
-.toc-title {
-  font-weight: bold;
-  text-align: center;
+blockquote.quotation {
+  position: relative;
+  padding: 1rem 3.3rem 0.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+  border-left: 8px solid $gray;
+
+  &::before {
+    position: absolute;
+    top: -18px;
+    left: 10px;
+    font-family: $ipa-font, serif;
+    font-size: 4rem;
+    color: $gray;
+    content: '“';
+  }
+
+  &::after {
+    content: '';
+  }
+
+  h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+  }
 }
 
 .me {
