@@ -11,12 +11,13 @@ $gold: #b89350;
 $code-body: #f8f8f2;
 $code-background: #263e52;
 $footer-height: 70px;
-$western-font: 'Roboto';
-// $jp-font: 'hiragino-kaku-gothic-pron';
-$jp-font: 'source-han-sans-japanese';
-$ipa-font: 'Noto Serif';
-$arabic-font: 'Amiri';
+$latin-font: 'Roboto';
 $mono-font: 'Roboto Mono';
+$arabic-font: 'Amiri';
+$hebrew-font: 'Noto Sans Hebrew';
+$jp-font: 'Noto Sans JP';
+$ipa-font: 'Noto Serif';
+$romanization-font: 'Roboto';
 
 @font-face {
   font-family: 'mathematical';
@@ -32,10 +33,11 @@ html {
 }
 
 body {
-  font-family: $western-font, $jp-font, sans-serif;
+  font-family: $latin-font, $jp-font, sans-serif;
   font-size: 1.1rem;
   font-weight: normal;
-  font-feature-settings: 'kern' 1, 'liga' 0, 'palt';
+  // font-feature-settings: 'kern' 1, 'liga' 0, 'palt';
+  font-feature-settings: 'kern' 1, 'liga' 0;
   font-variant-ligatures: none;
   background-color: $white-smoke;
   text-autospace: normal;
@@ -59,11 +61,19 @@ body {
 }
 
 :lang(ar) {
-  font-family: $arabic-font, $western-font, $jp-font, sans-serif;
+  font-family: $arabic-font, sans-serif;
+}
+
+:lang(he) {
+  font-family: $hebrew-font, sans-serif;
+}
+
+.aramaic {
+  text-align: right;
 }
 
 em {
-  font-family: $western-font, sans-serif;
+  font-family: $latin-font, sans-serif;
   font-style: oblique;
 
   &.italic {
@@ -104,7 +114,7 @@ h2,
 h3,
 h4,
 h5 {
-  font-weight: 400;
+  font-weight: normal;
 }
 
 h2 {
@@ -117,6 +127,10 @@ h3 {
 
 h4 {
   font-size: 1.3rem;
+}
+
+h5 {
+  font-size: 1.1rem;
 }
 
 section {
@@ -234,7 +248,7 @@ ol.citation {
       margin-right: 0.5rem;
 
       &:lang(en) {
-        font-family: $western-font, sans-serif;
+        font-family: $latin-font, sans-serif;
         font-style: oblique;
       }
 
@@ -301,7 +315,10 @@ th {
     table-layout: auto;
 
     tr {
+      line-height: 10px;
+
       th {
+        padding: 0.9rem;
         text-align: left;
       }
     }
@@ -410,11 +427,15 @@ kbd {
 }
 
 .russian {
-  font-family: $western-font, sans-serif;
+  font-family: $latin-font, sans-serif;
 }
 
 .ipa {
   font-family: $ipa-font, serif;
+}
+
+.romanization {
+  font-family: $romanization-font, sans-serif;
 }
 
 .lig {
@@ -423,7 +444,7 @@ kbd {
 }
 
 .grammar {
-  font-family: $western-font, serif;
+  font-family: $latin-font, serif;
   font-variant: small-caps;
   font-variant-caps: small-caps;
 }
@@ -535,4 +556,34 @@ blockquote.quotation {
 
 .bib {
   text-indent: 0;
+}
+
+.character-toggle-button {
+  display: inline-flex; // ルビ含めて整列
+  gap: 0.25rem;
+  align-items: baseline; // 高さ揃え（重要）
+  font: inherit;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.item-header {
+  display: grid;
+  grid-template-columns: 5rem 1fr auto;  // label, value, chevron;
+  column-gap: 0.5rem;
+  align-items: baseline;
+  padding: 0.5rem 0;
+  border: none;
+
+  .label {
+    white-space: nowrap;
+  }
+
+  .value {
+    // 左寄せされる
+    line-height: 1.4;
+  }
 }

@@ -9,16 +9,6 @@
     <meta name="twitter:description" content="{{ description }}">
     <meta name="twitter:image" content="https://pecorarista.com/static/images/avatar.png">
     <link rel="icon" href="/favicon.ico">
-		<script>
-			(function(d) {
-				var config = {
-					kitId: 'mbi1yhb',
-					scriptTimeout: 3000,
-					async: true
-				},
-				h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
-			})(document);
-		</script>
     {% include 'nunjucks/_layout/_styles.njk' %}
     <title>{{ title }}</title>
   </head>
@@ -34,13 +24,15 @@
       <footer>
         {% include 'nunjucks/_layout/_footer.njk' %}
       </footer>
-      {% include 'nunjucks/_layout/_scripts.njk' %}
-      {% if mathematical %}
-        <script src="/static/js/mathjax.js"></script>
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js?config=TeX-AMS_HTML"></script>
-        </script>
-      {% endif %}
     </div>
+    {% include 'nunjucks/_layout/_scripts.njk' %}
+    {% if mathematical %}
+      <script src="/static/js/mathjax.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js?config=TeX-AMS_HTML"></script>
+      </script>
+    {% endif %}
+    {% block scripts %}
+    {% endblock %}
   </body>
 </html>
