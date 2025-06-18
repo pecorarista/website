@@ -1,0 +1,42 @@
+{% extends 'nunjucks/_layout/_layout.njk' %}
+{% set lang = 'ja' %}
+{% set title = '創作' %}
+
+{% block content %}
+<article>
+  <div class="row">
+    <div class="col-12 col-lg-6">
+      <section>
+        <figure class="material">
+          <a href="/static/images/amana-lethia-material-v1.png">
+            <img
+              src="/static/images/amana-lethia-material-v1.png"
+              alt="天奈レティア設定画"
+            >
+          </a>
+          <figcaption>
+            <h4>設定画</h4>
+          </figcaption>
+        </figure>
+      </section>
+    </div>
+    <div class="col-12 col-lg-6">
+      <section id="character">
+        <h3>オリジナルキャラクター</h3>
+        <div class="item-header d-grid" style="grid-template-columns: 6rem 1fr auto; align-items: baseline;">
+          <div class="label">名前</div>
+          <div class="value">
+            <a href="name-origin"><ruby><rb>天奈</rb><rt>あまな</rt></ruby> レティア</a>
+          </div>
+        </div>
+      </section>
+      <section id="novel">
+        <h3>小説</h3>
+      </section>
+      <section id="language">
+        <h3>人工言語</h3>
+      </section>
+    </div>
+  </div>
+</article>
+{% endblock %}

@@ -3,7 +3,6 @@
   "dependencies": {
     "@11ty/eleventy": "^2.0.0",
     "eslint": "^8.23.1",
-    "findandreplacedomtext": "^0.4.6",
     "fs": "^0.0.1-security",
     "prism-themes": "^1.9.0",
     "sass": "^1.54.9",

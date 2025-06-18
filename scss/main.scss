@@ -16,8 +16,8 @@ $mono-font: 'Roboto Mono';
 $arabic-font: 'Amiri';
 $hebrew-font: 'Noto Sans Hebrew';
 $jp-font: 'Noto Sans JP';
-$ipa-font: 'Noto Serif';
-$romanization-font: 'Roboto';
+$ipa-font: 'Source Serif 4';
+$romanization-font: 'Source Serif 4';
 
 @font-face {
   font-family: 'mathematical';
@@ -64,12 +64,17 @@ body {
   font-family: $arabic-font, sans-serif;
 }
 
+:lang(arc) {
+  font-family: $hebrew-font, sans-serif;
+}
+
 :lang(he) {
   font-family: $hebrew-font, sans-serif;
 }
 
-.aramaic {
-  text-align: right;
+.niqqud-placeholder {
+  display: inline-block;
+  visibility: hidden;
 }
 
 em {
@@ -314,12 +319,16 @@ th {
     margin: 0;
     table-layout: auto;
 
-    tr {
-      line-height: 10px;
+    caption {
+      text-align: left;
+      caption-side: top;
+    }
 
-      th {
-        padding: 0.9rem;
-        text-align: left;
+    tr {
+      line-height: 1.1;
+
+      td[dir='rtl'] {
+        text-align: right;
       }
     }
   }

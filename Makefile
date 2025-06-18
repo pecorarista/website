@@ -22,7 +22,6 @@ release: $(DIST)/CNAME \
 	$(DIST)/static/css/main.css \
 	$(DIST)/static/js/mathjax.js \
 	$(DIST)/static/js/main.js \
-	$(DIST)/static/js/findAndReplaceDOMText.js \
 	$(MAIN_PAGE_TARGETS) \
 	$(POST_PAGE_TARGETS)
 
