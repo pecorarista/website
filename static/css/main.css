@@ -37,12 +37,17 @@ body {
   font-family: "Amiri", sans-serif;
 }
 
+:lang(arc) {
+  font-family: "Noto Sans Hebrew", sans-serif;
+}
+
 :lang(he) {
   font-family: "Noto Sans Hebrew", sans-serif;
 }
 
-.aramaic {
-  text-align: right;
+.niqqud-placeholder {
+  display: inline-block;
+  visibility: hidden;
 }
 
 em {
@@ -50,7 +55,7 @@ em {
   font-style: oblique;
 }
 em.italic {
-  font-family: "Noto Serif", serif;
+  font-family: "Source Serif 4", serif;
   font-style: italic;
   font-weight: normal;
 }
@@ -276,12 +281,15 @@ th {
   margin: 0;
   table-layout: auto;
 }
-.interlinear-gloss table tr {
-  line-height: 10px;
-}
-.interlinear-gloss table tr th {
-  padding: 0.9rem;
+.interlinear-gloss table caption {
   text-align: left;
+  caption-side: top;
+}
+.interlinear-gloss table tr {
+  line-height: 1.1;
+}
+.interlinear-gloss table tr td[dir=rtl] {
+  text-align: right;
 }
 
 ol.narrow li {
@@ -378,11 +386,11 @@ kbd {
 }
 
 .ipa {
-  font-family: "Noto Serif", serif;
+  font-family: "Source Serif 4", serif;
 }
 
 .romanization {
-  font-family: "Roboto", sans-serif;
+  font-family: "Source Serif 4", sans-serif;
 }
 
 .lig {
@@ -471,7 +479,7 @@ blockquote.quotation::before {
   position: absolute;
   top: -18px;
   left: 10px;
-  font-family: "Noto Serif", serif;
+  font-family: "Source Serif 4", serif;
   font-size: 4rem;
   color: #808080;
   content: "“";
