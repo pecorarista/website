@@ -1,0 +1,45 @@
+{% extends 'nunjucks/_layout/_layout.njk' %}
+{% set lang = 'ja' %}
+{% set title = "Lilit and Na'amahの解説" %}
+
+{% block content %}
+<article>
+  <div class="interlinear-gloss">
+    {% include 'nunjucks/fictional-works/_include/zohar-gloss-vahoda.html' %}
+  </div>
+
+  {% include 'nunjucks/fictional-works/_include/zohar-vocab-vahoda.html' %}
+
+  <div class="interlinear-gloss">
+    {% include 'nunjucks/fictional-works/_include/zohar-gloss-vahavo.html' %}
+  </div>
+
+  {% include 'nunjucks/fictional-works/_include/zohar-vocab-vahavo.html' %}
+
+  <div class="interlinear-gloss">
+    {% include 'nunjucks/fictional-works/_include/zohar-gloss-minnah.html' %}
+  </div>
+
+  {% include 'nunjucks/fictional-works/_include/zohar-vocab-minnah.html' %}
+
+  <div class="interlinear-gloss">
+    {% include 'nunjucks/fictional-works/_include/zohar-gloss-tiubeta.html' %}
+  </div>
+
+  {% include 'nunjucks/fictional-works/_include/zohar-vocab-tiubeta.html' %}
+
+  <div class="interlinear-gloss">
+    {% include 'nunjucks/fictional-works/_include/zohar-gloss-umehahu.html' %}
+  </div>
+
+  {% include 'nunjucks/fictional-works/_include/zohar-vocab-umehahu.html' %}
+
+  <div class="interlinear-gloss">
+    {% include 'nunjucks/fictional-works/_include/zohar-gloss-vead.html' %}
+  </div>
+
+  <div style="width: 400px;">
+    {% include 'nunjucks/fictional-works/_include/zohar-vocab-vead.html' %}
+  </div>
+</article>
+{% endblock %}
