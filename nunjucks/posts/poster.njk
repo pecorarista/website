@@ -17,32 +17,54 @@
 <section>
   <h2>1. どんな感じになるのか</h2>
   <p>デザインのセンス次第でいくらでも綺麗なものは作れると思いますが以下のような感じのものが作れます。</p>
-  <figure>
-    <img src="/static/images/complex-poster.svg" alt="複雑なポスターの例" />
-  </figure>
+  <div class="figure-container">
+    <figcaption>
+      Beamerで作成したポスターの例
+    </figcaption>
+    <figure>
+      <img src="/static/images/complex-poster.svg" alt="複雑なポスターの例" />
+    </figure>
+  </div>
   <p>印刷の向きに関しては<code>beamerposter</code>のオプションで</p>
   <ul>
     <li>横：<code>orientation=landscape</code></li>
     <li>縦：<code>orientation=portrait</code></li>
   </ul>
   <p>のように指定することができます。</p>
-  <figure>
-    <figcaption>上のポスターのコード</figcaption>
-    <pre><code class="language-latex">{{ includeFile('latex/complex-poster.tex') }}</code></pre>
-  </figure>
+  <div class="figure-container">
+    <figure>
+      <figcaption>上のポスターのコード</figcaption>
+      <pre><code class="language-latex">{{ includeFile('latex/complex-poster.tex') }}</code></pre>
+    </figure>
+  </div>
 </section>
 <section>
   <h2>2. 単純なポスターを作ってみる</h2>
-  <p>TeX Liveに収録されている<a href="https://ctan.org/pkg/beamerposter">beamerposter</a>パッケージを使います。以下のようなコードを<code>simple-poster.tex</code>のような名前で保存してください。</p>
+  <p>TeX Liveに収録されている<a href="https://ctan.org/pkg/beamerposter">beamerposter</a>パッケージを使います。以下のようなコードを<span class="monospace">simple-poster.tex</span>のような名前で保存してください。</p>
+  <div class="figure-container">
+      <span class="monospace">simple-poster.tex</span>
     <pre><code class="language-latex">{{ includeFile('latex/simple-poster.tex') }}</code></pre>
-  <p>次に<code>beamerthemeSimplePoster.sty</code>という名前で以下の内容を現在作業しているディレクトリに保存してください。</p>
+  </div>
+  <p>次に<span class="monospace">beamerthemeSimplePoster.sty</span>という名前で以下の内容を現在作業しているディレクトリに保存してください。</p>
+  <div class="figure-container">
+    <figcaption>
+      <span class="monospace">beamerthemeSimplePoster.sty</span>
+    </figcaption>
     <pre><code class="language-latex">{{ includeFile('latex/beamerthemeSimplePoster.sty') }}</code></pre>
-  <p>LuaLaTeXでタイプセットしたいので上の2つと同じ場所に設定ファイル<code>latexmkrc</code>を置いておきます。</p>
-  <pre><code class="language-perl">{{ includeFile('latex/latexmkrc.pl') }}</code></pre>
+  </div>
+  <p>LuaLaTeXでタイプセットしたいので上の2つと同じ場所に設定ファイル<span class="monospace">latexmkrc</span>を置いておきます。</p>
+  <div class="figure-container">
+    <figcaption>
+      <span class="monospace">latexmkrc</span>
+    </figcaption>
+    <pre><code class="language-perl">{{ includeFile('latex/latexmkrc.pl') }}</code></pre>
+  </div>
   <p>これらのファイルがある場所で<code>latexmk poster.tex</code> コマンドを実行すると以下のような PDF ができあがります。</p>
-  <figure>
-    <img src="/static/images/simple-poster.svg" alt="単純なポスターの例" />
-  </figure>
+  <div class="figure-container">
+    <figure>
+      <img src="/static/images/simple-poster.svg" alt="単純なポスターの例" />
+    </figure>
+  </div>
   <p>あとは色を変更したり、中身を追加していくだけです。</p>
 </section>
 {% endblock %}

@@ -171,45 +171,91 @@ section {
   font-size: 1.2rem;
 }
 
-figure {
-  margin-top: 40px;
-  margin-bottom: 40px;
+code {
+  font-family: $mono-font, monospace;
+  color: $code-background;  // TODO
+}
 
-  figcaption {
-    padding-bottom: 10px;
-    color: $black;
-    text-align: center;
-    caption-side: top;
+.filename {
+  font-family: $mono-font, monospace;
+}
+
+td.monospace {
+  font-family: $mono-font, monospace;
+}
+
+pre {
+  max-width: 800px;
+  max-height: 40rem;
+  overflow: auto;
+
+  &[class*='language-'] {
+    font-family: $mono-font, monospace;
+    border-radius: 3px;
   }
 
-  img {
-    max-width: 100%;
-    height: auto;
-    background-color: $powder-blue;
+  code {
+    padding: 2px 5px;
+    margin: 0;
+    font-family: $mono-font, $jp-font, monospace;
+    font-size: 95%;
+    color: $code-body;
+    background-color: $code-background;
+    border-radius: 3px;
 
-    &.pseudocode {
-      min-width: 380px;
-      background-color: $white;
+    &[class*='language-'] {
+      font-family: $mono-font, monospace;
     }
   }
+}
 
-  &.blockquote {
-    padding: 3px 15px;
-    margin: 40px 2px;
-    border-left: 4px solid #ccc;
-  }
+.figure-container {
+  padding: 10px 0 20px;
+  text-align: center;
 
-  &.centered {
-    margin-bottom: 50px;
-    text-align: center;
-  }
+  figure {
+    display: block;
+    margin: 0;
 
-  &.material {
-    margin-top: 0;
-    margin-bottom: 0;
+    pre {
+      display: block;
+      margin: 0 auto;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      margin: 10px auto;
+    }
 
     figcaption {
-      margin-top: 20px;
+      max-width: 100%;
+      margin: 15px 0;
+      text-align: center;
+
+      .caption-inner {
+        display: inline-block;
+        max-width: 100%;
+        text-align: left;
+      }
+
+      * {
+        margin: 0;
+      }
+    }
+  }
+}
+
+ul.profile {
+  padding: 15px 0;
+
+  li {
+    display: inline-block;
+    text-align: center;
+
+    i {
+      padding: 5px;
     }
   }
 }
@@ -350,36 +396,6 @@ figcaption.blockquote-footer {
   text-align: right;
 }
 
-.profile {
-  text-align: center;
-
-  figure {
-    margin-top: 0;
-    margin-bottom: 0;
-
-    img {
-      max-width: 250px;
-    }
-
-    figcaption {
-      margin-top: 20px;
-    }
-  }
-
-  ul {
-    padding: 0;
-
-    li {
-      display: inline-block;
-      text-align: center;
-
-      i {
-        padding: 5px;
-      }
-    }
-  }
-}
-
 main {
   height: 100%;
   padding-top: 50px;
@@ -389,38 +405,6 @@ main {
 .uri {
   font-family: $mono-font, monospace;
   word-break: break-all;
-}
-
-.monospace {
-  font-family: $mono-font, monospace;
-}
-
-code {
-  padding: 2px 5px;
-  margin: 0;
-  font-family: $mono-font, $jp-font, monospace;
-  font-size: 85%;
-  color: $code-body;
-  background-color: $code-background;
-  border-radius: 3px;
-
-  &[class*='language-'] {
-    font-family: $mono-font, monospace;
-  }
-}
-
-pre {
-  max-height: 50em;
-  overflow: auto;
-
-  &[class*='language-'] {
-    font-family: $mono-font, monospace;
-    border-radius: 3px;
-  }
-
-  code {
-    padding: 0;
-  }
 }
 
 .info {
