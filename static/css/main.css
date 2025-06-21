@@ -136,40 +136,82 @@ section section {
   font-size: 1.2rem;
 }
 
-figure {
-  margin-top: 40px;
-  margin-bottom: 40px;
+code {
+  font-family: "Roboto Mono", monospace;
+  color: #263e52;
 }
-figure figcaption {
-  padding-bottom: 10px;
-  color: #373a3c;
+
+.filename {
+  font-family: "Roboto Mono", monospace;
+}
+
+td.monospace {
+  font-family: "Roboto Mono", monospace;
+}
+
+pre {
+  max-width: 800px;
+  max-height: 40rem;
+  overflow: auto;
+}
+pre[class*=language-] {
+  font-family: "Roboto Mono", monospace;
+  border-radius: 3px;
+}
+pre code {
+  padding: 2px 5px;
+  margin: 0;
+  font-family: "Roboto Mono", "Noto Sans JP", monospace;
+  font-size: 95%;
+  color: #f8f8f2;
+  background-color: #263e52;
+  border-radius: 3px;
+}
+pre code[class*=language-] {
+  font-family: "Roboto Mono", monospace;
+}
+
+.figure-container {
+  padding: 10px 0 20px;
   text-align: center;
-  caption-side: top;
 }
-figure img {
+.figure-container figure {
+  display: block;
+  margin: 0;
+}
+.figure-container figure pre {
+  display: block;
+  margin: 0 auto;
+}
+.figure-container figure img {
+  display: block;
   max-width: 100%;
   height: auto;
-  background-color: #b0e0e6;
+  margin: 10px auto;
 }
-figure img.pseudocode {
-  min-width: 380px;
-  background-color: #fff;
-}
-figure.blockquote {
-  padding: 3px 15px;
-  margin: 40px 2px;
-  border-left: 4px solid #ccc;
-}
-figure.centered {
-  margin-bottom: 50px;
+.figure-container figure figcaption {
+  max-width: 100%;
+  margin: 15px 0;
   text-align: center;
 }
-figure.material {
-  margin-top: 0;
-  margin-bottom: 0;
+.figure-container figure figcaption .caption-inner {
+  display: inline-block;
+  max-width: 100%;
+  text-align: left;
 }
-figure.material figcaption {
-  margin-top: 20px;
+.figure-container figure figcaption * {
+  margin: 0;
+}
+
+ul.profile {
+  padding: 15px 0;
+}
+ul.profile li {
+  display: inline-block;
+  text-align: center;
+}
+ul.profile li i {
+  padding: 5px;
 }
 
 ol.citation {
@@ -305,30 +347,6 @@ figcaption.blockquote-footer::before {
   content: "";
 }
 
-.profile {
-  text-align: center;
-}
-.profile figure {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-.profile figure img {
-  max-width: 250px;
-}
-.profile figure figcaption {
-  margin-top: 20px;
-}
-.profile ul {
-  padding: 0;
-}
-.profile ul li {
-  display: inline-block;
-  text-align: center;
-}
-.profile ul li i {
-  padding: 5px;
-}
-
 main {
   height: 100%;
   padding-top: 50px;
@@ -338,35 +356,6 @@ main {
 .uri {
   font-family: "Roboto Mono", monospace;
   word-break: break-all;
-}
-
-.monospace {
-  font-family: "Roboto Mono", monospace;
-}
-
-code {
-  padding: 2px 5px;
-  margin: 0;
-  font-family: "Roboto Mono", "Noto Sans JP", monospace;
-  font-size: 85%;
-  color: #f8f8f2;
-  background-color: #263e52;
-  border-radius: 3px;
-}
-code[class*=language-] {
-  font-family: "Roboto Mono", monospace;
-}
-
-pre {
-  max-height: 50em;
-  overflow: auto;
-}
-pre[class*=language-] {
-  font-family: "Roboto Mono", monospace;
-  border-radius: 3px;
-}
-pre code {
-  padding: 0;
 }
 
 .info {

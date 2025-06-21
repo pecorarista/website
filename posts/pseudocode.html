@@ -50,10 +50,14 @@
 <section id="usage">
   <h2>1. 主な使い方</h2>
   <p>まずは
-    <code>algpseudocode</code> というパッケージを読み込みます。
+    <span class="filename">algpseudocode</span> というパッケージを読み込みます。
     以下のように挿入ソートのアルゴリズムを書いてみます。</p>
-  <figure>
-    <pre><code class="language-latex">&#92;documentclass{article}
+    <div class="figure-container">
+      <figure>
+        <figcaption>
+          <span class="filename">insertion-sort.tex</span>
+        </figcaption>
+        <pre><code class="language-latex">&#92;documentclass{article}
 &#92;usepackage{newtxtext,newtxmath}
 &#92;usepackage{algpseudocode}
 &#92;pagestyle{empty}
@@ -73,34 +77,51 @@
     &#92;end{algorithmic}
 &#92;end{document}
 </code></pre>
-  </figure>
+      </figure>
+    </div>
   <p>表示されるのは以下のような擬似コードになります。</p>
-  <figure class="centered">
-    <img
-      src="/static/images/insertion-sort.svg"
-      alt="疑似コードの例"
-      class="pseudocode"
-    />
-  </figure>
+  <div class="figure-container">
+    <figure>
+      <img
+        src="/static/images/insertion-sort.svg"
+        alt="疑似コードの例"
+        class="pseudocode"
+        style="min-width: 400px;"
+      />
+    </figure>
+  </div>
   <p>普段Pythonなど
     <code>end</code> を明示しない言語に慣れていると少し冗長に感じるかもしれません。そのような記号を明示したくない場合はパッケージ読込時に</p>
-    <figure>
-      <pre><code class="language-latex">\usepackage[noend]{algpseudocode}</code></pre>
-    </figure>
+    <div class="figure-container">
+      <figure>
+        <pre><code class="language-latex">\usepackage[noend]{algpseudocode}</code></pre>
+      </figure>
+    </div>
   <p>のように書いておくと</p>
-    <figure class="centered">
+  <div class="figure-container">
+    <figure>
       <img
         src="/static/images/insertion-sort-no-end.svg"
         alt="`End`を用いない疑似コードの例"
         class="pseudocode"
+        style="min-width: 400px;"
       />
     </figure>
+  </div>
   <p> のようなPython風の擬似コードになります。さらに<code>do</code>の記述も不要ならば、ヘッダ部分に以下のように記述します。</p>
-    <pre><code class="language-latex">\algrenewcommand\algorithmicdo{}</code></pre>
+  <div class="figure-container">
+    <figure>
+      <pre><code class="language-latex">\algrenewcommand\algorithmicdo{}</code></pre>
+    </figure>
+  </div>
   <p>いま
-    <code>for</code> の始点と終点の間には<code>…</code> を使っていますが、もし変えたければ<code>algpseudocode.sty</code> にならい新しい制御構造<code>\ForTo</code> をプリアンブルで定義します。</p>
-  <figure>
-    <pre><code class="language-latex">&#92;documentclass{article}
+  <code>for</code> の始点と終点の間には<code>…</code> を使っていますが、もし変えたければ<code>algpseudocode.sty</code> にならい新しい制御構造<code>\ForTo</code> をプリアンブルで定義します。</p>
+  <div class="figure-container">
+    <figcaption>
+      <span class="filename">insertion-sort-for-to.tex</span>
+    </figcaption>
+    <figure>
+      <pre><code class="language-latex">&#92;documentclass{article}
 &#92;usepackage{newtxtext,newtxmath}
 &#92;usepackage[noend]{algpseudocode}
 &#92;algnewcommand&#92;algorithmicto{&#92;textbf{to}}
@@ -126,17 +147,21 @@
     &#92;end{algorithmic}
 &#92;end{document}
 </code></pre>
-  </figure>
+    </figure>
+  </div>
   <p>アルゴリズム中
     <code>\For</code> を新しく定義した
     <code>\ForTo</code> に置き換えて次のような出力を得ます。</p>
-  <figure class="centered">
-    <img
-      src="/static/images/insertion-sort-for-to.svg"
-      alt="ForToの表示を変更した疑似コードの例"
-      class="pseudocode"
-    />
-  </figure>
+  <div class="figure-container">
+    <figure>
+      <img
+        src="/static/images/insertion-sort-for-to.svg"
+        alt="ForToの表示を変更した疑似コードの例"
+        class="pseudocode"
+        style="min-width: 400px;"
+      />
+    </figure>
+  </div>
   <p>新しく定義した制御構造については
     <code>[noend]</code> オプションが適用されないのため、要らなければ
     <code>algtext*{EndFor}</code> を
@@ -145,21 +170,43 @@
 <section>
   <h3>2. よく変更を加える項目について</h3>
   <p>行間は<code>\setlength{\baselineskip}{Npt}</code>（<code>N</code> は自然数 ）で変更できます。ここでは新たに<code>broadalgo</code> という環境を定義することにします。</p>
-  <figure>
-    <pre><code class="language-latex">\newenvironment{broadalgo}{%
+  <div class="figure-container">
+    <figure>
+      <pre><code class="language-latex">\newenvironment{broadalgo}{%
   \setlength{\baselineskip}{17pt}
   \begin{algorithmic}[1]
 }{%
   \end{algorithmic}
 }</code></pre>
-  </figure>
+    </figure>
+  </div>
   <p>この例では出てきませんが<code>\Return</code> には行番号が振られないようになっています。あったほうがよいならば再定義する必要があります。</p>
-  <figure>
-    <pre><code class="language-latex">\let\oldReturn\Return
-\renewcommand{\Return}{\State\oldReturn}</code></pre>
-  </figure>
+  <div class="figure-container">
+    <figure>
+      <pre><code class="language-latex">\let\oldReturn\Return
+  \renewcommand{\Return}{\State\oldReturn}</code></pre>
+    </figure>
+  </div>
   <p>上記の設定を使った文書の例です。</p>
-    <pre><code class="language-latex">&#92;documentclass{article}
+  <div class="figure-container">
+    <figure>
+      <figcaption>
+        <span class="filename">final.pdf</span>
+      </figcaption>
+      <img
+        src="/static/images/final.svg"
+        alt="上記で説明した変更を適用した疑似コードの例"
+        class="pseudocode"
+        style="min-width: 400px;"
+      />
+    </figure>
+  </div>
+  <div class="figure-container">
+    <figure>
+      <figcaption>
+        <span class="filename">final.tex</span>
+      </figcaption>
+      <pre><code class="language-latex">&#92;documentclass{article}
 &#92;usepackage{amsmath}
 &#92;usepackage[noend]{algpseudocode}
 %%%%% フォント関連 %%%%%
@@ -205,13 +252,8 @@
     &#92;end{broadalgo}
 &#92;end{document}
 </code></pre>
-    <figure class="centered">
-      <img
-        src="/static/images/final.svg"
-        alt="上記で説明した変更を適用した疑似コードの例"
-        class="pseudocode"
-      />
     </figure>
+  </div>
 </section>
 
 </article>

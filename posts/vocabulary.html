@@ -48,19 +48,17 @@
   
 <section>
   <p>単語帳を作る作業は簡略化したいものの、ラテン文字以外の文字を正確に表示してくれる環境はなかなかないものです。そこでLaTeXの機能で表示を頑張りつつ、単語のリストの作成はMarkdownで簡略化するという方法で作成することにしました。依存するツールが増えるとインストールが大変なので、PandocとTeX Live、そして表示したい言語のフォント以外は準備しなくても大丈夫な方法を考えてみました。以下は中国語、ロシア語、アラビア語の単語で実際に作ってみた例です。</p>
-  <figure class="centered">
-    <figcaption>単語帳の例</figcaption>
-    <img
-      src="/static/images/words.svg"
-      class="pseudocode"
-      style="min-width: 900px; max-width: 100%; padding: 20px;"
-    />
-  </figure>
+  <div class="figure-container">
+    <figure>
+      <figcaption>単語帳の例</figcaption>
+      <img src="/static/images/words.svg" style="min-width: 700px; max-width: 100%;">
+    </figure>
+  </div>
   <p>文法用語の省略記法は<a href="https://en.wikipedia.org/wiki/List_of_glossing_abbreviations"><em>List of glossing abbreviations</em></a>を使っています。</p>
 </section>
 <section>
   <h2>1. フォントの取得</h2>
-  <p>単語帳を作成したい言語や発音記号で使われている文字を含むフォントを持っているか確認します。Windowsの場合は<kbd>Win</kbd> <code>fonts</code>で、Linuxの場合は<code>fc-list</code>コマンドでインストール済みのフォントの一覧が表示されます。</p>
+  <p>単語帳を作成したい言語や発音記号で使われている文字を含むフォントを持っているか確認します。Windowsの場合は <i class="fa-brands fa-windows"></i> <code>fonts</code>で、Linuxの場合は<code>fc-list</code>コマンドでインストール済みのフォントの一覧が表示されます。</p>
   <p>多くの文字を含み、かつ入手しやすいフォントとして以下のようなものがあります。</p>
   <ul>
     <li><a href="https://www.gnu.org/software/freefont/">GNU FreeFont</a></li>
@@ -76,9 +74,11 @@
 </section>
 <section>
   <h2>2. テンプレートの作成</h2>
-  <p>各言語に対応したフォントが自動で割り当てられるようにbabelなどのパッケージの設定を書いたテンプレートを準備しておきます。これを<code>vocabulary.tex</code>などの名前で保存します。</p>
-  <figure>
-    <pre><code class="language-latex">&#92;documentclass[12pt,a4paper]{ltjsarticle}
+  <p>各言語に対応したフォントが自動で割り当てられるようにbabelなどのパッケージの設定を書いたテンプレートを準備しておきます。これを<span class="filename">vocabulary.tex</span>などの名前で保存します。</p>
+  <div class="figure-container">
+    <figcaption><span class="filename">vocabulary.tex</span></figcaption>
+    <figure>
+      <pre><code class="language-latex">&#92;documentclass[12pt,a4paper]{ltjsarticle}
 &#92;usepackage[no-math]{luatexja-fontspec}
 &#92;usepackage{babel}
 &#92;babelprovide{russian}
@@ -115,10 +115,12 @@
   $body$
 &#92;end{document}
 </code></pre>
-  </figure>
+    </figure>
+  </div>
   <p>次にPandocの「フィルター」と呼ばれるものを書きます。これを使ってMarkdownからLaTeXに変換する方法を指定し、少しでも入力が楽になるようにします。ここでは頻繁に入力するスモールキャピタルはアンダースコア2つ<code>__</code>で入力できるようにしました。またロシア語アルファベットが使われている部分は、自動でロシア語とマークアップされるようにしました。</p>
-  <figure>
-    <pre><code class="language-lua">function isrussian (s)
+  <div class="figure-container">
+    <figure>
+      <pre><code class="language-lua">function isrussian (s)
   i = utf8.offset(s, 1)
   j = utf8.offset(s, 2) - 1
   uchar = string.sub(s, i, j)
@@ -143,13 +145,16 @@ function Str (elem)
   end
 end
 </code></pre>
-  </figure>
+    </figure>
+  </div>
 </section>
 <section>
   <h2>3. 単語のリスト作成</h2>
-  <p>Markdown形式で単語のリストを書いていきます。テキストエディタを使い、以下のような単語のリストを作って<code>words.md</code>のような名前で保存します。アラビア文字の入力の仕方は<a href="https://pecorarista.com/posts/arabluatex.html">「LaTeXでRTL（右横書き）の文書をつくる」</a>を、発音記号の入力の仕方は<a href="https://pecorarista.com/posts/type-ipa.html"><em>How to type phonetic symbols</em></a>をご参照ください。</p>
-  <figure>
-    <pre><code class="language-markdown">* &#92;ChineseWord{狐狸} húli /xʷuu˥lʲii/ 狐
+  <p>Markdown形式で単語のリストを書いていきます。テキストエディタを使い、以下のような単語のリストを作って<span class="filename">words.md</span>のような名前で保存します。アラビア文字の入力の仕方は<a href="https://pecorarista.com/posts/arabluatex.html">「LaTeXでRTL（右横書き）の文書をつくる」</a>を、発音記号の入力の仕方は<a href="https://pecorarista.com/posts/type-ipa.html"><em>How to type phonetic symbols</em></a>をご参照ください。</p>
+  <div class="figure-container">
+    <figure>
+      <figcaption><span class="filename">words.md</span></figcaption>
+      <pre><code class="language-markdown">* &#92;ChineseWord{狐狸} húli /xʷuu˥lʲii/ 狐
 * &#92;ChineseWord{春节} chūnjié /ʈʂʰʷən˥tɕee˧˥/ 春節
 * &#92;ChineseWord{近日} jìnrì /tɕin˥˩ʐʐʐ˥˩/ このごろ
 * убивать /ʊbʲɪˈvatʲ/ __impf__ __[+ acc]__ 殺す
@@ -160,16 +165,30 @@ end
 * &#92;ArabicWord{tatajAdalu} (&#92;arb[novoc]{fI} + etw.) bestreiten __3sg f impf__
     ← &#92;ArabicWord{tajadala}
 </code></pre>
-  </figure>
-  <p>タイプセットする際にLuaLaTeXを使いたいので<code>latexmkrc</code>を作ります。</p>
-  <figure>
-    <pre><code class="language-perl"></code></pre>
-  </figure>
+    </figure>
+  </div>
+  <p>タイプセットする際にLuaLaTeXを使いたいので<span class="filename">latexmkrc</span>を作ります。</p>
+  <div class="figure-container">
+    <figcaption><span class="filename">latexmkrc</span></figcaption>
+    <figure>
+      <pre><code class="language-perl">#!/usr/bin/perl
+$pdflatex = &#39;lualatex %O %S&#39;;
+$bibtex = &#39;upbibtex %O %B&#39;;
+$pdf_mode = 1;
+$bibtex_use = 2;
+$clean_ext .= &#39;%R.bbl %R.ltjruby %R.nav %R.snm %R.vrb&#39;;
+</code></pre>
+    </figure>
+  </div>
   <p>以下のコマンドを実行して最終的にPDFファイルを得ます。</p>
+  <div class="figure-container">
+    <figure>
     <pre class="command-line"><code class="language-bash">pandoc --from=markdown --to=latex \
   --template=vocabulary.tex --lua-filter=filter.lua \
   --standalone --output=words.tex words.md
 latexmk words.tex</code></pre>
+    </figure>
+  </div>
 </section>
 
 </article>
